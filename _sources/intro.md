@@ -1,11 +1,10 @@
-# Welcome to your Jupyter Book
+# AI Hardware Applications
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+This is the course website for ECE 495 - AI Hardware Applications, Fall '23.
 
-Check out the content pages bundled with this sample book to see more.
+Many of the pages are [Jupyter Notebooks](https://docs.jupyter.org/en/latest/)
+and can be opened in [Google Colab](https://colab.research.google.com/)
+by clicking the launch button &#x1F680; at the top right of the page!
 
 ```{tableofcontents}
 ```
