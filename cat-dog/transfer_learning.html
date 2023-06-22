@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Transfer Learning with MobileNetV2 &#8212; ECE 495</title>
+    <title>09 - Transfer Learning &#8212; ECE 495</title>
   
   
   
@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Image Classification with TensorFlow Lite" href="tflite_catdog.html" />
+    <link rel="next" title="10 - TensorFlow Lite" href="tflite_catdog.html" />
     <link rel="prev" title="08 - Linear Algebra and GPUs" href="../dnn/gpu.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -168,9 +168,8 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../dnn/neuralnet.html">07 - Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dnn/gpu.html">08 - Linear Algebra and GPUs</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Transfer Learning with MobileNetV2</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="tflite_catdog.html">Image Classification with TensorFlow Lite</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">09 - Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tflite_catdog.html">10 - TensorFlow Lite</a></li>
 </ul>
 
     </div>
@@ -385,7 +384,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Transfer Learning with MobileNetV2</h1>
+    <h1>09 - Transfer Learning</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -395,8 +394,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Transfer Learning with MobileNetV2</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#transfer-learning-and-fine-tuning">Transfer learning and fine-tuning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing">Data preprocessing</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-download">Data download</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-the-dataset-for-performance">Configure the dataset for performance</a></li>
@@ -424,9 +423,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-model">Save the model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -437,70 +433,18 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="transfer-learning-with-mobilenetv2">
-<h1>Transfer Learning with MobileNetV2<a class="headerlink" href="#transfer-learning-with-mobilenetv2" title="Permalink to this heading">#</a></h1>
-<p><strong>Copyright 2019 The TensorFlow Authors.</strong></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
-<span class="c1"># you may not use this file except in compliance with the License.</span>
-<span class="c1"># You may obtain a copy of the License at</span>
-<span class="c1">#</span>
-<span class="c1"># https://www.apache.org/licenses/LICENSE-2.0</span>
-<span class="c1">#</span>
-<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
-<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
-<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
-<span class="c1"># See the License for the specific language governing permissions and</span>
-<span class="c1"># limitations under the License.</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title MIT License</span>
-<span class="c1">#</span>
-<span class="c1"># Copyright (c) 2017 François Chollet                                                                                                                    # IGNORE_COPYRIGHT: cleared by OSS licensing</span>
-<span class="c1">#</span>
-<span class="c1"># Permission is hereby granted, free of charge, to any person obtaining a</span>
-<span class="c1"># copy of this software and associated documentation files (the &quot;Software&quot;),</span>
-<span class="c1"># to deal in the Software without restriction, including without limitation</span>
-<span class="c1"># the rights to use, copy, modify, merge, publish, distribute, sublicense,</span>
-<span class="c1"># and/or sell copies of the Software, and to permit persons to whom the</span>
-<span class="c1"># Software is furnished to do so, subject to the following conditions:</span>
-<span class="c1">#</span>
-<span class="c1"># The above copyright notice and this permission notice shall be included in</span>
-<span class="c1"># all copies or substantial portions of the Software.</span>
-<span class="c1">#</span>
-<span class="c1"># THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
-<span class="c1"># IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
-<span class="c1"># FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL</span>
-<span class="c1"># THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
-<span class="c1"># LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
-<span class="c1"># FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER</span>
-<span class="c1"># DEALINGS IN THE SOFTWARE.</span>
-</pre></div>
-</div>
-</div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="transfer-learning">
+<h1>09 - Transfer Learning<a class="headerlink" href="#transfer-learning" title="Permalink to this heading">#</a></h1>
+<section id="pre-reading">
+<h2>Pre-reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Video <em>only first 5 minutes</em> <a class="reference external" href="https://youtu.be/mPFq5KMxKVw">Kaggle: Transfer Learning</a></p></li>
+</ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="transfer-learning-and-fine-tuning">
-<h1>Transfer learning and fine-tuning<a class="headerlink" href="#transfer-learning-and-fine-tuning" title="Permalink to this heading">#</a></h1>
-<table class="tfo-notebook-buttons" align="left">
-  <td>
-    <a target="_blank" href="https://www.tensorflow.org/tutorials/images/transfer_learning"><img src="https://www.tensorflow.org/images/tf_logo_32px.png" />View on TensorFlow.org</a>
-  </td>
-  <td>
-    <a target="_blank" href="https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/images/transfer_learning.ipynb?force_kitty_mode=1&force_corgi_mode=1"><img src="https://www.tensorflow.org/images/colab_logo_32px.png" />Run in Google Colab</a>
-  </td>
-  <td>
-    <a target="_blank" href="https://github.com/tensorflow/docs/blob/master/site/en/tutorials/images/transfer_learning.ipynb"><img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" />View source on GitHub</a>
-  </td>
-  <td>
-    <a href="https://storage.googleapis.com/tensorflow_docs/docs/site/en/tutorials/images/transfer_learning.ipynb"><img src="https://www.tensorflow.org/images/download_logo_32px.png" />Download notebook</a>
-  </td>
-</table><p>In this tutorial, you will learn how to classify images of cats and dogs by using transfer learning from a pre-trained network.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p><em>Copyright 2019 The TensorFlow Authors. Licensed under Apache License 2.0 and MIT License. Extracted and modified from <a class="reference external" href="https://www.tensorflow.org/tutorials/images/transfer_learning">TensorFlow Core: Transfer learning and fine-tuning</a>.</em></p>
+<p>In this tutorial, you will learn how to classify images of cats and dogs by using transfer learning from a pre-trained network.</p>
 <p>A pre-trained model is a saved network that was previously trained on a large dataset, typically on a large-scale image-classification task. You either use the pretrained model as is or use transfer learning to customize this model to a given task.</p>
 <p>The intuition behind transfer learning for image classification is that if a model is trained on a large and general enough dataset, this model will effectively serve as a generic model of the visual world. You can then take advantage of these learned feature maps without having to start from scratch by training a large model on a large dataset.</p>
 <p>In this notebook, you will try two ways to customize a pretrained model:</p>
@@ -534,6 +478,7 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="data-preprocessing">
 <h2>Data preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this heading">#</a></h2>
 <section id="data-download">
@@ -1032,8 +977,13 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the model</span>
 <span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;cat-dog-tuned&quot;</span>
 <span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
-
-<span class="c1"># Optional, for downloading</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Optional, for downloading</span>
 <span class="o">!</span>zip<span class="w"> </span>-r<span class="w"> </span>cat-dog-tuned.zip<span class="w"> </span>cat-dog-tuned/
 </pre></div>
 </div>
@@ -1097,7 +1047,7 @@ In this case, you tuned your weights such that your model learned high-level fea
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Image Classification with TensorFlow Lite</p>
+        <p class="prev-next-title">10 - TensorFlow Lite</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1119,8 +1069,8 @@ In this case, you tuned your weights such that your model learned high-level fea
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Transfer Learning with MobileNetV2</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#transfer-learning-and-fine-tuning">Transfer learning and fine-tuning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing">Data preprocessing</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-download">Data download</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-the-dataset-for-performance">Configure the dataset for performance</a></li>
@@ -1148,9 +1098,6 @@ In this case, you tuned your weights such that your model learned high-level fea
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-model">Save the model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>

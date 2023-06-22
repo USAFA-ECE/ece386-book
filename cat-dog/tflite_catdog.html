@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Image Classification with TensorFlow Lite &#8212; ECE 495</title>
+    <title>10 - TensorFlow Lite &#8212; ECE 495</title>
   
   
   
@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Transfer Learning with MobileNetV2" href="transfer_learning.html" />
+    <link rel="prev" title="09 - Transfer Learning" href="transfer_learning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -167,9 +167,8 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../dnn/neuralnet.html">07 - Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dnn/gpu.html">08 - Linear Algebra and GPUs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="transfer_learning.html">Transfer Learning with MobileNetV2</a></li>
-
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Image Classification with TensorFlow Lite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transfer_learning.html">09 - Transfer Learning</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10 - TensorFlow Lite</a></li>
 </ul>
 
     </div>
@@ -384,7 +383,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Image Classification with TensorFlow Lite</h1>
+    <h1>10 - TensorFlow Lite</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -394,7 +393,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-the-model">Upload the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-sample-images">Upload sample images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-the-model">Upload the Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Upload the Model</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-the-saved-model">Convert the saved model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conduct-inference-on-novel-images">Conduct inference on novel images</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-images">Upload images</a></li>
@@ -402,8 +407,9 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-tf-lite-interpreter">Use TF Lite Interpreter</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-step-embedded-device">Next step: embedded device!</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-step-raspberry-pi">Next step: Raspberry Pi!</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-on-raspberry-pi-os-bullseye-11">Running on Raspberry Pi OS Bullseye 11</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#picamera-for-live-inference">PiCamera for live inference</a></li>
 </ul>
 </li>
 </ul>
@@ -417,15 +423,63 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="image-classification-with-tensorflow-lite">
-<h1>Image Classification with TensorFlow Lite<a class="headerlink" href="#image-classification-with-tensorflow-lite" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="tensorflow-lite">
+<h1>10 - TensorFlow Lite<a class="headerlink" href="#tensorflow-lite" title="Permalink to this heading">#</a></h1>
 <p>Previously, we trained a model based on MobileNetV2 to differentiate between cats and dogs.</p>
 <p>Prior to conducting inference with this model, we will convert the model to Tensorflow Lite.
 This will have performance advantages on constrained hardware.</p>
+<section id="pre-reading">
+<h2>Pre-reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.tensorflow.org/lite/guide">TensorFlow Lite</a></p></li>
+<li><p><a class="reference external" href="https://www.tensorflow.org/lite/models/trained">Pre-trained models for TensorFlow Lite</a></p></li>
+<li><p><a class="reference external" href="https://www.tensorflow.org/lite/models/convert">Model conversion overview</a></p></li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">#</a></h2>
+<p>Before this will work we need to upload the previously trained model and some sample images.</p>
+<section id="upload-sample-images">
+<h3>Upload sample images<a class="headerlink" href="#upload-sample-images" title="Permalink to this heading">#</a></h3>
+<p>The GitHub repository has several cat and dog pictures co-located with this notebook.
+Upload them to a directory named <code class="docutils literal notranslate"><span class="pre">img/</span></code> or go find your own test pictures.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This should show several .jpgs of cats and dogs, after uploading</span>
+<span class="o">!</span>ls<span class="w"> </span>img
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cat1.jpg  cat2.jpg  cat3.jpg  dog1.jpg	dog2.jpg  dog3.jpg  Vin.jpg
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="upload-the-model">
-<h2>Upload the Model<a class="headerlink" href="#upload-the-model" title="Permalink to this heading">#</a></h2>
-<p>First, upload the saved model (<code class="docutils literal notranslate"><span class="pre">cat-dog-tuned.zip</span></code> if you used the previous tutorial).
-Then unzip the model.</p>
+<h3>Upload the Model<a class="headerlink" href="#upload-the-model" title="Permalink to this heading">#</a></h3>
+<p>First, upload the saved model from the previous lesson (<code class="docutils literal notranslate"><span class="pre">cat-dog-tuned.zip</span></code>)</p>
+<p>Then unzip the model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This should show several .jpgs of cats and dogs, after uploading</span>
+<span class="o">!</span>ls<span class="w"> </span>img
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Archive:  cat-dog-tuned.zip
+replace cat-dog-tuned/keras_metadata.pb? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^C
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3>Upload the Model<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>First, upload the saved model from the previous lesson (<code class="docutils literal notranslate"><span class="pre">cat-dog-tuned.zip</span></code>)</p>
+<p>Then unzip the model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run after uploading the file</span>
@@ -434,6 +488,7 @@ Then unzip the model.</p>
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="convert-the-saved-model">
 <h2>Convert the saved model<a class="headerlink" href="#convert-the-saved-model" title="Permalink to this heading">#</a></h2>
@@ -444,6 +499,193 @@ Then unzip the model.</p>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">help</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">lite</span><span class="o">.</span><span class="n">TFLiteConverter</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-06-21 15:05:31.904920: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2023-06-21 15:05:31.946597: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2023-06-21 15:05:31.947460: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-06-21 15:05:32.834192: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.12.0
+Help on class TFLiteConverterV2 in module tensorflow.lite.python.lite:
+
+class TFLiteConverterV2(TFLiteFrozenGraphConverterV2)
+ |  TFLiteConverterV2(funcs, trackable_obj=None)
+ |  
+ |  Converts a TensorFlow model into TensorFlow Lite model.
+ |  
+ |  Attributes:
+ |    optimizations: Experimental flag, subject to change. Set of optimizations to
+ |      apply. e.g {tf.lite.Optimize.DEFAULT}. (default None, must be None or a
+ |      set of values of type `tf.lite.Optimize`)
+ |    representative_dataset: A generator function used for integer quantization
+ |      where each generated sample has the same order, type and shape as the
+ |      inputs to the model. Usually, this is a small subset of a few hundred
+ |      samples randomly chosen, in no particular order, from the training or
+ |      evaluation dataset. This is an optional attribute, but required for full
+ |      integer quantization, i.e, if `tf.int8` is the only supported type in
+ |      `target_spec.supported_types`. Refer to `tf.lite.RepresentativeDataset`.
+ |      (default None)
+ |    target_spec: Experimental flag, subject to change. Specifications of target
+ |      device, including supported ops set, supported types and a set of user&#39;s
+ |      defined TensorFlow operators required in the TensorFlow Lite runtime.
+ |      Refer to `tf.lite.TargetSpec`.
+ |    inference_input_type: Data type of the input layer. Note that integer types
+ |      (tf.int8 and tf.uint8) are currently only supported for post training
+ |      integer quantization and quantization aware training. (default tf.float32,
+ |      must be in {tf.float32, tf.int8, tf.uint8})
+ |    inference_output_type: Data type of the output layer. Note that integer
+ |      types (tf.int8 and tf.uint8) are currently only supported for post
+ |      training integer quantization and quantization aware training. (default
+ |      tf.float32, must be in {tf.float32, tf.int8, tf.uint8})
+ |    allow_custom_ops: Boolean indicating whether to allow custom operations.
+ |      When False, any unknown operation is an error. When True, custom ops are
+ |      created for any op that is unknown. The developer needs to provide these
+ |      to the TensorFlow Lite runtime with a custom resolver. (default False)
+ |    exclude_conversion_metadata: Whether not to embed the conversion metadata
+ |      into the converted model. (default False)
+ |    experimental_new_converter: Experimental flag, subject to change. Enables
+ |      MLIR-based conversion. (default True)
+ |    experimental_new_quantizer: Experimental flag, subject to change. Enables
+ |      MLIR-based quantization conversion instead of Flatbuffer-based conversion.
+ |      (default True)
+ |    experimental_enable_resource_variables: Experimental flag, subject to
+ |      change. Enables
+ |      [resource variables](https://tensorflow.org/guide/migrate/tf1_vs_tf2#resourcevariables_instead_of_referencevariables)
+ |      to be converted by this converter. This is only allowed if the
+ |      from_saved_model interface is used. (default True)
+ |  
+ |  Example usage:
+ |  
+ |  ```python
+ |  # Converting a SavedModel to a TensorFlow Lite model.
+ |    converter = tf.lite.TFLiteConverter.from_saved_model(saved_model_dir)
+ |    tflite_model = converter.convert()
+ |  
+ |  # Converting a tf.Keras model to a TensorFlow Lite model.
+ |  converter = tf.lite.TFLiteConverter.from_keras_model(model)
+ |  tflite_model = converter.convert()
+ |  
+ |  # Converting ConcreteFunctions to a TensorFlow Lite model.
+ |  converter = tf.lite.TFLiteConverter.from_concrete_functions([func], model)
+ |  tflite_model = converter.convert()
+ |  
+ |  # Converting a Jax model to a TensorFlow Lite model.
+ |  converter = tf.lite.TFLiteConverter.experimental_from_jax([func], [[
+ |      (&#39;input1&#39;, input1), (&#39;input2&#39;, input2)]])
+ |  tflite_model = converter.convert()
+ |  ```
+ |  
+ |  Method resolution order:
+ |      TFLiteConverterV2
+ |      TFLiteFrozenGraphConverterV2
+ |      TFLiteConverterBaseV2
+ |      TFLiteConverterBase
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, funcs, trackable_obj=None)
+ |      Constructor for TFLiteConverter.
+ |      
+ |      Args:
+ |        funcs: List of TensorFlow ConcreteFunctions. The list should not contain
+ |          duplicate elements.
+ |        trackable_obj: tf.AutoTrackable object associated with `funcs`. A
+ |          reference to this object needs to be maintained so that Variables do not
+ |          get garbage collected since functions have a weak reference to
+ |          Variables. This is only required when the tf.AutoTrackable object is not
+ |          maintained by the user (e.g. `from_saved_model`).
+ |  
+ |  convert(self)
+ |      Converts a TensorFlow GraphDef based on instance variables.
+ |      
+ |      Returns:
+ |        The converted data in serialized format.
+ |      
+ |      Raises:
+ |        ValueError:
+ |          No concrete functions is specified.
+ |          Multiple concrete functions are specified.
+ |          Input shape is not specified.
+ |          Invalid quantization parameters.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods defined here:
+ |  
+ |  experimental_from_jax(serving_funcs, inputs) from builtins.type
+ |      Creates a TFLiteConverter object from a Jax model with its inputs.
+ |      
+ |      Args:
+ |        serving_funcs: A array of Jax functions with all the weights applied
+ |          already.
+ |        inputs: A array of Jax input placeholders tuples list, e.g.,
+ |          jnp.zeros(INPUT_SHAPE). Each tuple list should correspond with the
+ |          serving function.
+ |      
+ |      Returns:
+ |        TFLiteConverter object.
+ |  
+ |  from_concrete_functions(funcs, trackable_obj=None) from builtins.type
+ |      Creates a TFLiteConverter object from ConcreteFunctions.
+ |      
+ |      Args:
+ |        funcs: List of TensorFlow ConcreteFunctions. The list should not contain
+ |          duplicate elements. Currently converter can only convert a single
+ |          ConcreteFunction. Converting multiple functions is under development.
+ |        trackable_obj:   An `AutoTrackable` object (typically `tf.module`)
+ |          associated with `funcs`. A reference to this object needs to be
+ |          maintained so that Variables do not get garbage collected since
+ |          functions have a weak reference to Variables.
+ |      
+ |      Returns:
+ |        TFLiteConverter object.
+ |      
+ |      Raises:
+ |        Invalid input type.
+ |  
+ |  from_keras_model(model) from builtins.type
+ |      Creates a TFLiteConverter object from a Keras model.
+ |      
+ |      Args:
+ |        model: tf.Keras.Model
+ |      
+ |      Returns:
+ |        TFLiteConverter object.
+ |  
+ |  from_saved_model(saved_model_dir, signature_keys=None, tags=None) from builtins.type
+ |      Creates a TFLiteConverter object from a SavedModel directory.
+ |      
+ |      Args:
+ |        saved_model_dir: SavedModel directory to convert.
+ |        signature_keys: List of keys identifying SignatureDef containing inputs
+ |          and outputs. Elements should not be duplicated. By default the
+ |          `signatures` attribute of the MetaGraphdef is used. (default
+ |          saved_model.signatures)
+ |        tags: Set of tags identifying the MetaGraphDef within the SavedModel to
+ |          analyze. All tags in the tag set must be present. (default
+ |          {tf.saved_model.SERVING} or {&#39;serve&#39;})
+ |      
+ |      Returns:
+ |        TFLiteConverter object.
+ |      
+ |      Raises:
+ |        Invalid signature keys.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from TFLiteConverterBase:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+
+None
 </pre></div>
 </div>
 </div>
@@ -468,6 +710,20 @@ Then unzip the model.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-06-21 15:05:47.378725: W tensorflow/compiler/mlir/lite/python/tf_tfl_flatbuffer_helpers.cc:364] Ignored output_format.
+2023-06-21 15:05:47.378752: W tensorflow/compiler/mlir/lite/python/tf_tfl_flatbuffer_helpers.cc:367] Ignored drop_control_dependency.
+2023-06-21 15:05:47.379467: I tensorflow/cc/saved_model/reader.cc:45] Reading SavedModel from: cat-dog-tuned
+2023-06-21 15:05:47.411330: I tensorflow/cc/saved_model/reader.cc:89] Reading meta graph with tags { serve }
+2023-06-21 15:05:47.411361: I tensorflow/cc/saved_model/reader.cc:130] Reading SavedModel debug info (if present) from: cat-dog-tuned
+2023-06-21 15:05:47.494248: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:353] MLIR V1 optimization pass is not enabled
+2023-06-21 15:05:47.517692: I tensorflow/cc/saved_model/loader.cc:231] Restoring SavedModel bundle.
+2023-06-21 15:05:48.013180: I tensorflow/cc/saved_model/loader.cc:215] Running initialization op on SavedModel bundle at path: cat-dog-tuned
+2023-06-21 15:05:48.180377: I tensorflow/cc/saved_model/loader.cc:314] SavedModel load for tags { serve }; Status: success: OK. Took 800911 microseconds.
+2023-06-21 15:05:48.511247: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="conduct-inference-on-novel-images">
@@ -486,39 +742,78 @@ We can do this both with the full Keras API, or rely on the Tensorflow Lite runt
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use Keras API</span>
 <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">process_time</span>
 
+<span class="c1"># Labels: 0 = Cat, 1 = Dog</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s2">&quot;cat-dog-tuned&quot;</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span>
-    <span class="s2">&quot;Vin.jpg&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;cat1.jpg&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;cat2.jpg&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;cat3.jpg&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;dog1.jpg&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;dog2.jpg&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;dog3.jpg&quot;</span><span class="p">,</span>
-<span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Labels</span>
-<span class="sd">    0 = Cat</span>
-<span class="sd">    1 = Dog</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Load and resize the image</span>
-    <span class="n">img</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">load_img</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">160</span><span class="p">))</span>
-    <span class="n">img_array</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">img_to_array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-    <span class="n">img_array</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">img_array</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Create a batch of size 1</span>
+<span class="c1"># Where test images should be uploaded to</span>
+<span class="nb">dir</span> <span class="o">=</span> <span class="s2">&quot;img/&quot;</span>
+<span class="c1"># Recursively iterate over all images in directory</span>
+<span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="nb">dir</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.jpg&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.jpeg&quot;</span><span class="p">):</span>
+            <span class="c1"># Load and resize the image</span>
+            <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">load_img</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">160</span><span class="p">))</span>
+            <span class="n">img_array</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">img_to_array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+            <span class="n">img_array</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">img_array</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Create a batch of size 1</span>
 
-    <span class="c1"># Conduct inference and extract the result from the np array</span>
-    <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">prediction</span><span class="p">)</span>
+            <span class="c1"># Conduct inference and extract the result from the np array</span>
+            <span class="n">start_time</span> <span class="o">=</span> <span class="n">process_time</span><span class="p">()</span>
+            <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">prediction</span><span class="p">)</span>
+            <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">process_time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
 
-    <span class="c1"># This is an exponential function used to gauge confidence</span>
-    <span class="n">sig_result</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-    <span class="n">sig_predict</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sig_result</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">sig_predict</span> <span class="o">=</span> <span class="n">sig_predict</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+            <span class="c1"># Activation function</span>
+            <span class="n">sig_result</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+            <span class="n">sig_predict</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sig_result</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">sig_predict</span> <span class="o">=</span> <span class="n">sig_predict</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pic:&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;prediction&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inferred label:&quot;</span><span class="p">,</span> <span class="n">sig_predict</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Img:&quot;</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inference time&quot;</span><span class="p">,</span> <span class="n">elapsed_time</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Raw prediction:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inferred label:&quot;</span><span class="p">,</span> <span class="n">sig_predict</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1/1 [==============================] - 1s 593ms/step
+Ellapsed time 0.6665851090000103
+Pic: img/dog2.jpg
+prediction 9.456733
+Inferred label: 1
+1/1 [==============================] - 0s 28ms/step
+Ellapsed time 0.10415499900000214
+Pic: img/cat1.jpg
+prediction -9.482505
+Inferred label: 0
+1/1 [==============================] - 0s 29ms/step
+Ellapsed time 0.10698500099999819
+Pic: img/dog1.jpg
+prediction 6.181109
+Inferred label: 1
+1/1 [==============================] - 0s 30ms/step
+Ellapsed time 0.11429039399999397
+Pic: img/cat2.jpg
+prediction -11.236158
+Inferred label: 0
+1/1 [==============================] - 0s 28ms/step
+Ellapsed time 0.09350875300000894
+Pic: img/Vin.jpg
+prediction -9.335227
+Inferred label: 0
+1/1 [==============================] - 0s 26ms/step
+Ellapsed time 0.09842011700000342
+Pic: img/cat3.jpg
+prediction -6.9037724
+Inferred label: 0
+1/1 [==============================] - 0s 25ms/step
+Ellapsed time 0.10101701499999649
+Pic: img/dog3.jpg
+prediction 7.2035856
+Inferred label: 1
 </pre></div>
 </div>
 </div>
@@ -534,7 +829,9 @@ The only difference is we will use the included <code class="docutils literal no
 <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>  <span class="c1"># on embedded device use: import tflite_runtime.interpreter as tflite</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">process_time</span>
 
+<span class="c1"># Labels: 0 = Cat, 1 = Dog</span>
 <span class="n">model_path</span> <span class="o">=</span> <span class="s2">&quot;cat-dog.tflite&quot;</span>
 
 <span class="c1"># For running on tflite-runtime replace this with tflite.Interpreter</span>
@@ -547,58 +844,103 @@ The only difference is we will use the included <code class="docutils literal no
 <span class="n">output_details</span> <span class="o">=</span> <span class="n">interpreter</span><span class="o">.</span><span class="n">get_output_details</span><span class="p">()</span>
 <span class="n">input_shape</span> <span class="o">=</span> <span class="n">input_details</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;shape&quot;</span><span class="p">]</span>
 
-<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span>
-    <span class="s2">&quot;Vin.jpg&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;cat1.jpg&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;cat2.jpg&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;cat3.jpg&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;dog1.jpg&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;dog2.jpg&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;dog3.jpg&quot;</span><span class="p">,</span>
-<span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Labels</span>
-<span class="sd">    0 = Cat</span>
-<span class="sd">    1 = Dog</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Load the image using PIL</span>
-    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-    <span class="c1"># Resize the image to match what the model was trained on</span>
-    <span class="n">resized_image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">input_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">input_shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
-    <span class="n">input_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">resized_image</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-    <span class="n">input_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Create a batch of size 1</span>
+<span class="c1"># Where test images should be uploaded to</span>
+<span class="nb">dir</span> <span class="o">=</span> <span class="s2">&quot;img/&quot;</span>
+<span class="c1"># Recursively iterate over all images in directory</span>
+<span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="nb">dir</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.jpg&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.jpeg&quot;</span><span class="p">):</span>
+            <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
 
-    <span class="c1"># Conduct inference</span>
-    <span class="n">interpreter</span><span class="o">.</span><span class="n">set_tensor</span><span class="p">(</span><span class="n">input_details</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;index&quot;</span><span class="p">],</span> <span class="n">input_data</span><span class="p">)</span>
-    <span class="n">interpreter</span><span class="o">.</span><span class="n">invoke</span><span class="p">()</span>
-    <span class="n">output_data</span> <span class="o">=</span> <span class="n">interpreter</span><span class="o">.</span><span class="n">get_tensor</span><span class="p">(</span><span class="n">output_details</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;index&quot;</span><span class="p">])</span>
-    <span class="c1"># Pull out the raw value from the np array</span>
-    <span class="n">prediction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">output_data</span><span class="p">)</span>
+            <span class="c1"># Load the image using PIL</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+            <span class="c1"># Resize the image to match what the model was trained on</span>
+            <span class="n">resized_image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">input_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">input_shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+            <span class="n">input_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">resized_image</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+            <span class="n">input_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Create a batch of size 1</span>
 
-    <span class="c1"># Computing exponents for sigmoid function is expensive, so use a simple heuristic instead.</span>
-    <span class="c1"># If  you need an &quot;unknown&quot; option or confidence threshold, use something like this.</span>
-    <span class="c1"># label = 0 if prediction &lt; -3 else (1 if prediction &gt; 3 else -1)</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">prediction</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span>
+            <span class="c1"># Conduct inference</span>
+            <span class="n">start_time</span> <span class="o">=</span> <span class="n">process_time</span><span class="p">()</span>
+            <span class="n">interpreter</span><span class="o">.</span><span class="n">set_tensor</span><span class="p">(</span><span class="n">input_details</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;index&quot;</span><span class="p">],</span> <span class="n">input_data</span><span class="p">)</span>
+            <span class="n">interpreter</span><span class="o">.</span><span class="n">invoke</span><span class="p">()</span>
+            <span class="n">output_data</span> <span class="o">=</span> <span class="n">interpreter</span><span class="o">.</span><span class="n">get_tensor</span><span class="p">(</span><span class="n">output_details</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;index&quot;</span><span class="p">])</span>
+            <span class="c1"># Pull out the raw value from the np array</span>
+            <span class="n">prediction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">output_data</span><span class="p">)</span>
+            <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">process_time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pic:&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediction:&quot;</span><span class="p">,</span> <span class="n">prediction</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inferred label:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+            <span class="c1"># Computing exponents for sigmoid function is expensive, so use a simple heuristic instead.</span>
+            <span class="c1"># If  you need an &quot;unknown&quot; option or confidence threshold, use something like this.</span>
+            <span class="c1"># label = 0 if prediction &lt; -3 else (1 if prediction &gt; 3 else -1)</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">prediction</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Img:&quot;</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inference time&quot;</span><span class="p">,</span> <span class="n">elapsed_time</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Raw prediction:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inferred label:&quot;</span><span class="p">,</span> <span class="n">sig_predict</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pic: Vin.jpg
+Elapsed time: 0.014929627999990203
+Prediction: -10.589223
+Inferred label: 0
+Pic: cat1.jpg
+Elapsed time: 0.014831803999996396
+Prediction: -9.261114
+Inferred label: 0
+Pic: cat2.jpg
+Elapsed time: 0.014625451999989991
+Prediction: -10.044463
+Inferred label: 0
+Pic: cat3.jpg
+Elapsed time: 0.01447718400000042
+Prediction: -6.615289
+Inferred label: 0
+Pic: dog1.jpg
+Elapsed time: 0.018185125000002245
+Prediction: 5.3814516
+Inferred label: 1
+Pic: dog2.jpg
+Elapsed time: 0.014137142999999242
+Prediction: 10.115644
+Inferred label: 1
+Pic: dog3.jpg
+Elapsed time: 0.014443624999998406
+Prediction: 7.5566382
+Inferred label: 1
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="next-step-embedded-device">
-<h2>Next step: embedded device!<a class="headerlink" href="#next-step-embedded-device" title="Permalink to this heading">#</a></h2>
-<p>Now go put the tflite model on an embedded device, such as Raspberry Pi or Arduino and conduct inference!</p>
+<section id="next-step-raspberry-pi">
+<h2>Next step: Raspberry Pi!<a class="headerlink" href="#next-step-raspberry-pi" title="Permalink to this heading">#</a></h2>
+<p>Now go put the tflite model on an embedded device, such as Raspberry Pi, and conduct inference!</p>
 <section id="running-on-raspberry-pi-os-bullseye-11">
 <h3>Running on Raspberry Pi OS Bullseye 11<a class="headerlink" href="#running-on-raspberry-pi-os-bullseye-11" title="Permalink to this heading">#</a></h3>
-<p>You can get started with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>tflite-runtime<span class="o">==</span><span class="m">2</span>.11.0
+<p>This was tested with a Pi 4 running 64-bit Bullseye.</p>
+<p>First, clone this repository to your Pi</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--depth<span class="w"> </span><span class="m">1</span><span class="w"> </span>https://github.com/USAFA-ECE/ai-hardware.git
 </pre></div>
 </div>
-<p>Then change the above code to use <code class="docutils literal notranslate"><span class="pre">tflite</span></code> instead of <code class="docutils literal notranslate"><span class="pre">tf.lite</span></code>, as annotated in the comments.</p>
-<p>Finally, run it! Then considering using your picamera for live inference!</p>
+<p>Then navigate to <code class="docutils literal notranslate"><span class="pre">cat-dog/</span></code></p>
+<p>Next, create a virtual environment. This will isolate Python dependencies.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>env
+<span class="nb">source</span><span class="w"> </span>env/bin/activate
+</pre></div>
+</div>
+<p>Install dependencies (located in the <code class="docutils literal notranslate"><span class="pre">book/</span></code> dir):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>tflite-requirements.txt
+</pre></div>
+</div>
+<p>Finally, change the above code to use <code class="docutils literal notranslate"><span class="pre">tflite</span></code> instead of <code class="docutils literal notranslate"><span class="pre">tf.lite</span></code>, as annotated in the comments.</p>
+<p>Finally, run it!</p>
+</section>
+<section id="picamera-for-live-inference">
+<h3>PiCamera for live inference<a class="headerlink" href="#picamera-for-live-inference" title="Permalink to this heading">#</a></h3>
+<p>On your own exercise. Write a new Python script that will take a picture of a real animal and tell you if it is a dog or cat.</p>
 </section>
 </section>
 </section>
@@ -640,7 +982,7 @@ The only difference is we will use the included <code class="docutils literal no
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Transfer Learning with MobileNetV2</p>
+        <p class="prev-next-title">09 - Transfer Learning</p>
       </div>
     </a>
 </div></div>
@@ -661,7 +1003,13 @@ The only difference is we will use the included <code class="docutils literal no
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-the-model">Upload the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-sample-images">Upload sample images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-the-model">Upload the Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Upload the Model</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-the-saved-model">Convert the saved model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conduct-inference-on-novel-images">Conduct inference on novel images</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-images">Upload images</a></li>
@@ -669,8 +1017,9 @@ The only difference is we will use the included <code class="docutils literal no
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-tf-lite-interpreter">Use TF Lite Interpreter</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-step-embedded-device">Next step: embedded device!</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-step-raspberry-pi">Next step: Raspberry Pi!</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-on-raspberry-pi-os-bullseye-11">Running on Raspberry Pi OS Bullseye 11</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#picamera-for-live-inference">PiCamera for live inference</a></li>
 </ul>
 </li>
 </ul>
