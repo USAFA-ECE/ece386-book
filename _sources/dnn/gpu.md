@@ -1,4 +1,4 @@
-# 08 - Linear Algebra and GPUs
+# Linear Algebra and GPUs
 
 ## Pre-Reading
 

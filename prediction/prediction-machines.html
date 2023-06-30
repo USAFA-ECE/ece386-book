@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>02 - Prediction Machines &#8212; ECE 495</title>
+    <title>2. Prediction Machines &#8212; ECE 495</title>
   
   
   
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="03 - K-Means clustering digits" href="kmeans.html" />
-    <link rel="prev" title="01 - Hello, Colab!" href="hello-colab.html" />
+    <link rel="next" title="3. K-Means clustering digits" href="kmeans.html" />
+    <link rel="prev" title="1. Hello, Colab!" href="hello-colab.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -159,17 +159,19 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prediction</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="hello-colab.html">01 - Hello, Colab!</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">02 - Prediction Machines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="kmeans.html">03 - K-Means clustering digits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dimensionality.html">05 - Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hello-colab.html">1. Hello, Colab!</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Prediction Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmeans.html">3. K-Means clustering digits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml-workflow.html">4. Machine Learning Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimensionality.html">5. Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../dnn/neuralnet.html">07 - Neural Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/gpu.html">08 - Linear Algebra and GPUs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cat-dog/transfer_learning.html">09 - Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cat-dog/tflite_catdog.html">10 - TensorFlow Lite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/neuralnet.html">7. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/gpu.html">8. Linear Algebra and GPUs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cat-dog/transfer_learning.html">9. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cat-dog/tflite_catdog.html">10. TensorFlow Lite</a></li>
 </ul>
 
     </div>
@@ -353,7 +355,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>02 - Prediction Machines</h1>
+    <h1>Prediction Machines</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -363,7 +365,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">2.1. Objectives</a></li>
 </ul>
             </nav>
         </div>
@@ -376,9 +378,9 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="prediction-machines">
-<h1>02 - Prediction Machines<a class="headerlink" href="#prediction-machines" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">2. </span>Prediction Machines<a class="headerlink" href="#prediction-machines" title="Permalink to this heading">#</a></h1>
 <section id="objectives">
-<h2>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Understand that AI is fundamentally prediction.</p></li>
 <li><p>Understand that prediction combines with human judgement to result in a decision.</p></li>
@@ -424,7 +426,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">01 - Hello, Colab!</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Hello, Colab!</p>
       </div>
     </a>
     <a class="right-next"
@@ -432,7 +434,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">03 - K-Means clustering digits</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>K-Means clustering digits</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -454,7 +456,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">2.1. Objectives</a></li>
 </ul>
   </nav></div>
 

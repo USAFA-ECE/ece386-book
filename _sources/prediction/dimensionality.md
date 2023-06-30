@@ -1,4 +1,4 @@
-# 05 - Dimensionality
+# Dimensionality
 
 Want to express
 

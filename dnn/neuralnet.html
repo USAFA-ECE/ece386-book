@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>07 - Neural Networks &#8212; ECE 495</title>
+    <title>7. Neural Networks &#8212; ECE 495</title>
   
   
   
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="08 - Linear Algebra and GPUs" href="gpu.html" />
-    <link rel="prev" title="05 - Dimensionality" href="../prediction/dimensionality.html" />
+    <link rel="next" title="8. Linear Algebra and GPUs" href="gpu.html" />
+    <link rel="prev" title="6. C&amp;C: Prediction and Dimensionality" href="../prediction/cc-prediction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -159,17 +159,19 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prediction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../prediction/hello-colab.html">01 - Hello, Colab!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../prediction/prediction-machines.html">02 - Prediction Machines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../prediction/kmeans.html">03 - K-Means clustering digits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../prediction/dimensionality.html">05 - Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prediction/hello-colab.html">1. Hello, Colab!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prediction/prediction-machines.html">2. Prediction Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prediction/kmeans.html">3. K-Means clustering digits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prediction/ml-workflow.html">4. Machine Learning Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prediction/dimensionality.html">5. Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prediction/cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">07 - Neural Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpu.html">08 - Linear Algebra and GPUs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cat-dog/transfer_learning.html">09 - Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cat-dog/tflite_catdog.html">10 - TensorFlow Lite</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">8. Linear Algebra and GPUs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cat-dog/transfer_learning.html">9. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cat-dog/tflite_catdog.html">10. TensorFlow Lite</a></li>
 </ul>
 
     </div>
@@ -384,7 +386,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>07 - Neural Networks</h1>
+    <h1>Neural Networks</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -394,17 +396,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">7.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">7.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-preprocess-the-data">Load and Preprocess the Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-and-validation-sets">Train, Test, and Validation Sets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-preprocess-the-data">7.2. Load and Preprocess the Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-and-validation-sets">7.2.1. Train, Test, and Validation Sets</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-deep-neural-network">Build the Deep Neural Network</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-and-train-the-model">Compile and Train the Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-the-model">Evaluate the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-deep-neural-network">7.3. Build the Deep Neural Network</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-and-train-the-model">7.4. Compile and Train the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-the-model">7.5. Evaluate the Model</a></li>
 </ul>
             </nav>
         </div>
@@ -417,16 +419,16 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="neural-networks">
-<h1>07 - Neural Networks<a class="headerlink" href="#neural-networks" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">7. </span>Neural Networks<a class="headerlink" href="#neural-networks" title="Permalink to this heading">#</a></h1>
 <p>This notebook demonstrates the building and training of a deep neural network (DNN) for digit classification using the <code class="docutils literal notranslate"><span class="pre">load_digits</span></code> dataset from scikit-learn. The DNN is built using TensorFlow’s Keras API.</p>
 <section id="pre-reading">
-<h2>Pre-Reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">7.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Video <a class="reference external" href="https://www.youtube.com/watch?v=aircAruvnKk">3Blue1Brown: But what is a neural network?</a></p></li>
 <li><p><a class="reference external" href="https://www.tensorflow.org/guide/keras">Keras: The high-level API for TensorFlow</a></p></li>
 </ul>
 <section id="objectives">
-<h3>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">7.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Understand the types of layers in a Neural Network and how they can be modified.</p></li>
 <li><p>Describe TensorFlow and Keras at a conceptual level</p></li>
@@ -434,7 +436,7 @@ document.write(`
 </section>
 </section>
 <section id="load-and-preprocess-the-data">
-<h2>Load and Preprocess the Data<a class="headerlink" href="#load-and-preprocess-the-data" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">7.2. </span>Load and Preprocess the Data<a class="headerlink" href="#load-and-preprocess-the-data" title="Permalink to this heading">#</a></h2>
 <p>First, let’s load and preprocess the dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -452,7 +454,7 @@ document.write(`
 </div>
 </div>
 <section id="train-test-and-validation-sets">
-<h3>Train, Test, and Validation Sets<a class="headerlink" href="#train-test-and-validation-sets" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">7.2.1. </span>Train, Test, and Validation Sets<a class="headerlink" href="#train-test-and-validation-sets" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split the data into train, test, and validation sets</span>
@@ -474,7 +476,7 @@ document.write(`
 </section>
 </section>
 <section id="build-the-deep-neural-network">
-<h2>Build the Deep Neural Network<a class="headerlink" href="#build-the-deep-neural-network" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">7.3. </span>Build the Deep Neural Network<a class="headerlink" href="#build-the-deep-neural-network" title="Permalink to this heading">#</a></h2>
 <p>Next, let’s build the DNN model with a single dropout layer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -495,7 +497,7 @@ document.write(`
 </div>
 </section>
 <section id="compile-and-train-the-model">
-<h2>Compile and Train the Model<a class="headerlink" href="#compile-and-train-the-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">7.4. </span>Compile and Train the Model<a class="headerlink" href="#compile-and-train-the-model" title="Permalink to this heading">#</a></h2>
 <p>After building the model, we need to compile it with an optimizer, loss function, and metrics. Then, we can train the model on the training set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -512,7 +514,7 @@ document.write(`
 </div>
 </section>
 <section id="evaluate-the-model">
-<h2>Evaluate the Model<a class="headerlink" href="#evaluate-the-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">7.5. </span>Evaluate the Model<a class="headerlink" href="#evaluate-the-model" title="Permalink to this heading">#</a></h2>
 <p>Finally, we can evaluate the accuracy of the trained model on the validation set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -558,12 +560,12 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../prediction/dimensionality.html"
+       href="../prediction/cc-prediction.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">05 - Dimensionality</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>C&amp;C: Prediction and Dimensionality</p>
       </div>
     </a>
     <a class="right-next"
@@ -571,7 +573,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">08 - Linear Algebra and GPUs</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Linear Algebra and GPUs</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -593,17 +595,17 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">7.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">7.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-preprocess-the-data">Load and Preprocess the Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-and-validation-sets">Train, Test, and Validation Sets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-preprocess-the-data">7.2. Load and Preprocess the Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-and-validation-sets">7.2.1. Train, Test, and Validation Sets</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-deep-neural-network">Build the Deep Neural Network</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-and-train-the-model">Compile and Train the Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-the-model">Evaluate the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-deep-neural-network">7.3. Build the Deep Neural Network</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-and-train-the-model">7.4. Compile and Train the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-the-model">7.5. Evaluate the Model</a></li>
 </ul>
   </nav></div>
 

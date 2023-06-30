@@ -1,4 +1,4 @@
-# 02 - Prediction Machines
+# Prediction Machines
 
 ## Objectives
 

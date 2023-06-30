@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>03 - K-Means clustering digits &#8212; ECE 495</title>
+    <title>3. K-Means clustering digits &#8212; ECE 495</title>
   
   
   
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="05 - Dimensionality" href="dimensionality.html" />
-    <link rel="prev" title="02 - Prediction Machines" href="prediction-machines.html" />
+    <link rel="next" title="4. Machine Learning Workflow" href="ml-workflow.html" />
+    <link rel="prev" title="2. Prediction Machines" href="prediction-machines.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -159,17 +159,19 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prediction</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="hello-colab.html">01 - Hello, Colab!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prediction-machines.html">02 - Prediction Machines</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">03 - K-Means clustering digits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dimensionality.html">05 - Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hello-colab.html">1. Hello, Colab!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prediction-machines.html">2. Prediction Machines</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. K-Means clustering digits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ml-workflow.html">4. Machine Learning Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimensionality.html">5. Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../dnn/neuralnet.html">07 - Neural Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/gpu.html">08 - Linear Algebra and GPUs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cat-dog/transfer_learning.html">09 - Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cat-dog/tflite_catdog.html">10 - TensorFlow Lite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/neuralnet.html">7. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/gpu.html">8. Linear Algebra and GPUs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cat-dog/transfer_learning.html">9. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cat-dog/tflite_catdog.html">10. TensorFlow Lite</a></li>
 </ul>
 
     </div>
@@ -384,7 +386,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>03 - K-Means clustering digits</h1>
+    <h1>K-Means clustering digits</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -394,13 +396,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals">Goals</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-dataset">Load the dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-results-on-pca-reduced-data">Visualize the results on PCA-reduced data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterate-with-k-means">Iterate with K-Means</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit">Fit</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-our-evaluation-benchmark">Define our evaluation benchmark</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-benchmark">Run the benchmark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals">3.1. Goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-dataset">3.2. Load the dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-results-on-pca-reduced-data">3.3. Visualize the results on PCA-reduced data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterate-with-k-means">3.4. Iterate with K-Means</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit">3.5. Fit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-our-evaluation-benchmark">3.5.1. Define our evaluation benchmark</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-benchmark">3.5.2. Run the benchmark</a></li>
 </ul>
 </li>
 </ul>
@@ -415,10 +417,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="k-means-clustering-digits">
-<h1>03 - K-Means clustering digits<a class="headerlink" href="#k-means-clustering-digits" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">3. </span>K-Means clustering digits<a class="headerlink" href="#k-means-clustering-digits" title="Permalink to this heading">#</a></h1>
 <p>This lab is modified from the <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_digits.html">Scikit Learn example</a>.</p>
 <section id="goals">
-<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.1. </span>Goals<a class="headerlink" href="#goals" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Learn to import and load datasets with numpy</p></li>
 <li><p>Use <a class="reference external" href="https://scikit-learn.org/stable/modules/clustering.html#k-means">KMeans</a> to conduct unsupervised learning</p></li>
@@ -427,7 +429,7 @@ document.write(`
 </ul>
 </section>
 <section id="load-the-dataset">
-<h2>Load the dataset<a class="headerlink" href="#load-the-dataset" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.2. </span>Load the dataset<a class="headerlink" href="#load-the-dataset" title="Permalink to this heading">#</a></h2>
 <p>We will start by loading the <code class="docutils literal notranslate"><span class="pre">digits</span></code> dataset. This dataset contains
 handwritten digits from 0 to 9. In the context of clustering, one would like
 to group images such that the handwritten digits on the image are the same.</p>
@@ -475,7 +477,7 @@ Note that the images are fairly blurry becasue they are only 8x8 pixels. <em>Is 
 </div>
 </section>
 <section id="visualize-the-results-on-pca-reduced-data">
-<h2>Visualize the results on PCA-reduced data<a class="headerlink" href="#visualize-the-results-on-pca-reduced-data" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.3. </span>Visualize the results on PCA-reduced data<a class="headerlink" href="#visualize-the-results-on-pca-reduced-data" title="Permalink to this heading">#</a></h2>
 <p>:class:<code class="docutils literal notranslate"><span class="pre">~sklearn.decomposition.PCA</span></code> allows to project the data from the
 original 64-dimensional space into a lower dimensional space. Subsequently,
 we can use :class:<code class="docutils literal notranslate"><span class="pre">~sklearn.decomposition.PCA</span></code> to project into a
@@ -542,7 +544,7 @@ we can use :class:<code class="docutils literal notranslate"><span class="pre">~
 </div>
 </section>
 <section id="iterate-with-k-means">
-<h2>Iterate with K-Means<a class="headerlink" href="#iterate-with-k-means" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.4. </span>Iterate with K-Means<a class="headerlink" href="#iterate-with-k-means" title="Permalink to this heading">#</a></h2>
 <p>Before we use the builtin <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans.fit">fit</a> method, let’s step through what the algorithm is doing. We will do this with <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.MiniBatchKMeans.html">MiniBatchKMeans</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -580,10 +582,10 @@ we can use :class:<code class="docutils literal notranslate"><span class="pre">~
 </div>
 </section>
 <section id="fit">
-<h2>Fit<a class="headerlink" href="#fit" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.5. </span>Fit<a class="headerlink" href="#fit" title="Permalink to this heading">#</a></h2>
 <p>We’ll now use the built in fit method. Instead of specifying the number of iterations, this method will automatically stop when it <strong>converges</strong>. This is defined as there being no meaningful change of the centroid locations between rounds.</p>
 <section id="define-our-evaluation-benchmark">
-<h3>Define our evaluation benchmark<a class="headerlink" href="#define-our-evaluation-benchmark" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.5.1. </span>Define our evaluation benchmark<a class="headerlink" href="#define-our-evaluation-benchmark" title="Permalink to this heading">#</a></h3>
 <p>We will first our evaluation benchmark. During this benchmark, we intend to
 compare different initialization methods for KMeans. Our benchmark will:</p>
 <ul class="simple">
@@ -654,7 +656,7 @@ compare different initialization methods for KMeans. Our benchmark will:</p>
 </div>
 </section>
 <section id="run-the-benchmark">
-<h3>Run the benchmark<a class="headerlink" href="#run-the-benchmark" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.5.2. </span>Run the benchmark<a class="headerlink" href="#run-the-benchmark" title="Permalink to this heading">#</a></h3>
 <p>We will compare three approaches:</p>
 <ul class="simple">
 <li><p>an initialization using <code class="docutils literal notranslate"><span class="pre">k-means++</span></code>. This method is stochastic and we will
@@ -735,15 +737,15 @@ deterministic and a single initialization suffice.</p></li>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">02 - Prediction Machines</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Prediction Machines</p>
       </div>
     </a>
     <a class="right-next"
-       href="dimensionality.html"
+       href="ml-workflow.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">05 - Dimensionality</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Machine Learning Workflow</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -765,13 +767,13 @@ deterministic and a single initialization suffice.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals">Goals</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-dataset">Load the dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-results-on-pca-reduced-data">Visualize the results on PCA-reduced data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterate-with-k-means">Iterate with K-Means</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit">Fit</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-our-evaluation-benchmark">Define our evaluation benchmark</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-benchmark">Run the benchmark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals">3.1. Goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-dataset">3.2. Load the dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-results-on-pca-reduced-data">3.3. Visualize the results on PCA-reduced data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterate-with-k-means">3.4. Iterate with K-Means</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit">3.5. Fit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-our-evaluation-benchmark">3.5.1. Define our evaluation benchmark</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-benchmark">3.5.2. Run the benchmark</a></li>
 </ul>
 </li>
 </ul>
