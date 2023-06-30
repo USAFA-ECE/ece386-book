@@ -405,8 +405,13 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-deep-neural-network">7.3. Build the Deep Neural Network</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-and-train-the-model">7.4. Compile and Train the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-and-train-the-model">7.4. Compile and Train the Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-model">7.4.1. Visualize the Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">7.4.2. Train the model</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-the-model">7.5. Evaluate the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#go-further-optional">7.6. Go further (optional)</a></li>
 </ul>
             </nav>
         </div>
@@ -437,12 +442,14 @@ document.write(`
 </section>
 <section id="load-and-preprocess-the-data">
 <h2><span class="section-number">7.2. </span>Load and Preprocess the Data<a class="headerlink" href="#load-and-preprocess-the-data" title="Permalink to this heading">#</a></h2>
-<p>First, let’s load and preprocess the dataset.</p>
+<p>We will use the same handwritten digits dataset we used with K-Means.
+As such, we can skip some of the exploration and visualization of the data.</p>
+<p>Let’s jump right in.
+Load and preprocess the dataset exactly like we did in the previous lab.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
 <span class="c1"># Load the dataset</span>
 <span class="n">data</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -455,9 +462,24 @@ document.write(`
 </div>
 <section id="train-test-and-validation-sets">
 <h3><span class="section-number">7.2.1. </span>Train, Test, and Validation Sets<a class="headerlink" href="#train-test-and-validation-sets" title="Permalink to this heading">#</a></h3>
+<p>Deep learning comes with a host of challenges. One of them is overfitting.</p>
+<p>To combat this - and for other reasons - we’ll split our images into three sets:</p>
+<ul class="simple">
+<li><p><strong>train</strong> is the set we will fit the model to</p></li>
+<li><p><strong>test</strong> is the set we will evaluate the model against</p></li>
+<li><p><strong>validate</strong> will help determine if the model generalizes well, or is just being matched to test/train</p></li>
+</ul>
+<p>A reasonable starting breakdown is:</p>
+<ul class="simple">
+<li><p>20% test</p></li>
+<li><p>60% train</p></li>
+<li><p>20% validate</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split the data into train, test, and validation sets</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># Split the data into train, test, and validation sets</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
     <span class="n">data</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
 <span class="p">)</span>
@@ -478,6 +500,16 @@ document.write(`
 <section id="build-the-deep-neural-network">
 <h2><span class="section-number">7.3. </span>Build the Deep Neural Network<a class="headerlink" href="#build-the-deep-neural-network" title="Permalink to this heading">#</a></h2>
 <p>Next, let’s build the DNN model with a single dropout layer.</p>
+<p>Layers get added into the model one at a time (sequential).</p>
+<p>Notice that the first layer matches the number of features from our dataset.</p>
+<p>The number and size of the hidden layers are arbitarily chosen here…
+this is one of the greatest challenges in DNN.</p>
+<p>We’ll use ReLU (Rectified Linear Unit) as the activation function. The output is <code class="docutils literal notranslate"><span class="pre">max(x,</span> <span class="pre">0)</span></code>.</p>
+<p>The <a class="reference external" href="https://keras.io/api/layers/regularization_layers/dropout/">Dropout</a>
+layer randomly sets input units to 0 with a frequency of rate at each step during training time, which helps prevent overfitting.
+Yes, randomly throwing data away somehow helps.</p>
+<p>Finally, Softmax converts a vector of K real numbers into a probability distribution of K possible outcomes.
+The sum of these probabilities equals 1. We will assign our sample to the class with the highest probability.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
@@ -499,23 +531,84 @@ document.write(`
 <section id="compile-and-train-the-model">
 <h2><span class="section-number">7.4. </span>Compile and Train the Model<a class="headerlink" href="#compile-and-train-the-model" title="Permalink to this heading">#</a></h2>
 <p>After building the model, we need to compile it with an optimizer, loss function, and metrics. Then, we can train the model on the training set.</p>
+<p>Keras provides the <a class="reference external" href="https://keras.io/api/models/model_training_apis/">compile</a> API which does A LOT of stuff under the hood.</p>
+<p>For example, you can pick an optimizer. <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Adam">Adam</a> is a popular
+optimizer; it is a “stochastic gradient descent method.”</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compile the model</span>
 <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
     <span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;adam&quot;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s2">&quot;sparse_categorical_crossentropy&quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">]</span>
 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="visualize-the-model">
+<h3><span class="section-number">7.4.1. </span>Visualize the Model<a class="headerlink" href="#visualize-the-model" title="Permalink to this heading">#</a></h3>
+<p>We can print a summary of the model as well as a graphical represnetation.</p>
+<p>We should always do this <a class="reference external" href="https://machinelearningmastery.com/visualize-deep-learning-neural-network-model-keras/">for a few reasons:</a></p>
+<ul class="simple">
+<li><p><strong>Confirm layer order</strong>. It is easy to add layers in the wrong order with the sequential API or to connect them together incorrectly with the functional API. The graph plot can help you confirm that the model is connected the way you intended.</p></li>
+<li><p><strong>Confirm the output shape of each layer</strong>. It is common to have problems when defining the shape of input data for complex networks like convolutional and recurrent neural networks. The summary and plot can help you confirm the input shape to the network is as you intended.</p></li>
+<li><p><strong>Confirm parameters</strong>. Some network configurations can use far fewer parameters, such as the use of a TimeDistributed wrapped Dense layer in an Encoder-Decoder recurrent neural network. Reviewing the summary can help spot cases of using far more parameters than expected.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You should ALWAYS run this after compile</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Required for plot_model()</span>
+<span class="c1"># plot_model() returns an image, instead of text</span>
+<span class="o">%</span><span class="k">pip</span> install pydot
+<span class="o">!</span>apt<span class="w"> </span>install<span class="w"> </span>graphviz<span class="w"> </span>-y
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">keras.utils.vis_utils</span> <span class="kn">import</span> <span class="n">plot_model</span>
 
-<span class="c1"># Fit the model</span>
+<span class="c1"># This is sometimes worth running, if you have the dependencies installed</span>
+<span class="n">plot_model</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span>
+    <span class="s2">&quot;plot_model.png&quot;</span><span class="p">,</span>
+    <span class="n">show_shapes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">show_layer_names</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">show_layer_activations</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">show_dtype</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="train-the-model">
+<h3><span class="section-number">7.4.2. </span>Train the model<a class="headerlink" href="#train-the-model" title="Permalink to this heading">#</a></h3>
+<p>Keras also offers a <a class="reference external" href="https://keras.io/api/models/model_training_apis/">fit</a> API.</p>
+<p>This method trains the model for a fixed number of ephochs (dataset iterations).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit the model</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
+</section>
 <section id="evaluate-the-model">
 <h2><span class="section-number">7.5. </span>Evaluate the Model<a class="headerlink" href="#evaluate-the-model" title="Permalink to this heading">#</a></h2>
 <p>Finally, we can evaluate the accuracy of the trained model on the validation set.</p>
+<p>You guessed it: <a class="reference external" href="https://keras.io/api/models/model_training_apis/">Keras API</a>.
+Returns the loss value &amp; metrics values for the model in test mode.</p>
+<p>There is also a predict method that conducts inference on unknown samples.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Evaluate accuracy on the validation set</span>
@@ -525,6 +618,15 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="go-further-optional">
+<h2><span class="section-number">7.6. </span>Go further (optional)<a class="headerlink" href="#go-further-optional" title="Permalink to this heading">#</a></h2>
+<p>Can you improve Validation Accuracy?</p>
+<p>Try some of the following</p>
+<ul class="simple">
+<li><p>Adjust the number or size of hidden layers</p></li>
+<li><p>Use <a class="reference external" href="https://www.tensorflow.org/tutorials/images/data_augmentation">data augmentation</a> to increase your training set</p></li>
+</ul>
 </section>
 </section>
 
@@ -604,8 +706,13 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-deep-neural-network">7.3. Build the Deep Neural Network</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-and-train-the-model">7.4. Compile and Train the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-and-train-the-model">7.4. Compile and Train the Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-model">7.4.1. Visualize the Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">7.4.2. Train the model</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-the-model">7.5. Evaluate the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#go-further-optional">7.6. Go further (optional)</a></li>
 </ul>
   </nav></div>
 
