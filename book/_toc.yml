@@ -21,15 +21,15 @@ parts:
       - file: dnn/cat-dog/transfer_learning
       - file: dnn/cat-dog/tflite_catdog
       - file: dnn/cc-dnn
-  # - caption: Tensorflow Lite Micro
-  #   numbered: true
-  #   chapters:
-  #     - file: tfm/m4-cortex
-  #     - file: tfm/kws/micro-speech
-  #     - file: tfm/kws/transfer-micro-speech
-  #     - file: tfm/lite-optimizations
-  #     - file: tfm/magic-wand
-  #     - file: tfm/cc-tfm
+  - caption: Tensorflow Lite Micro
+    numbered: true
+    chapters:
+      - file: tfm/m4-cortex
+      # - file: tfm/micro-speech
+      # - file: tfm/transfer-micro-speech
+      - file: tfm/lite-optimizations
+      # - file: tfm/magic-wand
+      # - file: tfm/cc-tfm
   # - caption: Data Wrangling
   #   numbered: true
   #   chapters:
