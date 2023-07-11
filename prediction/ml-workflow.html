@@ -172,6 +172,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../dnn/gpu.html">8. Linear Algebra and GPUs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dnn/cat-dog/transfer_learning.html">9. Transfer Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dnn/cat-dog/tflite_catdog.html">10. TensorFlow Lite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/cat-dog/live-cat.html">11. Live Inference 🐱 🐶</a></li>
 </ul>
 
     </div>
@@ -342,7 +343,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -358,6 +361,18 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">4.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">4.1.1. Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-machine-learning-workflow-for-embedded-devices">4.2. The Machine Learning Workflow for Embedded Devices</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -369,13 +384,40 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="machine-learning-workflow">
 <h1><span class="section-number">4. </span>Machine Learning Workflow<a class="headerlink" href="#machine-learning-workflow" title="Permalink to this heading">#</a></h1>
+<section id="pre-reading">
+<h2><span class="section-number">4.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
+<p><em>TinyML</em> Chapter 3: The Deep Learning Workflow</p>
+<section id="objectives">
+<h3><span class="section-number">4.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Describe the ML workflow for embedded systems</p></li>
+<li><p>Apply the ML workflow for embedded systems</p></li>
+</ul>
+</section>
+</section>
+<section id="the-machine-learning-workflow-for-embedded-devices">
+<h2><span class="section-number">4.2. </span>The Machine Learning Workflow for Embedded Devices<a class="headerlink" href="#the-machine-learning-workflow-for-embedded-devices" title="Permalink to this heading">#</a></h2>
+<p>There are several variations of this workflow.
+This combines the workflow presented in <em>TinyML</em> Chapter 3 with
+<a class="reference external" href="https://www.tensorflow.org/tutorials/images/transfer_learning">TensorFlow Tutorial: Transfer learning and fine-tuning</a>.</p>
 <ol class="arabic simple">
+<li><p>Decide on a goal</p></li>
+<li><p>Collect a dataset</p>
+<ul class="simple">
 <li><p>Examine and understand the data</p></li>
-<li><p>Build an input pipeline</p></li>
-<li><p>Compose the model</p></li>
+</ul>
+</li>
+<li><p>Design a model architecture</p>
+<ul class="simple">
+<li><p>Consider the data input pipeline</p></li>
+</ul>
+</li>
 <li><p>Train the model</p></li>
-<li><p>Evaluate model</p></li>
+<li><p>Convert the model</p></li>
+<li><p>Run inference</p></li>
+<li><p>Evaluate and troubleshoot</p></li>
 </ol>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -436,6 +478,24 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">4.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">4.1.1. Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-machine-learning-workflow-for-embedded-devices">4.2. The Machine Learning Workflow for Embedded Devices</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
