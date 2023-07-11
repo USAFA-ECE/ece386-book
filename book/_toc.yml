@@ -20,6 +20,7 @@ parts:
       - file: dnn/gpu
       - file: dnn/cat-dog/transfer_learning
       - file: dnn/cat-dog/tflite_catdog
+      - file: dnn/cat-dog/live-cat.md
       - file: dnn/cc-dnn
 # - caption: Tensorflow Lite Micro
 #   numbered: true

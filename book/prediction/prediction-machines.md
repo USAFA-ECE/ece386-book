@@ -1,6 +1,10 @@
 # Prediction Machines
 
-## Objectives
+## Pre-Reading
+
+*TinyML* Chapter 3: Intro and "What Machine Learning Actually Is."
+
+### Objectives
 
 - Understand that AI is fundamentally prediction.
 - Understand that prediction combines with human judgement to result in a decision.
