@@ -22,11 +22,11 @@ parts:
       - file: dnn/cat-dog/tflite_catdog
       - file: dnn/cat-dog/live-cat.md
       - file: dnn/cc-dnn
-# - caption: Tensorflow Lite Micro
-#   numbered: true
-#   chapters:
-#     - file: tfm/m4-cortex
-#     - file: tfm/kws/micro-speech
+  - caption: Tensorflow Lite Micro
+    numbered: true
+    chapters:
+      - file: tfm/m4-cortex
+      - file: tfm/wake-word
 #     - file: tfm/kws/transfer-micro-speech
 #     - file: tfm/lite-optimizations
 #     - file: tfm/magic-wand
