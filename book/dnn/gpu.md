@@ -3,6 +3,7 @@
 ## Pre-Reading
 
 - [Explainer: What Are Tensor Cores? | TechSpot](https://www.techspot.com/article/2049-what-are-tensor-cores/)
+- [YouTube: What's a Tensor?](https://youtu.be/f5liqUk0ZTw)
 
 ### Objectives
 
