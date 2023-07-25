@@ -175,6 +175,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../dnn/cat-dog/live-cat.html">11. Live Inference 🐱 🐶</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dnn/cc-dnn.html">12. C&amp;C: Deep Neural Networks</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">13. M4-Cortex Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">14. Wake Word Detection</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -344,7 +349,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -360,6 +367,17 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">5.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">5.1.1. Objectives</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -371,12 +389,21 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="dimensionality">
 <h1><span class="section-number">5. </span>Dimensionality<a class="headerlink" href="#dimensionality" title="Permalink to this heading">#</a></h1>
+<section id="pre-reading">
+<h2><span class="section-number">5.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://towardsdatascience.com/the-curse-of-dimensionality-50dc6e49aa1e">The Curse of Dimensionality: Why High Dimension Data Can be So Troublesome</a></p></li>
+</ul>
+<section id="objectives">
+<h3><span class="section-number">5.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
 <p>Want to express</p>
 <ol class="arabic simple">
 <li><p>Features exist in dimensions</p></li>
 <li><p>More dimensions have consequences (data and compute requirements)</p></li>
 <li><p>There exists ways to reduce dimensions</p></li>
 </ol>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -437,6 +464,23 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">5.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">5.1.1. Objectives</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
