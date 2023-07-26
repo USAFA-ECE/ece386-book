@@ -9,6 +9,12 @@ by clicking the launch button &#x1F680; at the top right of the page!
 ```{tableofcontents}
 ```
 
+## Course Text
+
+In addition to lots of online resources, we use [*TinyML*](https://www.oreilly.com/library/view/tinyml/9781492052036/) by Pete Warden.
+
+The book is **available for free** from O'Reilly via [DoD MWR Libraries](https://www.dodmwrlibraries.org/).
+
 ## Lesson plan
 
 These will get populated into the TOC above as the page is built.
