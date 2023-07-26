@@ -18,6 +18,7 @@ parts:
     chapters:
       - file: dnn/neuralnet
       - file: dnn/gpu
+      - file: dnn/convolution
       - file: dnn/cat-dog/transfer_learning
       - file: dnn/cat-dog/tflite_catdog
       - file: dnn/cat-dog/live-cat.md
