@@ -408,16 +408,18 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">9.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lab">9.2. The lab</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">9.3. Imports</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tpu-detection">9.4. TPU detection</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">9.5. Configuration</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-images-and-labels-from-tfrecords">9.6. Read images and labels from TFRecords</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-and-validation-datasets">9.7. training and validation datasets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-work-required">9.8. Model [WORK REQUIRED]</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training">9.9. Training</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predictions">9.10. Predictions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">9.11. License</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lab">9.2. The lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">9.2.1. Imports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tpu-detection">9.2.2. TPU detection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">9.2.3. Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-images-and-labels-from-tfrecords">9.2.4. Read images and labels from TFRecords</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-and-validation-datasets">9.2.5. training and validation datasets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-work-required">9.2.6. Model [WORK REQUIRED]</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training">9.2.7. Training</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predictions">9.2.8. Predictions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#license">9.2.9. License</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -450,10 +452,9 @@ document.write(`
 <p>This is a Google Tutoiral. <strong>Read the CNN tips here</strong>: <a class="reference external" href="https://codelabs.developers.google.com/codelabs/keras-flowers-convnets/#5">Your custom convnet</a></p>
 <p>Then, open this notebook in colab, connect to a TPU instance, and try and win!</p>
 <hr class="docutils" />
-<p>Shamelessly extracted from <a class="reference external" href="https://colab.research.google.com/github/GoogleCloudPlatform/training-data-analyst/blob/master/courses/fast-and-lean-data-science/07_Keras_Flowers_TPU_playground.ipynb">Keras_Flowers_TPU (playground).ipynb</a></p>
-</section>
+<p><em>Shamelessly extracted from <a class="reference external" href="https://colab.research.google.com/github/GoogleCloudPlatform/training-data-analyst/blob/master/courses/fast-and-lean-data-science/07_Keras_Flowers_TPU_playground.ipynb">Keras_Flowers_TPU (playground).ipynb</a></em></p>
 <section id="imports">
-<h2><span class="section-number">9.3. </span>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">9.2.1. </span>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h3>
 <p>Let’s train this model on TPU. It’s worth it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -467,15 +468,10 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tensorflow version 2.6.0
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="tpu-detection">
-<h2><span class="section-number">9.4. </span>TPU detection<a class="headerlink" href="#tpu-detection" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">9.2.2. </span>TPU detection<a class="headerlink" href="#tpu-detection" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>  <span class="c1"># detect TPUs</span>
@@ -492,7 +488,7 @@ document.write(`
 </div>
 </section>
 <section id="configuration">
-<h2><span class="section-number">9.5. </span>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">9.2.3. </span>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">GCS_PATTERN</span> <span class="o">=</span> <span class="s2">&quot;gs://flowers-public/tfrecords-jpeg-192x192-2/*.tfrec&quot;</span>
@@ -622,7 +618,7 @@ document.write(`
 </div>
 </section>
 <section id="read-images-and-labels-from-tfrecords">
-<h2><span class="section-number">9.6. </span>Read images and labels from TFRecords<a class="headerlink" href="#read-images-and-labels-from-tfrecords" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">9.2.4. </span>Read images and labels from TFRecords<a class="headerlink" href="#read-images-and-labels-from-tfrecords" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_tfrecord</span><span class="p">(</span><span class="n">example</span><span class="p">):</span>
@@ -667,7 +663,7 @@ document.write(`
 </div>
 </section>
 <section id="training-and-validation-datasets">
-<h2><span class="section-number">9.7. </span>training and validation datasets<a class="headerlink" href="#training-and-validation-datasets" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">9.2.5. </span>training and validation datasets<a class="headerlink" href="#training-and-validation-datasets" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_batched_dataset</span><span class="p">(</span><span class="n">filenames</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -700,14 +696,13 @@ document.write(`
 </div>
 </section>
 <section id="model-work-required">
-<h2><span class="section-number">9.8. </span>Model [WORK REQUIRED]<a class="headerlink" href="#model-work-required" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">9.2.6. </span>Model [WORK REQUIRED]<a class="headerlink" href="#model-work-required" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>train the model as it is, with a single convolutional layer</p></li>
-</ol>
+<li><p>train the model as it is, with a single convolutional layer</p>
 <ul class="simple">
 <li><p>Accuracy 40%… Not great.</p></li>
 </ul>
-<ol class="arabic simple" start="2">
+</li>
 <li><p>add additional convolutional layers interleaved with max-pooling layers. Try also adding a second dense layer. For example:<br/>
 <code class="docutils literal notranslate"><span class="pre">conv</span> <span class="pre">3x3,</span> <span class="pre">16</span> <span class="pre">filters,</span> <span class="pre">relu</span></code><br/>
 <code class="docutils literal notranslate"><span class="pre">conv</span> <span class="pre">3x3,</span> <span class="pre">30</span> <span class="pre">filters,</span> <span class="pre">relu</span></code><br/>
@@ -716,18 +711,16 @@ document.write(`
 <code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">pool</span> <span class="pre">2x2</span></code><br/>
 <code class="docutils literal notranslate"><span class="pre">conv</span> <span class="pre">3x3,</span> <span class="pre">70</span> <span class="pre">filters,</span> <span class="pre">relu</span></code><br/>
 <code class="docutils literal notranslate"><span class="pre">flatten</span></code><br/>
-<code class="docutils literal notranslate"><span class="pre">dense</span> <span class="pre">5</span> <span class="pre">softmax</span></code><br/></p></li>
-</ol>
+<code class="docutils literal notranslate"><span class="pre">dense</span> <span class="pre">5</span> <span class="pre">softmax</span></code><br/></p>
 <ul class="simple">
 <li><p>Accuracy 60%… slightly better. But this model is more than 800K parameters and it overfits dramatically (overfitting = eval loss goes up instead of down).</p></li>
 </ul>
-<ol class="arabic simple" start="3">
-<li><p>Try replacing the Flatten layer by Global average pooling.</p></li>
-</ol>
+</li>
+<li><p>Try replacing the Flatten layer by Global average pooling.</p>
 <ul class="simple">
 <li><p>Accuracy still 60% but the model is back to a modest 50K parameters, and does not overfit anymore. If you train longer, it can go even higher.</p></li>
 </ul>
-<ol class="arabic simple" start="4">
+</li>
 <li><p>Try experimenting with 1x1 convolutions too. They typically follow a 3x3 convolution and decrease the filter count. You can also add dropout between the dense layers. For example:
 <code class="docutils literal notranslate"><span class="pre">conv</span> <span class="pre">3x3,</span> <span class="pre">20</span> <span class="pre">filters,</span> <span class="pre">relu</span></code><br/>
 <code class="docutils literal notranslate"><span class="pre">conv</span> <span class="pre">3x3,</span> <span class="pre">50</span> <span class="pre">filters,</span> <span class="pre">relu</span></code><br/>
@@ -742,12 +735,11 @@ document.write(`
 <code class="docutils literal notranslate"><span class="pre">conv</span> <span class="pre">1x1,</span> <span class="pre">80</span> <span class="pre">filters,</span> <span class="pre">relu</span></code><br/>
 <code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">pool</span> <span class="pre">2x2</span></code><br/>
 <code class="docutils literal notranslate"><span class="pre">global</span> <span class="pre">average</span> <span class="pre">pooling</span></code><br/>
-<code class="docutils literal notranslate"><span class="pre">dense</span> <span class="pre">5</span> <span class="pre">softmax</span></code><br/></p></li>
-</ol>
+<code class="docutils literal notranslate"><span class="pre">dense</span> <span class="pre">5</span> <span class="pre">softmax</span></code><br/></p>
 <ul class="simple">
 <li><p>accuracy 70%</p></li>
 </ul>
-<ol class="arabic simple" start="5">
+</li>
 <li><p>The goal is 80% accuracy ! Good luck. (You might want to train for more than 20 epochs to get there. Se your trainig curves to see if it is worth training longer.)</p></li>
 </ol>
 <div class="cell docutils container">
@@ -786,7 +778,7 @@ document.write(`
 </div>
 </section>
 <section id="training">
-<h2><span class="section-number">9.9. </span>Training<a class="headerlink" href="#training" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">9.2.7. </span>Training<a class="headerlink" href="#training" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">EPOCHS</span> <span class="o">=</span> <span class="mi">20</span>
@@ -816,7 +808,7 @@ document.write(`
 </div>
 </section>
 <section id="predictions">
-<h2><span class="section-number">9.10. </span>Predictions<a class="headerlink" href="#predictions" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">9.2.8. </span>Predictions<a class="headerlink" href="#predictions" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># randomize the input so that you can execute multiple times to change results</span>
@@ -841,7 +833,7 @@ document.write(`
 </div>
 </section>
 <section id="license">
-<h2><span class="section-number">9.11. </span>License<a class="headerlink" href="#license" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">9.2.9. </span>License<a class="headerlink" href="#license" title="Permalink to this heading">#</a></h3>
 <hr class="docutils" />
 <p>author: Martin Gorner<br>
 twitter: &#64;martin_gorner</p>
@@ -860,6 +852,7 @@ See the License for the specific language governing permissions and
 limitations under the License.</p>
 <hr class="docutils" />
 <p>This is not an official Google product but sample code provided for an educational purpose</p>
+</section>
 </section>
 </section>
 
@@ -934,16 +927,18 @@ limitations under the License.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">9.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lab">9.2. The lab</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">9.3. Imports</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tpu-detection">9.4. TPU detection</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">9.5. Configuration</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-images-and-labels-from-tfrecords">9.6. Read images and labels from TFRecords</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-and-validation-datasets">9.7. training and validation datasets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-work-required">9.8. Model [WORK REQUIRED]</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training">9.9. Training</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predictions">9.10. Predictions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">9.11. License</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lab">9.2. The lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">9.2.1. Imports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tpu-detection">9.2.2. TPU detection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">9.2.3. Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-images-and-labels-from-tfrecords">9.2.4. Read images and labels from TFRecords</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-and-validation-datasets">9.2.5. training and validation datasets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-work-required">9.2.6. Model [WORK REQUIRED]</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training">9.2.7. Training</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predictions">9.2.8. Predictions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#license">9.2.9. License</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
