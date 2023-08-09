@@ -9,6 +9,10 @@ by clicking the launch button &#x1F680; at the top right of the page!
 ```{tableofcontents}
 ```
 
+> **ECE 495: AI Hardware Applications 1.5 (1)** This course will require students to engage with Artificial Intelligence algorithms and frameworks to train and deploy machine learning models.
+> Students will explore which types of problems are appropriate for AI to solve, data pipelining, hardware accelerated training, and inference on hardware and power constrained devices.
+> Assignments may include system design, programming, and book reviews. Classes are organized as lecture and laboratories devoted to applying models.  Prereq: CompSci 110.  Sem hrs: 1.5
+
 ## Course Text
 
 In addition to lots of online resources, we use [*TinyML*](https://www.oreilly.com/library/view/tinyml/9781492052036/) by Pete Warden.
@@ -17,14 +21,6 @@ The book is **available for free** from O'Reilly via [DoD MWR Libraries](https:/
 
 ## Lesson plan
 
-These will get populated into the TOC above as the page is built.
-
-| 13 | The M4 Cortex Processor | * Understand power and compute   constraints on embedded systems      * Describe how M4 Cortex Processor is optimized for TF Lite Ops |  |  |
-|---|---|---|---|---|
-| 14 | Lab: TFLite Micro Speech | * Understand how spectral   samples can be processed for ML      * Deploy a pre-trained model to TFLite Micro on Arduino |  |  |
-| 15 | Lab: TFLite Micro Speech | * Combine transfer learning and   TFLite Micro |  |  |
-| 16 | Lab: TFLite Micro Magic Wand | * Understand how time-series   spatial data can be processed for ML.      * Combine transfer learning and TFLite Micro |  |  |
-| 17 | C&C: TFLite Micro | * Clarify and Communicate how   sensor data can be used to create a decision on an embedded system. |  |  |
 | 18 | Data Wrangling | * Discuss why  data wrangling is sometimes the most   difficult part of an AI project |  |  |
 | 19 | Lab: Data Wrangling | * Explore tools to help wrangle   data |  |  |
 | 20 | Bias and Overfitting | * Understand how poor training   data can lead to disasterous outcomes in production. |  |  |
