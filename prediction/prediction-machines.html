@@ -377,9 +377,23 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">2.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-as-an-algorithm">2.2. Machine Learning as an Algorithm</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-as-economics">2.3. Machine Learning as Economics</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty">2.3.1. Uncertainty</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#our-role-as-commanders">2.2. Our role as commanders</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-doctrine">2.2.1. From Doctrine</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-a-decision">2.3. Making a Decision</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction">2.3.1. Prediction</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-of-prediction">2.3.1.1. Accuracy of prediction</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#judgement">2.3.2. Judgement</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#risk">2.4. Risk</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty">2.4.1. Uncertainty</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#closing-thought-from-afpd-1">2.4.1.1. Closing thought from AFPD-1</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -410,26 +424,106 @@ Intro and “What Machine Learning Actually Is.”</p>
 </ul>
 </section>
 </section>
-<section id="machine-learning-as-an-algorithm">
-<h2><span class="section-number">2.2. </span>Machine Learning as an Algorithm<a class="headerlink" href="#machine-learning-as-an-algorithm" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="our-role-as-commanders">
+<h2><span class="section-number">2.2. </span>Our role as commanders<a class="headerlink" href="#our-role-as-commanders" title="Permalink to this heading">#</a></h2>
+<p>Our role as commanders is to exercise judgment and make risk decisions in an uncertain and adversarial environment</p>
+<section id="from-doctrine">
+<h3><span class="section-number">2.2.1. </span>From Doctrine<a class="headerlink" href="#from-doctrine" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p>It is a given in future conflicts that the joint force will be conducting operations in a contested environment. We must be prepared to execute in a degraded C2 environment where clearly delineated and forward thinking commander’s intent will be a requirement. It is imperative senior leaders provide our commanders with conditions-based authorities delegated to the lowest capable and competent level, and <strong>empower command by negation to accept the appropriate level of risk, all while working toward moments of clear C2.</strong> ~ General Charles Q. Brown, <a class="reference external" href="https://www.doctrine.af.mil/Portals/61/documents/AFDP_3-30/AFDP%203-30-Command-and-Control.pdf">AFPD-3-30</a></p>
+</div></blockquote>
+<p><a class="reference external" href="https://www.doctrine.af.mil/Portals/61/documents/AFDP_1/AFDP-1.pdf">AFPD 1</a> core principle of <em>Mission Command:</em></p>
+<p><strong>Accept prudent risk</strong>. All military operations contain uncertain, complex, and ambiguous elements. Commanders must analyze risks in collaboration with their subordinates to balance the tension between protecting the force and accepting and managing risks that must be taken to accomplish the mission.</p>
+</section>
+</section>
+<section id="making-a-decision">
+<h2><span class="section-number">2.3. </span>Making a Decision<a class="headerlink" href="#making-a-decision" title="Permalink to this heading">#</a></h2>
+<blockquote>
+<div><p>The following is derived from <em>Prediction Machines: The Simple Economics of Artificial Intelligence</em> by Agrawal, Gans, and Goldfarb, 2018.</p>
+</div></blockquote>
+<p>A <em>decision</em> includes prediction, judgement, action, outcome, and data.</p>
+<p><img alt="Anatomy of a task" src="https://images.squarespace-cdn.com/content/v1/59d6456137c581acfcef3422/1541255026543-JS0Q6G7NY4O0TG8XL2ZA/Figure+7-1.png" /></p>
+<section id="prediction">
+<h3><span class="section-number">2.3.1. </span>Prediction<a class="headerlink" href="#prediction" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>The machine learning algorithm builds a <em>model</em> of the system based on the data we provide, through a process we call <em>training</em>.
 The model is a type of computer program. We run data through this model to make predictions, in a process called <em>inference</em>. <em>~ TinyML</em></p>
 </div></blockquote>
+<p>AI only brings us a single critical component of intelligence: prediction</p>
+<p><strong>Prediction</strong> takes information you have, data, and uses it to generate information you don’t have.</p>
+<p>Machine learning reframes algorithmic problems as probabilistic prediction problems.</p>
+<p>The Oakland A’s identified what problem they were trying to solve: the impact of a player on team performance and capitalized on that; see <em>Moneyball</em>.</p>
+<p>Jeff Hawkins argued that “The human cortex is an organ of prediction.”</p>
+<section id="accuracy-of-prediction">
+<h4><span class="section-number">2.3.1.1. </span>Accuracy of prediction<a class="headerlink" href="#accuracy-of-prediction" title="Permalink to this heading">#</a></h4>
+<p>In contrast to machines, humans are sometimes extremely good at prediction with little data.
+This is largely because of our broad context of the world.</p>
+<p>As dimensionality grows, humans’ ability to form accurate predictions diminishes.</p>
+<p>Machines passed the human benchmark for image classification (5% error) in 2015.</p>
+<p>Going from 85% to 90% accuracy means mistakes fall by one third.
+Going from 98% to 99.9% means mistakes fall by a factor of twenty.
+Better prediction leads to better outcomes.
+At some point, accuracy hits a threshold where the prediction can become transformational.</p>
+<p>Prediction machines are valuable because:</p>
+<ol class="arabic simple">
+<li><p>they often offer better, faster, cheaper predictions than humans can</p></li>
+<li><p>prediction is a key ingredient to decision-making under uncertainty</p></li>
+<li><p>decision-making is ubiquitous throughout our economic and social lives</p></li>
+</ol>
 </section>
-<section id="machine-learning-as-economics">
-<h2><span class="section-number">2.3. </span>Machine Learning as Economics<a class="headerlink" href="#machine-learning-as-economics" title="Permalink to this heading">#</a></h2>
-<blockquote>
-<div><p>Having better prediction raises the value of judgement. ~ <em>Prediction Machines (95)</em></p>
-</div></blockquote>
-<p>Computers made arithmetic cheap.</p>
-<p>Internet made distribution, communication, and search cheap.</p>
-<p>AI has made prediction cheap.</p>
+</section>
+<section id="judgement">
+<h3><span class="section-number">2.3.2. </span>Judgement<a class="headerlink" href="#judgement" title="Permalink to this heading">#</a></h3>
+<p>Computers made arithmetic cheap.
+Internet made distribution, communication, and search cheap.
+AI has made prediction cheap.</p>
 <p>A drop in price of one thing can increase the price of its complements. For example, cheaper coffee means more expensive cream and sugar.</p>
-<p><strong>Prediction</strong> is the process of filling in missing information. Prediction takes information you have, often called “data,” and uses it to generate information you don’t have.</p>
+<p>As the price of prediction drops, the price of judgement will increase.</p>
+<p>Having better prediction raises the value of judgement.</p>
+<p>Only humans can express relative rewards of one action over another.
+The prediction may be handed to the machine but the human will still handle the judgment.</p>
+<p>Objectives rarely have only a single dimension. Answering why you are doing something may be complicated.</p>
+<p>Judging payoff requires time and effort. This slow decision-making has tradeoffs.
+Judgement, whether by deliberation or experimentation, is costly (<em>especially in combat</em>).</p>
+<p>In some cases, the judgment may be that the reward function engineering is clear enough to hand off the decision to the machine based only on the prediction.</p>
+<p>Prediction will likely shift to machine by default and human by exception.</p>
+<p>To make the most of prediction machines you need to rethink reward functions throughout your organization to better align with your true goals. This task is not easy.</p>
+<p>Humans are critical to decision making where the goals are subjective.</p>
+<p>Contracting out judgement is risky because they do not have the full context to resolve uncertainty in a strategic dilemma; you should keep judgement-focused workers in house.
+(also, they are a big piece of your competitive advantage)</p>
+<p>Judgement quality is hard to specify in a contract and difficult to monitor.</p>
+</section>
+</section>
+<section id="risk">
+<h2><span class="section-number">2.4. </span>Risk<a class="headerlink" href="#risk" title="Permalink to this heading">#</a></h2>
+<p>A key task for a business leaders is to anticipate and manage various risks.</p>
+<p>Risk exposure matters when a decision can change ones exposure to risk.</p>
+<p>In the case of weather, an automated, decent prediction right now is preferable; the human only gets involved in extreme events.
+Error rate increases for extended forecasts, so decision maker must decide when to decide.</p>
+<p>Risk can be managed with <strong>insurance</strong>, where you take actions to reduce the <em>cost</em> associated with bad outcomes.
+Or risk can be managed with <strong>protection</strong>, where you take actions to reduce the <em>probability</em> of a bad outcome.</p>
+<p>When you use insurance to minimize waste, the waste is visible; by contrast, the waste may be difficult to see with protection.</p>
+<p>Enhanced prediction increases returns by reducing the waste from unneeded insurance or protection.</p>
+<p>Air Canada was able to predict how to fill underutilized capacity because it had:</p>
+<ol class="arabic simple">
+<li><p>Measurable waste</p></li>
+<li><p>Wealth of data about the problem</p></li>
+<li><p>A well-contained problem</p></li>
+</ol>
+<p>Prediction machines will provide new and better methods for managing risk.</p>
+<p><img alt="Average payoff from taking or leaving an umbrella" src="https://images.squarespace-cdn.com/content/v1/59d6456137c581acfcef3422/1541255131938-N61GEXKOS0ON05RLXDSI/Figure+7-3.png" /></p>
 <section id="uncertainty">
-<h3><span class="section-number">2.3.1. </span>Uncertainty<a class="headerlink" href="#uncertainty" title="Permalink to this heading">#</a></h3>
-<p><img alt="Anatomy of a Task" src="https://images.squarespace-cdn.com/content/v1/59d6456137c581acfcef3422/1541255026543-JS0Q6G7NY4O0TG8XL2ZA/Figure+7-1.png" /></p>
+<h3><span class="section-number">2.4.1. </span>Uncertainty<a class="headerlink" href="#uncertainty" title="Permalink to this heading">#</a></h3>
+<p>Perhaps the biggest weakness of prediction machines is the high confidence they can have in a wrong answer.</p>
+<p>Uncertainty means you need judgement when the prediction turns out to be wrong, not just when it is correct.
+Uncertainty increases the cost of judging a payoff for a given decision.</p>
+<section id="closing-thought-from-afpd-1">
+<h4><span class="section-number">2.4.1.1. </span>Closing thought from AFPD-1<a class="headerlink" href="#closing-thought-from-afpd-1" title="Permalink to this heading">#</a></h4>
+<p>==Airmen execute <strong>mission command</strong> through <strong>centralized command</strong>, <strong>distributed
+control</strong>, and <strong>decentralized execution</strong>.==</p>
+<p>This is the new way in which we will fight wars.</p>
+</section>
 </section>
 </section>
 </section>
@@ -505,9 +599,23 @@ The model is a type of computer program. We run data through this model to make 
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">2.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-as-an-algorithm">2.2. Machine Learning as an Algorithm</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-as-economics">2.3. Machine Learning as Economics</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty">2.3.1. Uncertainty</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#our-role-as-commanders">2.2. Our role as commanders</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-doctrine">2.2.1. From Doctrine</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-a-decision">2.3. Making a Decision</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction">2.3.1. Prediction</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-of-prediction">2.3.1.1. Accuracy of prediction</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#judgement">2.3.2. Judgement</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#risk">2.4. Risk</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty">2.4.1. Uncertainty</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#closing-thought-from-afpd-1">2.4.1.1. Closing thought from AFPD-1</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
