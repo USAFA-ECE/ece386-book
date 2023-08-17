@@ -378,6 +378,15 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-machine-learning-workflow-for-embedded-devices">4.2. The Machine Learning Workflow for Embedded Devices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-workflows">4.3. Merging workflows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">4.3.1. Exercise</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-topics">4.3.1.1. Sample topics</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#job-1">4.3.2. Job 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#job-2">4.3.3. Job 2</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -404,26 +413,76 @@ document.write(`
 </section>
 <section id="the-machine-learning-workflow-for-embedded-devices">
 <h2><span class="section-number">4.2. </span>The Machine Learning Workflow for Embedded Devices<a class="headerlink" href="#the-machine-learning-workflow-for-embedded-devices" title="Permalink to this heading">#</a></h2>
-<p>There are several variations of this workflow.
-This combines the workflow presented in <em>TinyML</em> Chapter 3 with
+<p>There are several variations of this workflow.</p>
+<p>This list combines the workflow presented in <em>TinyML</em> Chapter 3 with
 <a class="reference external" href="https://www.tensorflow.org/tutorials/images/transfer_learning">TensorFlow Tutorial: Transfer learning and fine-tuning</a>.</p>
 <ol class="arabic simple">
 <li><p>Decide on a goal</p></li>
-<li><p>Collect a dataset</p>
-<ul class="simple">
-<li><p>Examine and understand the data</p></li>
-</ul>
-</li>
+<li><p>Collect and understand a dataset</p></li>
 <li><p>Design a model architecture</p>
 <ul class="simple">
-<li><p>Consider the data input pipeline</p></li>
+<li><p>Design the data input pipeline</p></li>
+<li><p>Design the model itself</p></li>
+<li><p>Design outputs that meet the goal</p></li>
 </ul>
 </li>
 <li><p>Train the model</p></li>
+<li><p>Evaluate the model</p></li>
 <li><p>Convert the model</p></li>
 <li><p>Run inference</p></li>
-<li><p>Evaluate and troubleshoot</p></li>
+<li><p>Iterate</p>
+<ul class="simple">
+<li><p>Troubleshoot</p></li>
+<li><p>Evaluate on-hardware performance</p></li>
+<li><p>Collect data for feedback</p></li>
+</ul>
+</li>
 </ol>
+<p>Here is a simplified visual interpretation
+yoinked from <a class="reference external" href="https://microchipdeveloper.com/harmony3:basic-machine-learning-workflow">this post</a>.</p>
+<p><img alt="Basic ML workflow" src="https://microchipdeveloper.com/local--files/harmony3:basic-machine-learning-workflow/basic_ml_workflow.png" /></p>
+</section>
+<section id="merging-workflows">
+<h2><span class="section-number">4.3. </span>Merging workflows<a class="headerlink" href="#merging-workflows" title="Permalink to this heading">#</a></h2>
+<p>Recall from the <a class="reference internal" href="prediction-machines.html"><span class="doc std std-doc">Prediction Machines lesson</span></a> that:</p>
+<blockquote>
+<div><p>prediction + judgement = decision</p>
+</div></blockquote>
+<p><img alt="Anatomy of a task" src="https://images.squarespace-cdn.com/content/v1/59d6456137c581acfcef3422/1541255026543-JS0Q6G7NY4O0TG8XL2ZA/Figure+7-1.png" /></p>
+<section id="exercise">
+<h3><span class="section-number">4.3.1. </span>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
+<p>Choose one of these or come up with your own. Then complete the jobs below.</p>
+<section id="sample-topics">
+<h4><span class="section-number">4.3.1.1. </span>Sample topics<a class="headerlink" href="#sample-topics" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Drone swarm range</strong>: A quadcopter is deployed for search and reconnaissance missions in a remote and challenging environment, such as a disaster-stricken area, a forest, or a remote monitoring site. The quadcopter’s primary task is to gather important information, capture images, or perform sensor-based measurements to aid in decision-making or situational awareness. However, it operates on a limited battery capacity - which means its flight time is restricted - and it is difficult to determine when a drone should return home to charge.</p></li>
+<li><p><strong>5G modem deployment</strong>: 5G modems, IoT devices, cellular phones  communicate wirelessly to manage traffic, monitor environmental conditions, and optimize energy usage. However, the wireless communication channels are susceptible to interference and congestion. A company is trying to determine where and at what density to deploy its 5G modems to ensure efficient and reliable data transmission.</p></li>
+<li><p><strong>Ocean Restoration</strong>: A coastal region has been hit by a devastating oil spill, severely affecting the marine ecosystem. The challenge is to determine the most effective locations for deploying cleanup efforts and restoration strategies. This involves making decisions about which areas to prioritize for different restoration methods, such as biological remediation or physical cleaning techniques.</p></li>
+<li><p><strong>Traffic routing</strong>: A fleet of autonomous vehicles is navigating a city. There are enough of these vehicles that if they all choose similar routes they will cause excessive traffic. The team wants to determine if some vehicles can be routed to slightly sub-optimal routes for the benefit of the entire system.</p></li>
+<li><p><strong>Personalized mental health intervention</strong>: A mobile application is designed to provide personalized mental health interventions to users based on their daily activities, emotions, and behaviors. The application aims to support users in managing stress, anxiety, and other mental health concerns. However, each user’s response to different intervention strategies can vary significantly.</p></li>
+</ul>
+</section>
+</section>
+<section id="job-1">
+<h3><span class="section-number">4.3.2. </span>Job 1<a class="headerlink" href="#job-1" title="Permalink to this heading">#</a></h3>
+<p>How does the Machine Learning Workflow for Embedded Devices above integrate as part of the overall task?</p>
+<blockquote>
+<div><p><strong>Sketch your interpretation of these two workflows nested together.</strong></p>
+</div></blockquote>
+</section>
+<section id="job-2">
+<h3><span class="section-number">4.3.3. </span>Job 2<a class="headerlink" href="#job-2" title="Permalink to this heading">#</a></h3>
+<p>Here is an example from <em>Prediction Machines</em> on planning a task.</p>
+<p><img alt="AI Canvas example" src="https://images.squarespace-cdn.com/content/v1/59d6456137c581acfcef3422/1541255133378-TJQW3O8I0HWHRPYEGNBU/Figure+13-3.png" /></p>
+<blockquote>
+<div><p><strong>Complete an AI canvas for how you might approach the problem.</strong></p>
+<ol class="arabic simple">
+<li><p>Map this to your sketched workflow.</p></li>
+<li><p>Also include a payoff decision tree.</p></li>
+</ol>
+</div></blockquote>
+<p><img alt="AI Canvas blank" src="https://images.squarespace-cdn.com/content/v1/59d6456137c581acfcef3422/1541255132827-ASC0MHNPAJLUP6YBFA33/Figure+13-1.png" /></p>
+</section>
 </section>
 </section>
 
@@ -499,6 +558,15 @@ This combines the workflow presented in <em>TinyML</em> Chapter 3 with
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-machine-learning-workflow-for-embedded-devices">4.2. The Machine Learning Workflow for Embedded Devices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-workflows">4.3. Merging workflows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">4.3.1. Exercise</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-topics">4.3.1.1. Sample topics</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#job-1">4.3.2. Job 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#job-2">4.3.3. Job 2</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
