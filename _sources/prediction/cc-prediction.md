@@ -1,5 +1,12 @@
 # C&C: Prediction and Dimensionality
 
+## Pre-Reading
+
+- [Using machine learning to index text from billions of images](https://dropbox.tech/machine-learning/using-machine-learning-to-index-text-from-billions-of-images).
+    This is one of my all-time favorite blog posts.
+
+## Objective
+
 This is a **Clarify and Communicate** lesson.
 The objective of a C&C is to:
 

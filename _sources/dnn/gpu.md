@@ -3,7 +3,9 @@
 ## Pre-Reading
 
 - [Explainer: What Are Tensor Cores? | TechSpot](https://www.techspot.com/article/2049-what-are-tensor-cores/)
-- [YouTube: What's a Tensor?](https://youtu.be/f5liqUk0ZTw)
+- Peruse a little [NVIDIA Tensor Core marketing](https://www.nvidia.com/en-us/data-center/tensor-cores/)
+
+Note, if you are taking ECE 485 and plan to do something on GPUs then the [Tensor Core White Paper](https://resources.nvidia.com/en-us-tensor-core) could be useful for your research!
 
 ### Objectives
 
