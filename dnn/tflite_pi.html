@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>4. Machine Learning Workflow &#8212; ECE 495</title>
+    <title>13. TensorFlow Lite Pi &#8212; ECE 495</title>
   
   
   
@@ -61,12 +61,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'prediction/ml-workflow';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dnn/tflite_pi';</script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. Dimensionality" href="dimensionality.html" />
-    <link rel="prev" title="3. K-Means clustering digits" href="kmeans.html" />
+    <link rel="next" title="14. Live Inference 🐱 🐶" href="cat-dog/live-cat.html" />
+    <link rel="prev" title="12. TensorFlow Lite" href="cat-dog/tflite_catdog.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -158,25 +158,25 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prediction</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="hello-colab.html">1. Hello, Colab!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prediction-machines.html">2. Prediction Machines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="kmeans.html">3. K-Means clustering digits</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Machine Learning Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dimensionality.html">5. Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../prediction/hello-colab.html">1. Hello, Colab!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prediction/prediction-machines.html">2. Prediction Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prediction/kmeans.html">3. K-Means clustering digits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prediction/ml-workflow.html">4. Machine Learning Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prediction/dimensionality.html">5. Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prediction/cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../dnn/neuralnet.html">7. Neural Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/gpu.html">8. Linear Algebra and GPUs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/dnn-explore.html">9. DNN Exploration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/convolution.html">10. Convolutional Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/cat-dog/transfer_learning.html">11. Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/cat-dog/tflite_catdog.html">12. TensorFlow Lite</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/tflite_pi.html">13. TensorFlow Lite Pi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/cat-dog/live-cat.html">14. Live Inference 🐱 🐶</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/cc-dnn.html">15. C&amp;C: Deep Neural Networks</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="neuralnet.html">7. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">8. Linear Algebra and GPUs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dnn-explore.html">9. DNN Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convolution.html">10. Convolutional Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cat-dog/transfer_learning.html">11. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cat-dog/tflite_catdog.html">12. TensorFlow Lite</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. TensorFlow Lite Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cat-dog/live-cat.html">14. Live Inference 🐱 🐶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc-dnn.html">15. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
 <ul class="nav bd-sidenav">
@@ -253,7 +253,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fprediction/ml-workflow.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fdnn/tflite_pi.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -283,7 +283,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/prediction/ml-workflow.md" target="_blank"
+      <li><a href="../_sources/dnn/tflite_pi.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -352,9 +352,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -365,32 +363,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Machine Learning Workflow</h1>
+    <h1>TensorFlow Lite Pi</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">4.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">4.1.1. Objectives</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-machine-learning-workflow-for-embedded-devices">4.2. The Machine Learning Workflow for Embedded Devices</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-workflows">4.3. Merging workflows</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">4.3.1. Exercise</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-topics">4.3.1.1. Sample topics</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#job-1">4.3.2. Job 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#job-2">4.3.3. Job 2</a></li>
-</ul>
-</li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -400,92 +377,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="machine-learning-workflow">
-<h1><span class="section-number">4. </span>Machine Learning Workflow<a class="headerlink" href="#machine-learning-workflow" title="Permalink to this heading">#</a></h1>
-<section id="pre-reading">
-<h2><span class="section-number">4.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
-<p><em>TinyML</em> Chapter 3: The Deep Learning Workflow</p>
-<section id="objectives">
-<h3><span class="section-number">4.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Describe the ML workflow for embedded systems</p></li>
-<li><p>Apply the ML workflow for embedded systems</p></li>
-</ul>
-</section>
-</section>
-<section id="the-machine-learning-workflow-for-embedded-devices">
-<h2><span class="section-number">4.2. </span>The Machine Learning Workflow for Embedded Devices<a class="headerlink" href="#the-machine-learning-workflow-for-embedded-devices" title="Permalink to this heading">#</a></h2>
-<p>There are several variations of this workflow.</p>
-<p>This list combines the workflow presented in <em>TinyML</em> Chapter 3 with
-<a class="reference external" href="https://www.tensorflow.org/tutorials/images/transfer_learning">TensorFlow Tutorial: Transfer learning and fine-tuning</a>.</p>
-<ol class="arabic simple">
-<li><p>Decide on a goal</p></li>
-<li><p>Collect and understand a dataset</p></li>
-<li><p>Design a model architecture</p>
-<ul class="simple">
-<li><p>Design the data input pipeline</p></li>
-<li><p>Design the model itself</p></li>
-<li><p>Design outputs that meet the goal</p></li>
-</ul>
-</li>
-<li><p>Train the model</p></li>
-<li><p>Evaluate the model</p></li>
-<li><p>Convert the model</p></li>
-<li><p>Run inference</p></li>
-<li><p>Iterate</p>
-<ul class="simple">
-<li><p>Troubleshoot</p></li>
-<li><p>Evaluate on-hardware performance</p></li>
-<li><p>Collect data for feedback</p></li>
-</ul>
-</li>
-</ol>
-<p>Here is a simplified visual interpretation
-yoinked from <a class="reference external" href="https://microchipdeveloper.com/harmony3:basic-machine-learning-workflow">this post</a>.</p>
-<p><img alt="Basic ML workflow" src="https://microchipdeveloper.com/local--files/harmony3:basic-machine-learning-workflow/basic_ml_workflow.png" /></p>
-</section>
-<section id="merging-workflows">
-<h2><span class="section-number">4.3. </span>Merging workflows<a class="headerlink" href="#merging-workflows" title="Permalink to this heading">#</a></h2>
-<p>Recall from the <a class="reference internal" href="prediction-machines.html"><span class="doc std std-doc">Prediction Machines lesson</span></a> that:</p>
-<blockquote>
-<div><p>prediction + judgement = decision</p>
-</div></blockquote>
-<p><img alt="Anatomy of a task" src="https://images.squarespace-cdn.com/content/v1/59d6456137c581acfcef3422/1541255026543-JS0Q6G7NY4O0TG8XL2ZA/Figure+7-1.png" /></p>
-<section id="exercise">
-<h3><span class="section-number">4.3.1. </span>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
-<p>Choose one of these or come up with your own. Then complete the jobs below.</p>
-<section id="sample-topics">
-<h4><span class="section-number">4.3.1.1. </span>Sample topics<a class="headerlink" href="#sample-topics" title="Permalink to this heading">#</a></h4>
-<ul class="simple">
-<li><p><strong>Drone swarm range</strong>: A quadcopter is deployed for search and reconnaissance missions in a remote and challenging environment, such as a disaster-stricken area, a forest, or a remote monitoring site. The quadcopter’s primary task is to gather important information, capture images, or perform sensor-based measurements to aid in decision-making or situational awareness. However, it operates on a limited battery capacity - which means its flight time is restricted - and it is difficult to determine when a drone should return home to charge.</p></li>
-<li><p><strong>5G modem deployment</strong>: 5G modems, IoT devices, cellular phones  communicate wirelessly to manage traffic, monitor environmental conditions, and optimize energy usage. However, the wireless communication channels are susceptible to interference and congestion. A company is trying to determine where and at what density to deploy its 5G modems to ensure efficient and reliable data transmission.</p></li>
-<li><p><strong>Ocean Restoration</strong>: A coastal region has been hit by a devastating oil spill, severely affecting the marine ecosystem. The challenge is to determine the most effective locations for deploying cleanup efforts and restoration strategies. This involves making decisions about which areas to prioritize for different restoration methods, such as biological remediation or physical cleaning techniques.</p></li>
-<li><p><strong>Traffic routing</strong>: A fleet of autonomous vehicles is navigating a city. There are enough of these vehicles that if they all choose similar routes they will cause excessive traffic. The team wants to determine if some vehicles can be routed to slightly sub-optimal routes for the benefit of the entire system.</p></li>
-<li><p><strong>Personalized mental health intervention</strong>: A mobile application is designed to provide personalized mental health interventions to users based on their daily activities, emotions, and behaviors. The application aims to support users in managing stress, anxiety, and other mental health concerns. However, each user’s response to different intervention strategies can vary significantly.</p></li>
-</ul>
-</section>
-</section>
-<section id="job-1">
-<h3><span class="section-number">4.3.2. </span>Job 1<a class="headerlink" href="#job-1" title="Permalink to this heading">#</a></h3>
-<p>How does the Machine Learning Workflow for Embedded Devices above integrate as part of the overall task?</p>
-<blockquote>
-<div><p><strong>Sketch your interpretation of these two workflows nested together.</strong></p>
-</div></blockquote>
-</section>
-<section id="job-2">
-<h3><span class="section-number">4.3.3. </span>Job 2<a class="headerlink" href="#job-2" title="Permalink to this heading">#</a></h3>
-<p>Here is an example from <em>Prediction Machines</em> on planning a task.</p>
-<p><img alt="AI Canvas example" src="https://images.squarespace-cdn.com/content/v1/59d6456137c581acfcef3422/1541255133378-TJQW3O8I0HWHRPYEGNBU/Figure+13-3.png" /></p>
-<blockquote>
-<div><p><strong>Complete an AI canvas for how you might approach the problem.</strong></p>
-<ol class="arabic simple">
-<li><p>Map this to your sketched workflow.</p></li>
-<li><p>Also include a payoff decision tree.</p></li>
-</ol>
-</div></blockquote>
-<p><img alt="AI Canvas blank" src="https://images.squarespace-cdn.com/content/v1/59d6456137c581acfcef3422/1541255132827-ASC0MHNPAJLUP6YBFA33/Figure+13-1.png" /></p>
-</section>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="tensorflow-lite-pi">
+<h1><span class="section-number">13. </span>TensorFlow Lite Pi<a class="headerlink" href="#tensorflow-lite-pi" title="Permalink to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -501,7 +394,7 @@ yoinked from <a class="reference external" href="https://microchipdeveloper.com/
         },
         kernelOptions: {
             name: "python3",
-            path: "./prediction"
+            path: "./dnn"
         },
         predefinedOutput: true
     }
@@ -520,20 +413,20 @@ yoinked from <a class="reference external" href="https://microchipdeveloper.com/
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="kmeans.html"
+       href="cat-dog/tflite_catdog.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>K-Means clustering digits</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>TensorFlow Lite</p>
       </div>
     </a>
     <a class="right-next"
-       href="dimensionality.html"
+       href="cat-dog/live-cat.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Dimensionality</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Live Inference 🐱 🐶</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -546,33 +439,6 @@ yoinked from <a class="reference external" href="https://microchipdeveloper.com/
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">4.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">4.1.1. Objectives</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-machine-learning-workflow-for-embedded-devices">4.2. The Machine Learning Workflow for Embedded Devices</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-workflows">4.3. Merging workflows</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">4.3.1. Exercise</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-topics">4.3.1.1. Sample topics</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#job-1">4.3.2. Job 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#job-2">4.3.3. Job 2</a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

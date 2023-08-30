@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>12. Live Inference 🐱 🐶 &#8212; ECE 495</title>
+    <title>14. Live Inference 🐱 🐶 &#8212; ECE 495</title>
   
   
   
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="13. C&amp;C: Deep Neural Networks" href="../cc-dnn.html" />
-    <link rel="prev" title="11. TensorFlow Lite" href="tflite_catdog.html" />
+    <link rel="next" title="15. C&amp;C: Deep Neural Networks" href="../cc-dnn.html" />
+    <link rel="prev" title="13. TensorFlow Lite Pi" href="../tflite_pi.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -170,16 +170,18 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../neuralnet.html">7. Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gpu.html">8. Linear Algebra and GPUs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../convolution.html">9. Convolutional Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="transfer_learning.html">10. Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tflite_catdog.html">11. TensorFlow Lite</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">12. Live Inference 🐱 🐶</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cc-dnn.html">13. C&amp;C: Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn-explore.html">9. DNN Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../convolution.html">10. Convolutional Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transfer_learning.html">11. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tflite_catdog.html">12. TensorFlow Lite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tflite_pi.html">13. TensorFlow Lite Pi</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">14. Live Inference 🐱 🐶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cc-dnn.html">15. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../tfm/m4-cortex.html">14. M4-Cortex Processor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tfm/wake-word.html">15. Wake Word Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tfm/m4-cortex.html">16. M4-Cortex Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tfm/wake-word.html">17. Wake Word Detection</a></li>
 </ul>
 
     </div>
@@ -373,12 +375,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">12.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">12.1.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">14.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">14.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lab">12.2. The lab</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-point">12.2.1. Starting point</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lab">14.2. The lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-point">14.2.1. Starting point</a></li>
 </ul>
 </li>
 </ul>
@@ -393,15 +395,15 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="live-inference">
-<h1><span class="section-number">12. </span>Live Inference 🐱 🐶<a class="headerlink" href="#live-inference" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">14. </span>Live Inference 🐱 🐶<a class="headerlink" href="#live-inference" title="Permalink to this heading">#</a></h1>
 <section id="pre-reading">
-<h2><span class="section-number">12.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">14.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf">Picamera2 Library Docs</a> Chapter 1. Introduction</p></li>
 <li><p><a class="reference external" href="https://github.com/raspberrypi/picamera2/blob/main/examples/tensorflow/real_time.py">github.com/raspberrypi/picamera2/examples/tensorflow/real_time.py</a></p></li>
 </ul>
 <section id="objectives">
-<h3><span class="section-number">12.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">14.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Close the loop on the ML workflow with cats and dogs</p></li>
 <li><p>Conduct inference on real-life critters!</p></li>
@@ -409,7 +411,7 @@ document.write(`
 </section>
 </section>
 <section id="the-lab">
-<h2><span class="section-number">12.2. </span>The lab<a class="headerlink" href="#the-lab" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">14.2. </span>The lab<a class="headerlink" href="#the-lab" title="Permalink to this heading">#</a></h2>
 <p>We will have a live cat and dog for you to test your system on!</p>
 <p>Recall that the machine learning workflow is:</p>
 <ol class="arabic simple">
@@ -432,7 +434,7 @@ document.write(`
 <p>You have accomplished most of this in a sterile testing environment.
 Now it’s time to use a physical input pipeline and add in real-world chaos!</p>
 <section id="starting-point">
-<h3><span class="section-number">12.2.1. </span>Starting point<a class="headerlink" href="#starting-point" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">14.2.1. </span>Starting point<a class="headerlink" href="#starting-point" title="Permalink to this heading">#</a></h3>
 <p>Complete the following code and get it to your Pi 4.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># A script that uses TensorFlow Lite and Picamera</span>
 <span class="c1"># to classify a Cat vs. Dog.</span>
@@ -476,12 +478,12 @@ Now it’s time to use a physical input pipeline and add in real-world chaos!</p
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="tflite_catdog.html"
+       href="../tflite_pi.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">11. </span>TensorFlow Lite</p>
+        <p class="prev-next-title"><span class="section-number">13. </span>TensorFlow Lite Pi</p>
       </div>
     </a>
     <a class="right-next"
@@ -489,7 +491,7 @@ Now it’s time to use a physical input pipeline and add in real-world chaos!</p
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">13. </span>C&amp;C: Deep Neural Networks</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>C&amp;C: Deep Neural Networks</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -511,12 +513,12 @@ Now it’s time to use a physical input pipeline and add in real-world chaos!</p
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">12.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">12.1.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">14.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">14.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lab">12.2. The lab</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-point">12.2.1. Starting point</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lab">14.2. The lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-point">14.2.1. Starting point</a></li>
 </ul>
 </li>
 </ul>
