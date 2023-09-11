@@ -1,28 +1,20 @@
 import tflite_runtime.interpreter as tflite
 import numpy as np
-from PIL import Image
-from picamera2 import Picamera2
+from picamera2 import Picamera2, Preview
+from time import sleep
 
 # How many pixe
-capture_shape = (720, 1280)
-
-
-def resize_and_rescale_image(image_path, input_shape):
-    # Load the image using PIL
-    # image = Image.frombuffer("L", capture_shape, image_buffer)
-    image = Image.open(image_path)
-    # Resize the image to match what the model was trained on
-    resized_image = image.resize((input_shape[1], input_shape[2]))
-    input_data = np.array(resized_image, dtype=np.float32)
-    input_data = np.expand_dims(input_data, axis=0)  # Create a batch of size 1
-
-    return input_data
+capture_shape = (1280, 720)
 
 
 def tflite_infer(interpreter, input_details, input_data):
+    # Reserve a spot for the result
     interpreter.set_tensor(input_details[0]["index"], input_data)
+    # Conduct inference
     interpreter.invoke()
+    # Save results of inference
     output_data = interpreter.get_tensor(output_details[0]["index"])
+    # Trim off extra dimensions from result
     return np.squeeze(output_data)
 
 
@@ -33,21 +25,32 @@ interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 
-# Initialize the camera
-# image_buffer = BytesIO()
+# Initialize and start the camera
 picam2 = Picamera2()
-picam_config = picam2.create_still_configuration(main={"size": capture_shape})
-picam2.configure(picam_config)
-# picam2.start()
+camera_config = picam2.create_still_configuration(
+    main={"size": (1920, 1080)}, lores={"size": (640, 480)}, display="lores"
+)
+picam2.configure(camera_config)
+# Pop up a preview window
+picam2.start_preview(Preview.QTGL)
+
+# Turn on the camera
+picam2.start()
+
+# Pause for preview
+sleep(2)
 
 # Take a picture
-# image_buffer = picam2.capture_buffer()
-# resized_image = resize_and_rescale_image(image_buffer, input_details[0]["shape"])
-image_path = "mypic.jpg"
-picam2.start_and_capture_file(image_path, show_preview=False)
-resized_image = resize_and_rescale_image(image_path, input_details[0]["shape"])
+np_pic = picam2.capture_array()
+print("np size", np_pic.shape)
+# Stop the camera
+picam2.stop()
+
+# Resize picture to be dimensions the TF model expects
+resized_pic = np.resize(np_pic, input_details[0]["shape"])
+resized_pic = resized_pic.astype(np.float32, copy=False)
 
 # Conduct inference
-infer_result = tflite_infer(interpreter, input_details, resized_image)
+infer_result = tflite_infer(interpreter, input_details, resized_pic)
 
 print("Inference result:", infer_result)
