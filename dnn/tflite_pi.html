@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>13. TensorFlow Lite Pi &#8212; ECE 495</title>
+    <title>13. TF Lite 🥧 &#8212; ECE 495</title>
   
   
   
@@ -174,7 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="convolution.html">10. Convolutional Neural Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cat-dog/transfer_learning.html">11. Transfer Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cat-dog/tflite_convert.html">12. TensorFlow Lite</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. TensorFlow Lite Pi</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. TF Lite 🥧</a></li>
 <li class="toctree-l1"><a class="reference internal" href="workday1.html">14. Workday 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="workday2.html">15. Workday 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cat-dog/live-cat.html">16. Live Inference 🐱 🐶</a></li>
@@ -225,6 +225,37 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/usafa-ece/ai-hardware/blob/main/book/dnn/tflite_pi.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
 
 
 
@@ -285,7 +316,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/dnn/tflite_pi.md" target="_blank"
+      <li><a href="../_sources/dnn/tflite_pi.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -295,7 +326,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -354,7 +385,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -365,11 +398,27 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>TensorFlow Lite Pi</h1>
+    <h1>TF Lite 🥧</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">13.1. Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">13.1.1. Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-started">13.2. Get started</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-plan">13.2.1. The plan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-janky-starter-code">13.2.2. The janky starter code</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -379,8 +428,101 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="tensorflow-lite-pi">
-<h1><span class="section-number">13. </span>TensorFlow Lite Pi<a class="headerlink" href="#tensorflow-lite-pi" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="tf-lite">
+<h1><span class="section-number">13. </span>TF Lite 🥧<a class="headerlink" href="#tf-lite" title="Permalink to this heading">#</a></h1>
+<p>Running TensorFlow Lite on a Raspberry Pi</p>
+<section id="pre-reading">
+<h2><span class="section-number">13.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf">The Picamera2 Library</a> Chapter 1, 2.1, 2.3.</p></li>
+<li><p>Skim the titles of <a class="reference external" href="https://github.com/raspberrypi/picamera2/tree/main/examples">picamer2/examples</a>. <em>(Wait, is that a tensorflow directory??)</em></p></li>
+</ul>
+<blockquote>
+<div><p>As of mid-September 2022, Picamera2 is pre-installed in all Raspberry Pi OS images.</p>
+</div></blockquote>
+<section id="objectives">
+<h3><span class="section-number">13.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Practice good software design</p></li>
+<li><p>Think about and build an input pipeline</p></li>
+<li><p>Take pics with a pi camera and conduct inference on them</p></li>
+</ul>
+</section>
+</section>
+<section id="get-started">
+<h2><span class="section-number">13.2. </span>Get started<a class="headerlink" href="#get-started" title="Permalink to this heading">#</a></h2>
+<p>Remember to upload your <code class="docutils literal notranslate"><span class="pre">.tflite</span></code> model from yesterday.</p>
+<section id="the-plan">
+<h3><span class="section-number">13.2.1. </span>The plan<a class="headerlink" href="#the-plan" title="Permalink to this heading">#</a></h3>
+<p><strong>Before</strong> you start into the code, draw out what you need to accomplish.</p>
+</section>
+<section id="the-janky-starter-code">
+<h3><span class="section-number">13.2.2. </span>The janky starter code<a class="headerlink" href="#the-janky-starter-code" title="Permalink to this heading">#</a></h3>
+<p>Is here:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tflite_runtime.interpreter</span> <span class="k">as</span> <span class="nn">tflite</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">picamera2</span> <span class="kn">import</span> <span class="n">Picamera2</span><span class="p">,</span> <span class="n">Preview</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="c1"># How many pixe</span>
+<span class="n">capture_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1280</span><span class="p">,</span> <span class="mi">720</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">tflite_infer</span><span class="p">(</span><span class="n">interpreter</span><span class="p">,</span> <span class="n">input_details</span><span class="p">,</span> <span class="n">input_data</span><span class="p">):</span>
+    <span class="c1"># Reserve a spot for the result</span>
+    <span class="n">interpreter</span><span class="o">.</span><span class="n">set_tensor</span><span class="p">(</span><span class="n">input_details</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;index&quot;</span><span class="p">],</span> <span class="n">input_data</span><span class="p">)</span>
+    <span class="c1"># Conduct inference</span>
+    <span class="n">interpreter</span><span class="o">.</span><span class="n">invoke</span><span class="p">()</span>
+    <span class="c1"># Save results of inference</span>
+    <span class="n">output_data</span> <span class="o">=</span> <span class="n">interpreter</span><span class="o">.</span><span class="n">get_tensor</span><span class="p">(</span><span class="n">output_details</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;index&quot;</span><span class="p">])</span>
+    <span class="c1"># Trim off extra dimensions from result</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">output_data</span><span class="p">)</span>
+
+
+<span class="c1"># Create the tflite Interpreter</span>
+<span class="n">model_path</span> <span class="o">=</span> <span class="s2">&quot;cat-dog.tflite&quot;</span>
+<span class="n">interpreter</span> <span class="o">=</span> <span class="n">tflite</span><span class="o">.</span><span class="n">Interpreter</span><span class="p">(</span><span class="n">model_path</span><span class="o">=</span><span class="n">model_path</span><span class="p">)</span>
+<span class="n">interpreter</span><span class="o">.</span><span class="n">allocate_tensors</span><span class="p">()</span>
+<span class="n">input_details</span> <span class="o">=</span> <span class="n">interpreter</span><span class="o">.</span><span class="n">get_input_details</span><span class="p">()</span>
+<span class="n">output_details</span> <span class="o">=</span> <span class="n">interpreter</span><span class="o">.</span><span class="n">get_output_details</span><span class="p">()</span>
+
+<span class="c1"># Initialize and start the camera</span>
+<span class="n">picam2</span> <span class="o">=</span> <span class="n">Picamera2</span><span class="p">()</span>
+<span class="n">camera_config</span> <span class="o">=</span> <span class="n">picam2</span><span class="o">.</span><span class="n">create_still_configuration</span><span class="p">(</span>
+    <span class="n">main</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">)},</span> <span class="n">lores</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">)},</span> <span class="n">display</span><span class="o">=</span><span class="s2">&quot;lores&quot;</span>
+<span class="p">)</span>
+<span class="n">picam2</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">camera_config</span><span class="p">)</span>
+<span class="c1"># Pop up a preview window</span>
+<span class="n">picam2</span><span class="o">.</span><span class="n">start_preview</span><span class="p">(</span><span class="n">Preview</span><span class="o">.</span><span class="n">QTGL</span><span class="p">)</span>
+
+<span class="c1"># Turn on the camera</span>
+<span class="n">picam2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="c1"># Pause for preview</span>
+<span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Take a picture</span>
+<span class="n">np_pic</span> <span class="o">=</span> <span class="n">picam2</span><span class="o">.</span><span class="n">capture_array</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;np size&quot;</span><span class="p">,</span> <span class="n">np_pic</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># Stop the camera</span>
+<span class="n">picam2</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+
+<span class="c1"># Resize picture to be dimensions the TF model expects</span>
+<span class="n">resized_pic</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">np_pic</span><span class="p">,</span> <span class="n">input_details</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;shape&quot;</span><span class="p">])</span>
+<span class="n">resized_pic</span> <span class="o">=</span> <span class="n">resized_pic</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Conduct inference</span>
+<span class="n">infer_result</span> <span class="o">=</span> <span class="n">tflite_infer</span><span class="p">(</span><span class="n">interpreter</span><span class="p">,</span> <span class="n">input_details</span><span class="p">,</span> <span class="n">resized_pic</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inference result:&quot;</span><span class="p">,</span> <span class="n">infer_result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -441,6 +583,28 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">13.1. Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">13.1.1. Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-started">13.2. Get started</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-plan">13.2.1. The plan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-janky-starter-code">13.2.2. The janky starter code</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

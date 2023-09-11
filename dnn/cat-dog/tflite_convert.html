@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="13. TensorFlow Lite Pi" href="../tflite_pi.html" />
+    <link rel="next" title="13. TF Lite 🥧" href="../tflite_pi.html" />
     <link rel="prev" title="11. Transfer Learning" href="transfer_learning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -174,7 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../convolution.html">10. Convolutional Neural Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="transfer_learning.html">11. Transfer Learning</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">12. TensorFlow Lite</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tflite_pi.html">13. TensorFlow Lite Pi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tflite_pi.html">13. TF Lite 🥧</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workday1.html">14. Workday 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workday2.html">15. Workday 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="live-cat.html">16. Live Inference 🐱 🐶</a></li>
@@ -409,22 +409,21 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">12.1. Pre-reading</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">12.2. Prerequisites</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-sample-images">12.2.1. Upload sample images</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-the-model">12.2.2. Upload the Model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">12.2.3. Upload the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">12.2. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-to-tf-lite">12.3. Convert to TF Lite</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-the-model">12.3.1. Upload the Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-the-saved-model">12.3.2. Convert the saved model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-converted-model">12.3.2.1. Save the converted model</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-the-saved-model">12.3. Convert the saved model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-model-sizes">12.3.3. Compare Model Sizes</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conduct-inference-on-novel-images">12.4. Conduct inference on novel images</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-images">12.4.1. Upload images</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-tf-keras-api">12.4.2. Use TF Keras API</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-tf-lite-interpreter">12.4.3. Use TF Lite Interpreter</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-step-raspberry-pi">12.5. Next step: Raspberry Pi!</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-on-raspberry-pi-os-bullseye-11">12.5.1. Running on Raspberry Pi OS Bullseye 11</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#picamera-for-live-inference">12.5.2. PiCamera for live inference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-step-raspberry-pi">12.4.4. Next step: Raspberry Pi</a></li>
 </ul>
 </li>
 </ul>
@@ -451,38 +450,38 @@ This will have performance advantages on constrained hardware.</p>
 <li><p><a class="reference external" href="https://www.tensorflow.org/lite/models/convert">Model conversion overview</a></p></li>
 </ul>
 </section>
-<section id="prerequisites">
-<h2><span class="section-number">12.2. </span>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">#</a></h2>
-<p>Before this will work we need to upload the previously trained model and some sample images.</p>
-<section id="upload-sample-images">
-<h3><span class="section-number">12.2.1. </span>Upload sample images<a class="headerlink" href="#upload-sample-images" title="Permalink to this heading">#</a></h3>
-<p>The GitHub repository has several cat and dog pictures co-located with this notebook.
-Upload them to a directory named <code class="docutils literal notranslate"><span class="pre">img/</span></code> or go find your own test pictures.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This should show several .jpgs of cats and dogs, after uploading</span>
-<span class="o">!</span>ls<span class="w"> </span>img
-</pre></div>
-</div>
-</div>
-</div>
+<section id="overview">
+<h2><span class="section-number">12.2. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>Recall our machine learning workflow for embedded systems:</p>
+<ol class="arabic simple">
+<li><p>Decide on a goal</p></li>
+<li><p>Collect and understand a dataset</p></li>
+<li><p>Design a model architecture</p>
+<ul class="simple">
+<li><p>Design the data input pipeline</p></li>
+<li><p>Design the model itself</p></li>
+<li><p>Design outputs that meet the goal</p></li>
+</ul>
+</li>
+<li><p>Train the model</p></li>
+<li><p>Evaluate the model</p></li>
+<li><p>Convert the model</p></li>
+<li><p>Run inference</p></li>
+<li><p>Iterate</p>
+<ul class="simple">
+<li><p>Troubleshoot</p></li>
+<li><p>Evaluate on-hardware performance</p></li>
+<li><p>Collect data for feedback</p></li>
+</ul>
+</li>
+</ol>
+<p>In the previous lesson, “Transfer Learning”, we completed steps 1-5. Now it is sime to convert the model to TensorFlow Lite so that it can be executed on a Raspberry Pi.</p>
 </section>
+<section id="convert-to-tf-lite">
+<h2><span class="section-number">12.3. </span>Convert to TF Lite<a class="headerlink" href="#convert-to-tf-lite" title="Permalink to this heading">#</a></h2>
 <section id="upload-the-model">
-<h3><span class="section-number">12.2.2. </span>Upload the Model<a class="headerlink" href="#upload-the-model" title="Permalink to this heading">#</a></h3>
-<p>First, upload the saved model from the previous lesson (<code class="docutils literal notranslate"><span class="pre">cat-dog-tuned.zip</span></code>)</p>
-<p>Then unzip the model.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This should show several .jpgs of cats and dogs, after uploading</span>
-<span class="o">!</span>ls<span class="w"> </span>img
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="id1">
-<h3><span class="section-number">12.2.3. </span>Upload the Model<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
-<p>First, upload the saved model from the previous lesson (<code class="docutils literal notranslate"><span class="pre">cat-dog-tuned.zip</span></code>)</p>
+<h3><span class="section-number">12.3.1. </span>Upload the Model<a class="headerlink" href="#upload-the-model" title="Permalink to this heading">#</a></h3>
+<p>First, upload the saved model from the previous lesson (<code class="docutils literal notranslate"><span class="pre">cat-dog-tuned.zip</span></code>) into this Colab instance.</p>
 <p>Then unzip the model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -493,9 +492,8 @@ Upload them to a directory named <code class="docutils literal notranslate"><spa
 </div>
 </div>
 </section>
-</section>
 <section id="convert-the-saved-model">
-<h2><span class="section-number">12.3. </span>Convert the saved model<a class="headerlink" href="#convert-the-saved-model" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">12.3.2. </span>Convert the saved model<a class="headerlink" href="#convert-the-saved-model" title="Permalink to this heading">#</a></h3>
 <p>We’ll use <a class="reference external" href="https://www.tensorflow.org/lite/api_docs/python/tf/lite/TFLiteConverter">TFLiteConverter</a> to export the model to a single binary.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -508,6 +506,14 @@ Upload them to a directory named <code class="docutils literal notranslate"><spa
 </div>
 </div>
 <p>To convert the model we will open it and then follow <a class="reference external" href="https://www.tensorflow.org/lite/models/convert/convert_models#convert_a_savedmodel_recommended_">the docs</a>.</p>
+<p><strong>Notice that we are using <a class="reference external" href="https://www.tensorflow.org/lite/performance/post_training_quantization">Dynamic Range Quantization</a>.</strong> This is the default optimization.</p>
+<blockquote>
+<div><p>This type of quantization statically quantizes only the weights from floating point to integer at conversion time, which provides 8-bits of precision.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Outputs are still stored using floating point so the increased speed of dynamic-range ops is less than a full fixed-point computation.</p>
+</div></blockquote>
+<p>However, this does not require us to calibrate the input range like full integer quantization does.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">saved_model_dir</span> <span class="o">=</span> <span class="s2">&quot;cat-dog-tuned&quot;</span>  <span class="c1"># path to the SavedModel directory</span>
@@ -528,14 +534,49 @@ Upload them to a directory named <code class="docutils literal notranslate"><spa
 </div>
 </div>
 </div>
+<section id="save-the-converted-model">
+<h4><span class="section-number">12.3.2.1. </span>Save the converted model<a class="headerlink" href="#save-the-converted-model" title="Permalink to this heading">#</a></h4>
+<p>You’ll ultimately need to get your model onto a Raspberry Pi.</p>
+<p>Download your <code class="docutils literal notranslate"><span class="pre">.tflite</span></code> model now.</p>
+</section>
+</section>
+<section id="compare-model-sizes">
+<h3><span class="section-number">12.3.3. </span>Compare Model Sizes<a class="headerlink" href="#compare-model-sizes" title="Permalink to this heading">#</a></h3>
+<p>There is some metadata that gets thrown out and some zip compression going on, but just for an order of magnitude estimate, compare the size of the full <code class="docutils literal notranslate"><span class="pre">cat-dog-tuned.zip</span></code> to <code class="docutils literal notranslate"><span class="pre">cat-dog.tflite</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sort by file size and show in Human Readable format</span>
+<span class="o">!</span>ls<span class="w"> </span>-lhS
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="conduct-inference-on-novel-images">
 <h2><span class="section-number">12.4. </span>Conduct inference on novel images<a class="headerlink" href="#conduct-inference-on-novel-images" title="Permalink to this heading">#</a></h2>
-<p>Now that we’ve converted the model, let’s test it with novel images!
-We can do this both with the full Keras API, or rely on the Tensorflow Lite runtime - based on our hardware and OS.</p>
+<p>Now that we’ve converted the model, let’s test it with novel images!</p>
+<ul class="simple">
+<li><p>First, use the full Keras API</p></li>
+<li><p>Second, rely on the Tensorflow Lite runtime</p></li>
+</ul>
 <section id="upload-images">
 <h3><span class="section-number">12.4.1. </span>Upload images<a class="headerlink" href="#upload-images" title="Permalink to this heading">#</a></h3>
-<p>You should see 7 <code class="docutils literal notranslate"><span class="pre">.jpg</span></code> images in the folder. Upload those to Colab prior to continuing, or feel free to grab your own images of cats and dogs!</p>
+<p>The book has some sample images. Either download them or find your own and upload them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mkdir<span class="w"> </span>img
+<span class="o">!</span>wget<span class="w"> </span>-qP<span class="w"> </span>img/<span class="w"> </span>https://raw.githubusercontent.com/USAFA-ECE/ai-hardware/main/book/dnn/cat-dog/img/cat1.jpg
+<span class="o">!</span>wget<span class="w"> </span>-qP<span class="w"> </span>img/<span class="w"> </span>https://raw.githubusercontent.com/USAFA-ECE/ai-hardware/main/book/dnn/cat-dog/img/cat2.jpg
+<span class="o">!</span>wget<span class="w"> </span>-qP<span class="w"> </span>img/<span class="w"> </span>https://raw.githubusercontent.com/USAFA-ECE/ai-hardware/main/book/dnn/cat-dog/img/cat3.jpg
+<span class="o">!</span>wget<span class="w"> </span>-qP<span class="w"> </span>img/<span class="w"> </span>https://raw.githubusercontent.com/USAFA-ECE/ai-hardware/main/book/dnn/cat-dog/img/dog1.jpg
+<span class="o">!</span>wget<span class="w"> </span>-qP<span class="w"> </span>img/<span class="w"> </span>https://raw.githubusercontent.com/USAFA-ECE/ai-hardware/main/book/dnn/cat-dog/img/dog2.jpg
+<span class="o">!</span>wget<span class="w"> </span>-qP<span class="w"> </span>img/<span class="w"> </span>https://raw.githubusercontent.com/USAFA-ECE/ai-hardware/main/book/dnn/cat-dog/img/dog3.jpg
+<span class="o">!</span>ls<span class="w"> </span>img/
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="use-tf-keras-api">
 <h3><span class="section-number">12.4.2. </span>Use TF Keras API<a class="headerlink" href="#use-tf-keras-api" title="Permalink to this heading">#</a></h3>
@@ -646,33 +687,10 @@ The only difference is we will use the included <code class="docutils literal no
 </div>
 </div>
 </section>
-</section>
 <section id="next-step-raspberry-pi">
-<h2><span class="section-number">12.5. </span>Next step: Raspberry Pi!<a class="headerlink" href="#next-step-raspberry-pi" title="Permalink to this heading">#</a></h2>
-<p>Now go put the tflite model on an embedded device, such as Raspberry Pi, and conduct inference!</p>
-<section id="running-on-raspberry-pi-os-bullseye-11">
-<h3><span class="section-number">12.5.1. </span>Running on Raspberry Pi OS Bullseye 11<a class="headerlink" href="#running-on-raspberry-pi-os-bullseye-11" title="Permalink to this heading">#</a></h3>
-<p>This was tested with a Pi 4 running 64-bit Bullseye.</p>
-<p>First, clone this repository to your Pi</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--depth<span class="w"> </span><span class="m">1</span><span class="w"> </span>https://github.com/USAFA-ECE/ai-hardware.git
-</pre></div>
-</div>
-<p>Then navigate to <code class="docutils literal notranslate"><span class="pre">cat-dog/</span></code></p>
-<p>Next, create a virtual environment. This will isolate Python dependencies.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>env
-<span class="nb">source</span><span class="w"> </span>env/bin/activate
-</pre></div>
-</div>
-<p>Install dependencies (located in the <code class="docutils literal notranslate"><span class="pre">book/</span></code> dir):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>tflite-requirements.txt
-</pre></div>
-</div>
-<p>Finally, change the above code to use <code class="docutils literal notranslate"><span class="pre">tflite</span></code> instead of <code class="docutils literal notranslate"><span class="pre">tf.lite</span></code>, as annotated in the comments.</p>
-<p>Finally, run it!</p>
-</section>
-<section id="picamera-for-live-inference">
-<h3><span class="section-number">12.5.2. </span>PiCamera for live inference<a class="headerlink" href="#picamera-for-live-inference" title="Permalink to this heading">#</a></h3>
-<p>On your own exercise. Write a new Python script that will take a picture of a real animal and tell you if it is a dog or cat.</p>
+<h3><span class="section-number">12.4.4. </span>Next step: Raspberry Pi<a class="headerlink" href="#next-step-raspberry-pi" title="Permalink to this heading">#</a></h3>
+<p>Now that we know our TF Lite model works, let’s put it on an embedded system!</p>
+<p>Make sure you downloaded your <code class="docutils literal notranslate"><span class="pre">.tflite</span></code> file!</p>
 </section>
 </section>
 </section>
@@ -722,7 +740,7 @@ The only difference is we will use the included <code class="docutils literal no
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">13. </span>TensorFlow Lite Pi</p>
+        <p class="prev-next-title"><span class="section-number">13. </span>TF Lite 🥧</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -745,22 +763,21 @@ The only difference is we will use the included <code class="docutils literal no
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">12.1. Pre-reading</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">12.2. Prerequisites</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-sample-images">12.2.1. Upload sample images</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-the-model">12.2.2. Upload the Model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">12.2.3. Upload the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">12.2. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-to-tf-lite">12.3. Convert to TF Lite</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-the-model">12.3.1. Upload the Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-the-saved-model">12.3.2. Convert the saved model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-converted-model">12.3.2.1. Save the converted model</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-the-saved-model">12.3. Convert the saved model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-model-sizes">12.3.3. Compare Model Sizes</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conduct-inference-on-novel-images">12.4. Conduct inference on novel images</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-images">12.4.1. Upload images</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-tf-keras-api">12.4.2. Use TF Keras API</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-tf-lite-interpreter">12.4.3. Use TF Lite Interpreter</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-step-raspberry-pi">12.5. Next step: Raspberry Pi!</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-on-raspberry-pi-os-bullseye-11">12.5.1. Running on Raspberry Pi OS Bullseye 11</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#picamera-for-live-inference">12.5.2. PiCamera for live inference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-step-raspberry-pi">12.4.4. Next step: Raspberry Pi</a></li>
 </ul>
 </li>
 </ul>
