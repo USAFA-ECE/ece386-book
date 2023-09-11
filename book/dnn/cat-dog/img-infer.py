@@ -1,24 +1,22 @@
 import tflite_runtime.interpreter as tflite
 import numpy as np
 from PIL import Image
-import subprocess
+from picamera2 import Picamera2
+
+# How many pixe
+capture_shape = (720, 1280)
 
 
 def resize_and_rescale_image(image_path, input_shape):
     # Load the image using PIL
+    # image = Image.frombuffer("L", capture_shape, image_buffer)
     image = Image.open(image_path)
-
     # Resize the image to match what the model was trained on
     resized_image = image.resize((input_shape[1], input_shape[2]))
     input_data = np.array(resized_image, dtype=np.float32)
     input_data = np.expand_dims(input_data, axis=0)  # Create a batch of size 1
 
     return input_data
-
-
-def picam_snap(image_path):
-    # Capture the image using libcamera and save it to the specified path
-    subprocess.run(["libcamera-still", "-v", "0", "-n", "true", "-o", image_path])
 
 
 def tflite_infer(interpreter, input_details, input_data):
@@ -35,9 +33,18 @@ interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 
+# Initialize the camera
+# image_buffer = BytesIO()
+picam2 = Picamera2()
+picam_config = picam2.create_still_configuration(main={"size": capture_shape})
+picam2.configure(picam_config)
+# picam2.start()
+
 # Take a picture
+# image_buffer = picam2.capture_buffer()
+# resized_image = resize_and_rescale_image(image_buffer, input_details[0]["shape"])
 image_path = "mypic.jpg"
-picam_snap(image_path)
+picam2.start_and_capture_file(image_path, show_preview=False)
 resized_image = resize_and_rescale_image(image_path, input_details[0]["shape"])
 
 # Conduct inference
