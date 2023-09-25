@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>What is this horror? &#8212; ECE 495</title>
+    <title>18. Containerization &#8212; ECE 495</title>
   
   
   
@@ -62,10 +62,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tfm/wake-transfer';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'jetson/containerization';</script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="19. M4-Cortex Processor" href="../tfm/m4-cortex.html" />
+    <link rel="prev" title="17. C&amp;C: Deep Neural Networks" href="../dnn/cc-dnn.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -189,13 +191,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../dnn/cc-dnn.html">17. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NVIDIA Jetson</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">18. Containerization</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">18. Containerization</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="m4-cortex.html">19. M4-Cortex Processor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wake-word.html">20. Wake Word Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">19. M4-Cortex Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">20. Wake Word Detection</a></li>
 </ul>
 
     </div>
@@ -242,37 +244,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/usafa-ece/ai-hardware/blob/main/book/tfm/wake-transfer.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -298,7 +269,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Ftfm/wake-transfer.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fjetson/containerization.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -328,7 +299,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/tfm/wake-transfer.ipynb" target="_blank"
+      <li><a href="../_sources/jetson/containerization.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -338,7 +309,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -410,7 +381,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>What is this horror?</h1>
+    <h1>Containerization</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -420,12 +391,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errors-in-chapter-code">Errors in chapter code</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-example">Current example</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-simple-audio">TF simple audio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">18.1. Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">18.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#side-note">Side note</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lesson">18.2. The Lesson</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependency-management">18.2.1. Dependency Management</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-containerization">18.2.2. What is containerization?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">18.2.3. Docker</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-engine">18.2.3.1. Docker Engine</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -437,34 +415,126 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="what-is-this-horror">
-<h1>What is this horror?<a class="headerlink" href="#what-is-this-horror" title="Permalink to this heading">#</a></h1>
-<p><em>TinyML</em> Chapter 8 details <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml/9781492052036/ch08.html#:-:text=How%20Does%20Feature%20Generation%20Work%3F">feature generation</a> and how it is a sliding window of FFT.</p>
-<p>This is a <strong>great application of a Tensor</strong> and also how the image classification paradigm can be useful.</p>
-<section id="errors-in-chapter-code">
-<h2>Errors in chapter code<a class="headerlink" href="#errors-in-chapter-code" title="Permalink to this heading">#</a></h2>
-<p>The chapter links to a colab notebook that doesn’t exist anymore. Before it was deleted, it was <a class="reference external" href="https://github.com/tensorflow/tensorflow/blob/5c7c11eeb4e046cd974e6984f4dd0910d099b2d0/tensorflow/lite/micro/examples/micro_speech/train/train_micro_speech_model.ipynb">here</a>.
-The code doesn’t work because <strong>TF 1 doesn’t run in colab</strong>.</p>
-</section>
-<section id="current-example">
-<h2>Current example<a class="headerlink" href="#current-example" title="Permalink to this heading">#</a></h2>
-<p>As shown in the previous lesson, the Arduino example works, but I cannot find anything to train a model to use different words.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="containerization">
+<h1><span class="section-number">18. </span>Containerization<a class="headerlink" href="#containerization" title="Permalink to this heading">#</a></h1>
+<section id="pre-reading">
+<h2><span class="section-number">18.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>The model input is 40 x 49 because of how the window slides. This can be changed</p></li>
-<li><p>I see no indication of a Hann Window being used like the book mentions</p></li>
-<li><p>Manual normalization does happen</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/get-started/overview/">Docker overview</a></p></li>
 </ul>
-<section id="tf-simple-audio">
-<h3>TF simple audio<a class="headerlink" href="#tf-simple-audio" title="Permalink to this heading">#</a></h3>
-<p>This current tutorial, <a class="reference external" href="https://www.tensorflow.org/tutorials/audio/simple_audio">Simple audio recognition: Recognizing keywords</a>, runs on colab <em>Have to unpin the libcudnn version to use GPU b/c new TF</em>.</p>
-<p>The dimension <code class="docutils literal notranslate"><span class="pre">Input</span> <span class="pre">shape:</span> <span class="pre">(124,</span> <span class="pre">129,</span> <span class="pre">1)</span></code> gets resized to <code class="docutils literal notranslate"><span class="pre">32</span> <span class="pre">x</span> <span class="pre">32</span></code>. Makes me wonder if I could just resize to 40x49 to match Arduino.
-Not a power of 2, but then neither is the 28x28 digits set?</p>
-<p>**I think this is my best bet: train a model with proper input size here and then use cat-dog transfer learning style to binary classify for different words.</p>
+<section id="objectives">
+<h3><span class="section-number">18.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Describe the difficulties with dependency management</p></li>
+<li><p>Explain what a container is and how it is different from a virtual machine</p></li>
+<li><p>Demonstrate how to build an image from <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> and run the image as a container.</p></li>
+</ul>
 </section>
 </section>
-<section id="side-note">
-<h2>Side note<a class="headerlink" href="#side-note" title="Permalink to this heading">#</a></h2>
-<p><a class="reference external" href="https://huggingface.co/blog/tensorflow-philosophy">Hugging face TF philosphy on transfer learning</a> is a good read.</p>
+<section id="the-lesson">
+<h2><span class="section-number">18.2. </span>The Lesson<a class="headerlink" href="#the-lesson" title="Permalink to this heading">#</a></h2>
+<section id="dependency-management">
+<h3><span class="section-number">18.2.1. </span>Dependency Management<a class="headerlink" href="#dependency-management" title="Permalink to this heading">#</a></h3>
+<p>Managing dependencies is extremely challenging for complex projects.</p>
+<p>The challenge is even greater when you have specific builds
+trying to take advantage of hardware.</p>
+<p>In Python a common approach is to use a <a class="reference external" href="https://docs.python.org/3/library/venv.html">Virtual Environment</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This will show system python</span>
+which<span class="w"> </span>python3
+
+<span class="c1"># Run the python venv module to create virtual environment</span>
+<span class="c1"># Common names are env or .venv, but you can use anything</span>
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>env
+
+<span class="c1"># Tell terminal to use the venv. Should see a preceding (env) in terminal.</span>
+<span class="nb">source</span><span class="w"> </span>env/bin/activate
+
+<span class="c1"># This will show venv python</span>
+which<span class="w"> </span>python3
+</pre></div>
+</div>
+<p>We can then install python requirements specifically to this environment,
+keeping them separate from other projects or from the system!</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file makes installing python libraries much easier.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p>
+</div>
+<p>But what if you have to build binaries?</p>
+<p>And what about starting multiple processes?</p>
+<p>And what about the the 15 things you had to do to get it working?</p>
+<p><img alt="ship your machine" src="https://pbs.twimg.com/media/FPKqqiFX0AMRBu4?format=png" /></p>
+</section>
+<section id="what-is-containerization">
+<h3><span class="section-number">18.2.2. </span>What is containerization?<a class="headerlink" href="#what-is-containerization" title="Permalink to this heading">#</a></h3>
+<p>Virtual machines run <strong>a complete operating system–including its own kernel–</strong> on top of a hypervisor.</p>
+<p><img alt="Virtual machine architecture" src="https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/media/virtual-machine-diagram.svg" /></p>
+<p>In contrast, <strong>containers build on top of the host operating system’s kernel.</strong></p>
+<p><img alt="Container architecture" src="https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/media/container-diagram.svg" /></p>
+<p>Both offer benefits with isolation and portability, however there are <a class="reference external" href="https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/containers-vs-vm#containers-vs-virtual-machines-1">some key differences</a>.</p>
+</section>
+<section id="docker">
+<h3><span class="section-number">18.2.3. </span>Docker<a class="headerlink" href="#docker" title="Permalink to this heading">#</a></h3>
+<p>Docker has <em>completely revolutionized</em> the way the world operates software applications.</p>
+<ul class="simple">
+<li><p><strong>Docker Inc.</strong> is an American company that offers products such as Docker Hub and Docker Desktop.</p></li>
+<li><p><strong><a class="reference external" href="https://hub.docker.com/">Docker Hub</a></strong> is a <em>container registry</em> (<code class="docutils literal notranslate"><span class="pre">docker.io</span></code>). There are thousands of community and officially sponsored images; you can also upload your own images.</p></li>
+<li><p><strong><a class="reference external" href="https://catalog.ngc.nvidia.com">NVIDIA NGC Catalog</a></strong> is a container registry (<code class="docutils literal notranslate"><span class="pre">nvcr.io</span></code>) for GPU accelerated containers.</p></li>
+<li><p><strong>Docker Engine](<a class="reference external" href="https://docs.docker.com/engine/">https://docs.docker.com/engine/</a>)</strong> is an open source project for running containers. It is part of the <a class="reference external" href="https://github.com/moby/moby">Moby Project</a>, which is an open source upstream of Docker Enterprise Edition.</p></li>
+</ul>
+<p><img alt="docker future" src="https://thinkr.fr/wp-content/uploads/2019/07/back-to-the-future-docker.jpg" /></p>
+<section id="docker-engine">
+<h4><span class="section-number">18.2.3.1. </span>Docker Engine<a class="headerlink" href="#docker-engine" title="Permalink to this heading">#</a></h4>
+<blockquote>
+<div><p>Docker Engine is an open source containerization technology for building and containerizing your applications. Docker Engine acts as a client-server application with:</p>
+<ul class="simple">
+<li><p>A server with a long-running daemon process <code class="docutils literal notranslate"><span class="pre">dockerd</span></code>.</p></li>
+<li><p>APIs which specify interfaces that programs can use to talk to and instruct the Docker daemon.</p></li>
+<li><p>A command line interface (CLI) client <code class="docutils literal notranslate"><span class="pre">docker</span></code>.</p></li>
+</ul>
+<p>The CLI uses Docker APIs to control or interact with the Docker daemon through scripting or direct CLI commands. Many other Docker applications use the underlying API and CLI. The daemon creates and manage Docker objects, such as images, containers, networks, and volumes.</p>
+</div></blockquote>
+<p>You will largely interact with docker via the CLI.</p>
+<p>See <a class="reference external" href="https://docs.docker.com/engine/reference/run/">Docker run reference</a></p>
+<p>As an example, try</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>alpine:latest
+</pre></div>
+</div>
+<p>This will do a few things!</p>
+<ol class="arabic simple">
+<li><p>Pull the latest tag from <a class="reference external" href="https://hub.docker.com/_/alpine">docker.io/alpine</a>.</p></li>
+<li><p>Save the image locally.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/run/">Run</a> the container (you need to familiarize yourself with the flags for this subcommand).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-i</span></code> specifies interactive and keeps STDIN open</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-t</span></code> allocates a pseudo-TTY so you get things like autocompletion</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--rm</span></code> automatically removes the container when it exits</p></li>
+</ul>
+</li>
+<li><p>Enters you into the default process for the alpine container: <code class="docutils literal notranslate"><span class="pre">/bin/sh</span></code>.</p></li>
+</ol>
+<p>Now, inside the alpine container, run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>/etc/os/release
+</pre></div>
+</div>
+<p>Next, open a new terminal and run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker<span class="w"> </span>ps
+</pre></div>
+</div>
+<p>Type <code class="docutils literal notranslate"><span class="pre">exit</span></code> back in your alpine terminal and run <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code> again.
+Now try <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference external" href="https://podman.io/">Podman</a> is a Docker alternative that is sponsored by Red Hat. It is part of the Open Container Initiative (OCI).</p>
+<p>Podman has several advantages over Docker, including a fork-exec model
+instead of a daemon and the ability to run rootless.</p>
+<p>It is also available in the default Debian 11 (Ubuntu 22.04) and later <strong>apt</strong> repositories.</p>
+<p>You can effectively <code class="docutils literal notranslate"><span class="pre">alias</span> <span class="pre">docker=podman</span></code>.</p>
+<p>Together with <a class="reference external" href="https://buildah.io/">buildah</a> and <a class="reference external" href="https://github.com/containers/skopeo">skopeo</a> you can do everything Docker can and more.</p>
+<p>Overall, I like podman better… but that’s not the way the industry is leaning ☹️</p>
+</div>
+</section>
+</section>
 </section>
 </section>
 
@@ -481,7 +551,7 @@ Not a power of 2, but then neither is the 28x28 digits set?</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./tfm"
+            path: "./jetson"
         },
         predefinedOutput: true
     }
@@ -498,6 +568,24 @@ Not a power of 2, but then neither is the 28x28 digits set?</p>
                 <footer class="prev-next-footer">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../dnn/cc-dnn.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>C&amp;C: Deep Neural Networks</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../tfm/m4-cortex.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">19. </span>M4-Cortex Processor</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -513,12 +601,19 @@ Not a power of 2, but then neither is the 28x28 digits set?</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errors-in-chapter-code">Errors in chapter code</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-example">Current example</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-simple-audio">TF simple audio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">18.1. Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">18.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#side-note">Side note</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lesson">18.2. The Lesson</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependency-management">18.2.1. Dependency Management</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-containerization">18.2.2. What is containerization?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">18.2.3. Docker</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-engine">18.2.3.1. Docker Engine</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

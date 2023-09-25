@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>19. Wake Word Detection &#8212; ECE 495</title>
+    <title>20. Wake Word Detection &#8212; ECE 495</title>
   
   
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -65,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="18. M4-Cortex Processor" href="m4-cortex.html" />
+    <link rel="prev" title="19. M4-Cortex Processor" href="m4-cortex.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -76,6 +77,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -179,10 +189,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../dnn/cat-dog/live-cat.html">16. Live Inference 🐱 🐶</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dnn/cc-dnn.html">17. C&amp;C: Deep Neural Networks</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">NVIDIA Jetson</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">18. Containerization</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="m4-cortex.html">18. M4-Cortex Processor</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">19. Wake Word Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="m4-cortex.html">19. M4-Cortex Processor</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">20. Wake Word Detection</a></li>
 </ul>
 
     </div>
@@ -338,10 +352,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -349,7 +363,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -376,13 +390,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">19.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">19.1.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">20.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">20.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">19.2. Lab</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-arduino">19.2.1. Setup Arduino</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-example">19.2.2. Run Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">20.2. Lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-arduino">20.2.1. Setup Arduino</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-example">20.2.2. Run Example</a></li>
 </ul>
 </li>
 </ul>
@@ -397,9 +411,9 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="wake-word-detection">
-<h1><span class="section-number">19. </span>Wake Word Detection<a class="headerlink" href="#wake-word-detection" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">20. </span>Wake Word Detection<a class="headerlink" href="#wake-word-detection" title="Permalink to this heading">#</a></h1>
 <section id="pre-reading">
-<h2><span class="section-number">19.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">20.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
 <p><em>TinyML</em> <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml/9781492052036/ch07.html#:-:text=Chapter%207.%20Wake-Word%20Detection%3A%20Building%20an%20Application">Chapter 7</a></p>
 <ul class="simple">
 <li><p>Everything from the start up to the paragraph “There are many more tests in the example, but exploring these few will give us an understanding of the key moving parts.”</p></li>
@@ -407,7 +421,7 @@ document.write(`
 <li><p>Subsection <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml/9781492052036/ch07.html#:-:text=The%20Command%20Recognizer">The Command Recognizer</a> up to the code blocks</p></li>
 </ul>
 <section id="objectives">
-<h3><span class="section-number">19.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Understand how spectral samples can be processed for ML</p></li>
 <li><p>Deploy a pre-trained model to TFLite Micro on Arduino</p></li>
@@ -415,9 +429,9 @@ document.write(`
 </section>
 </section>
 <section id="lab">
-<h2><span class="section-number">19.2. </span>Lab<a class="headerlink" href="#lab" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">20.2. </span>Lab<a class="headerlink" href="#lab" title="Permalink to this heading">#</a></h2>
 <section id="setup-arduino">
-<h3><span class="section-number">19.2.1. </span>Setup Arduino<a class="headerlink" href="#setup-arduino" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.2.1. </span>Setup Arduino<a class="headerlink" href="#setup-arduino" title="Permalink to this heading">#</a></h3>
 <p>Open Arduino IDE.</p>
 <p>Navigate to <a class="reference external" href="https://github.com/tensorflow/tflite-micro-arduino-examples">tensorflow/tflite-micro-arduino-examples (github.com)</a>
 and download the repository as a zipfile.</p>
@@ -426,7 +440,7 @@ and download the repository as a zipfile.</p>
 <p>Plug in your Nano 33 BLE Sense to your laptop using a micro USB cable.</p>
 </section>
 <section id="run-example">
-<h3><span class="section-number">19.2.2. </span>Run Example<a class="headerlink" href="#run-example" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">20.2.2. </span>Run Example<a class="headerlink" href="#run-example" title="Permalink to this heading">#</a></h3>
 <p>See <em>TinyML</em> Chapter 7: <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml/9781492052036/ch07.html#:-:text=Arduino">Arduino</a> for more detail.</p>
 <ul class="simple">
 <li><p>Open the <strong>micro_speech</strong> example from the newly added library.</p></li>
@@ -466,11 +480,10 @@ A verbal “No” will give you a red light. Any other word will be blue.</p>
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="m4-cortex.html"
@@ -478,13 +491,10 @@ A verbal “No” will give you a red light. Any other word will be blue.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">18. </span>M4-Cortex Processor</p>
+        <p class="prev-next-title"><span class="section-number">19. </span>M4-Cortex Processor</p>
       </div>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -499,13 +509,13 @@ A verbal “No” will give you a red light. Any other word will be blue.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">19.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">19.1.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">20.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">20.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">19.2. Lab</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-arduino">19.2.1. Setup Arduino</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-example">19.2.2. Run Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">20.2. Lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-arduino">20.2.1. Setup Arduino</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-example">20.2.2. Run Example</a></li>
 </ul>
 </li>
 </ul>
@@ -555,8 +565,8 @@ By DFEC
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
   </footer>
