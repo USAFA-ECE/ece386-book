@@ -402,6 +402,11 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-engine">18.2.3.1. Docker Engine</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-dockerfile">18.2.4. Build Dockerfile</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tensorflow-on-jetson">18.3. Tensorflow on Jetson</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">18.3.1. Hello World</a></li>
 </ul>
 </li>
 </ul>
@@ -535,6 +540,64 @@ instead of a daemon and the ability to run rootless.</p>
 </div>
 </section>
 </section>
+<section id="build-dockerfile">
+<h3><span class="section-number">18.2.4. </span>Build Dockerfile<a class="headerlink" href="#build-dockerfile" title="Permalink to this heading">#</a></h3>
+<p>What if you want to customize your container?</p>
+<p>Remember <strong>containers are supposed to be immutable</strong> so
+you shouldn’t modify them while running.</p>
+<p>Instead, you can build your own custom container!</p>
+<p>Create a file named <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>, such as the example below
+and then build image and run the container.</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Example to add a package and change the default command</span>
+<span class="c"># Build with `docker build -t alpine-pubip .`</span>
+<span class="c"># Run with `docker run --rm alpine-pubip` to display host public IP address</span>
+<span class="c"># Run with `docker run --rm -it alpine-pubip /bin/sh` to launch shell</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">alpine:3</span>
+
+<span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>curl
+
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/usr/bin/curl&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-s&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ifconfig.me&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">-t</span></code> flag specifies the flag with which you wish to name your new image.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">build</span></code> looks at all the files in a directory.
+To minimize file size, put your Dockerfile in a directory that only has what you need.</p>
+</div>
+<p>After building the image you can push it to a container registry.
+Then you can pull it to somewhere else!</p>
+</section>
+</section>
+<section id="tensorflow-on-jetson">
+<h2><span class="section-number">18.3. </span>Tensorflow on Jetson<a class="headerlink" href="#tensorflow-on-jetson" title="Permalink to this heading">#</a></h2>
+<p>NVIDIA builds and publishes ML containers optimized for GPU acceleration.
+They can be found at <a class="reference external" href="https://catalog.ngc.nvidia.com/containers">NVIDIA NCG Catalog</a>.</p>
+<p>Here is a Hello World for GPU acceleration on the Jetson Orin Nano:</p>
+<section id="hello-world">
+<h3><span class="section-number">18.3.1. </span>Hello World<a class="headerlink" href="#hello-world" title="Permalink to this heading">#</a></h3>
+<p>Browse to <a class="reference external" href="https://catalog.ngc.nvidia.com/orgs/nvidia/containers/l4t-tensorflow">Tensorflow Container for Jetson and Jetpack</a>.
+Read the page and check to make sure version match up.</p>
+<p>Pull the image… it’s several GB…</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>nvcr.io/nvidia/l4t-tensorflow:r35.3.1-tf2.11-py3
+</pre></div>
+</div>
+<p>Run the container and start an interactive session.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--runtime<span class="w"> </span>nvidia<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>nvcr.io/nvidia/l4t-tensorflow:r35.3.1-tf2.11-py3
+</pre></div>
+</div>
+<p>Now, inside the container, we’ll run an excerpt from the Hello Colab script.</p>
+<p>The script is hosted <a class="reference external" href="https://gist.github.com/byarbrough/442209e580349fd55f839e4d23e8794d">as a gist</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Will download the script into the container</span>
+curl<span class="w"> </span>-LO<span class="w"> </span>https://gist.githubusercontent.com/byarbrough/442209e580349fd55f839e4d23e8794d/raw/b10c21f10996732929b690e464e8ab468067059a/tf_gpu_hello.py
+<span class="c1"># Verify it, because we don&#39;t blindly trust things</span>
+less<span class="w"> </span>tf_gpu_hello.py
+<span class="c1"># Run it</span>
+python3<span class="w"> </span>tf_gpu_hello.py
+</pre></div>
+</div>
+<p>Or copy and paste from the gist.</p>
+</section>
 </section>
 </section>
 
@@ -612,6 +675,11 @@ instead of a daemon and the ability to run rootless.</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-engine">18.2.3.1. Docker Engine</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-dockerfile">18.2.4. Build Dockerfile</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tensorflow-on-jetson">18.3. Tensorflow on Jetson</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">18.3.1. Hello World</a></li>
 </ul>
 </li>
 </ul>

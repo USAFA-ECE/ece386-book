@@ -135,3 +135,77 @@ Together with [buildah](https://buildah.io/) and [skopeo](https://github.com/con
 
 Overall, I like podman better... but that's not the way the industry is leaning ☹️
 ```
+
+### Build Dockerfile
+
+What if you want to customize your container?
+
+Remember **containers are supposed to be immutable** so
+you shouldn't modify them while running.
+
+Instead, you can build your own custom container!
+
+Create a file named `Dockerfile`, such as the example below
+and then build image and run the container.
+
+```dockerfile
+# Example to add a package and change the default command
+# Build with `docker build -t alpine-pubip .`
+# Run with `docker run --rm alpine-pubip` to display host public IP address
+# Run with `docker run --rm -it alpine-pubip /bin/sh` to launch shell
+FROM alpine:3
+
+RUN apk add curl
+
+CMD ["/usr/bin/curl", "-s", "ifconfig.me"]
+
+```
+
+The `-t` flag specifies the flag with which you wish to name your new image.
+
+```{tip}
+By default, `build` looks at all the files in a directory.
+To minimize file size, put your Dockerfile in a directory that only has what you need.
+```
+
+After building the image you can push it to a container registry.
+Then you can pull it to somewhere else!
+
+## Tensorflow on Jetson
+
+NVIDIA builds and publishes ML containers optimized for GPU acceleration.
+They can be found at [NVIDIA NCG Catalog](https://catalog.ngc.nvidia.com/containers).
+
+Here is a Hello World for GPU acceleration on the Jetson Orin Nano:
+
+#### Hello World
+
+Browse to [Tensorflow Container for Jetson and Jetpack](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/l4t-tensorflow).
+Read the page and check to make sure version match up.
+
+Pull the image... it's several GB...
+
+```bash
+sudo docker pull nvcr.io/nvidia/l4t-tensorflow:r35.3.1-tf2.11-py3
+```
+
+Run the container and start an interactive session.
+
+```bash
+sudo docker run -it --rm --runtime nvidia --network host nvcr.io/nvidia/l4t-tensorflow:r35.3.1-tf2.11-py3
+```
+
+Now, inside the container, we'll run an excerpt from the Hello Colab script.
+
+The script is hosted [as a gist](https://gist.github.com/byarbrough/442209e580349fd55f839e4d23e8794d).
+
+```bash
+# Will download the script into the container
+curl -LO https://gist.githubusercontent.com/byarbrough/442209e580349fd55f839e4d23e8794d/raw/b10c21f10996732929b690e464e8ab468067059a/tf_gpu_hello.py
+# Verify it, because we don't blindly trust things
+less tf_gpu_hello.py
+# Run it
+python3 tf_gpu_hello.py
+```
+
+Or copy and paste from the gist.
