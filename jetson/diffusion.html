@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>21. Wake Word Detection &#8212; ECE 495</title>
+    <title>19. Diffusion Image Generation &#8212; ECE 495</title>
   
   
   
@@ -62,11 +62,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tfm/wake-word';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'jetson/diffusion';</script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="20. M4-Cortex Processor" href="m4-cortex.html" />
+    <link rel="next" title="20. M4-Cortex Processor" href="../tfm/m4-cortex.html" />
+    <link rel="prev" title="18. Containerization" href="containerization.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -190,14 +191,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../dnn/cc-dnn.html">17. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NVIDIA Jetson</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">18. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">19. Diffusion Image Generation</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="containerization.html">18. Containerization</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">19. Diffusion Image Generation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="m4-cortex.html">20. M4-Cortex Processor</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">21. Wake Word Detection</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">20. M4-Cortex Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">21. Wake Word Detection</a></li>
 </ul>
 
     </div>
@@ -269,7 +270,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Ftfm/wake-word.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fjetson/diffusion.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -299,7 +300,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/tfm/wake-word.md" target="_blank"
+      <li><a href="../_sources/jetson/diffusion.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -381,7 +382,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Wake Word Detection</h1>
+    <h1>Diffusion Image Generation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -391,15 +392,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">21.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">21.1.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">19.1. Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">19.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">21.2. Lab</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-arduino">21.2.1. Setup Arduino</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-example">21.2.2. Run Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-generation">19.2. Image generation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tutorial">19.2.1. The tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-documentation">19.2.2. The documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it-on-the-nuc">19.2.3. Try it on the NUC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-api">19.2.4. Add the API</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-1">19.2.4.1. Prompt 1</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#containerize-the-app">19.3. Containerize the app</a></li>
 </ul>
             </nav>
         </div>
@@ -411,48 +418,185 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="wake-word-detection">
-<h1><span class="section-number">21. </span>Wake Word Detection<a class="headerlink" href="#wake-word-detection" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="diffusion-image-generation">
+<h1><span class="section-number">19. </span>Diffusion Image Generation<a class="headerlink" href="#diffusion-image-generation" title="Permalink to this heading">#</a></h1>
 <section id="pre-reading">
-<h2><span class="section-number">21.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
-<p><em>TinyML</em> <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml/9781492052036/ch07.html#:-:text=Chapter%207.%20Wake-Word%20Detection%3A%20Building%20an%20Application">Chapter 7</a></p>
+<h2><span class="section-number">19.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Everything from the start up to the paragraph “There are many more tests in the example, but exploring these few will give us an understanding of the key moving parts.”</p></li>
-<li><p>Subsection <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml/9781492052036/ch07.html#:-:text=How%20the%20feature%20provider%20converts%20audio%20to%20a%20spectrogram">How the feature provider converts audio to a spectrogram</a></p></li>
-<li><p>Subsection <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml/9781492052036/ch07.html#:-:text=The%20Command%20Recognizer">The Command Recognizer</a> up to the code blocks</p></li>
+<li><p><a class="reference external" href="https://huggingface.co/runwayml/stable-diffusion-v1-5">Stable Diffusion v1-5 Model Card</a></p></li>
 </ul>
 <section id="objectives">
-<h3><span class="section-number">21.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">19.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Understand how spectral samples can be processed for ML</p></li>
-<li><p>Deploy a pre-trained model to TFLite Micro on Arduino</p></li>
+<li><p>Apply lessons-learned from containerization.</p></li>
+<li><p>Get a diffusion text to image model working on Jetson.</p></li>
+<li><p>Use ChatGPT to serve working model as API.</p></li>
 </ul>
 </section>
 </section>
-<section id="lab">
-<h2><span class="section-number">21.2. </span>Lab<a class="headerlink" href="#lab" title="Permalink to this heading">#</a></h2>
-<section id="setup-arduino">
-<h3><span class="section-number">21.2.1. </span>Setup Arduino<a class="headerlink" href="#setup-arduino" title="Permalink to this heading">#</a></h3>
-<p>Open Arduino IDE.</p>
-<p>Navigate to <a class="reference external" href="https://github.com/tensorflow/tflite-micro-arduino-examples">tensorflow/tflite-micro-arduino-examples (github.com)</a>
-and download the repository as a zipfile.</p>
-<p>Add the examples zipfile to Arduino IDE libraries via <strong>Sketch &gt; Include Library &gt; Add .ZIP Library</strong></p>
-<p><img alt="Add example zipfile to Arduino IDE" src="../_images/arduino-ide-library.png" /></p>
-<p>Plug in your Nano 33 BLE Sense to your laptop using a micro USB cable.</p>
+<section id="image-generation">
+<h2><span class="section-number">19.2. </span>Image generation<a class="headerlink" href="#image-generation" title="Permalink to this heading">#</a></h2>
+<p><strong>My goal</strong> is to serve a text-to-image model on the Jetson Orin Nano.</p>
+<section id="the-tutorial">
+<h3><span class="section-number">19.2.1. </span>The tutorial<a class="headerlink" href="#the-tutorial" title="Permalink to this heading">#</a></h3>
+<p>I first read <a class="reference external" href="https://iomz.github.io/how-to/docker-diffusers-jetson/">Does Stable Diffusion run on NVIDIA Jetson AGX Xavier Developer Kit with CUDA?</a> and thought this might be possible!</p>
+<p>Following the tutorial under <strong>Run Diffusers on Docker</strong>,
+I quickly came to this command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://huggingface.co/runwayml/stable-diffusion-v1-5
+</pre></div>
+</div>
+<p>Even with <code class="docutils literal notranslate"><span class="pre">git-lfs</span></code> installed, this was taking <em>forever</em>…
+I pulled the plug after 25 GB came down with dozens more promised.</p>
+<p>Going to take a different approach, but noting the
+<a class="reference external" href="https://github.com/iomz/docker-diffusers-jetson/blob/main/Dockerfile">Dockerfile</a>
+for later reference, even though I can tell this person is <em>not</em> a docker expert.</p>
 </section>
-<section id="run-example">
-<h3><span class="section-number">21.2.2. </span>Run Example<a class="headerlink" href="#run-example" title="Permalink to this heading">#</a></h3>
-<p>See <em>TinyML</em> Chapter 7: <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml/9781492052036/ch07.html#:-:text=Arduino">Arduino</a> for more detail.</p>
+<section id="the-documentation">
+<h3><span class="section-number">19.2.2. </span>The documentation<a class="headerlink" href="#the-documentation" title="Permalink to this heading">#</a></h3>
+<p>The Hugging Face Diffusers Documentation has the suggestion:
+<a class="reference external" href="https://huggingface.co/docs/diffusers/tutorials/autopipeline#choose-an-autopipeline-for-your-task">Choose an AutoPipeline for your task</a> 🙏🏼</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">diffusers</span> <span class="kn">import</span> <span class="n">AutoPipelineForText2Image</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">AutoPipelineForText2Image</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="s2">&quot;runwayml/stable-diffusion-v1-5&quot;</span><span class="p">,</span> <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">,</span> <span class="n">use_safetensors</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;peasant and dragon combat, wood cutting style, viking era, bevel with rune&quot;</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">num_inference_steps</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Under the hood, AutoPipelineForText2Image:</p>
+<ol class="arabic simple">
+<li><p>automatically detects a “stable-diffusion” class from the model_index.json file</p></li>
+<li><p>loads the corresponding text-to-image StableDiffusionPipline based on the “stable-diffusion” class name.</p></li>
+</ol>
+</div></blockquote>
+<p><strong>Let’s run that!</strong>… on my Intel NUC.</p>
+</section>
+<section id="try-it-on-the-nuc">
+<h3><span class="section-number">19.2.3. </span>Try it on the NUC<a class="headerlink" href="#try-it-on-the-nuc" title="Permalink to this heading">#</a></h3>
+<p>I do not have an NVIDIA GPU on this device.
+So, a quick DuckDuckGo search (ChatGPT actually got this one wrong)
+tells me about <code class="docutils literal notranslate"><span class="pre">torch.cuda.is_available()</span></code>. So I write:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">cuda</span>
+
+<span class="c1"># Use GPU if available; otherwise, cpu</span>
+<span class="k">if</span> <span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;cuda&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;cpu&quot;</span>
+
+</pre></div>
+</div>
+<p>Then I just replace <code class="docutils literal notranslate"><span class="pre">to.(&quot;cuda&quot;)</span></code> with <code class="docutils literal notranslate"><span class="pre">to.(device)</span></code>.</p>
+<p>Install dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>torch<span class="w">  </span>diffusers<span class="o">[</span>torch<span class="o">]</span><span class="w"> </span>transformers
+</pre></div>
+</div>
+<p>Then run it: great success! (After about <strong>3:20</strong>, yikes!)</p>
+<p>Here’s how to display your image:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Explore what this image even is</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="c1"># Oh, it&#39;s a PIL! We can just</span>
+<span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="add-the-api">
+<h3><span class="section-number">19.2.4. </span>Add the API<a class="headerlink" href="#add-the-api" title="Permalink to this heading">#</a></h3>
+<p>I want this thing to be served. Let’s try ChatGPT.</p>
+<p>Time for some <strong>prompt engineering.</strong></p>
+<p>First, I know I need to be specific about what I want
+as well as the steps I want the LLM to take.</p>
+<p>I’ve heard FastAPI is a good choice, but have never used it before.</p>
+<section id="prompt-1">
+<h4><span class="section-number">19.2.4.1. </span>Prompt 1<a class="headerlink" href="#prompt-1" title="Permalink to this heading">#</a></h4>
+<p>Here is what I try first</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>I want to adapt the following code to serve a REST API where the user
+passes a prompt with <span class="sb">`prompt`</span> and a JPEG is returned.
+
+~~~python
+from diffusers import AutoPipelineForText2Image
+from torch import cuda
+
+<span class="gh"># https://huggingface.co/runwayml/stable-diffusion-v1-5</span>
+diffusion_model: str = &quot;runwayml/stable-diffusion-v1-5&quot;
+
+<span class="gh"># Use GPU if available; otherwise, cpu</span>
+if cuda.is_available():
+    device = &quot;cuda&quot;
+else:
+    device = &quot;cpu&quot;
+
+<span class="gh"># The auto pipeline automatically detects and loads the model</span>
+<span class="gh"># https://huggingface.co/docs/diffusers/tutorials/autopipeline#choose-an-autopipeline-for-your-task</span>
+<span class="gh"># Use_safetensors enables a NSFW filter.</span>
+pipeline = AutoPipelineForText2Image.from_pretrained(
+    diffusion_model, use_safetensors=True
+).to(device)
+
+<span class="gh"># Generate the image based on the prompt</span>
+prompt = &quot;A falcon flying over mountains&quot;
+image = pipeline(prompt, num_inference_steps=25).images[0]
+~~~
+
+<span class="k">1.</span> Create the FastAPI function <span class="sb">`generate_img`</span>
+<span class="k">2.</span> Use the <span class="sb">`prompt`</span> and <span class="sb">`pipeline`</span> to make the image
+<span class="k">3.</span> Convert the image to JPEG in memory
+<span class="k">4.</span> Return the image
+
+I also want you to talk about how to serve this API and how to call it
+using <span class="sb">`curl -o`</span>.
+</pre></div>
+</div>
+<p>Ok, tbh this is totally not how I did it.
+I walked the dog with individual prompts, starting from a basic example.
+I would run those, search some things or ask for clarification, and iterate.</p>
+<p>This prompt will <em>probably</em> give you working code, but it also will
+almost certainly be way too complex.</p>
+<p>For example, I ended up with a GET method doing it bit-by-bit but
+the prompt above gave me a POST method. Maybe that’s better, in truth.</p>
+<p>At minimum, you should</p>
+<ol class="arabic simple">
+<li><p>Have <code class="docutils literal notranslate"><span class="pre">&#64;app.post</span></code> or <code class="docutils literal notranslate"><span class="pre">&#64;app.get</span></code> macro</p></li>
+<li><p>Run the app with <a class="reference external" href="https://www.uvicorn.org/">uvicorn</a></p></li>
+<li><p>Be able to <code class="docutils literal notranslate"><span class="pre">curl</span></code> the port and save the image. At this point, single word prompts with no whitespace are fine.</p></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="containerize-the-app">
+<h2><span class="section-number">19.3. </span>Containerize the app<a class="headerlink" href="#containerize-the-app" title="Permalink to this heading">#</a></h2>
+<p>Here is a Dockerfile to get you started:</p>
+<div class="highlight-Dockerfile notranslate"><div class="highlight"><pre><span></span>FROM nvcr.io/nvidia/pytorch:23.09-py3
+
+EXPOSE 5858
+
+WORKDIR /app
+COPY ./generate_img.py /app
+
+# Ideally, pin to versions you know work.
+RUN pip install --no-cache-dir \
+
+# TODO
+
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Switch from the generic <strong>nvidia/pytorch</strong> base to the one designed for the Jetson.</p></li>
+<li><p>Finish writing <code class="docutils literal notranslate"><span class="pre">generate_img.py</span></code> and make sure it is in the same directory as your Dockerfile.</p></li>
+<li><p>Finish installing dependencies with pip.</p></li>
+<li><p>Write the <code class="docutils literal notranslate"><span class="pre">CMD</span></code> layer.</p></li>
+<li><p>Figure out the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> command.</p>
 <ul class="simple">
-<li><p>Open the <strong>micro_speech</strong> example from the newly added library.</p></li>
-<li><p>Peruse the code files to get an idea of what you are about to run.</p></li>
-<li><p>Select Nano 33 BLE Sense device</p></li>
-<li><p>Select COM port</p></li>
-<li><p>Upload the code</p></li>
+<li><p>You should use a <code class="docutils literal notranslate"><span class="pre">-v</span></code> <a class="reference external" href="https://docs.docker.com/storage/volumes/">volume</a> to reuse the model cache</p></li>
+<li><p>You need to bind the correct port</p></li>
 </ul>
-<p>Compiling will take a while. After uploading, a verbal “Yes” should give you a green light.
-A verbal “No” will give you a red light. Any other word will be blue.</p>
-</section>
+</li>
+</ol>
+<p>After all that, you should be able to curl your container and get a generated image!</p>
 </section>
 </section>
 
@@ -469,7 +613,7 @@ A verbal “No” will give you a red light. Any other word will be blue.</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./tfm"
+            path: "./jetson"
         },
         predefinedOutput: true
     }
@@ -487,13 +631,22 @@ A verbal “No” will give you a red light. Any other word will be blue.</p>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="m4-cortex.html"
+       href="containerization.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Containerization</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../tfm/m4-cortex.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">20. </span>M4-Cortex Processor</p>
       </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -510,15 +663,21 @@ A verbal “No” will give you a red light. Any other word will be blue.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">21.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">21.1.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">19.1. Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">19.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">21.2. Lab</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-arduino">21.2.1. Setup Arduino</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-example">21.2.2. Run Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-generation">19.2. Image generation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tutorial">19.2.1. The tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-documentation">19.2.2. The documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it-on-the-nuc">19.2.3. Try it on the NUC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-api">19.2.4. Add the API</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-1">19.2.4.1. Prompt 1</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#containerize-the-app">19.3. Containerize the app</a></li>
 </ul>
   </nav></div>
 
