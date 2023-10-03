@@ -17,7 +17,7 @@ else:
 # https://huggingface.co/docs/diffusers/tutorials/autopipeline#choose-an-autopipeline-for-your-task
 # Use_safetensors enables a NSFW filter.
 pipeline = AutoPipelineForText2Image.from_pretrained(
-    diffusion_model, use_safetensors=True
+    diffusion_model, use_safetensors=True, cache_dir="/app/models/"
 ).to(device)
 
 # Create the FastAPI app
