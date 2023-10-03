@@ -25,12 +25,13 @@ parts:
       - file: dnn/tflite_pi
       - file: dnn/workday1
       - file: dnn/workday2
-      - file: dnn/cat-dog/live-cat.md
+      - file: dnn/cat-dog/live-cat
       - file: dnn/cc-dnn
   - caption: NVIDIA Jetson
     numbered: true
     chapters:
-      - file: jetson/containerization.md
+      - file: jetson/containerization
+      - file: jetson/diffusion
   - caption: Tensorflow Lite Micro
     numbered: true
     chapters:
