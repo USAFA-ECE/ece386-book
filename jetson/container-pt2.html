@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>13. TF Lite 🥧 &#8212; ECE 495</title>
+    <title>20. Containers Part 2 &#8212; ECE 495</title>
   
   
   
@@ -62,12 +62,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'dnn/tflite_pi';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'jetson/container-pt2';</script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="14. Workday 1" href="workday1.html" />
-    <link rel="prev" title="12. TensorFlow Lite" href="cat-dog/tflite_convert.html" />
+    <link rel="next" title="21. M4-Cortex Processor" href="../tfm/m4-cortex.html" />
+    <link rel="prev" title="19. Diffusion Image Generation" href="diffusion.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -177,24 +177,24 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../prediction/cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="neuralnet.html">7. Neural Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpu.html">8. Linear Algebra and GPUs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dnn-explore.html">9. DNN Exploration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="convolution.html">10. Convolutional Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cat-dog/transfer_learning.html">11. Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cat-dog/tflite_convert.html">12. TensorFlow Lite</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. TF Lite 🥧</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workday1.html">14. Workday 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workday2.html">15. Workday 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cat-dog/live-cat.html">16. Live Inference 🐱 🐶</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cc-dnn.html">17. C&amp;C: Deep Neural Networks</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dnn/neuralnet.html">7. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/gpu.html">8. Linear Algebra and GPUs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/dnn-explore.html">9. DNN Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/convolution.html">10. Convolutional Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/cat-dog/transfer_learning.html">11. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/cat-dog/tflite_convert.html">12. TensorFlow Lite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/tflite_pi.html">13. TF Lite 🥧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/workday1.html">14. Workday 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/workday2.html">15. Workday 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/cat-dog/live-cat.html">16. Live Inference 🐱 🐶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dnn/cc-dnn.html">17. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NVIDIA Jetson</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">18. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">19. Diffusion Image Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">20. Containers Part 2</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="containerization.html">18. Containerization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffusion.html">19. Diffusion Image Generation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">20. Containers Part 2</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
 <ul class="nav bd-sidenav">
@@ -246,37 +246,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/usafa-ece/ai-hardware/blob/main/book/dnn/tflite_pi.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -302,7 +271,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fdnn/tflite_pi.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fjetson/container-pt2.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -332,7 +301,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/dnn/tflite_pi.ipynb" target="_blank"
+      <li><a href="../_sources/jetson/container-pt2.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -342,7 +311,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -414,7 +383,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>TF Lite 🥧</h1>
+    <h1>Containers Part 2</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -424,13 +393,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">13.1. Pre-reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">13.1.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#developing-in-a-container">20.1. Developing in a container</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manually">20.1.1. Manually</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code-remote">20.1.2. VS Code Remote</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-started">13.2. Get started</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-plan">13.2.1. The plan</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-janky-starter-code">13.2.2. The janky starter code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-lab">20.2. Mini lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#helpful-commands">20.2.1. Helpful commands</a></li>
 </ul>
 </li>
 </ul>
@@ -444,99 +413,40 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="tf-lite">
-<h1><span class="section-number">13. </span>TF Lite 🥧<a class="headerlink" href="#tf-lite" title="Permalink to this heading">#</a></h1>
-<p>Running TensorFlow Lite on a Raspberry Pi</p>
-<section id="pre-reading">
-<h2><span class="section-number">13.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="containers-part-2">
+<h1><span class="section-number">20. </span>Containers Part 2<a class="headerlink" href="#containers-part-2" title="Permalink to this heading">#</a></h1>
+<p><img alt="Docker build and deploy process" src="https://www.markbuckler.com/img/docker_high_level.png" /></p>
+<section id="developing-in-a-container">
+<h2><span class="section-number">20.1. </span>Developing in a container<a class="headerlink" href="#developing-in-a-container" title="Permalink to this heading">#</a></h2>
+<section id="manually">
+<h3><span class="section-number">20.1.1. </span>Manually<a class="headerlink" href="#manually" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Mount the container as a volume with <code class="docutils literal notranslate"><span class="pre">-v</span></code></p></li>
+<li><p>Prototype</p></li>
+<li><p>Iterate on the Dockerfile</p></li>
+</ol>
+<p><img alt="Manual docker prototype" src="../_images/docker-manual-dev.png" /></p>
+</section>
+<section id="vs-code-remote">
+<h3><span class="section-number">20.1.2. </span>VS Code Remote<a class="headerlink" href="#vs-code-remote" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://code.visualstudio.com/docs/devcontainers/containers">Developing inside a container</a></p>
+</section>
+</section>
+<section id="mini-lab">
+<h2><span class="section-number">20.2. </span>Mini lab<a class="headerlink" href="#mini-lab" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>See the <strong>mypub-ip</strong> demo</p></li>
+<li><p>Bring the <a class="reference external" href="https://usafa-ece.github.io/ai-hardware/prediction/hello-colab.html#tensorflow-speedup-on-gpu-relative-to-cpu">TF speedup on GPU vs CPU script</a> into a L4T tensorflow container</p></li>
+<li><p>Build the image</p></li>
+<li><p>Run the image</p></li>
+<li><p><em>Optionally</em>*, push the image</p></li>
+</ol>
+<section id="helpful-commands">
+<h3><span class="section-number">20.2.1. </span>Helpful commands<a class="headerlink" href="#helpful-commands" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p><a class="reference external" href="https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf">The Picamera2 Library</a> Chapter 1, 2.1, 2.3.</p></li>
-<li><p>Skim the titles of <a class="reference external" href="https://github.com/raspberrypi/picamera2/tree/main/examples">picamer2/examples</a>. <em>(Wait, is that a tensorflow directory??)</em></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#workdir">WORKDIR</a> for setting working directory</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#add">ADD</a> for bringing in the file</p></li>
 </ul>
-<blockquote>
-<div><p>As of mid-September 2022, Picamera2 is pre-installed in all Raspberry Pi OS images.</p>
-</div></blockquote>
-<section id="objectives">
-<h3><span class="section-number">13.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Practice good software design</p></li>
-<li><p>Think about and build an input pipeline</p></li>
-<li><p>Take pics with a pi camera and conduct inference on them</p></li>
-</ul>
-</section>
-</section>
-<section id="get-started">
-<h2><span class="section-number">13.2. </span>Get started<a class="headerlink" href="#get-started" title="Permalink to this heading">#</a></h2>
-<p>Remember to upload your <code class="docutils literal notranslate"><span class="pre">.tflite</span></code> model from yesterday.</p>
-<section id="the-plan">
-<h3><span class="section-number">13.2.1. </span>The plan<a class="headerlink" href="#the-plan" title="Permalink to this heading">#</a></h3>
-<p><strong>Before</strong> you start into the code, draw out what you need to accomplish.</p>
-</section>
-<section id="the-janky-starter-code">
-<h3><span class="section-number">13.2.2. </span>The janky starter code<a class="headerlink" href="#the-janky-starter-code" title="Permalink to this heading">#</a></h3>
-<p>Is here:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tflite_runtime.interpreter</span> <span class="k">as</span> <span class="nn">tflite</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">picamera2</span> <span class="kn">import</span> <span class="n">Picamera2</span><span class="p">,</span> <span class="n">Preview</span>
-<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
-
-<span class="c1"># How many pixe</span>
-<span class="n">capture_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1280</span><span class="p">,</span> <span class="mi">720</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">tflite_infer</span><span class="p">(</span><span class="n">interpreter</span><span class="p">,</span> <span class="n">input_details</span><span class="p">,</span> <span class="n">input_data</span><span class="p">):</span>
-    <span class="c1"># Reserve a spot for the result</span>
-    <span class="n">interpreter</span><span class="o">.</span><span class="n">set_tensor</span><span class="p">(</span><span class="n">input_details</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;index&quot;</span><span class="p">],</span> <span class="n">input_data</span><span class="p">)</span>
-    <span class="c1"># Conduct inference</span>
-    <span class="n">interpreter</span><span class="o">.</span><span class="n">invoke</span><span class="p">()</span>
-    <span class="c1"># Save results of inference</span>
-    <span class="n">output_data</span> <span class="o">=</span> <span class="n">interpreter</span><span class="o">.</span><span class="n">get_tensor</span><span class="p">(</span><span class="n">output_details</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;index&quot;</span><span class="p">])</span>
-    <span class="c1"># Trim off extra dimensions from result</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">output_data</span><span class="p">)</span>
-
-
-<span class="c1"># Create the tflite Interpreter</span>
-<span class="n">model_path</span> <span class="o">=</span> <span class="s2">&quot;cat-dog.tflite&quot;</span>
-<span class="n">interpreter</span> <span class="o">=</span> <span class="n">tflite</span><span class="o">.</span><span class="n">Interpreter</span><span class="p">(</span><span class="n">model_path</span><span class="o">=</span><span class="n">model_path</span><span class="p">)</span>
-<span class="n">interpreter</span><span class="o">.</span><span class="n">allocate_tensors</span><span class="p">()</span>
-<span class="n">input_details</span> <span class="o">=</span> <span class="n">interpreter</span><span class="o">.</span><span class="n">get_input_details</span><span class="p">()</span>
-<span class="n">output_details</span> <span class="o">=</span> <span class="n">interpreter</span><span class="o">.</span><span class="n">get_output_details</span><span class="p">()</span>
-
-<span class="c1"># Initialize and start the camera</span>
-<span class="n">picam2</span> <span class="o">=</span> <span class="n">Picamera2</span><span class="p">()</span>
-<span class="n">camera_config</span> <span class="o">=</span> <span class="n">picam2</span><span class="o">.</span><span class="n">create_still_configuration</span><span class="p">(</span>
-    <span class="n">main</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">)},</span> <span class="n">lores</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">)},</span> <span class="n">display</span><span class="o">=</span><span class="s2">&quot;lores&quot;</span>
-<span class="p">)</span>
-<span class="n">picam2</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">camera_config</span><span class="p">)</span>
-<span class="c1"># Pop up a preview window</span>
-<span class="n">picam2</span><span class="o">.</span><span class="n">start_preview</span><span class="p">(</span><span class="n">Preview</span><span class="o">.</span><span class="n">QTGL</span><span class="p">)</span>
-
-<span class="c1"># Turn on the camera</span>
-<span class="n">picam2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-
-<span class="c1"># Pause for preview</span>
-<span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="c1"># Take a picture</span>
-<span class="n">np_pic</span> <span class="o">=</span> <span class="n">picam2</span><span class="o">.</span><span class="n">capture_array</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;np size&quot;</span><span class="p">,</span> <span class="n">np_pic</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="c1"># Stop the camera</span>
-<span class="n">picam2</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-
-<span class="c1"># Resize picture to be dimensions the TF model expects</span>
-<span class="n">resized_pic</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">np_pic</span><span class="p">,</span> <span class="n">input_details</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;shape&quot;</span><span class="p">])</span>
-<span class="n">resized_pic</span> <span class="o">=</span> <span class="n">resized_pic</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="c1"># Conduct inference</span>
-<span class="n">infer_result</span> <span class="o">=</span> <span class="n">tflite_infer</span><span class="p">(</span><span class="n">interpreter</span><span class="p">,</span> <span class="n">input_details</span><span class="p">,</span> <span class="n">resized_pic</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inference result:&quot;</span><span class="p">,</span> <span class="n">infer_result</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 </section>
 </section>
@@ -554,7 +464,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./dnn"
+            path: "./jetson"
         },
         predefinedOutput: true
     }
@@ -572,20 +482,20 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="cat-dog/tflite_convert.html"
+       href="diffusion.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">12. </span>TensorFlow Lite</p>
+        <p class="prev-next-title"><span class="section-number">19. </span>Diffusion Image Generation</p>
       </div>
     </a>
     <a class="right-next"
-       href="workday1.html"
+       href="../tfm/m4-cortex.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">14. </span>Workday 1</p>
+        <p class="prev-next-title"><span class="section-number">21. </span>M4-Cortex Processor</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -604,13 +514,13 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">13.1. Pre-reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">13.1.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#developing-in-a-container">20.1. Developing in a container</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manually">20.1.1. Manually</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code-remote">20.1.2. VS Code Remote</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-started">13.2. Get started</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-plan">13.2.1. The plan</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-janky-starter-code">13.2.2. The janky starter code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-lab">20.2. Mini lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#helpful-commands">20.2.1. Helpful commands</a></li>
 </ul>
 </li>
 </ul>
