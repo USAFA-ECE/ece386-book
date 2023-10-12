@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>22. Wake Word Detection &#8212; ECE 495</title>
+    <title>23. Wake Word Detection &#8212; ECE 495</title>
   
   
   
@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="21. M4-Cortex Processor" href="m4-cortex.html" />
+    <link rel="prev" title="22. M4-Cortex Processor" href="m4-cortex.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -194,11 +194,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">18. Containerization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">19. Diffusion Image Generation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">20. Containers Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">21. YOLO</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="m4-cortex.html">21. M4-Cortex Processor</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">22. Wake Word Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="m4-cortex.html">22. M4-Cortex Processor</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">23. Wake Word Detection</a></li>
 </ul>
 
     </div>
@@ -392,13 +393,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">22.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">22.1.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">23.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">23.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">22.2. Lab</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-arduino">22.2.1. Setup Arduino</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-example">22.2.2. Run Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">23.2. Lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-arduino">23.2.1. Setup Arduino</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-example">23.2.2. Run Example</a></li>
 </ul>
 </li>
 </ul>
@@ -413,9 +414,9 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="wake-word-detection">
-<h1><span class="section-number">22. </span>Wake Word Detection<a class="headerlink" href="#wake-word-detection" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">23. </span>Wake Word Detection<a class="headerlink" href="#wake-word-detection" title="Permalink to this heading">#</a></h1>
 <section id="pre-reading">
-<h2><span class="section-number">22.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">23.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
 <p><em>TinyML</em> <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml/9781492052036/ch07.html#:-:text=Chapter%207.%20Wake-Word%20Detection%3A%20Building%20an%20Application">Chapter 7</a></p>
 <ul class="simple">
 <li><p>Everything from the start up to the paragraph “There are many more tests in the example, but exploring these few will give us an understanding of the key moving parts.”</p></li>
@@ -423,7 +424,7 @@ document.write(`
 <li><p>Subsection <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml/9781492052036/ch07.html#:-:text=The%20Command%20Recognizer">The Command Recognizer</a> up to the code blocks</p></li>
 </ul>
 <section id="objectives">
-<h3><span class="section-number">22.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">23.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Understand how spectral samples can be processed for ML</p></li>
 <li><p>Deploy a pre-trained model to TFLite Micro on Arduino</p></li>
@@ -431,9 +432,9 @@ document.write(`
 </section>
 </section>
 <section id="lab">
-<h2><span class="section-number">22.2. </span>Lab<a class="headerlink" href="#lab" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">23.2. </span>Lab<a class="headerlink" href="#lab" title="Permalink to this heading">#</a></h2>
 <section id="setup-arduino">
-<h3><span class="section-number">22.2.1. </span>Setup Arduino<a class="headerlink" href="#setup-arduino" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">23.2.1. </span>Setup Arduino<a class="headerlink" href="#setup-arduino" title="Permalink to this heading">#</a></h3>
 <p>Open Arduino IDE.</p>
 <p>Navigate to <a class="reference external" href="https://github.com/tensorflow/tflite-micro-arduino-examples">tensorflow/tflite-micro-arduino-examples (github.com)</a>
 and download the repository as a zipfile.</p>
@@ -442,7 +443,7 @@ and download the repository as a zipfile.</p>
 <p>Plug in your Nano 33 BLE Sense to your laptop using a micro USB cable.</p>
 </section>
 <section id="run-example">
-<h3><span class="section-number">22.2.2. </span>Run Example<a class="headerlink" href="#run-example" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">23.2.2. </span>Run Example<a class="headerlink" href="#run-example" title="Permalink to this heading">#</a></h3>
 <p>See <em>TinyML</em> Chapter 7: <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml/9781492052036/ch07.html#:-:text=Arduino">Arduino</a> for more detail.</p>
 <ul class="simple">
 <li><p>Open the <strong>micro_speech</strong> example from the newly added library.</p></li>
@@ -493,7 +494,7 @@ A verbal “No” will give you a red light. Any other word will be blue.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">21. </span>M4-Cortex Processor</p>
+        <p class="prev-next-title"><span class="section-number">22. </span>M4-Cortex Processor</p>
       </div>
     </a>
 </div>
@@ -511,13 +512,13 @@ A verbal “No” will give you a red light. Any other word will be blue.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">22.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">22.1.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">23.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">23.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">22.2. Lab</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-arduino">22.2.1. Setup Arduino</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-example">22.2.2. Run Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">23.2. Lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-arduino">23.2.1. Setup Arduino</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-example">23.2.2. Run Example</a></li>
 </ul>
 </li>
 </ul>

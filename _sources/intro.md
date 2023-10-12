@@ -27,6 +27,7 @@ The book is **available for free** from O'Reilly via [DoD MWR Libraries](https:/
 | 21 | Lab: Bias and Overfitting | * Explore the consequences of   biased data. |  |  |
 | 22 | AI Ethics | * Discuss ethical considerations   for AI projects |  |  |
 | 23 | C&C: Data, Bias, and Ethics | * Clarify and Communicate how   data sources and quality, bias, and ethics must be jointly considered   throughout the ML cycle. |  |  |
+
 | 24 | Natural Language Processing | * Understand the foundations of   Natural Language Processing. |  |  |
 | 25 | Lab: NLP | * Experiment with basics of NLP |  |  |
 | 26 | Lab: LLM | * Experiment with basics of LLM |  |  |
@@ -35,12 +36,8 @@ The book is **available for free** from O'Reilly via [DoD MWR Libraries](https:/
 | 29 | C&C: NLP and LLM | * Confirm and Communicate how   NLP and LLM work at a foundational level |  |  |
 | 30 | Open Source AI | * Explore top current   open-source AI models and tools |  |  |
 | 31 | Open Source AI | * Explore top current   open-source AI models and tools |  |  |
-| 32 | Open Source AI | * Explore top current   open-source AI models and tools |  |  |
 | 33 | Lab: Passion Project | * Work on an AI application of   your choice |  |  |
 | 34 | Lab: Passion Project | * Work on an AI application of   your choice |  |  |
 | 35 | Lab: Passion Project | * Work on an AI application of   your choice |  |  |
 | 36 | Military Applications | * Discuss current global contest   for AI, particularly in context of National Security |  |  |
-| 37 | Graded Review | * Experiment with basics of GR |  |  |
-| 38 | Production System Architecture | * Describe how edge, cloud, and   other components may interact to form a production system |  |  |
-| 39 | Lab: System Architecture | * Experiment with basics of   System Architecture |  |  |
 | 40 | Course Conclusion | * Experiment with basics of   Conclusion |  |  |

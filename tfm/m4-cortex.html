@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>21. M4-Cortex Processor &#8212; ECE 495</title>
+    <title>22. M4-Cortex Processor &#8212; ECE 495</title>
   
   
   
@@ -66,8 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="22. Wake Word Detection" href="wake-word.html" />
-    <link rel="prev" title="20. Containers Part 2" href="../jetson/container-pt2.html" />
+    <link rel="next" title="23. Wake Word Detection" href="wake-word.html" />
+    <link rel="prev" title="21. YOLO" href="../jetson/yolo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -195,11 +195,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">18. Containerization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">19. Diffusion Image Generation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">20. Containers Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">21. YOLO</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">21. M4-Cortex Processor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wake-word.html">22. Wake Word Detection</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">22. M4-Cortex Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wake-word.html">23. Wake Word Detection</a></li>
 </ul>
 
     </div>
@@ -393,8 +394,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">21.1. Pre-reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">21.1.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">22.1. Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">22.1.1. Objectives</a></li>
 </ul>
 </li>
 </ul>
@@ -409,12 +410,12 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="m4-cortex-processor">
-<h1><span class="section-number">21. </span>M4-Cortex Processor<a class="headerlink" href="#m4-cortex-processor" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">22. </span>M4-Cortex Processor<a class="headerlink" href="#m4-cortex-processor" title="Permalink to this heading">#</a></h1>
 <section id="pre-reading">
-<h2><span class="section-number">21.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">22.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://www.arm.com/-/media/Arm%20Developer%20Community/PDF/Processor%20Datasheets/Arm%20Cortex-M4%20Processor%20Datasheet.pdf">Arm Cortex-M4 Datasheet</a></p>
 <section id="objectives">
-<h3><span class="section-number">21.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">22.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Understand power and compute constraints on embedded systems</p></li>
 <li><p>Describe how M4 Cortex Processor is optimized for TF Lite Ops</p></li>
@@ -454,12 +455,12 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../jetson/container-pt2.html"
+       href="../jetson/yolo.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">20. </span>Containers Part 2</p>
+        <p class="prev-next-title"><span class="section-number">21. </span>YOLO</p>
       </div>
     </a>
     <a class="right-next"
@@ -467,7 +468,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">22. </span>Wake Word Detection</p>
+        <p class="prev-next-title"><span class="section-number">23. </span>Wake Word Detection</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -486,8 +487,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">21.1. Pre-reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">21.1.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">22.1. Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">22.1.1. Objectives</a></li>
 </ul>
 </li>
 </ul>
