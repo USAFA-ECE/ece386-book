@@ -39,6 +39,10 @@ parts:
     chapters:
       - file: tfm/m4-cortex
       - file: tfm/wake-word
+  - caption: Natural Language Processing
+    numbered: true
+    chapters:
+      - file: nlp/text-vectorization
 #     - file: tfm/kws/transfer-micro-speech
 #     - file: tfm/lite-optimizations
 #     - file: tfm/magic-wand
