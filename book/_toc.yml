@@ -39,14 +39,29 @@ parts:
     chapters:
       - file: tfm/m4-cortex
       - file: tfm/wake-word
-  - caption: Natural Language Processing
-    numbered: true
-    chapters:
-      - file: nlp/text-vectorization
 #     - file: tfm/kws/transfer-micro-speech
 #     - file: tfm/lite-optimizations
 #     - file: tfm/magic-wand
 #     - file: tfm/cc-tfm
+  - caption: Natural Language Processing
+    numbered: true
+    chapters:
+      - file: nlp/text-vectorization
+      - file: nlp/transformers
+      - file: nlp/llm
+      - file: nlp/llm-redteam1
+      - file: nlp/llm-redteam2
+      - file: nlp/cc-nlp
+  - caption: Final Block
+    numbered: true
+    chapters:
+      - file: final/project1
+      - file: final/project2
+      - file: final/project3
+      - file: final/project4
+      - file: final/project5
+      - file: final/ethics
+      - file: final/military-apps
 # - caption: Data Wrangling
 #   numbered: true
 #   chapters:
