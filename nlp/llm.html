@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>20. Containers Part 2 &#8212; ECE 495</title>
+    <title>26. Large Language Models &#8212; ECE 495</title>
   
   
   
@@ -62,12 +62,14 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'jetson/container-pt2';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nlp/llm';</script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="21. YOLO" href="yolo.html" />
-    <link rel="prev" title="19. Diffusion Image Generation" href="diffusion.html" />
+    <link rel="next" title="27. LLM Red Team 1" href="llm-redteam1.html" />
+    <link rel="prev" title="25. Transformers" href="transformers.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -191,11 +193,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../dnn/cc-dnn.html">17. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NVIDIA Jetson</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="containerization.html">18. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diffusion.html">19. Diffusion Image Generation</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">20. Containers Part 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="yolo.html">21. YOLO</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">18. Containerization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">19. Diffusion Image Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">20. Containers Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">21. YOLO</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
 <ul class="nav bd-sidenav">
@@ -203,13 +205,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">23. Wake Word Detection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">24. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">25. Transformers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm.html">26. Large Language Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">27. LLM Red Team 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">28. LLM Red Team 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/cc-nlp.html">29. C&amp;C NLP</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="text-vectorization.html">24. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformers.html">25. Transformers</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">26. Large Language Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llm-redteam1.html">27. LLM Red Team 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llm-redteam2.html">28. LLM Red Team 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc-nlp.html">29. C&amp;C NLP</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="nav bd-sidenav">
@@ -291,7 +293,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fjetson/container-pt2.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fnlp/llm.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -321,7 +323,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/jetson/container-pt2.md" target="_blank"
+      <li><a href="../_sources/nlp/llm.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -403,7 +405,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Containers Part 2</h1>
+    <h1>Large Language Models</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -413,13 +415,25 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#developing-in-a-container">20.1. Developing in a container</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manually">20.1.1. Manually</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code-remote">20.1.2. VS Code Remote</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">26.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">26.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-lab">20.2. Mini lab</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#helpful-commands">20.2.1. Helpful commands</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#emergence">26.2. Emergence</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mind-as-an-emergent-phenomena">26.2.1. The Mind as an Emergent Phenomena</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llms-and-emergence">26.2.2. LLMs and Emergence</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-socratic-journey-to-understanding-emergence-in-large-language-models">26.2.2.1. A Socratic Journey to understanding Emergence in Large Language Models*</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-expenses">26.3. Hardware Expenses</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-quantization">26.3.1. Advanced Quantization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-containment-for-generative-ai">26.3.2. Cost Containment for Generative AI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering">26.4. Prompt Engineering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-vs-few-shot">26.4.1. Zero-shot vs. few-shot</a></li>
 </ul>
 </li>
 </ul>
@@ -433,40 +447,129 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="containers-part-2">
-<h1><span class="section-number">20. </span>Containers Part 2<a class="headerlink" href="#containers-part-2" title="Permalink to this heading">#</a></h1>
-<p><img alt="Docker build and deploy process" src="https://www.markbuckler.com/img/docker_high_level.png" /></p>
-<section id="developing-in-a-container">
-<h2><span class="section-number">20.1. </span>Developing in a container<a class="headerlink" href="#developing-in-a-container" title="Permalink to this heading">#</a></h2>
-<section id="manually">
-<h3><span class="section-number">20.1.1. </span>Manually<a class="headerlink" href="#manually" title="Permalink to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p>Mount the container as a volume with <code class="docutils literal notranslate"><span class="pre">-v</span></code></p></li>
-<li><p>Prototype</p></li>
-<li><p>Iterate on the Dockerfile</p></li>
-</ol>
-<p><img alt="Manual docker prototype" src="../_images/docker-manual-dev.png" /></p>
-</section>
-<section id="vs-code-remote">
-<h3><span class="section-number">20.1.2. </span>VS Code Remote<a class="headerlink" href="#vs-code-remote" title="Permalink to this heading">#</a></h3>
-<p><a class="reference external" href="https://code.visualstudio.com/docs/devcontainers/containers">Developing inside a container</a></p>
-</section>
-</section>
-<section id="mini-lab">
-<h2><span class="section-number">20.2. </span>Mini lab<a class="headerlink" href="#mini-lab" title="Permalink to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>See the <strong>mypub-ip</strong> demo</p></li>
-<li><p>Bring the <a class="reference external" href="https://usafa-ece.github.io/ai-hardware/prediction/hello-colab.html#tensorflow-speedup-on-gpu-relative-to-cpu">TF speedup on GPU vs CPU script</a> into a L4T tensorflow container</p></li>
-<li><p>Build the image</p></li>
-<li><p>Run the image</p></li>
-<li><p><em>Optionally</em>*, push the image</p></li>
-</ol>
-<section id="helpful-commands">
-<h3><span class="section-number">20.2.1. </span>Helpful commands<a class="headerlink" href="#helpful-commands" title="Permalink to this heading">#</a></h3>
+  <section class="tex2jax_ignore mathjax_ignore" id="large-language-models">
+<h1><span class="section-number">26. </span>Large Language Models<a class="headerlink" href="#large-language-models" title="Permalink to this heading">#</a></h1>
+<section id="pre-reading">
+<h2><span class="section-number">26.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#workdir">WORKDIR</a> for setting working directory</p></li>
-<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#add">ADD</a> for bringing in the file</p></li>
+<li><p><a class="reference external" href="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api">Best practices for prompt engineering with OpenAI API</a></p></li>
+<li><p><a class="reference external" href="https://huggingface.co/datasets/tiiuae/falcon-refinedweb">Falcon-RefineWeb Model Card</a></p></li>
 </ul>
+<section id="objectives">
+<h3><span class="section-number">26.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Describe how LLMs exhibit emergent behavior</p></li>
+<li><p>Employ simple prompt engineering tactics to produce better LLM results.</p></li>
+<li><p>Explain hardware limits and challenges with LLMs.</p></li>
+</ul>
+</section>
+</section>
+<section id="emergence">
+<h2><span class="section-number">26.2. </span>Emergence<a class="headerlink" href="#emergence" title="Permalink to this heading">#</a></h2>
+<p>This is one of my all time favorite books.
+<img alt="The Emergence of Everything book" src="https://global.oup.com/academic/covers/pop-up/9780195173314" /></p>
+<blockquote>
+<div><p><strong>Emergence</strong> is the the opposite of reduction. The latter tries to move from the whole to the parts. It has been enormously successful. The former tries to generate the properties of the whole from an understanding of the parts. Both approaches can he mutually self-consistent.</p>
+</div></blockquote>
+<p><strong>Emergence</strong> is when you combine relatively simple sets of rules and at some threshold a mind-blowing result manifests.</p>
+<div class="math notranslate nohighlight">
+\[
+sand + glass funnel = ?
+\]</div>
+<p><img alt="Sand" src="http://eskipaper.com/images/desert-sand-background-2.jpg" /></p>
+<p><img alt="Glass funnel" src="https://www.corning.com/catalog/cls/products/p/pyrexFunnelFluted60AngleShortStem/images/6180_A.jpg/_jcr_content/renditions/product.zoom.1200.jpg" /></p>
+<p><img alt="Hourglass" src="https://images.unsplash.com/photo-1518281361980-b26bfd556770" /></p>
+<div class="math notranslate nohighlight">
+\[
+sand + glass funnel = time keeping
+\]</div>
+<section id="the-mind-as-an-emergent-phenomena">
+<h3><span class="section-number">26.2.1. </span>The Mind as an Emergent Phenomena<a class="headerlink" href="#the-mind-as-an-emergent-phenomena" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>There are a wide variety of understandings of what is meant by mind.</strong> The reductionist behaviorist tradition would argue that mind is an epiphenomenon of the activities of collections of neurons. They argue that minds do not in fact exist. At the opposite extreme, the idealist tradition going back to George Berkeley would argue that mind is all that exists, and matter is an epiphenomenon posited by minds for explanatory purposes. The Kantians would argue for the existence of both mind and matter, the latter being the ding an sich (thing in itself) that minds aspire to and cannot fully comprehend.</p>
+<p><strong>Our view is that all of the above is too simplistic.</strong> The universe, whatever its ultimate character, unfolds in a large number of emergences, all of which must he considered. <strong>The pruning rules of the emergences may go beyond the purely dynamic and exhibit a noetic character. It ultimately evolves into the mind, not as something that suddenly appears, but as a maturing character of an aging universe.</strong> This is something that we are just beginning to understand and, frustrating as it may be to admit such a degree of ignorance, we move ahead. <strong>That is our task as humans; some would call it knowing the mind of God and regard it as a vocation.</strong>
+~ <a class="reference external" href="https://www.goodreads.com/book/show/2301.The_Emergence_of_Everything"><em>The Emergence of Everything</em>, Harold J. Morowitz</a></p>
+</div></blockquote>
+</section>
+<section id="llms-and-emergence">
+<h3><span class="section-number">26.2.2. </span>LLMs and Emergence<a class="headerlink" href="#llms-and-emergence" title="Permalink to this heading">#</a></h3>
+<p><img alt="Text prediction" src="https://images.samsung.com/is/image/samsung/assets/uk/support/mobile-devices/how-can-i-personalise-and-turn-predictive-text-on-and-off-on-my-samsung-galaxy-device/images/1-uk-how-can-i-personalise-and-turn-predictive-text-on-and-off.png" /></p>
+<section id="a-socratic-journey-to-understanding-emergence-in-large-language-models">
+<h4><span class="section-number">26.2.2.1. </span>A Socratic Journey to understanding Emergence in Large Language Models*<a class="headerlink" href="#a-socratic-journey-to-understanding-emergence-in-large-language-models" title="Permalink to this heading">#</a></h4>
+<p><strong>Q.</strong> What is the core of Natural Language Processing?
+<strong>A.</strong> Doing math with words.</p>
+<p><strong>Q.</strong> What is the key outcome of that math?
+<strong>A.</strong> Determining the relationship of words and how they are interconnected in context.</p>
+<p><strong>Q.</strong> How does understanding the relationship between words enable prediction?
+<strong>A.</strong> The system can predict the next word or phrase in a sequence.</p>
+<p><strong>Q.</strong> What happens when you scale the ability to predict the next word to billions of parameters?
+<strong>A.</strong> The shocking behavior of an LLM <em>emerges</em>: the ability to understand context, create coherent paragraphs, exhibit creativity.</p>
+</section>
+</section>
+</section>
+<section id="hardware-expenses">
+<h2><span class="section-number">26.3. </span>Hardware Expenses<a class="headerlink" href="#hardware-expenses" title="Permalink to this heading">#</a></h2>
+<p>LLMs take <strong>a lot of RAM</strong>.</p>
+<p><a class="reference external" href="https://aituts.com/local-llms/">Table: 8-bit quantized LLaMA requirements</a></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Model</p></th>
+<th class="head text-center"><p>VRAM Used</p></th>
+<th class="head text-center"><p>Minimum Total VRAM</p></th>
+<th class="head text-center"><p>Card examples</p></th>
+<th class="head text-center"><p>RAM/Swap to Load*</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>LLaMA-7B</p></td>
+<td class="text-center"><p>9.2GB</p></td>
+<td class="text-center"><p>10GB</p></td>
+<td class="text-center"><p>3060 12GB, 3080 10GB</p></td>
+<td class="text-center"><p>24 GB</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>LLaMA-13B</p></td>
+<td class="text-center"><p>16.3GB</p></td>
+<td class="text-center"><p>20GB</p></td>
+<td class="text-center"><p>3090, 3090 Ti, 4090</p></td>
+<td class="text-center"><p>32 GB</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>LLaMA-30B</p></td>
+<td class="text-center"><p>36GB</p></td>
+<td class="text-center"><p>40GB</p></td>
+<td class="text-center"><p>A6000 48GB, A100 40GB</p></td>
+<td class="text-center"><p>64 GB</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>LLaMA-65B</p></td>
+<td class="text-center"><p>74GB</p></td>
+<td class="text-center"><p>80GB</p></td>
+<td class="text-center"><p>A100 80GB</p></td>
+<td class="text-center"><p>128 GB</p></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Buy NVIDIA GPUs" src="../_images/buy_nvidia.png" /></p>
+<section id="advanced-quantization">
+<h3><span class="section-number">26.3.1. </span>Advanced Quantization<a class="headerlink" href="#advanced-quantization" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://huggingface.co/blog/4bit-transformers-bitsandbytes">Hugging Face Bits and Bytes</a> can make these models much smaller.</p>
+<p><img alt="Floating point formats" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/bitsandbytes/FP8-scheme.png" /></p>
+</section>
+<section id="cost-containment-for-generative-ai">
+<h3><span class="section-number">26.3.2. </span>Cost Containment for Generative AI<a class="headerlink" href="#cost-containment-for-generative-ai" title="Permalink to this heading">#</a></h3>
+<p>From DeepLearning AI’s <a class="reference external" href="https://info.deeplearning.ai/ai-for-brain-surgery-microsofts-chatgpt-bill-googles-generative-phones-better-prompts"><em>The Batch</em> newsletter</a></p>
+<blockquote>
+<div><p>Microsoft is looking to control the expense of its reliance on OpenAI’s models.</p>
+<p><strong>What’s new:</strong> Microsoft seeks to build leaner language models that perform nearly as well as ChatGPT but cost less to run, The Information reported.</p>
+<p><strong>How it works:</strong> Microsoft offers a line of AI-powered tools that complement the company’s flagship products including Windows, Microsoft 365, and GitHub. Known as Copilot, the line is based on OpenAI models. Serving those models to 1 billion-plus users could amount to an enormous expense, and it occupies processing power that would be useful elsewhere. To manage the cost, Microsoft’s developers are using knowledge distillation, in which a smaller model is trained to mimic the output of a larger one, as well as other techniques.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="prompt-engineering">
+<h2><span class="section-number">26.4. </span>Prompt Engineering<a class="headerlink" href="#prompt-engineering" title="Permalink to this heading">#</a></h2>
+<p>Pulled from <a class="reference external" href="https://developer.nvidia.com/blog/an-introduction-to-large-language-models-prompt-engineering-and-p-tuning/">NVIDIA – An Introduction to LLM: Prompt Engineering and P-Tuning</a></p>
+<section id="zero-shot-vs-few-shot">
+<h3><span class="section-number">26.4.1. </span>Zero-shot vs. few-shot<a class="headerlink" href="#zero-shot-vs-few-shot" title="Permalink to this heading">#</a></h3>
+<p><img alt="Few-shot" src="../_images/few-shot.png" /></p>
+<p>Now time for a live demo!</p>
 </section>
 </section>
 </section>
@@ -484,7 +587,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./jetson"
+            path: "./nlp"
         },
         predefinedOutput: true
     }
@@ -502,20 +605,20 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="diffusion.html"
+       href="transformers.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">19. </span>Diffusion Image Generation</p>
+        <p class="prev-next-title"><span class="section-number">25. </span>Transformers</p>
       </div>
     </a>
     <a class="right-next"
-       href="yolo.html"
+       href="llm-redteam1.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">21. </span>YOLO</p>
+        <p class="prev-next-title"><span class="section-number">27. </span>LLM Red Team 1</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -534,13 +637,25 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#developing-in-a-container">20.1. Developing in a container</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manually">20.1.1. Manually</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code-remote">20.1.2. VS Code Remote</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">26.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">26.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-lab">20.2. Mini lab</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#helpful-commands">20.2.1. Helpful commands</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#emergence">26.2. Emergence</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mind-as-an-emergent-phenomena">26.2.1. The Mind as an Emergent Phenomena</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llms-and-emergence">26.2.2. LLMs and Emergence</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-socratic-journey-to-understanding-emergence-in-large-language-models">26.2.2.1. A Socratic Journey to understanding Emergence in Large Language Models*</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-expenses">26.3. Hardware Expenses</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-quantization">26.3.1. Advanced Quantization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-containment-for-generative-ai">26.3.2. Cost Containment for Generative AI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering">26.4. Prompt Engineering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-vs-few-shot">26.4.1. Zero-shot vs. few-shot</a></li>
 </ul>
 </li>
 </ul>
