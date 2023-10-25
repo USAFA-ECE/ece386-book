@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>26. Large Language Models &#8212; ECE 495</title>
+    <title>26. Emergence and Ethics of LLMs &#8212; ECE 495</title>
   
   
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -64,11 +64,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'nlp/llm';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nlp/llm-emergence';</script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="27. LLM Red Team 1" href="llm-redteam1.html" />
+    <link rel="next" title="27. Prompt Engineering" href="prompt-engineering.html" />
     <link rel="prev" title="25. Transformers" href="transformers.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -149,13 +149,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     
     
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="ECE 495 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ECE 495 - Home"/>`);</script>
   
   
 </a></div>
@@ -208,20 +209,21 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="text-vectorization.html">24. Text Vectorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="transformers.html">25. Transformers</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">26. Large Language Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="llm-redteam1.html">27. LLM Red Team 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="llm-redteam2.html">28. LLM Red Team 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cc-nlp.html">29. C&amp;C NLP</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">26. Emergence and Ethics of LLMs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prompt-engineering.html">27. Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llm-redteam1.html">28. LLM Red Team 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llm-redteam2.html">29. LLM Red Team 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc-nlp.html">30. C&amp;C NLP</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">30. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">31. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">32. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">33. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">34. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/ethics.html">35. Ethics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/military-apps.html">36. Military Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">31. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">32. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">33. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">34. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">35. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/ethics.html">36. Ethics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/military-apps.html">37. Military Applications</a></li>
 </ul>
 
     </div>
@@ -293,7 +295,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fnlp/llm.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fnlp/llm-emergence.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -323,7 +325,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/nlp/llm.md" target="_blank"
+      <li><a href="../_sources/nlp/llm-emergence.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -405,7 +407,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Large Language Models</h1>
+    <h1>Emergence and Ethics of LLMs</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -427,15 +429,11 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-expenses">26.3. Hardware Expenses</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-quantization">26.3.1. Advanced Quantization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-containment-for-generative-ai">26.3.2. Cost Containment for Generative AI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inflection-points">26.3. Inflection Points</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-mental-models">26.3.1. More on Mental Models</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering">26.4. Prompt Engineering</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-vs-few-shot">26.4.1. Zero-shot vs. few-shot</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ethics">26.4. Ethics</a></li>
 </ul>
             </nav>
         </div>
@@ -447,31 +445,29 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="large-language-models">
-<h1><span class="section-number">26. </span>Large Language Models<a class="headerlink" href="#large-language-models" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="emergence-and-ethics-of-llms">
+<h1><span class="section-number">26. </span>Emergence and Ethics of LLMs<a class="headerlink" href="#emergence-and-ethics-of-llms" title="Permalink to this heading">#</a></h1>
 <section id="pre-reading">
 <h2><span class="section-number">26.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api">Best practices for prompt engineering with OpenAI API</a></p></li>
 <li><p><a class="reference external" href="https://huggingface.co/datasets/tiiuae/falcon-refinedweb">Falcon-RefineWeb Model Card</a></p></li>
 </ul>
 <section id="objectives">
 <h3><span class="section-number">26.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Describe how LLMs exhibit emergent behavior</p></li>
-<li><p>Employ simple prompt engineering tactics to produce better LLM results.</p></li>
-<li><p>Explain hardware limits and challenges with LLMs.</p></li>
+<li><p>Describe how LLMs exhibit emergent behavior.</p></li>
+<li><p>Discuss ethical considerations with LLMs.</p></li>
 </ul>
 </section>
 </section>
 <section id="emergence">
 <h2><span class="section-number">26.2. </span>Emergence<a class="headerlink" href="#emergence" title="Permalink to this heading">#</a></h2>
-<p>This is one of my all time favorite books.
-<img alt="The Emergence of Everything book" src="https://global.oup.com/academic/covers/pop-up/9780195173314" /></p>
+<p><strong>Emergence</strong> is when you combine relatively simple sets of rules and at some threshold a mind-blowing result manifests.</p>
+<p>This is one of my all time favorite books.</p>
+<p><img alt="The Emergence of Everything book" src="https://global.oup.com/academic/covers/pop-up/9780195173314" /></p>
 <blockquote>
 <div><p><strong>Emergence</strong> is the the opposite of reduction. The latter tries to move from the whole to the parts. It has been enormously successful. The former tries to generate the properties of the whole from an understanding of the parts. Both approaches can he mutually self-consistent.</p>
 </div></blockquote>
-<p><strong>Emergence</strong> is when you combine relatively simple sets of rules and at some threshold a mind-blowing result manifests.</p>
 <div class="math notranslate nohighlight">
 \[
 sand + glass funnel = ?
@@ -507,70 +503,67 @@ sand + glass funnel = time keeping
 </section>
 </section>
 </section>
-<section id="hardware-expenses">
-<h2><span class="section-number">26.3. </span>Hardware Expenses<a class="headerlink" href="#hardware-expenses" title="Permalink to this heading">#</a></h2>
-<p>LLMs take <strong>a lot of RAM</strong>.</p>
-<p><a class="reference external" href="https://aituts.com/local-llms/">Table: 8-bit quantized LLaMA requirements</a></p>
-<table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-center"><p>Model</p></th>
-<th class="head text-center"><p>VRAM Used</p></th>
-<th class="head text-center"><p>Minimum Total VRAM</p></th>
-<th class="head text-center"><p>Card examples</p></th>
-<th class="head text-center"><p>RAM/Swap to Load*</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-center"><p>LLaMA-7B</p></td>
-<td class="text-center"><p>9.2GB</p></td>
-<td class="text-center"><p>10GB</p></td>
-<td class="text-center"><p>3060 12GB, 3080 10GB</p></td>
-<td class="text-center"><p>24 GB</p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>LLaMA-13B</p></td>
-<td class="text-center"><p>16.3GB</p></td>
-<td class="text-center"><p>20GB</p></td>
-<td class="text-center"><p>3090, 3090 Ti, 4090</p></td>
-<td class="text-center"><p>32 GB</p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>LLaMA-30B</p></td>
-<td class="text-center"><p>36GB</p></td>
-<td class="text-center"><p>40GB</p></td>
-<td class="text-center"><p>A6000 48GB, A100 40GB</p></td>
-<td class="text-center"><p>64 GB</p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>LLaMA-65B</p></td>
-<td class="text-center"><p>74GB</p></td>
-<td class="text-center"><p>80GB</p></td>
-<td class="text-center"><p>A100 80GB</p></td>
-<td class="text-center"><p>128 GB</p></td>
-</tr>
-</tbody>
-</table>
-<p><img alt="Buy NVIDIA GPUs" src="../_images/buy_nvidia.png" /></p>
-<section id="advanced-quantization">
-<h3><span class="section-number">26.3.1. </span>Advanced Quantization<a class="headerlink" href="#advanced-quantization" title="Permalink to this heading">#</a></h3>
-<p><a class="reference external" href="https://huggingface.co/blog/4bit-transformers-bitsandbytes">Hugging Face Bits and Bytes</a> can make these models much smaller.</p>
-<p><img alt="Floating point formats" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/bitsandbytes/FP8-scheme.png" /></p>
-</section>
-<section id="cost-containment-for-generative-ai">
-<h3><span class="section-number">26.3.2. </span>Cost Containment for Generative AI<a class="headerlink" href="#cost-containment-for-generative-ai" title="Permalink to this heading">#</a></h3>
-<p>From DeepLearning AI’s <a class="reference external" href="https://info.deeplearning.ai/ai-for-brain-surgery-microsofts-chatgpt-bill-googles-generative-phones-better-prompts"><em>The Batch</em> newsletter</a></p>
+<section id="inflection-points">
+<h2><span class="section-number">26.3. </span>Inflection Points<a class="headerlink" href="#inflection-points" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>In some ways this may be like the Industrial Revolution.</p></li>
+</ul>
+<p><a class="reference external" href="https://www.goodreads.com/work/quotes/664484-only-the-paranoid-survive"><em>Only The Paranoid Survive</em> by Andrew Grove</a>,
+founder and CEO of Intel, discusses the <em>inflection point</em> that Intel faced when moving from the memory bussiness to the
+microprocessor bussiness. This ultimately was the right move, but an incredibly difficult one.
+Had they not made the move, you probably would never have heard of Intel.
+But as it is, the computer you are reading this on has Intel Inside.</p>
+<p>The move was difficult in part because Intel had been so dominant in the memory bussiness that the identiy of the company and its
+employees was directly tied to making computer memory:</p>
 <blockquote>
-<div><p>Microsoft is looking to control the expense of its reliance on OpenAI’s models.</p>
-<p><strong>What’s new:</strong> Microsoft seeks to build leaner language models that perform nearly as well as ChatGPT but cost less to run, The Information reported.</p>
-<p><strong>How it works:</strong> Microsoft offers a line of AI-powered tools that complement the company’s flagship products including Windows, Microsoft 365, and GitHub. Known as Copilot, the line is based on OpenAI models. Serving those models to 1 billion-plus users could amount to an enormous expense, and it occupies processing power that would be useful elsewhere. To manage the cost, Microsoft’s developers are using knowledge distillation, in which a smaller model is trained to mimic the output of a larger one, as well as other techniques.</p>
+<div><p>The company had a couple of beliefs that were as strong as religious dogmas.
+Both of them had to do with the importance of memories as the backbone of our manufacturing and sales activities. (90-1)</p>
 </div></blockquote>
+<p>But strategic infleciton points also create opportunity:</p>
+<blockquote>
+<div><p>Strategic infleciotn points, painful as they are for all participants, provide an opportunity to break out of a plateau and catapult to a higher level of achievement.
+Had we not changed our buisiness strategy, we would have been relegated to an immensely touch economic existence and, fore sure, a relatively insignifigant role in our industry.
+By making a forceful move, things turned out far better for us. (95)</p>
+</div></blockquote>
+<p>Most critically,</p>
+<blockquote>
+<div><p><strong>Implicit in doing business every day is a mental map of the strucutre of ths industry.</strong>
+This map is composed of an unstated set of rules and relationships, ways and means of doing business, what’s “done” and how it is done and what’s “not done,” who matters and who doesn’t,
+whose opinion you can count on and whose opinion is usually wrong, and so on. If you’ve been in the industry for a long time, knowing these things has become second nature.
+You don’t even think about them; you just know that’s the way they are.</p>
+<p>But when the structure of the industry changes, all of these elements change too.
+<strong>The mental map that you have been carrying with you for all these years and relied upon in charting your company’s course of actions suddenly loses its validity.</strong>
+However, you haven’t had a chance to replace it with a new mental map. You haven’t made the explicit substiution about how things are done now versus how they were done before,
+or who matters now versus who mattered then.</p>
+<p>During a strategic inflection point, management continually has to refine its conception of the strategic map of the industry.
+We all automatically do this in our heads. But mental maps are awfully forgiving of ambiguity. <strong>You must force yourself to commit your thoughts on paper.</strong> (134-5)</p>
+</div></blockquote>
+<section id="more-on-mental-models">
+<h3><span class="section-number">26.3.1. </span>More on Mental Models<a class="headerlink" href="#more-on-mental-models" title="Permalink to this heading">#</a></h3>
+<p>Another one of my favorite books is <a class="reference external" href="https://charlesduhigg.com/books/smarter-faster-better/"><em>Smarter, Faster, Better</em> by Charles Duhigg</a>.</p>
+<blockquote>
+<div><p>Models help us choose where to direct our attentions, so we can make decisions, rather than just react (101).</p>
+<p>However, once in a cognitive tunnel, we lose our ability to direct our foucs. Instead, we latch on to the easiest and most obvious stimulus, often at the cost of common sense. (77)</p>
+</div></blockquote>
+<p>In particular, <strong>Chapter 3 - Focus: Cognitive Tunneling, Air France Flight 447, and the Power of Mental Models</strong> should be required reading for every Air Force Officer.</p>
+<p>From that chapter:</p>
+<blockquote>
+<div><p>What if, de Crespigny thought to himslef, I imagine this plane as a Cessna? What would I do then? (Duhigg, 98)</p>
+</div></blockquote>
+<p>This is the exact same question that Grove asks Moore:</p>
+<blockquote>
+<div><p>“If we got kicked out and the boad brought in a new CEO, what do you think he would do?” Gordon answered without hesitation, “He would get us out of memories.”
+I stared at him, numb, then said, “Why shouldn’t you and I walk out the door, come back and do it ourselves?” (Grove, 89)</p>
+</div></blockquote>
+<p>So, ask yourself, <em>how does the Emergence of generative AI change my mental model about the world?</em></p>
 </section>
 </section>
-<section id="prompt-engineering">
-<h2><span class="section-number">26.4. </span>Prompt Engineering<a class="headerlink" href="#prompt-engineering" title="Permalink to this heading">#</a></h2>
-<p>Pulled from <a class="reference external" href="https://developer.nvidia.com/blog/an-introduction-to-large-language-models-prompt-engineering-and-p-tuning/">NVIDIA – An Introduction to LLM: Prompt Engineering and P-Tuning</a></p>
-<section id="zero-shot-vs-few-shot">
-<h3><span class="section-number">26.4.1. </span>Zero-shot vs. few-shot<a class="headerlink" href="#zero-shot-vs-few-shot" title="Permalink to this heading">#</a></h3>
-<p><img alt="Few-shot" src="../_images/few-shot.png" /></p>
-<p>Now time for a live demo!</p>
-</section>
+<section id="ethics">
+<h2><span class="section-number">26.4. </span>Ethics<a class="headerlink" href="#ethics" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>LLMs are primarily Western because the Internet contains predominantly things written by the West.</p></li>
+<li><p>Bias?</p></li>
+</ul>
 </section>
 </section>
 
@@ -614,11 +607,11 @@ sand + glass funnel = time keeping
       </div>
     </a>
     <a class="right-next"
-       href="llm-redteam1.html"
+       href="prompt-engineering.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">27. </span>LLM Red Team 1</p>
+        <p class="prev-next-title"><span class="section-number">27. </span>Prompt Engineering</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -649,15 +642,11 @@ sand + glass funnel = time keeping
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-expenses">26.3. Hardware Expenses</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-quantization">26.3.1. Advanced Quantization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-containment-for-generative-ai">26.3.2. Cost Containment for Generative AI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inflection-points">26.3. Inflection Points</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-mental-models">26.3.1. More on Mental Models</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering">26.4. Prompt Engineering</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-vs-few-shot">26.4.1. Zero-shot vs. few-shot</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ethics">26.4. Ethics</a></li>
 </ul>
   </nav></div>
 
@@ -705,8 +694,8 @@ By DFEC
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
   <footer class="bd-footer">
   </footer>
