@@ -395,7 +395,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -411,6 +413,17 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">36.1. Pre-Reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-bias">36.2. Types of Bias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amazon-resume-tool">36.3. Amazon Resume Tool</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-bias-with-what-if-tool">36.4. Explore Bias With What-If Tool</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -422,6 +435,52 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bias-and-ethics">
 <h1><span class="section-number">36. </span>Bias and Ethics<a class="headerlink" href="#bias-and-ethics" title="Permalink to this heading">#</a></h1>
+<section id="pre-reading">
+<h2><span class="section-number">36.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Take at least one [<a class="reference external" href="https://implicit.harvard.edu/implicit/selectatest.html">https://implicit.harvard.edu/implicit/selectatest.html</a>](Project Implicit)</p></li>
+<li><p><a class="reference external" href="https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias">Google’s “Fairness: Types of Bias</a></p></li>
+</ul>
+</section>
+<section id="types-of-bias">
+<h2><span class="section-number">36.2. </span>Types of Bias<a class="headerlink" href="#types-of-bias" title="Permalink to this heading">#</a></h2>
+<p>Recent USC publication funded by DARPA: <a class="reference external" href="https://arxiv.org/pdf/1908.09635.pdf">A Survey on Bias and Fairness in Machine Learning</a>.</p>
+</section>
+<section id="amazon-resume-tool">
+<h2><span class="section-number">36.3. </span>Amazon Resume Tool<a class="headerlink" href="#amazon-resume-tool" title="Permalink to this heading">#</a></h2>
+<p>From <em>Reuters</em>, <a class="reference external" href="https://www.reuters.com/article/us-amazon-com-jobs-automation-insight-idUSKCN1MK08G/">Insight - Amazon scraps secret AI recruiting tool that showed bias against women</a>.</p>
+<blockquote>
+<div><p>SAN FRANCISCO (Reuters) - <a class="reference external" href="http://Amazon.com">Amazon.com</a> Inc’s machine-learning specialists uncovered a big problem: their new recruiting engine did not like women.</p>
+<p>The team had been building computer programs since 2014 to review job applicants’ resumes with the aim of mechanizing the search for top talent, five people familiar with the effort told Reuters.</p>
+<p>Automation has been key to Amazon’s e-commerce dominance, be it inside warehouses or driving pricing decisions. The company’s experimental hiring tool used artificial intelligence to give job candidates scores ranging from one to five stars - much like shoppers rate products on Amazon, some of the people said.</p>
+<p>“Everyone wanted this holy grail,” one of the people said. “They literally wanted it to be an engine where I’m going to give you 100 resumes, it will spit out the top five, and we’ll hire those.”</p>
+<p>But by 2015, the company realized its new system was not rating candidates for software developer jobs and other technical posts in a gender-neutral way.</p>
+<p>That is because Amazon’s computer models were trained to vet applicants by observing patterns in resumes submitted to the company over a 10-year period. Most came from men, a reflection of male dominance across the tech industry. (For a graphic on gender breakdowns in tech, see: <a class="reference external" href="http://tmsnrt.rs/2OfPWoD">tmsnrt.rs/2OfPWoD</a>)</p>
+<p>In effect, Amazon’s system taught itself that male candidates were preferable. It penalized resumes that included the word “women’s,” as in “women’s chess club captain.” And it downgraded graduates of two all-women’s colleges, according to people familiar with the matter. They did not specify the names of the schools.</p>
+<p>Amazon edited the programs to make them neutral to these particular terms. But that was no guarantee that the machines would not devise other ways of sorting candidates that could prove discriminatory, the people said.</p>
+<p>The Seattle company ultimately disbanded the team by the start of last year because executives lost hope for the project, according to the people, who spoke on condition of anonymity. Amazon’s recruiters looked at the recommendations generated by the tool when searching for new hires, but never relied solely on those rankings, they said.</p>
+</div></blockquote>
+</section>
+<section id="explore-bias-with-what-if-tool">
+<h2><span class="section-number">36.4. </span>Explore Bias With What-If Tool<a class="headerlink" href="#explore-bias-with-what-if-tool" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Go to <a class="reference external" href="https://pair-code.github.io/what-if-tool/get-started/">What-If Tool, Getting Started</a></p></li>
+<li><p>Under <strong>Notebooks</strong> select <a class="reference external" href="https://colab.research.google.com/github/pair-code/what-if-tool/blob/master/WIT_Toxicity_Text_Model_Comparison.ipynb">Text toxicity classifiers</a></p></li>
+<li><p>In the colab notebook, Runtime -&gt; <strong>Run all</strong></p></li>
+<li><p>While it runs, read what’s going on.</p></li>
+<li><p>Scroll down to “Invoke What-If Tool for test data and the trained models”</p></li>
+<li><p>In the dashboard click <strong>Performance &amp; Fairness</strong></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Over-50K</span></code> as the <strong>Ground Truth Feature</strong></p></li>
+<li><p>Experiment with slices and optimization strategies.</p></li>
+<li><p>In particular, look at false positives and negatives</p></li>
+</ol>
+<ul class="simple">
+<li><p>How is the <strong>Threshold</strong> adjusted?</p></li>
+<li><p>What do these adjustments mean?</p></li>
+</ul>
+<p><img alt="False positive and negatives" src="https://d2eehagpk5cl65.cloudfront.net/img/q60/uploads/2020/04/TestGridDreamstime.jpg" /></p>
+<p><a class="reference external" href="https://pair-code.github.io/what-if-tool/learn/">More resources on What-If Tool</a></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -478,6 +537,23 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">36.1. Pre-Reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-bias">36.2. Types of Bias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amazon-resume-tool">36.3. Amazon Resume Tool</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-bias-with-what-if-tool">36.4. Explore Bias With What-If Tool</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
