@@ -1,8 +1,10 @@
 # Bias and Ethics
 
+![SMBC: Rise of the Machines](https://www.smbc-comics.com/comics/1538492931-20181002.png)
+
 ## Pre-Reading
 
-- Take at least one [https://implicit.harvard.edu/implicit/selectatest.html](Project Implicit)
+- Take at least one [Project Implicit](https://implicit.harvard.edu/implicit/takeatest.html) test
 - [Google's "Fairness: Types of Bias](https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias)
 
 ## Types of Bias
@@ -33,15 +35,15 @@ From *Reuters*, [Insight - Amazon scraps secret AI recruiting tool that showed b
 
 ## Explore Bias With What-If Tool
 
+> Compare two binary classification models that predict whether a person earns more than $50k a year, based on their census information. Examine how different features affect each models' prediction, in relation to each other. ~ [UCI Census Income Dataset](http://archive.ics.uci.edu/dataset/20/census+income)
+
+
 1. Go to [What-If Tool, Getting Started](https://pair-code.github.io/what-if-tool/get-started/)
-2. Under **Notebooks** select [Text toxicity classifiers](https://colab.research.google.com/github/pair-code/what-if-tool/blob/master/WIT_Toxicity_Text_Model_Comparison.ipynb)
-3. In the colab notebook, Runtime -> **Run all**
-4. While it runs, read what's going on.
-5. Scroll down to "Invoke What-If Tool for test data and the trained models"
-6. In the dashboard click **Performance & Fairness**
-7. Select `Over-50K` as the **Ground Truth Feature**
-8. Experiment with slices and optimization strategies.
-9. In particular, look at false positives and negatives
+2. Under Web dmoes select [Compare income classification on UCI census data](https://pair-code.github.io/what-if-tool/demos/uci.html)
+3. In the dashboard click **Performance & Fairness**
+4. Select `Over-50K` as the **Ground Truth Feature**
+5. Experiment with slices and optimization strategies.
+6. In particular, look at false positives and negatives
 
 - How is the **Threshold** adjusted?
 - What do these adjustments mean?

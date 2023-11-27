@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -140,6 +140,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -378,6 +379,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -387,6 +389,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -435,10 +438,11 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bias-and-ethics">
 <h1><span class="section-number">36. </span>Bias and Ethics<a class="headerlink" href="#bias-and-ethics" title="Permalink to this heading">#</a></h1>
+<p><img alt="SMBC: Rise of the Machines" src="https://www.smbc-comics.com/comics/1538492931-20181002.png" /></p>
 <section id="pre-reading">
 <h2><span class="section-number">36.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Take at least one [<a class="reference external" href="https://implicit.harvard.edu/implicit/selectatest.html">https://implicit.harvard.edu/implicit/selectatest.html</a>](Project Implicit)</p></li>
+<li><p>Take at least one <a class="reference external" href="https://implicit.harvard.edu/implicit/takeatest.html">Project Implicit</a> test</p></li>
 <li><p><a class="reference external" href="https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias">Google’s “Fairness: Types of Bias</a></p></li>
 </ul>
 </section>
@@ -463,12 +467,12 @@ document.write(`
 </section>
 <section id="explore-bias-with-what-if-tool">
 <h2><span class="section-number">36.4. </span>Explore Bias With What-If Tool<a class="headerlink" href="#explore-bias-with-what-if-tool" title="Permalink to this heading">#</a></h2>
+<blockquote>
+<div><p>Compare two binary classification models that predict whether a person earns more than $50k a year, based on their census information. Examine how different features affect each models’ prediction, in relation to each other. ~ <a class="reference external" href="http://archive.ics.uci.edu/dataset/20/census+income">UCI Census Income Dataset</a></p>
+</div></blockquote>
 <ol class="arabic simple">
 <li><p>Go to <a class="reference external" href="https://pair-code.github.io/what-if-tool/get-started/">What-If Tool, Getting Started</a></p></li>
-<li><p>Under <strong>Notebooks</strong> select <a class="reference external" href="https://colab.research.google.com/github/pair-code/what-if-tool/blob/master/WIT_Toxicity_Text_Model_Comparison.ipynb">Text toxicity classifiers</a></p></li>
-<li><p>In the colab notebook, Runtime -&gt; <strong>Run all</strong></p></li>
-<li><p>While it runs, read what’s going on.</p></li>
-<li><p>Scroll down to “Invoke What-If Tool for test data and the trained models”</p></li>
+<li><p>Under Web dmoes select <a class="reference external" href="https://pair-code.github.io/what-if-tool/demos/uci.html">Compare income classification on UCI census data</a></p></li>
 <li><p>In the dashboard click <strong>Performance &amp; Fairness</strong></p></li>
 <li><p>Select <code class="docutils literal notranslate"><span class="pre">Over-50K</span></code> as the <strong>Ground Truth Feature</strong></p></li>
 <li><p>Experiment with slices and optimization strategies.</p></li>
@@ -511,7 +515,7 @@ document.write(`
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="project6.html"
@@ -571,6 +575,7 @@ By DFEC
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2023.
@@ -597,8 +602,8 @@ By DFEC
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>
