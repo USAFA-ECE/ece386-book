@@ -4,29 +4,29 @@
 format: jb-book
 root: intro
 parts:
-  - caption: Prediction
+  - caption: Machine Prediction
     numbered: true
     chapters:
-      - file: prediction/hello-colab
-      - file: prediction/prediction-machines
-      - file: prediction/kmeans
-      - file: prediction/ml-workflow
-      - file: prediction/dimensionality
-      - file: prediction/cc-prediction
+      - file: b1-prediction/hello-colab
+      - file: b1-prediction/prediction-machines
+      - file: b1-prediction/kmeans
+      - file: b1-prediction/ml-workflow
+      - file: b1-prediction/dimensionality
+      - file: b1-prediction/cc-prediction
   - caption: Neural Networks
     numbered: true
     chapters:
-      - file: dnn/neuralnet
-      - file: dnn/gpu
-      - file: dnn/dnn-explore
-      - file: dnn/convolution
-      - file: dnn/cat-dog/transfer_learning
-      - file: dnn/cat-dog/tflite_convert
-      - file: dnn/tflite_pi
-      - file: dnn/workday1
-      - file: dnn/workday2
-      - file: dnn/cat-dog/live-cat
-      - file: dnn/cc-dnn
+      - file: b2-dnn/neuralnet
+      - file: b2-dnn/gpu
+      - file: b2-dnn/dnn-explore
+      - file: b2-dnn/convolution
+      - file: b2-dnn/cat-dog/transfer_learning
+      - file: b2-dnn/cat-dog/tflite_convert
+      - file: b2-dnn/tflite_pi
+      - file: b2-dnn/workday1
+      - file: b2-dnn/workday2
+      - file: b2-dnn/cat-dog/live-cat
+      - file: b2-dnn/cc-dnn
   - caption: NVIDIA Jetson
     numbered: true
     chapters:
