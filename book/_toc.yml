@@ -10,7 +10,6 @@ parts:
       - file: b1-prediction/hello-colab
       - file: b1-prediction/prediction-machines
       - file: b1-prediction/kmeans
-      - file: b1-prediction/ml-workflow
       - file: b1-prediction/dimensionality
       - file: b1-prediction/cc-prediction
   - caption: Neural Networks

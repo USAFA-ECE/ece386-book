@@ -13,23 +13,7 @@
 
 There are several variations of this workflow.
 
-This list combines the workflow presented in *TinyML* Chapter 3 with
-[TensorFlow Tutorial: Transfer learning and fine-tuning](https://www.tensorflow.org/tutorials/images/transfer_learning).
 
-1. Decide on a goal
-2. Collect and understand a dataset
-3. Design a model architecture
-    - Design the data input pipeline
-    - Design the model itself
-    - Design outputs that meet the goal
-4. Train the model
-5. Evaluate the model
-6. Convert the model
-7. Run inference
-8. Iterate
-    - Troubleshoot
-    - Evaluate on-hardware performance
-    - Collect data for feedback
 
 Here is a simplified visual interpretation
 yoinked from [this post](https://microchipdeveloper.com/harmony3:basic-machine-learning-workflow).
