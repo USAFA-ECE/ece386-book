@@ -1,7 +1,9 @@
 # For running training notebooks
+ipykernel
 matplotlib
 numpy
 scikit-learn
 seaborn
 tensorflow
 tensorflow_datasets
+torch
