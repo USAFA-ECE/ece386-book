@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>8. Linear Algebra and GPUs &#8212; ECE 495</title>
+    <title>7. Linear Algebra and GPUs &#8212; ECE 386</title>
   
   
   
@@ -59,12 +59,12 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'dnn/gpu';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'b2-dnn/gpu';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9. DNN Exploration" href="dnn-explore.html" />
-    <link rel="prev" title="7. Neural Networks" href="neuralnet.html" />
+    <link rel="next" title="8. DNN Exploration" href="dnn-explore.html" />
+    <link rel="prev" title="6. Neural Networks" href="neuralnet.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -156,8 +156,8 @@
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="ECE 495 - Home"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ECE 495 - Home"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="ECE 386 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ECE 386 - Home"/>`);</script>
   
   
 </a></div>
@@ -182,63 +182,61 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prediction</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Prediction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../prediction/hello-colab.html">1. Hello, Colab!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../prediction/prediction-machines.html">2. Prediction Machines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../prediction/kmeans.html">3. K-Means clustering digits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../prediction/ml-workflow.html">4. Machine Learning Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../prediction/dimensionality.html">5. Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../prediction/cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">3. K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/dimensionality.html">4. Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">5. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="neuralnet.html">7. Neural Networks</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Linear Algebra and GPUs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dnn-explore.html">9. DNN Exploration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="convolution.html">10. Convolutional Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cat-dog/transfer_learning.html">11. Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cat-dog/tflite_convert.html">12. TensorFlow Lite</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tflite_pi.html">13. TF Lite 🥧</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workday1.html">14. Workday 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workday2.html">15. Workday 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cat-dog/live-cat.html">16. Live Inference 🐱 🐶</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cc-dnn.html">17. C&amp;C: Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="neuralnet.html">6. Neural Networks</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Linear Algebra and GPUs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dnn-explore.html">8. DNN Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cat-dog/transfer_learning.html">9. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cat-dog/tflite_convert.html">10. TensorFlow Lite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tflite_pi.html">11. TF Lite 🥧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workday1.html">12. Workday 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workday2.html">13. Workday 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cat-dog/live-cat.html">14. Live Inference 🐱 🐶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc-dnn.html">15. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NVIDIA Jetson</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">18. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">19. Diffusion Image Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">20. Containers Part 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">21. YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">16. Containerization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">17. Diffusion Image Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">18. Containers Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">19. YOLO</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">22. M4-Cortex Processor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">23. Wake Word Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">20. M4-Cortex Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">21. Wake Word Detection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">24. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">25. Transformers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-emergence.html">26. Emergence and Ethics of LLMs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/prompt-engineering.html">27. Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">22. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">23. Transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-emergence.html">24. Emergence and Ethics of LLMs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/prompt-engineering.html">25. Prompt Engineering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">28. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">29. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">30. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">31. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">32. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">33. Super Computers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">34. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">35. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">36. Bias and Ethics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">37. Final C&amp;C</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">38. LLM Red Team 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">39. LLM Red Team 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">40. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">26. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">27. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">28. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">29. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">30. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">31. Super Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">32. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">33. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">34. Bias and Ethics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">35. Final C&amp;C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">36. LLM Red Team 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">37. LLM Red Team 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">38. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -310,7 +308,7 @@
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fdnn/gpu.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fb2-dnn/gpu.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -340,7 +338,7 @@
       
       
       
-      <li><a href="../_sources/dnn/gpu.md" target="_blank"
+      <li><a href="../_sources/b2-dnn/gpu.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -434,40 +432,40 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">8.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">8.1.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">7.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">7.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">8.2. Linear Algebra</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-matrices">8.2.1. Vectors and Matrices</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-products">8.2.1.1. Dot Products</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication">8.2.1.2. Matrix Multiplication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">7.2. Linear Algebra</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-matrices">7.2.1. Vectors and Matrices</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-products">7.2.1.1. Dot Products</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication">7.2.1.2. Matrix Multiplication</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-networks">8.2.2. Neural Networks</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tensorflow">8.2.2.1. TensorFlow</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphics-processing-units">8.3. Graphics Processing Units</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-execution">8.3.1. GPU Execution</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#general-matrix-multiplication">8.3.1.1. General Matrix Multiplication</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nvidia-gpus">8.3.2. NVIDIA GPUs</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cuda-cores">8.3.2.1. CUDA Cores</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tensor-cores">8.3.2.2. Tensor Cores</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">8.3.3. Performance</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#math-vs-memory-bandwidth">8.3.3.1. Math vs. Memory Bandwidth</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dnn-operation-performance">8.3.3.2. DNN Operation Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-networks">7.2.2. Neural Networks</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tensorflow">7.2.2.1. TensorFlow</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">8.4. Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphics-processing-units">7.3. Graphics Processing Units</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-execution">7.3.1. GPU Execution</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#general-matrix-multiplication">7.3.1.1. General Matrix Multiplication</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nvidia-gpus">7.3.2. NVIDIA GPUs</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cuda-cores">7.3.2.1. CUDA Cores</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tensor-cores">7.3.2.2. Tensor Cores</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">7.3.3. Performance</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#math-vs-memory-bandwidth">7.3.3.1. Math vs. Memory Bandwidth</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dnn-operation-performance">7.3.3.2. DNN Operation Performance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">7.4. Conclusion</a></li>
 </ul>
             </nav>
         </div>
@@ -480,16 +478,16 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linear-algebra-and-gpus">
-<h1><span class="section-number">8. </span>Linear Algebra and GPUs<a class="headerlink" href="#linear-algebra-and-gpus" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">7. </span>Linear Algebra and GPUs<a class="headerlink" href="#linear-algebra-and-gpus" title="Link to this heading">#</a></h1>
 <section id="pre-reading">
-<h2><span class="section-number">8.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.techspot.com/article/2049-what-are-tensor-cores/">Explainer: What Are Tensor Cores? | TechSpot</a></p></li>
 <li><p>Peruse a little <a class="reference external" href="https://www.nvidia.com/en-us/data-center/tensor-cores/">NVIDIA Tensor Core marketing</a></p></li>
 </ul>
 <p>Note, if you are taking ECE 485 and plan to do something on GPUs then the <a class="reference external" href="https://resources.nvidia.com/en-us-tensor-core">Tensor Core White Paper</a> could be useful for your research!</p>
 <section id="objectives">
-<h3><span class="section-number">8.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Discuss why linear algebra and GPUs are the bedrock of machine learning.</p></li>
 <li><p>Explain how GPU hardware accelerates mathematic computations.</p></li>
@@ -498,11 +496,11 @@ document.write(`
 </section>
 </section>
 <section id="linear-algebra">
-<h2><span class="section-number">8.2. </span>Linear Algebra<a class="headerlink" href="#linear-algebra" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.2. </span>Linear Algebra<a class="headerlink" href="#linear-algebra" title="Link to this heading">#</a></h2>
 <p>With NVIDIA recently becoming the <a class="reference external" href="https://www.marketwatch.com/story/nvidia-officially-closes-in-1-trillion-territory-becoming-seventh-u-s-company-to-hit-market-cap-milestone-88ead8f9">seventh company ever to hit $1 trillion market-cap</a> and the boom of AI, it is clear that GPUs are a critical hardware. But what are they and what do they actually do for AI computation?</p>
 <p><strong>Answer:</strong> The vast majority of modern machine learning is handled with linear algebra and a little bit of calculus.</p>
 <section id="vectors-and-matrices">
-<h3><span class="section-number">8.2.1. </span>Vectors and Matrices<a class="headerlink" href="#vectors-and-matrices" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.2.1. </span>Vectors and Matrices<a class="headerlink" href="#vectors-and-matrices" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p><a class="reference external" href="https://www.3blue1brown.com/lessons/vectors">3Blue1Brown - Vectors, what even are they?</a></p>
 </div></blockquote>
@@ -513,7 +511,7 @@ document.write(`
 </ul>
 <p>A matrix is similar to a vector, but has two dimensions always expressed as <strong>rows</strong> then <strong>columns</strong>. A 2x3 matrix has two rows and three columns.</p>
 <section id="dot-products">
-<h4><span class="section-number">8.2.1.1. </span>Dot Products<a class="headerlink" href="#dot-products" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">7.2.1.1. </span>Dot Products<a class="headerlink" href="#dot-products" title="Link to this heading">#</a></h4>
 <p>A dot product is essentially how well two sets of numbers align with each other. A dot product with a small magnitude means little alignment, while a large magnitude means more alignment.</p>
 <p>When you open a door you push near the knob because that gives you good alignment between the force on the door and the motion of the door. Mathematically, this is a large dot product.
 If you try to open a door by pushing near the hinge then there is poor alignment between the force and motion. This is a small dot product, and it is very difficult to get the door to swing!</p>
@@ -525,12 +523,12 @@ If you try to open a door by pushing near the hinge then there is poor alignment
 \[\mathbf{a} \cdot \mathbf{b} = \sum_{i=1}^{n} a_i b_i\]</div>
 </section>
 <section id="matrix-multiplication">
-<h4><span class="section-number">8.2.1.2. </span>Matrix Multiplication<a class="headerlink" href="#matrix-multiplication" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">7.2.1.2. </span>Matrix Multiplication<a class="headerlink" href="#matrix-multiplication" title="Link to this heading">#</a></h4>
 <p>Two matrices can be multiplied together. The multiplication of an <span class="math notranslate nohighlight">\(m\times n\)</span> matrix with an <span class="math notranslate nohighlight">\(n \times p\)</span> matrix will be an <span class="math notranslate nohighlight">\(m \times p\)</span> matrix. Notice that the inner, <span class="math notranslate nohighlight">\(n\)</span>, dimensions must match in order for a dot product to be possible.</p>
 </section>
 </section>
 <section id="neural-networks">
-<h3><span class="section-number">8.2.2. </span>Neural Networks<a class="headerlink" href="#neural-networks" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.2.2. </span>Neural Networks<a class="headerlink" href="#neural-networks" title="Link to this heading">#</a></h3>
 <p>A neural network is a system of interconnected neurons inspired by the function of the human brain. The neurons exist in three types of layers:</p>
 <ol class="arabic simple">
 <li><p><strong>Input layer</strong> takes the sample as a vector</p></li>
@@ -543,7 +541,7 @@ $<span class="math notranslate nohighlight">\(N = (\vec{V} \cdot \vec{W}) + B\)<
 Once the total of the weighted sum and the bias crosses a particular threshold, the neuron becomes <em>activated</em>. There are numerous activation functions; two common ones are rectified linear unit (<a class="reference external" href="https://builtin.com/machine-learning/relu-activation-function">ReLU</a>) and sigmoid.</p>
 <p>Overall, the interaction between weights, biases, and activation functions allows neural networks to learn complex patterns and make informed predictions.</p>
 <section id="tensorflow">
-<h4><span class="section-number">8.2.2.1. </span>TensorFlow<a class="headerlink" href="#tensorflow" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">7.2.2.1. </span>TensorFlow<a class="headerlink" href="#tensorflow" title="Link to this heading">#</a></h4>
 <p>In mathematics, a <em>tensor</em> is an algebraic object that describes multilinear relationships between sets of other algebraic objects related to a vector space.</p>
 <p><a class="reference external" href="https://www.tensorflow.org/about">TensorFlow</a> is an open source end-to-end machine learning platform developed by Google. It constrains the definition of tensors in <a class="reference external" href="https://www.tensorflow.org/guide/tensor">Introduction to Tensors</a>: <strong>tensors are multi-dimensional arrays with a uniform type.</strong></p>
 <p>TensorFlow uses tensors to construct neural networks.</p>
@@ -552,7 +550,7 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 </section>
 </section>
 <section id="graphics-processing-units">
-<h2><span class="section-number">8.3. </span>Graphics Processing Units<a class="headerlink" href="#graphics-processing-units" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.3. </span>Graphics Processing Units<a class="headerlink" href="#graphics-processing-units" title="Link to this heading">#</a></h2>
 <blockquote>
 <div><p><a class="reference external" href="https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/index.html">GPU Performance Background User’s Guide - NVIDIA Docs</a></p>
 </div></blockquote>
@@ -560,7 +558,7 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 <p><img alt="Simplified view of the GPU architecture" src="https://docscontent.nvidia.com/dita/00000186-1a08-d34f-a596-3f291b140000/deeplearning/performance/dl-performance-gpu-background/graphics/simple-gpu-arch.svg" /></p>
 <p><strong>Multiply-add is the most frequent operation in modern neural networks</strong>, acting as a building block for fully-connected and convolutional layers, both of which <strong>can be viewed as a collection of vector dot-products</strong>.</p>
 <section id="gpu-execution">
-<h3><span class="section-number">8.3.1. </span>GPU Execution<a class="headerlink" href="#gpu-execution" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.3.1. </span>GPU Execution<a class="headerlink" href="#gpu-execution" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>GPUs execute many threads concurrently.</p></li>
 <li><p>GPUs execute functions using a 2-level hierarchy of threads. A given function’s threads are grouped into equally-sized <em>thread blocks</em>, and a set of thread blocks are launched to execute the function.</p></li>
@@ -569,24 +567,24 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 </ul>
 <p><img alt="Utilization of an 8-SM GPU when 12 thread blocks with an occupancy of 1 block/SM at a time are launched for execution. Here, the thread blocks execute in 2 waves, the first wave utilizes 100% of the GPU, while the 2nd wave utilizes only 50%." src="https://docscontent.nvidia.com/dita/00000186-1a08-d34f-a596-3f291b140000/deeplearning/performance/dl-performance-gpu-background/graphics/utilize-8sm-gpu.svg" /></p>
 <section id="general-matrix-multiplication">
-<h4><span class="section-number">8.3.1.1. </span>General Matrix Multiplication<a class="headerlink" href="#general-matrix-multiplication" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">7.3.1.1. </span>General Matrix Multiplication<a class="headerlink" href="#general-matrix-multiplication" title="Link to this heading">#</a></h4>
 <p>GPUs implement general matrix multiplication (<a class="reference external" href="https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html#gpu-imple">GEMM</a>) by partitioning the output matrix into tiles, which are then assigned to thread blocks.</p>
 <p>Each thread block computes its output tile by stepping through the K dimension in tiles, loading the required values from the A and B matrices, and multiplying and accumulating them into the output C matrix.
 <img alt="Tiled outer product approach to GEMMs" src="https://docscontent.nvidia.com/dita/00000186-1a08-d34f-a596-3f291b140000/deeplearning/performance/dl-performance-matrix-multiplication/graphics/tiled-outer-prod.svg" /></p>
 </section>
 </section>
 <section id="nvidia-gpus">
-<h3><span class="section-number">8.3.2. </span>NVIDIA GPUs<a class="headerlink" href="#nvidia-gpus" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.3.2. </span>NVIDIA GPUs<a class="headerlink" href="#nvidia-gpus" title="Link to this heading">#</a></h3>
 <p>US based <a class="reference external" href="https://www.nvidia.com/en-us/about-nvidia/">NVIDIA</a> is the world leader in GPU design. They are fabless, meaning they design chips but do not make them themselves. Currently Taiwan Semiconductor Manufacturing Co. (TSMC) <a class="reference external" href="https://www.reuters.com/business/nvidia-ceo-says-interested-exploring-chip-manufacturing-with-intel-2022-03-23/">makes the bulk of NVIDIA chips</a>.</p>
 <p>Two critical NVIDIA technologies are CUDA Cores and Tensor Cores</p>
 <section id="cuda-cores">
-<h4><span class="section-number">8.3.2.1. </span>CUDA Cores<a class="headerlink" href="#cuda-cores" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">7.3.2.1. </span>CUDA Cores<a class="headerlink" href="#cuda-cores" title="Link to this heading">#</a></h4>
 <p><a class="reference external" href="https://developer.nvidia.com/blog/even-easier-introduction-cuda/">An Even Easier Introduction to CUDA | NVIDIA Technical Blog</a></p>
 <p><strong>CUDA</strong> is an API that allows softare to directly access NVIDIA GPU instruction set. The CUDA Toolkit allows developers to use C++ to interact with the cores, but many libraries - such as TensorFlow - have implmented CUDA under the hood.</p>
 <p>CUDA is used in numerous applications, from scientific computing to gaming.</p>
 </section>
 <section id="tensor-cores">
-<h4><span class="section-number">8.3.2.2. </span>Tensor Cores<a class="headerlink" href="#tensor-cores" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">7.3.2.2. </span>Tensor Cores<a class="headerlink" href="#tensor-cores" title="Link to this heading">#</a></h4>
 <p>Tensor Cores were introduced in the NVIDIA Volta™ GPU architecture to accelerate matrix multiply-add operations for machine learning and scientific applications.</p>
 <ul class="simple">
 <li><p>These instructions operate on small matrix blocks (for example, 4x4 blocks).</p></li>
@@ -599,14 +597,14 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 </section>
 </section>
 <section id="performance">
-<h3><span class="section-number">8.3.3. </span>Performance<a class="headerlink" href="#performance" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.3.3. </span>Performance<a class="headerlink" href="#performance" title="Link to this heading">#</a></h3>
 <p>Performance of a function on a given processor is limited by one of the following three factors; <strong>memory bandwidth, math bandwidth and latency</strong>.</p>
 <ul class="simple">
 <li><p>In cases of insuffecient parallelism, latency will be the greatest limiting factor.</p></li>
 <li><p>If there is suffecient parallelism, math or memory will be the greatest limiting factor, based on specific arithmetic intensity of the algorithm and the math vs. memory bandwidth of the processor.</p></li>
 </ul>
 <section id="math-vs-memory-bandwidth">
-<h4><span class="section-number">8.3.3.1. </span>Math vs. Memory Bandwidth<a class="headerlink" href="#math-vs-memory-bandwidth" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">7.3.3.1. </span>Math vs. Memory Bandwidth<a class="headerlink" href="#math-vs-memory-bandwidth" title="Link to this heading">#</a></h4>
 <p>How much time is spent in memory or math operations depends on both the algorithm and its implementation, as well as the processor’s bandwidths.</p>
 <ul class="simple">
 <li><p><strong>arithmetic intensity</strong> is the ratio of the number of mathematical operations vs. the number of bytes accessed.</p></li>
@@ -616,7 +614,7 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 </ul>
 </section>
 <section id="dnn-operation-performance">
-<h4><span class="section-number">8.3.3.2. </span>DNN Operation Performance<a class="headerlink" href="#dnn-operation-performance" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">7.3.3.2. </span>DNN Operation Performance<a class="headerlink" href="#dnn-operation-performance" title="Link to this heading">#</a></h4>
 <p>Modern deep neural networks are built from a variety of layers, who’s operations fall into three categories.</p>
 <ol class="arabic simple">
 <li><p><strong>Elementwise operations</strong> are independent of all other elements within the tensor. Examples include summation or ReLU. These tend to be <em>memory-limited.</em></p></li>
@@ -627,7 +625,7 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 </section>
 </section>
 <section id="conclusion">
-<h2><span class="section-number">8.4. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.4. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
 <p>The execution of linear algebra on GPUs is foundational to modern machine learning. Linear algebra provides the mathematical framework that underpins many machine learning algorithms. Neural networks, in particular, are heavily reliant on using weighted sums dot products to propagate information and adjust weights through the network layers.</p>
 <p>Graphics Processing Units (GPUs) with their highly parallelized structures have revolutionized the computational efficiency of these operations. Technologies like NVIDIA’s CUDA and Tensor Cores allow for the optimized execution of the matrix and vector operations that are so common in machine learning, significantly accelerating the training and inference processes of deep learning models.</p>
 <p>Understanding the performance dynamics of these GPUs—such as memory bandwidth, math bandwidth, and latency—allows for the optimized implementation of algorithms. Deep neural networks often need to be carefully designed and tuned to effectively leverage the computational capabilities of GPUs.</p>
@@ -648,7 +646,7 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
         },
         kernelOptions: {
             name: "python3",
-            path: "./dnn"
+            path: "./b2-dnn"
         },
         predefinedOutput: true
     }
@@ -671,7 +669,7 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Neural Networks</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Neural Networks</p>
       </div>
     </a>
     <a class="right-next"
@@ -679,7 +677,7 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>DNN Exploration</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>DNN Exploration</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -699,40 +697,40 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">8.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">8.1.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">7.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">7.1.1. Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">8.2. Linear Algebra</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-matrices">8.2.1. Vectors and Matrices</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-products">8.2.1.1. Dot Products</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication">8.2.1.2. Matrix Multiplication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">7.2. Linear Algebra</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-matrices">7.2.1. Vectors and Matrices</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-products">7.2.1.1. Dot Products</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication">7.2.1.2. Matrix Multiplication</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-networks">8.2.2. Neural Networks</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tensorflow">8.2.2.1. TensorFlow</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphics-processing-units">8.3. Graphics Processing Units</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-execution">8.3.1. GPU Execution</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#general-matrix-multiplication">8.3.1.1. General Matrix Multiplication</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nvidia-gpus">8.3.2. NVIDIA GPUs</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cuda-cores">8.3.2.1. CUDA Cores</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tensor-cores">8.3.2.2. Tensor Cores</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">8.3.3. Performance</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#math-vs-memory-bandwidth">8.3.3.1. Math vs. Memory Bandwidth</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dnn-operation-performance">8.3.3.2. DNN Operation Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-networks">7.2.2. Neural Networks</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tensorflow">7.2.2.1. TensorFlow</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">8.4. Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphics-processing-units">7.3. Graphics Processing Units</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-execution">7.3.1. GPU Execution</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#general-matrix-multiplication">7.3.1.1. General Matrix Multiplication</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nvidia-gpus">7.3.2. NVIDIA GPUs</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cuda-cores">7.3.2.1. CUDA Cores</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tensor-cores">7.3.2.2. Tensor Cores</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">7.3.3. Performance</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#math-vs-memory-bandwidth">7.3.3.1. Math vs. Memory Bandwidth</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dnn-operation-performance">7.3.3.2. DNN Operation Performance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">7.4. Conclusion</a></li>
 </ul>
   </nav></div>
 
@@ -757,7 +755,7 @@ By DFEC
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2025.
       <br/>
     
   </p>

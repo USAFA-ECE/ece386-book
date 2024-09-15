@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. K-Means clustering digits &#8212; ECE 495</title>
+    <title>3. K-Means Clustering &#8212; ECE 386</title>
   
   
   
@@ -57,12 +57,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'prediction/kmeans';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'b1-prediction/kmeans';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Machine Learning Workflow" href="ml-workflow.html" />
-    <link rel="prev" title="2. Prediction Machines" href="prediction-machines.html" />
+    <link rel="next" title="4. Dimensionality" href="dimensionality.html" />
+    <link rel="prev" title="2. Prediction Machines and ML Workflow" href="prediction-machines.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -154,8 +154,8 @@
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="ECE 495 - Home"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ECE 495 - Home"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="ECE 386 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ECE 386 - Home"/>`);</script>
   
   
 </a></div>
@@ -180,63 +180,61 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prediction</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Prediction</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="hello-colab.html">1. Hello, Colab!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prediction-machines.html">2. Prediction Machines</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. K-Means clustering digits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml-workflow.html">4. Machine Learning Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dimensionality.html">5. Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimensionality.html">4. Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc-prediction.html">5. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../dnn/neuralnet.html">7. Neural Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/gpu.html">8. Linear Algebra and GPUs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/dnn-explore.html">9. DNN Exploration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/convolution.html">10. Convolutional Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/cat-dog/transfer_learning.html">11. Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/cat-dog/tflite_convert.html">12. TensorFlow Lite</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/tflite_pi.html">13. TF Lite 🥧</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/workday1.html">14. Workday 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/workday2.html">15. Workday 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/cat-dog/live-cat.html">16. Live Inference 🐱 🐶</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/cc-dnn.html">17. C&amp;C: Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/neuralnet.html">6. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/gpu.html">7. Linear Algebra and GPUs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/dnn-explore.html">8. DNN Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-dog/transfer_learning.html">9. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-dog/tflite_convert.html">10. TensorFlow Lite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/tflite_pi.html">11. TF Lite 🥧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/workday1.html">12. Workday 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/workday2.html">13. Workday 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-dog/live-cat.html">14. Live Inference 🐱 🐶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cc-dnn.html">15. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NVIDIA Jetson</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">18. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">19. Diffusion Image Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">20. Containers Part 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">21. YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">16. Containerization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">17. Diffusion Image Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">18. Containers Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">19. YOLO</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">22. M4-Cortex Processor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">23. Wake Word Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">20. M4-Cortex Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">21. Wake Word Detection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">24. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">25. Transformers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-emergence.html">26. Emergence and Ethics of LLMs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/prompt-engineering.html">27. Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">22. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">23. Transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-emergence.html">24. Emergence and Ethics of LLMs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/prompt-engineering.html">25. Prompt Engineering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">28. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">29. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">30. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">31. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">32. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">33. Super Computers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">34. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">35. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">36. Bias and Ethics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">37. Final C&amp;C</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">38. LLM Red Team 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">39. LLM Red Team 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">40. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">26. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">27. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">28. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">29. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">30. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">31. Super Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">32. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">33. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">34. Bias and Ethics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">35. Final C&amp;C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">36. LLM Red Team 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">37. LLM Red Team 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">38. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -291,7 +289,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/usafa-ece/ai-hardware/blob/main/book/prediction/kmeans.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/usafa-ece/ai-hardware/blob/main/book/b1-prediction/kmeans.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -339,7 +337,7 @@
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fprediction/kmeans.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fb1-prediction/kmeans.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -369,7 +367,7 @@
       
       
       
-      <li><a href="../_sources/prediction/kmeans.ipynb" target="_blank"
+      <li><a href="../_sources/b1-prediction/kmeans.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -453,7 +451,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>K-Means clustering digits</h1>
+    <h1>K-Means Clustering</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -467,20 +465,24 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals">3.1.1. Goals</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-dataset">3.2. Load the dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-results-on-pca-reduced-data">3.3. Visualize the results on PCA-reduced data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterate-with-k-means">3.4. Iterate with K-Means</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-through-kmeans">3.4.1. Step through kmeans</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-explore-the-dataset">3.2. Load and explore the dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-data">3.2.1. Plot the data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-plot">3.2.1.1. 4D Plot</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-reduced-data">3.2.1.2. PCA-reduced data</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit">3.5. Fit</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-our-evaluation-benchmark">3.5.1. Define our evaluation benchmark</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics">3.5.1.1. Metrics</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-benchmark">3.5.2. Run the benchmark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterate-with-k-means">3.3. Iterate with K-Means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-through-kmeans">3.3.1. Step through kmeans</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actual-fit">3.4. Actual Fit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-our-evaluation-benchmark">3.4.1. Define our evaluation benchmark</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-benchmark">3.4.2. Run the benchmark</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#now-with-digits">3.5. Now with Digits</a></li>
 </ul>
             </nav>
         </div>
@@ -492,8 +494,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="k-means-clustering-digits">
-<h1><span class="section-number">3. </span>K-Means clustering digits<a class="headerlink" href="#k-means-clustering-digits" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="k-means-clustering">
+<h1><span class="section-number">3. </span>K-Means Clustering<a class="headerlink" href="#k-means-clustering" title="Link to this heading">#</a></h1>
 <section id="pre-reading">
 <h2><span class="section-number">3.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -504,69 +506,141 @@ document.write(`
 <section id="goals">
 <h3><span class="section-number">3.1.1. </span>Goals<a class="headerlink" href="#goals" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Learn to import and load datasets with numpy</p></li>
+<li><p>Learn to import and load scikit-learn datasets into numpy arrays</p></li>
 <li><p>Use <a class="reference external" href="https://scikit-learn.org/stable/modules/clustering.html#k-means">KMeans</a> to conduct unsupervised learning</p></li>
 <li><p>Explore the impact of initialization and iterations</p></li>
-<li><p>Explore a mistmatch of <code class="docutils literal notranslate"><span class="pre">K</span></code> and the number of classes</p></li>
+<li><p>Explore a mismatch of <code class="docutils literal notranslate"><span class="pre">K</span></code> and the number of classes</p></li>
 </ul>
 <p>This lab is modified from the <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_digits.html">Scikit Learn example</a>.</p>
 </section>
 </section>
-<section id="load-the-dataset">
-<h2><span class="section-number">3.2. </span>Load the dataset<a class="headerlink" href="#load-the-dataset" title="Link to this heading">#</a></h2>
-<p>We will start by loading the <code class="docutils literal notranslate"><span class="pre">digits</span></code> dataset. This dataset contains
-handwritten digits from 0 to 9. In the context of clustering, one would like
-to group images such that the handwritten digits on the image are the same.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-</pre></div>
-</div>
-</div>
-</div>
+<section id="load-and-explore-the-dataset">
+<h2><span class="section-number">3.2. </span>Load and explore the dataset<a class="headerlink" href="#load-and-explore-the-dataset" title="Link to this heading">#</a></h2>
+<p>We will start by loading the <a class="reference external" href="https://scikit-learn.org/stable/datasets/toy_dataset.html#iris-plants-dataset">iris</a> dataset.
+This dataset contains measurements from the Iris-Setosa, Iris-Versicolour, and Iris-Virginica flowers.</p>
+<p>Each sample in the dataset contains the following measurements, in centimeters:</p>
+<ul class="simple">
+<li><p>sepal length</p></li>
+<li><p>sepal width</p></li>
+<li><p>petal length</p></li>
+<li><p>petal width</p></li>
+</ul>
+<p>In the context of clustering, we would like to classify the type of iris based on the measurements of its sepal and petals.</p>
+<p><em>An Iris Setosa</em></p>
+<p><img alt="Iris Setosa" src="https://live.staticflickr.com/65535/51376589362_b92e27ae7a_b.jpg" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
 
 <span class="c1"># Load the dataset</span>
-<span class="n">data</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span><span class="p">),</span> <span class="n">n_digits</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">size</span>
+<span class="n">data</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">n_classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">size</span>
+<span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;# digits: </span><span class="si">{</span><span class="n">n_digits</span><span class="si">}</span><span class="s2">; # samples: </span><span class="si">{</span><span class="n">n_samples</span><span class="si">}</span><span class="s2">; # features </span><span class="si">{</span><span class="n">n_features</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;# classes: </span><span class="si">{</span><span class="n">n_classes</span><span class="si">}</span><span class="s2">; # samples: </span><span class="si">{</span><span class="n">n_samples</span><span class="si">}</span><span class="s2">; # features per sample: </span><span class="si">{</span><span class="n">n_features</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>We can also display a sample from the dataset, so we know what we are working with.
-Note that the images are fairly blurry because they are only 8x8 pixels. <em>Is this enough for our machine learning to reliably work?</em></p>
-<p>Run this a few times to see multiple samples.</p>
+<p>Notice that the <code class="docutils literal notranslate"><span class="pre">load_iris</span></code> method returns a tuple, the first element of which is the <strong>data</strong>, the second of which is the <strong>labels</strong>.</p>
+<p>You can print the numpy array’s shape and values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape of numpy data array: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Raw data...&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run this a few times to select and view a random sample from the dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randrange</span>
+
+<span class="n">sample_id</span> <span class="o">=</span> <span class="n">randrange</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">sample_id</span><span class="p">]</span>
+
+<span class="c1"># Numpy doesn&#39;t contain headers, so extract features via index</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Sample </span><span class="si">{</span><span class="n">sample_id</span><span class="si">}</span><span class="s2">:</span>
+<span class="s2">      sepal length = </span><span class="si">{</span><span class="n">sample</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span>
+<span class="s2">      sepal width = </span><span class="si">{</span><span class="n">sample</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span>
+<span class="s2">      petal length = </span><span class="si">{</span><span class="n">sample</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span>
+<span class="s2">      petal width = </span><span class="si">{</span><span class="n">sample</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span>
+<span class="s2">      label = </span><span class="si">{</span><span class="n">labels</span><span class="p">[</span><span class="n">sample_id</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="plot-the-data">
+<h3><span class="section-number">3.2.1. </span>Plot the data<a class="headerlink" href="#plot-the-data" title="Link to this heading">#</a></h3>
+<section id="d-plot">
+<h4><span class="section-number">3.2.1.1. </span>4D Plot<a class="headerlink" href="#d-plot" title="Link to this heading">#</a></h4>
+<p>If we use color to represent the 4th dimension on a 3D plot, we can visualize our data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The percent sign runs a terminal command in the current virtual environment</span>
+<span class="c1"># In this case, just help display charts more nicely in the notebook.</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randrange</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
 
-<span class="c1"># select a random sample</span>
-<span class="n">sample_id</span> <span class="o">=</span> <span class="n">randrange</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
-<span class="n">sample_image</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">sample_id</span><span class="p">]</span>
+<span class="c1"># Create a 3D plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;3d&quot;</span><span class="p">)</span>
 
-<span class="c1"># reshape the vector back to a 2D image</span>
-<span class="n">sample_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sample_image</span><span class="p">,</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="c1"># Use sepal length, sepal width, petal length for x, y, z axes</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># Sepal length</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># Sepal width</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># Petal length</span>
 
-<span class="c1"># plot the sample</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sample labeled as </span><span class="si">{</span><span class="n">labels</span><span class="p">[</span><span class="n">sample_id</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">sample_image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<span class="c1"># Use petal width as the fourth dimension, represented by color or size</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span>  <span class="c1"># Petal width</span>
+
+<span class="n">markers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="s2">&quot;^&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">]</span>  <span class="c1"># &#39;o&#39; for setosa, &#39;^&#39; for versicolor, &#39;s&#39; for virginica</span>
+
+<span class="c1"># Plot the points, with petal width affecting the color and size</span>
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span>
+<span class="p">)</span>
+
+<span class="c1"># Add labels</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Sepal Length&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Sepal Width&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s2">&quot;Petal Length&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">scatter</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Petal Width&quot;</span><span class="p">)</span>
+
+<span class="c1"># Show the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>We can definitely see some possible clusters, but nothing that we could really select by hand.
+Honestly, this isn’t very helpful.</p>
 </section>
-<section id="visualize-the-results-on-pca-reduced-data">
-<h2><span class="section-number">3.3. </span>Visualize the results on PCA-reduced data<a class="headerlink" href="#visualize-the-results-on-pca-reduced-data" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html">sklearn.decomposition.PCA</a>
-allows to project the data from the original 64-dimensional space into a lower dimensional space.
-Subsequently, we can use PCA to project into a 2-dimensional space and plot the data and the clusters in this new space.</p>
+<section id="pca-reduced-data">
+<h4><span class="section-number">3.2.1.2. </span>PCA-reduced data<a class="headerlink" href="#pca-reduced-data" title="Link to this heading">#</a></h4>
+<p>Do we even need all four of those measurements??</p>
+<p>Principal Component Analysis (PCA) is a dimensionality reduction technique who’s goal is to reduce the number of features in a dataset while retaining as much variance (information) as possible.</p>
+<p>The Covariance/ Eigenvector/ Transform of PCA is beyond the scope of this course (try ECE 487!).</p>
+<p>Just know that the final result is a set of new dimensions that are linear combinations of the original dimensions.</p>
+<p>For this lab we will use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html">sklearn.decomposition.PCA</a>
+to accomplish the feature reduction. Then we will plot the samples in this new 2D space.</p>
+<p>Notice that we get two very clear clusters! But we have three classes of flowers..
+We will add color that matches the labels <strong>but</strong> that’s only because we happen to know the labels.
+K-means is an <em>unsupervised</em> algorithm, meaning it works on datasets even if the labels aren’t known!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -575,14 +649,17 @@ Subsequently, we can use PCA to project into a 2-dimensional space and plot the 
 <span class="c1"># reduce the 64-dimension data to 2-D</span>
 <span class="n">pca_data</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="c1"># simple, non-fancy plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pca_data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pca_data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;k.&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># plt.plot(pca_data[:, 0], pca_data[:, 1], &quot;k.&quot;, markersize=2)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pca_data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pca_data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
+</section>
+</section>
 <section id="iterate-with-k-means">
-<h2><span class="section-number">3.4. </span>Iterate with K-Means<a class="headerlink" href="#iterate-with-k-means" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.3. </span>Iterate with K-Means<a class="headerlink" href="#iterate-with-k-means" title="Link to this heading">#</a></h2>
 <p>First, we’ll define a method <code class="docutils literal notranslate"><span class="pre">plot_kmeans</span></code> that will add color, centroids, and lines to our PCA plot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -618,7 +695,7 @@ Subsequently, we can use PCA to project into a 2-dimensional space and plot the 
         <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">reduced_data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">reduced_data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;k.&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pca_data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pca_data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
     <span class="c1"># Plot the centroids as a white X</span>
     <span class="n">centroids</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
@@ -645,9 +722,15 @@ Subsequently, we can use PCA to project into a 2-dimensional space and plot the 
 </div>
 </div>
 <section id="step-through-kmeans">
-<h3><span class="section-number">3.4.1. </span>Step through kmeans<a class="headerlink" href="#step-through-kmeans" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.3.1. </span>Step through kmeans<a class="headerlink" href="#step-through-kmeans" title="Link to this heading">#</a></h3>
 <p>Before we use the builtin fit method, let’s step through what the algorithm is doing. We will do this with <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.MiniBatchKMeans.html">MiniBatchKMeans</a>.</p>
 <p>This first code block randomly picks centroids and then runs k-means once before plotting.</p>
+<p>The white <strong>X</strong>’s are the randomly selected centroids of each cluster.
+Because we didn’t specify <code class="docutils literal notranslate"><span class="pre">random_state</span></code> as the seed within <code class="docutils literal notranslate"><span class="pre">MiniBatchKMeans</span></code> this will be different every time we run it.
+Sometimes that results in better convergence than others!</p>
+<p>The next code cell does a few iterations, each moving the centroids closer to the center of the nearest cluster.</p>
+<p><em>Run these code blocks a few times to see some different outcomes!</em> Do you see any instances where the centroids converge on a local minimum that’s clearly wrong?</p>
+<p>Again, remember that k-means doesn’t know about the true labels because it’s an unsupervised algoritihm.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">MiniBatchKMeans</span>
@@ -660,7 +743,7 @@ Subsequently, we can use PCA to project into a 2-dimensional space and plot the 
 
 <span class="c1"># initialize</span>
 <span class="n">kmeans_step</span> <span class="o">=</span> <span class="n">MiniBatchKMeans</span><span class="p">(</span>
-    <span class="n">n_clusters</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">16</span>
+    <span class="n">n_clusters</span><span class="o">=</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1</span>
 <span class="p">)</span>
 
 <span class="n">kmeans_step</span><span class="o">.</span><span class="n">partial_fit</span><span class="p">(</span><span class="n">reduced_data</span><span class="p">)</span>
@@ -690,25 +773,31 @@ Subsequently, we can use PCA to project into a 2-dimensional space and plot the 
 </div>
 </section>
 </section>
-<section id="fit">
-<h2><span class="section-number">3.5. </span>Fit<a class="headerlink" href="#fit" title="Link to this heading">#</a></h2>
-<p>We’ll now use the builtin <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans.fit">fit</a> method. This is more realistic for an actual application.</p>
-<p>Instead of specifying the number of iterations, this method will automatically stop when it <strong>converges</strong>. This is defined as there being no meaningful change of the centroid locations between rounds.</p>
+<section id="actual-fit">
+<h2><span class="section-number">3.4. </span>Actual Fit<a class="headerlink" href="#actual-fit" title="Link to this heading">#</a></h2>
+<p>Enough playing around! Let’s actually fit the clusters. We’ll do the following to help address some issues observed above.</p>
+<ol class="arabic simple">
+<li><p>Instead of specifying the number of iterations, use the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans.fit">fit</a>
+method to automatically stop when the algorithm <strong>converges</strong>.
+This is defined as there being no meaningful change of the centroid locations between rounds.</p></li>
+<li><p>Define and employ benchmarks.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">k-means++</span></code> to initialize the centroids to be distant from each other.</p></li>
+<li><p>Run the algorithm multiple times to compare the random initializations.</p></li>
+</ol>
 <section id="define-our-evaluation-benchmark">
-<h3><span class="section-number">3.5.1. </span>Define our evaluation benchmark<a class="headerlink" href="#define-our-evaluation-benchmark" title="Link to this heading">#</a></h3>
-<p>We will first our evaluation benchmark. During this benchmark, we intend to
-compare different initialization methods for KMeans. Our benchmark will:</p>
+<h3><span class="section-number">3.4.1. </span>Define our evaluation benchmark<a class="headerlink" href="#define-our-evaluation-benchmark" title="Link to this heading">#</a></h3>
+<p>Our benchmark will:</p>
 <ul class="simple">
-<li><p>create a pipeline which will scale the data using a <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html">sklearn.preprocessing.StandardScaler</a></p></li>
+<li><p>create a pipeline which will scale the data using a <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html">sklearn.preprocessing.StandardScaler</a>;</p></li>
 <li><p>train and time the pipeline fitting;</p></li>
-<li><p>measure the performance of the clustering obtained via different metrics.</p></li>
+<li><p>measure clustering performance via metrics from <a class="reference external" href="https://scikit-learn.org/stable/modules/model_evaluation.html#classification-metrics">sklearn.metrics</a>.</p></li>
 </ul>
-<section id="metrics">
-<h4><span class="section-number">3.5.1.1. </span>Metrics<a class="headerlink" href="#metrics" title="Link to this heading">#</a></h4>
-<p>We will pull several metrics from <a class="reference external" href="https://scikit-learn.org/stable/modules/classes.html#sklearn-metrics-metrics">sklearn.metrics</a>.
-It takes a fair amount of knowledge to understand what a set of metrics are communicating. It is worth reading about the ones we are using here.</p>
-<p>We will use multiple metrics because they communicate different things about our model. Depending on the application, we will likely bias towards
-accepting one type of error over another. This is based on our assessment of risk.</p>
+<p>We will use the following metrics:</p>
+<ul class="simple">
+<li><p><strong>Homogeneity Score</strong> is maximized if clusters contain only data points which are members of a single class.</p></li>
+<li><p><strong>Completeness Score</strong> is maximized if all the data points that are members of a given class are elements of the same cluster.</p></li>
+<li><p><strong>V-measure</strong> is the harmonic mean between homogeneity and completeness, and ultimately what we care about most here.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
@@ -737,7 +826,7 @@ accepting one type of error over another. This is based on our assessment of ris
     <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
     <span class="n">estimator</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">kmeans</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="n">fit_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">fit_time</span><span class="p">,</span> <span class="n">estimator</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">inertia_</span><span class="p">]</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">fit_time</span><span class="p">]</span>
 
     <span class="c1"># Define the metrics which require only the true labels and estimator labels</span>
     <span class="n">clustering_metrics</span> <span class="o">=</span> <span class="p">[</span>
@@ -748,99 +837,62 @@ accepting one type of error over another. This is based on our assessment of ris
 
     <span class="n">results</span> <span class="o">+=</span> <span class="p">[</span><span class="n">m</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">estimator</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">labels_</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">clustering_metrics</span><span class="p">]</span>
 
-    <span class="c1"># The silhouette score requires the full dataset</span>
-    <span class="n">results</span> <span class="o">+=</span> <span class="p">[</span>
-        <span class="n">metrics</span><span class="o">.</span><span class="n">silhouette_score</span><span class="p">(</span>
-            <span class="n">data</span><span class="p">,</span>
-            <span class="n">estimator</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span>
-            <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
-            <span class="n">sample_size</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
-        <span class="p">)</span>
-    <span class="p">]</span>
-
     <span class="c1"># Show the results</span>
-    <span class="n">formatter_result</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="c1"># &quot;{:9s}\t{:.3f}s\t{:.0f}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}&quot;</span>
-        <span class="s2">&quot;</span><span class="si">{:9s}</span><span class="se">\t</span><span class="si">{:.3f}</span><span class="s2">s</span><span class="se">\t</span><span class="si">{:.0f}</span><span class="se">\t</span><span class="si">{:.3f}</span><span class="se">\t</span><span class="si">{:.3f}</span><span class="se">\t</span><span class="si">{:.3f}</span><span class="se">\t</span><span class="si">{:.3f}</span><span class="s2">&quot;</span>
-    <span class="p">)</span>
+    <span class="n">formatter_result</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:9s}</span><span class="se">\t</span><span class="si">{:.3f}</span><span class="s2">s</span><span class="se">\t</span><span class="si">{:.3f}</span><span class="se">\t</span><span class="si">{:.3f}</span><span class="se">\t</span><span class="si">{:.3f}</span><span class="s2">&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">formatter_result</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">results</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-</section>
 <section id="run-the-benchmark">
-<h3><span class="section-number">3.5.2. </span>Run the benchmark<a class="headerlink" href="#run-the-benchmark" title="Link to this heading">#</a></h3>
-<p>We will compare three approaches:</p>
-<ul class="simple">
-<li><p>an initialization using <code class="docutils literal notranslate"><span class="pre">k-means++</span></code>. This method is stochastic and we will run the initialization 4 times;</p></li>
-<li><p>a random initialization. This method is stochastic as well and we will run the initialization 4 times;</p></li>
-<li><p>an initialization based on a PCA. This method is deterministic and a single initialization suffice.</p></li>
-</ul>
+<h3><span class="section-number">3.4.2. </span>Run the benchmark<a class="headerlink" href="#run-the-benchmark" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
 <span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
 <span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
 
 <span class="c1"># Load a fresh copy of the dataset</span>
-<span class="n">data</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span><span class="p">),</span> <span class="n">n_digits</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">size</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;# digits: </span><span class="si">{</span><span class="n">n_digits</span><span class="si">}</span><span class="s2">; # samples: </span><span class="si">{</span><span class="n">n_samples</span><span class="si">}</span><span class="s2">; # features </span><span class="si">{</span><span class="n">n_features</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">n_classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">size</span>  <span class="c1"># What if we didn&#39;t know and made this mismatch??</span>
+<span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span>
 
-<span class="c1"># How many clusters</span>
-<span class="n">n_digits</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;# classes: </span><span class="si">{</span><span class="n">n_classes</span><span class="si">}</span><span class="s2">; # samples: </span><span class="si">{</span><span class="n">n_samples</span><span class="si">}</span><span class="s2">; # features per sample: </span><span class="si">{</span><span class="n">n_features</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Results for Iris Dataset:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;# classes: </span><span class="si">{</span><span class="n">n_classes</span><span class="si">}</span><span class="s2">; # samples: </span><span class="si">{</span><span class="n">n_samples</span><span class="si">}</span><span class="s2">; # features </span><span class="si">{</span><span class="n">n_features</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># top bar of stats</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Results for&quot;</span><span class="p">,</span> <span class="n">n_digits</span><span class="p">,</span> <span class="s2">&quot;clusters&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="mi">82</span> <span class="o">*</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;init</span><span class="se">\t\t</span><span class="s2">time</span><span class="se">\t</span><span class="s2">inertia</span><span class="se">\t</span><span class="s2">homo</span><span class="se">\t</span><span class="s2">compl</span><span class="se">\t</span><span class="s2">v-meas</span><span class="se">\t</span><span class="s2">silhouette&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Results for&quot;</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">,</span> <span class="s2">&quot;clusters&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">58</span> <span class="o">*</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;init</span><span class="se">\t\t</span><span class="s2">time</span><span class="se">\t</span><span class="s2">homo</span><span class="se">\t</span><span class="s2">compl</span><span class="se">\t</span><span class="s2">v-meas&quot;</span><span class="p">)</span>
 
-<span class="c1"># try with k-means++</span>
-<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s2">&quot;k-means++&quot;</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="n">n_digits</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">bench_k_means</span><span class="p">(</span><span class="n">kmeans</span><span class="o">=</span><span class="n">kmeans</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;k-means++&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+<span class="c1"># Initialize a K-means algorithm and try on original data</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s2">&quot;k-means++&quot;</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">bench_k_means</span><span class="p">(</span><span class="n">kmeans</span><span class="o">=</span><span class="n">kmeans</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Original&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
 
-<span class="c1"># try with random</span>
-<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="n">n_digits</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">bench_k_means</span><span class="p">(</span><span class="n">kmeans</span><span class="o">=</span><span class="n">kmeans</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
-
-<span class="c1"># try with PCA</span>
-<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">n_digits</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="n">n_digits</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">bench_k_means</span><span class="p">(</span><span class="n">kmeans</span><span class="o">=</span><span class="n">kmeans</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;PCA-based&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+<span class="c1"># Initialize a fresh K-means algorithm and try on PCA data</span>
+<span class="n">pca_n_components</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># 2 is default because we like x-y charts, but...</span>
+<span class="n">kmeans_pca</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s2">&quot;k-means++&quot;</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">reduced_data</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">pca_n_components</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">bench_k_means</span><span class="p">(</span><span class="n">kmeans</span><span class="o">=</span><span class="n">kmeans_pca</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;PCA-based&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">reduced_data</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
 
 <span class="c1"># bottom bar of stats</span>
-<span class="nb">print</span><span class="p">(</span><span class="mi">82</span> <span class="o">*</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">58</span> <span class="o">*</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<blockquote>
-<div><p><em>GPT 3.5</em>: Please interpret these results  from sklearn.metrics: init, time, inertia,	homo, compl, v-meas, silhouette</p>
-</div></blockquote>
-<p>Overall metrics</p>
-<ul class="simple">
-<li><p><strong>Time</strong>: This is the time taken for the respective clustering initialization method to complete.</p></li>
-<li><p><strong>Inertia</strong>: The sum of squared distances between data points and their cluster’s center. A lower inertia indicates better clustering.</p></li>
-</ul>
-<p>These three metrics evaluate the quality of clustering in terms of how well the clusters capture the true classes in your dataset. They are measures of purity and completeness.</p>
-<ul class="simple">
-<li><p><strong>Homogeneity</strong>: measures how much each cluster contains only data points that are members of a single class. Higher values are better.</p></li>
-<li><p><strong>Completeness</strong>: measures how well all data points that are members of a given class are assigned to the same cluster. Higher values are better.</p></li>
-<li><p><strong>V-Measure</strong>: the harmonic mean of homogeneity and completeness. It provides a balanced view of both measures.</p></li>
-</ul>
-<blockquote>
-<div><p>Say more about Silhouette score</p>
-</div></blockquote>
-<p>Finally, <strong>Silhouette Score</strong> measure the quality of clusters in a dataset. It takes into account both the <em>cohesion</em> (how close the data points are to each other within the same cluster) and the <em>separation</em> (how far apart different clusters are from each other). The Silhouette Score is computed for each data point and then averaged to obtain an overall score for the entire dataset. The score ranges from -1 to 1.</p>
-<ol class="arabic simple">
-<li><p>High Positive Scores: If most of the Silhouette Scores are close to +1, it suggests that the clusters are well-separated and the data points are appropriately assigned to their respective clusters. This indicates a good clustering solution.</p></li>
-<li><p>Scores Around 0: If the Silhouette Scores are around 0, it indicates that data points might be on or near the decision boundary between clusters. This could imply that the clusters are overlapping or that the clustering algorithm is having difficulty distinguishing between certain data points.</p></li>
-<li><p>Negative Scores: If a significant number of data points have negative Silhouette Scores, it implies that these data points might have been assigned to the wrong clusters.</p></li>
-</ol>
 </section>
+</section>
+<section id="now-with-digits">
+<h2><span class="section-number">3.5. </span>Now with Digits<a class="headerlink" href="#now-with-digits" title="Link to this heading">#</a></h2>
+<p>Now that you have k-means working on super simple dataset, let’s try one slightly more complicated!</p>
+<p>See <a class="reference external" href="https://scikit-learn.org/stable/datasets/toy_dataset.html#optical-recognition-of-handwritten-digits-dataset">scikit-learn load_digits</a>.</p>
 </section>
 </section>
 
@@ -857,7 +909,7 @@ accepting one type of error over another. This is based on our assessment of ris
         },
         kernelOptions: {
             name: "python3",
-            path: "./prediction"
+            path: "./b1-prediction"
         },
         predefinedOutput: true
     }
@@ -880,15 +932,15 @@ accepting one type of error over another. This is based on our assessment of ris
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Prediction Machines</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Prediction Machines and ML Workflow</p>
       </div>
     </a>
     <a class="right-next"
-       href="ml-workflow.html"
+       href="dimensionality.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Machine Learning Workflow</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Dimensionality</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -912,20 +964,24 @@ accepting one type of error over another. This is based on our assessment of ris
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals">3.1.1. Goals</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-dataset">3.2. Load the dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-results-on-pca-reduced-data">3.3. Visualize the results on PCA-reduced data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterate-with-k-means">3.4. Iterate with K-Means</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-through-kmeans">3.4.1. Step through kmeans</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-explore-the-dataset">3.2. Load and explore the dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-data">3.2.1. Plot the data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-plot">3.2.1.1. 4D Plot</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-reduced-data">3.2.1.2. PCA-reduced data</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fit">3.5. Fit</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-our-evaluation-benchmark">3.5.1. Define our evaluation benchmark</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics">3.5.1.1. Metrics</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-benchmark">3.5.2. Run the benchmark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterate-with-k-means">3.3. Iterate with K-Means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-through-kmeans">3.3.1. Step through kmeans</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actual-fit">3.4. Actual Fit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-our-evaluation-benchmark">3.4.1. Define our evaluation benchmark</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-benchmark">3.4.2. Run the benchmark</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#now-with-digits">3.5. Now with Digits</a></li>
 </ul>
   </nav></div>
 
@@ -950,7 +1006,7 @@ By DFEC
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2025.
       <br/>
     
   </p>

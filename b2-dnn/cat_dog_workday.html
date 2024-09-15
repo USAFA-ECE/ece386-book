@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>5. Dimensionality &#8212; ECE 495</title>
+    <title>Cat v Dog Workday &#8212; ECE 386</title>
   
   
   
@@ -57,12 +57,10 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'prediction/dimensionality';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'b2-dnn/cat_dog_workday';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. C&amp;C: Prediction and Dimensionality" href="cc-prediction.html" />
-    <link rel="prev" title="4. Machine Learning Workflow" href="ml-workflow.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -125,6 +123,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -154,8 +154,8 @@
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="ECE 495 - Home"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ECE 495 - Home"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="ECE 386 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ECE 386 - Home"/>`);</script>
   
   
 </a></div>
@@ -180,63 +180,61 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prediction</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="hello-colab.html">1. Hello, Colab!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prediction-machines.html">2. Prediction Machines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="kmeans.html">3. K-Means clustering digits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ml-workflow.html">4. Machine Learning Workflow</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Prediction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">3. K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/dimensionality.html">4. Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">5. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../dnn/neuralnet.html">7. Neural Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/gpu.html">8. Linear Algebra and GPUs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/dnn-explore.html">9. DNN Exploration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/convolution.html">10. Convolutional Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/cat-dog/transfer_learning.html">11. Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/cat-dog/tflite_convert.html">12. TensorFlow Lite</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/tflite_pi.html">13. TF Lite 🥧</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/workday1.html">14. Workday 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/workday2.html">15. Workday 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/cat-dog/live-cat.html">16. Live Inference 🐱 🐶</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dnn/cc-dnn.html">17. C&amp;C: Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="neuralnet.html">6. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">7. Linear Algebra and GPUs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dnn-explore.html">8. DNN Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cat-dog/transfer_learning.html">9. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cat-dog/tflite_convert.html">10. TensorFlow Lite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tflite_pi.html">11. TF Lite 🥧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workday1.html">12. Workday 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workday2.html">13. Workday 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cat-dog/live-cat.html">14. Live Inference 🐱 🐶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc-dnn.html">15. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NVIDIA Jetson</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">18. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">19. Diffusion Image Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">20. Containers Part 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">21. YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">16. Containerization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">17. Diffusion Image Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">18. Containers Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">19. YOLO</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">22. M4-Cortex Processor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">23. Wake Word Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">20. M4-Cortex Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">21. Wake Word Detection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">24. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">25. Transformers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-emergence.html">26. Emergence and Ethics of LLMs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/prompt-engineering.html">27. Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">22. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">23. Transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-emergence.html">24. Emergence and Ethics of LLMs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/prompt-engineering.html">25. Prompt Engineering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">28. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">29. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">30. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">31. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">32. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">33. Super Computers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">34. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">35. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">36. Bias and Ethics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">37. Final C&amp;C</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">38. LLM Red Team 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">39. LLM Red Team 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">40. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">26. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">27. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">28. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">29. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">30. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">31. Super Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">32. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">33. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">34. Bias and Ethics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">35. Final C&amp;C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">36. LLM Red Team 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">37. LLM Red Team 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">38. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -308,7 +306,7 @@
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fprediction/dimensionality.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fb2-dnn/cat_dog_workday.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -338,7 +336,7 @@
       
       
       
-      <li><a href="../_sources/prediction/dimensionality.md" target="_blank"
+      <li><a href="../_sources/b2-dnn/cat_dog_workday.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -409,9 +407,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -422,22 +418,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Dimensionality</h1>
+    <h1>Cat v Dog Workday</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">5.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">5.1.1. Objectives</a></li>
-</ul>
-</li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -447,32 +432,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="dimensionality">
-<h1><span class="section-number">5. </span>Dimensionality<a class="headerlink" href="#dimensionality" title="Link to this heading">#</a></h1>
-<section id="pre-reading">
-<h2><span class="section-number">5.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://towardsdatascience.com/the-curse-of-dimensionality-50dc6e49aa1e">The Curse of Dimensionality: Why High Dimension Data Can be So Troublesome</a></p></li>
-</ul>
-<p>I also need you to understand what the mathematical term <a class="reference external" href="https://www.wolframalpha.com/input/?i=tensor">tensor</a> is.</p>
-<blockquote>
-<div><p>A tensor is a generalization of scalars, vectors, and matrices to an arbitrary number of indices.</p>
-</div></blockquote>
-<p>This guy is very good but you may want to speed up the video a tad:</p>
-<ul class="simple">
-<li><p>If you are new to linear algebra, watch the entire video <a class="reference external" href="https://youtu.be/f5liqUk0ZTw">What’s a Tensor</a></p></li>
-<li><p>If you have experience in linear algebra, <a class="reference external" href="https://youtu.be/f5liqUk0ZTw?t=375">start at 6:15</a></p></li>
-<li><p>If you are seriously in a hurry watch at least <a class="reference external" href="https://youtu.be/f5liqUk0ZTw?t=620">from 10:20</a></p></li>
-</ul>
-<section id="objectives">
-<h3><span class="section-number">5.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p>Features exist in dimensions</p></li>
-<li><p>More dimensions have consequences (data and compute requirements)</p></li>
-<li><p>There exists ways to reduce dimensions</p></li>
-</ol>
-</section>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="cat-v-dog-workday">
+<h1>Cat v Dog Workday<a class="headerlink" href="#cat-v-dog-workday" title="Link to this heading">#</a></h1>
+<p>Work on your Python code for the live inference application.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -488,7 +450,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./prediction"
+            path: "./b2-dnn"
         },
         predefinedOutput: true
     }
@@ -505,48 +467,12 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="ml-workflow.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Machine Learning Workflow</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="cc-prediction.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>C&amp;C: Prediction and Dimensionality</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">5.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">5.1.1. Objectives</a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
@@ -567,7 +493,7 @@ By DFEC
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2025.
       <br/>
     
   </p>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>10. Convolutional Neural Network &#8212; ECE 495</title>
+    <title>Convolutional Neural Network &#8212; ECE 386</title>
   
   
   
@@ -57,12 +57,10 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'dnn/convolution';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'b2-dnn/convolution';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="11. Transfer Learning" href="cat-dog/transfer_learning.html" />
-    <link rel="prev" title="9. DNN Exploration" href="dnn-explore.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -125,6 +123,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -154,8 +154,8 @@
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="ECE 495 - Home"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ECE 495 - Home"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="ECE 386 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ECE 386 - Home"/>`);</script>
   
   
 </a></div>
@@ -180,63 +180,61 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prediction</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Prediction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../prediction/hello-colab.html">1. Hello, Colab!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../prediction/prediction-machines.html">2. Prediction Machines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../prediction/kmeans.html">3. K-Means clustering digits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../prediction/ml-workflow.html">4. Machine Learning Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../prediction/dimensionality.html">5. Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../prediction/cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">3. K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/dimensionality.html">4. Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">5. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="neuralnet.html">7. Neural Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpu.html">8. Linear Algebra and GPUs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dnn-explore.html">9. DNN Exploration</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Convolutional Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cat-dog/transfer_learning.html">11. Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cat-dog/tflite_convert.html">12. TensorFlow Lite</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tflite_pi.html">13. TF Lite 🥧</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workday1.html">14. Workday 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workday2.html">15. Workday 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cat-dog/live-cat.html">16. Live Inference 🐱 🐶</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cc-dnn.html">17. C&amp;C: Deep Neural Networks</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="neuralnet.html">6. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">7. Linear Algebra and GPUs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dnn-explore.html">8. DNN Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cat-dog/transfer_learning.html">9. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cat-dog/tflite_convert.html">10. TensorFlow Lite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tflite_pi.html">11. TF Lite 🥧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workday1.html">12. Workday 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workday2.html">13. Workday 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cat-dog/live-cat.html">14. Live Inference 🐱 🐶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc-dnn.html">15. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NVIDIA Jetson</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">18. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">19. Diffusion Image Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">20. Containers Part 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">21. YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">16. Containerization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">17. Diffusion Image Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">18. Containers Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">19. YOLO</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">22. M4-Cortex Processor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">23. Wake Word Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">20. M4-Cortex Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">21. Wake Word Detection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">24. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">25. Transformers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-emergence.html">26. Emergence and Ethics of LLMs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/prompt-engineering.html">27. Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">22. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">23. Transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-emergence.html">24. Emergence and Ethics of LLMs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/prompt-engineering.html">25. Prompt Engineering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">28. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">29. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">30. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">31. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">32. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">33. Super Computers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">34. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">35. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">36. Bias and Ethics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">37. Final C&amp;C</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">38. LLM Red Team 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">39. LLM Red Team 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">40. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">26. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">27. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">28. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">29. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">30. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">31. Super Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">32. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">33. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">34. Bias and Ethics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">35. Final C&amp;C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">36. LLM Red Team 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">37. LLM Red Team 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">38. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -291,7 +289,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/usafa-ece/ai-hardware/blob/main/book/dnn/convolution.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/usafa-ece/ai-hardware/blob/main/book/b2-dnn/convolution.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -339,7 +337,7 @@
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fdnn/convolution.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fb2-dnn/convolution.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -369,7 +367,7 @@
       
       
       
-      <li><a href="../_sources/dnn/convolution.ipynb" target="_blank"
+      <li><a href="../_sources/b2-dnn/convolution.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -463,20 +461,20 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">10.1. Pre-reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">10.1.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lab">10.2. The lab</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">10.2.1. Imports</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tpu-detection">10.2.2. TPU detection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">10.2.3. Configuration</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-images-and-labels-from-tfrecords">10.2.4. Read images and labels from TFRecords</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-and-validation-datasets">10.2.5. training and validation datasets</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-work-required">10.2.6. Model [WORK REQUIRED]</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training">10.2.7. Training</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predictions">10.2.8. Predictions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#license">10.2.9. License</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lab">The lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tpu-detection">TPU detection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-images-and-labels-from-tfrecords">Read images and labels from TFRecords</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-and-validation-datasets">training and validation datasets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-work-required">Model [WORK REQUIRED]</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training">Training</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predictions">Predictions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
 </ul>
 </li>
 </ul>
@@ -491,29 +489,29 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="convolutional-neural-network">
-<h1><span class="section-number">10. </span>Convolutional Neural Network<a class="headerlink" href="#convolutional-neural-network" title="Link to this heading">#</a></h1>
+<h1>Convolutional Neural Network<a class="headerlink" href="#convolutional-neural-network" title="Link to this heading">#</a></h1>
 <section id="pre-reading">
-<h2><span class="section-number">10.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+<h2>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>3Blue1Brown <a class="reference external" href="https://youtu.be/KuXjwB4LzSA">But What is Convolution?</a> at least up to <strong>13:42</strong> but ideally the entire thing</p></li>
 <li><p>(Optional) Peruse the original tutorial: <a class="reference external" href="https://codelabs.developers.google.com/codelabs/keras-flowers-convnets/#2">Convolutional neural networks, with Keras and TPUs</a></p></li>
 </ul>
 <section id="objectives">
-<h3><span class="section-number">10.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
+<h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>Begin to grasp the imprtance and wonder of convolution</p></li>
+<li><p>Begin to grasp the importance and wonder of convolution</p></li>
 <li><p>Connect this with the GPU and transfer learning lessons</p></li>
 </ol>
 </section>
 </section>
 <section id="the-lab">
-<h2><span class="section-number">10.2. </span>The lab<a class="headerlink" href="#the-lab" title="Link to this heading">#</a></h2>
+<h2>The lab<a class="headerlink" href="#the-lab" title="Link to this heading">#</a></h2>
 <p>This is a Google Tutoiral. <strong>Read the CNN tips here</strong>: <a class="reference external" href="https://codelabs.developers.google.com/codelabs/keras-flowers-convnets/#5">Your custom convnet</a></p>
 <p>Then, open this notebook in colab, connect to a TPU instance, and try and win!</p>
 <hr class="docutils" />
 <p><em>Shamelessly extracted from <a class="reference external" href="https://colab.research.google.com/github/GoogleCloudPlatform/training-data-analyst/blob/master/courses/fast-and-lean-data-science/07_Keras_Flowers_TPU_playground.ipynb">Keras_Flowers_TPU (playground).ipynb</a></em></p>
 <section id="imports">
-<h3><span class="section-number">10.2.1. </span>Imports<a class="headerlink" href="#imports" title="Link to this heading">#</a></h3>
+<h3>Imports<a class="headerlink" href="#imports" title="Link to this heading">#</a></h3>
 <p>Let’s train this model on TPU. It’s worth it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -530,7 +528,7 @@ document.write(`
 </div>
 </section>
 <section id="tpu-detection">
-<h3><span class="section-number">10.2.2. </span>TPU detection<a class="headerlink" href="#tpu-detection" title="Link to this heading">#</a></h3>
+<h3>TPU detection<a class="headerlink" href="#tpu-detection" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>  <span class="c1"># detect TPUs</span>
@@ -547,7 +545,7 @@ document.write(`
 </div>
 </section>
 <section id="configuration">
-<h3><span class="section-number">10.2.3. </span>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h3>
+<h3>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">GCS_PATTERN</span> <span class="o">=</span> <span class="s2">&quot;gs://flowers-public/tfrecords-jpeg-192x192-2/*.tfrec&quot;</span>
@@ -677,7 +675,7 @@ document.write(`
 </div>
 </section>
 <section id="read-images-and-labels-from-tfrecords">
-<h3><span class="section-number">10.2.4. </span>Read images and labels from TFRecords<a class="headerlink" href="#read-images-and-labels-from-tfrecords" title="Link to this heading">#</a></h3>
+<h3>Read images and labels from TFRecords<a class="headerlink" href="#read-images-and-labels-from-tfrecords" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_tfrecord</span><span class="p">(</span><span class="n">example</span><span class="p">):</span>
@@ -722,7 +720,7 @@ document.write(`
 </div>
 </section>
 <section id="training-and-validation-datasets">
-<h3><span class="section-number">10.2.5. </span>training and validation datasets<a class="headerlink" href="#training-and-validation-datasets" title="Link to this heading">#</a></h3>
+<h3>training and validation datasets<a class="headerlink" href="#training-and-validation-datasets" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_batched_dataset</span><span class="p">(</span><span class="n">filenames</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -755,7 +753,7 @@ document.write(`
 </div>
 </section>
 <section id="model-work-required">
-<h3><span class="section-number">10.2.6. </span>Model [WORK REQUIRED]<a class="headerlink" href="#model-work-required" title="Link to this heading">#</a></h3>
+<h3>Model [WORK REQUIRED]<a class="headerlink" href="#model-work-required" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>train the model as it is, with a single convolutional layer</p>
 <ul class="simple">
@@ -837,7 +835,7 @@ document.write(`
 </div>
 </section>
 <section id="training">
-<h3><span class="section-number">10.2.7. </span>Training<a class="headerlink" href="#training" title="Link to this heading">#</a></h3>
+<h3>Training<a class="headerlink" href="#training" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">EPOCHS</span> <span class="o">=</span> <span class="mi">20</span>
@@ -867,7 +865,7 @@ document.write(`
 </div>
 </section>
 <section id="predictions">
-<h3><span class="section-number">10.2.8. </span>Predictions<a class="headerlink" href="#predictions" title="Link to this heading">#</a></h3>
+<h3>Predictions<a class="headerlink" href="#predictions" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># randomize the input so that you can execute multiple times to change results</span>
@@ -892,7 +890,7 @@ document.write(`
 </div>
 </section>
 <section id="license">
-<h3><span class="section-number">10.2.9. </span>License<a class="headerlink" href="#license" title="Link to this heading">#</a></h3>
+<h3>License<a class="headerlink" href="#license" title="Link to this heading">#</a></h3>
 <hr class="docutils" />
 <p>author: Martin Gorner<br>
 twitter: &#64;martin_gorner</p>
@@ -928,7 +926,7 @@ limitations under the License.</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./dnn"
+            path: "./b2-dnn"
         },
         predefinedOutput: true
     }
@@ -945,24 +943,6 @@ limitations under the License.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="dnn-explore.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>DNN Exploration</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="cat-dog/transfer_learning.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">11. </span>Transfer Learning</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -979,20 +959,20 @@ limitations under the License.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">10.1. Pre-reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">10.1.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lab">10.2. The lab</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">10.2.1. Imports</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tpu-detection">10.2.2. TPU detection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">10.2.3. Configuration</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-images-and-labels-from-tfrecords">10.2.4. Read images and labels from TFRecords</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-and-validation-datasets">10.2.5. training and validation datasets</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-work-required">10.2.6. Model [WORK REQUIRED]</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training">10.2.7. Training</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predictions">10.2.8. Predictions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#license">10.2.9. License</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lab">The lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tpu-detection">TPU detection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-images-and-labels-from-tfrecords">Read images and labels from TFRecords</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-and-validation-datasets">training and validation datasets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-work-required">Model [WORK REQUIRED]</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training">Training</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predictions">Predictions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
 </ul>
 </li>
 </ul>
@@ -1019,7 +999,7 @@ By DFEC
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2025.
       <br/>
     
   </p>
