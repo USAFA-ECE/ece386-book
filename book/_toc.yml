@@ -18,7 +18,7 @@ parts:
       - file: b2-dnn/neuralnet
       - file: b2-dnn/gpu
       - file: b2-dnn/dnn-explore
-      - file: b2-dnn/convolution
+      # - file: b2-dnn/convolution
       - file: b2-dnn/cat-dog/transfer_learning
       - file: b2-dnn/cat-dog/tflite_convert
       - file: b2-dnn/tflite_pi

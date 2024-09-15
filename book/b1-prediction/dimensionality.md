@@ -2,20 +2,20 @@
 
 ## Pre-Reading
 
-- [The Curse of Dimensionality: Why High Dimension Data Can be So Troublesome](https://towardsdatascience.com/the-curse-of-dimensionality-50dc6e49aa1e)
+1. *Deep Learning with Python, 2nd Edition*, by Francois Chollet, [2.2 Data representations for neural networks](https://learning.oreilly.com/library/view/deep-learning-with/9781617296864/Text/02.htm#:-:text=2.2%20Data%20representations%20,for%20neural%20networks).
 
-I also need you to understand what the mathematical term [tensor](https://www.wolframalpha.com/input/?i=tensor) is.
+2. **What's a Tensor?**, Dan Fleisch. You may want to speed up the video a tad:
 
-> A tensor is a generalization of scalars, vectors, and matrices to an arbitrary number of indices.
-
-This guy is very good but you may want to speed up the video a tad:
-
-- If you are new to linear algebra, watch the entire video [What's a Tensor](https://youtu.be/f5liqUk0ZTw)
 - If you have experience in linear algebra, [start at 6:15](https://youtu.be/f5liqUk0ZTw?t=375)
-- If you are seriously in a hurry watch at least [from 10:20](https://youtu.be/f5liqUk0ZTw?t=620)
+- If you are seriously in a hurry watch at least [from 10:20 - 11:20](https://youtu.be/f5liqUk0ZTw?t=620)
+- If you are new to linear algebra, watch the entire video.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/f5liqUk0ZTw?si=02YMXVF0YpBT1FMF&amp;start=375" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Objectives
 
-1. Features exist in dimensions
-2. More dimensions have consequences (data and compute requirements)
-3. There exists ways to reduce dimensions
+1. Understand how samples in a dataset can be represented as n-rank tensors.
+2. Explore some of the consequences of high dimensionality in machine learning.
+3. Identify a few ways to reduce dimensions.
+
+## Lesson
