@@ -11,6 +11,7 @@ parts:
       - file: b1-prediction/prediction-machines
       - file: b1-prediction/kmeans
       - file: b1-prediction/dimensionality
+      - file: b1-prediction/mnist-dnn
       - file: b1-prediction/cc-prediction
   - caption: Neural Networks
     numbered: true
@@ -18,7 +19,6 @@ parts:
       - file: b2-dnn/neuralnet
       - file: b2-dnn/gpu
       - file: b2-dnn/dnn-explore
-      # - file: b2-dnn/convolution
       - file: b2-dnn/cat-dog/transfer_learning
       - file: b2-dnn/cat-dog/tflite_convert
       - file: b2-dnn/tflite_pi
