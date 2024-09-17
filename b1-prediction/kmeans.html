@@ -480,6 +480,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actual-fit">3.4. Actual Fit</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-our-evaluation-benchmark">3.4.1. Define our evaluation benchmark</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-benchmark">3.4.2. Run the benchmark</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predict">3.4.3. Predict</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#now-with-digits">3.5. Now with Digits</a></li>
@@ -516,6 +517,14 @@ document.write(`
 </section>
 <section id="load-and-explore-the-dataset">
 <h2><span class="section-number">3.2. </span>Load and explore the dataset<a class="headerlink" href="#load-and-explore-the-dataset" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Google colab includes these by default, so you won&#39;t need to run</span>
+<span class="o">%</span><span class="k">pip</span> install -q scikit-learn matplotlib
+</pre></div>
+</div>
+</div>
+</div>
 <p>We will start by loading the <a class="reference external" href="https://scikit-learn.org/stable/datasets/toy_dataset.html#iris-plants-dataset">iris</a> dataset.
 This dataset contains measurements from the Iris-Setosa, Iris-Versicolour, and Iris-Virginica flowers.</p>
 <p>Each sample in the dataset contains the following measurements, in centimeters:</p>
@@ -876,13 +885,72 @@ This is defined as there being no meaningful change of the centroid locations be
 <span class="n">bench_k_means</span><span class="p">(</span><span class="n">kmeans</span><span class="o">=</span><span class="n">kmeans</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Original&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
 
 <span class="c1"># Initialize a fresh K-means algorithm and try on PCA data</span>
+
 <span class="n">pca_n_components</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># 2 is default because we like x-y charts, but...</span>
+
 <span class="n">kmeans_pca</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s2">&quot;k-means++&quot;</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">reduced_data</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">pca_n_components</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">bench_k_means</span><span class="p">(</span><span class="n">kmeans</span><span class="o">=</span><span class="n">kmeans_pca</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;PCA-based&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">reduced_data</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+<span class="n">bench_k_means</span><span class="p">(</span>
+    <span class="n">kmeans</span><span class="o">=</span><span class="n">kmeans_pca</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;PCA-</span><span class="si">{</span><span class="n">pca_n_components</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">reduced_data</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span>
+<span class="p">)</span>
 
 <span class="c1"># bottom bar of stats</span>
 <span class="nb">print</span><span class="p">(</span><span class="mi">58</span> <span class="o">*</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="predict">
+<h3><span class="section-number">3.4.3. </span>Predict<a class="headerlink" href="#predict" title="Link to this heading">#</a></h3>
+<p>Now that we have a fit model, let’s make a prediction on a sample!</p>
+<p>We will use the builtin <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans.predict">predict</a> method and the results of our PCA-based kmeans model.</p>
+<p>Because this is an unsupervised clustering algorithm, the clusters number from our true labels probably don’t match the ones that kmeans produces!</p>
+<p>The code below only works with two PCA components and <code class="docutils literal notranslate"><span class="pre">random_state=0</span></code> above; if you change that you’ll need to re-match te labels yourself.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">new_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">elif</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">new_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">new_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get a random sample</span>
+<span class="n">sample_id</span> <span class="o">=</span> <span class="n">randrange</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
+
+<span class="c1"># Reshape because we are only predicting on a single sample, but KMeans expects a 2D array</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">reduced_data</span><span class="p">[</span><span class="n">sample_id</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">kmeans_pca</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PCA Kmeans prediction for sample </span><span class="si">{</span><span class="n">sample_id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">prediction</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Correct label for sample </span><span class="si">{</span><span class="n">sample_id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">new_labels</span><span class="p">[</span><span class="n">sample_id</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="c1"># Make predictions for the entire set of samples</span>
+<span class="n">all_predictions</span> <span class="o">=</span> <span class="n">kmeans_pca</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">reduced_data</span><span class="p">)</span>
+
+<span class="c1"># Confusion matrix</span>
+<span class="n">confusion</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">new_labels</span><span class="p">,</span> <span class="n">all_predictions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Confusion matrix:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion</span><span class="p">)</span>
+
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">all_predictions</span><span class="p">,</span> <span class="n">new_labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Overall accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -979,6 +1047,7 @@ This is defined as there being no meaningful change of the centroid locations be
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actual-fit">3.4. Actual Fit</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-our-evaluation-benchmark">3.4.1. Define our evaluation benchmark</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-benchmark">3.4.2. Run the benchmark</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predict">3.4.3. Predict</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#now-with-digits">3.5. Now with Digits</a></li>
