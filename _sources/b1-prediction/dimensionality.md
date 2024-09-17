@@ -2,7 +2,7 @@
 
 ## Pre-Reading
 
-1. *Deep Learning with Python, 2nd Edition*, by Francois Chollet, [2.2 Data representations for neural networks](https://learning.oreilly.com/library/view/deep-learning-with/9781617296864/Text/02.htm#:-:text=2.2%20Data%20representations%20,for%20neural%20networks).
+1. Chollet, [2.2 Data representations for neural networks](https://learning.oreilly.com/library/view/deep-learning-with/9781617296864/Text/02.htm#:-:text=2.2%20Data%20representations%20,for%20neural%20networks).
 
 2. **What's a Tensor?**, Dan Fleisch. You may want to speed up the video a tad:
 
