@@ -67,6 +67,7 @@ Better prediction leads to better outcomes.
 At some point, accuracy hits a threshold where the prediction can become transformational.
 
 Prediction machines are valuable because:
+
 1. they often offer better, faster, cheaper predictions than humans can
 2. prediction is a key ingredient to decision-making under uncertainty
 3. decision-making is ubiquitous throughout our economic and social lives
@@ -121,6 +122,7 @@ When you use insurance to minimize waste, the waste is visible; by contrast, the
 Enhanced prediction increases returns by reducing the waste from unneeded insurance or protection.
 
 Air Canada was able to predict how to fill underutilized capacity because it had:
+
 1. Measurable waste
 2. Wealth of data about the problem
 3. A well-contained problem
