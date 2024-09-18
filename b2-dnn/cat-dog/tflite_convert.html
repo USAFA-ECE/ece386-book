@@ -184,9 +184,9 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../b1-prediction/prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../b1-prediction/kmeans.html">3. K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../b1-prediction/dimensionality.html">4. Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../b1-prediction/mnist-dnn.html">5. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../b1-prediction/kmeans.html">3. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../b1-prediction/mnist-dnn.html">4. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../b1-prediction/flask.html">5. Lab: Serving Digits with Flask</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../b1-prediction/cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
@@ -464,19 +464,19 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">10.1. Pre-reading</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">10.2. Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-to-tf-lite">10.3. Convert to TF Lite</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-the-model">10.3.1. Upload the Model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-the-saved-model">10.3.2. Convert the saved model</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-converted-model">10.3.2.1. Save the converted model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-the-model">Upload the Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-the-saved-model">Convert the saved model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-converted-model">Save the converted model</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-model-sizes">10.3.3. Compare Model Sizes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-model-sizes">Compare Model Sizes</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conduct-inference-on-novel-images">10.4. Conduct inference on novel images</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-images">10.4.1. Upload images</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-tf-keras-api">10.4.2. Use TF Keras API</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-tf-lite-interpreter">10.4.3. Use TF Lite Interpreter</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-step-raspberry-pi">10.4.4. Next step: Raspberry Pi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-images">Upload images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-tf-keras-api">Use TF Keras API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-tf-lite-interpreter">Use TF Lite Interpreter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-step-raspberry-pi">Next step: Raspberry Pi</a></li>
 </ul>
 </li>
 </ul>
@@ -533,7 +533,7 @@ This will have performance advantages on constrained hardware.</p>
 <section id="convert-to-tf-lite">
 <h2><span class="section-number">10.3. </span>Convert to TF Lite<a class="headerlink" href="#convert-to-tf-lite" title="Link to this heading">#</a></h2>
 <section id="upload-the-model">
-<h3><span class="section-number">10.3.1. </span>Upload the Model<a class="headerlink" href="#upload-the-model" title="Link to this heading">#</a></h3>
+<h3>Upload the Model<a class="headerlink" href="#upload-the-model" title="Link to this heading">#</a></h3>
 <p>First, upload the saved model from the previous lesson (<code class="docutils literal notranslate"><span class="pre">cat-dog-tuned.zip</span></code>) into this Colab instance.</p>
 <p>Then unzip the model.</p>
 <div class="cell docutils container">
@@ -546,7 +546,7 @@ This will have performance advantages on constrained hardware.</p>
 </div>
 </section>
 <section id="convert-the-saved-model">
-<h3><span class="section-number">10.3.2. </span>Convert the saved model<a class="headerlink" href="#convert-the-saved-model" title="Link to this heading">#</a></h3>
+<h3>Convert the saved model<a class="headerlink" href="#convert-the-saved-model" title="Link to this heading">#</a></h3>
 <p>We’ll use <a class="reference external" href="https://www.tensorflow.org/lite/api_docs/python/tf/lite/TFLiteConverter">TFLiteConverter</a> to export the model to a single binary.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -588,13 +588,13 @@ This will have performance advantages on constrained hardware.</p>
 </div>
 </div>
 <section id="save-the-converted-model">
-<h4><span class="section-number">10.3.2.1. </span>Save the converted model<a class="headerlink" href="#save-the-converted-model" title="Link to this heading">#</a></h4>
+<h4>Save the converted model<a class="headerlink" href="#save-the-converted-model" title="Link to this heading">#</a></h4>
 <p>You’ll ultimately need to get your model onto a Raspberry Pi.</p>
 <p>Download your <code class="docutils literal notranslate"><span class="pre">.tflite</span></code> model now.</p>
 </section>
 </section>
 <section id="compare-model-sizes">
-<h3><span class="section-number">10.3.3. </span>Compare Model Sizes<a class="headerlink" href="#compare-model-sizes" title="Link to this heading">#</a></h3>
+<h3>Compare Model Sizes<a class="headerlink" href="#compare-model-sizes" title="Link to this heading">#</a></h3>
 <p>There is some metadata that gets thrown out and some zip compression going on, but just for an order of magnitude estimate, compare the size of the full <code class="docutils literal notranslate"><span class="pre">cat-dog-tuned.zip</span></code> to <code class="docutils literal notranslate"><span class="pre">cat-dog.tflite</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -614,7 +614,7 @@ This will have performance advantages on constrained hardware.</p>
 <li><p>Second, rely on the Tensorflow Lite runtime</p></li>
 </ul>
 <section id="upload-images">
-<h3><span class="section-number">10.4.1. </span>Upload images<a class="headerlink" href="#upload-images" title="Link to this heading">#</a></h3>
+<h3>Upload images<a class="headerlink" href="#upload-images" title="Link to this heading">#</a></h3>
 <p>The book has some sample images. Either download them or find your own and upload them.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -632,7 +632,7 @@ This will have performance advantages on constrained hardware.</p>
 </div>
 </section>
 <section id="use-tf-keras-api">
-<h3><span class="section-number">10.4.2. </span>Use TF Keras API<a class="headerlink" href="#use-tf-keras-api" title="Link to this heading">#</a></h3>
+<h3>Use TF Keras API<a class="headerlink" href="#use-tf-keras-api" title="Link to this heading">#</a></h3>
 <p>This requires the full tensorflow install. It uses the original model saved in a directory.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -678,7 +678,7 @@ This will have performance advantages on constrained hardware.</p>
 </div>
 </section>
 <section id="use-tf-lite-interpreter">
-<h3><span class="section-number">10.4.3. </span>Use TF Lite Interpreter<a class="headerlink" href="#use-tf-lite-interpreter" title="Link to this heading">#</a></h3>
+<h3>Use TF Lite Interpreter<a class="headerlink" href="#use-tf-lite-interpreter" title="Link to this heading">#</a></h3>
 <p>This more closely mirrors what we’ll do on our embedded system.
 The only difference is we will use the included <code class="docutils literal notranslate"><span class="pre">tf.lite</span></code> module instead of the standalone <code class="docutils literal notranslate"><span class="pre">tflite-runtime</span></code>.</p>
 <div class="cell docutils container">
@@ -741,7 +741,7 @@ The only difference is we will use the included <code class="docutils literal no
 </div>
 </section>
 <section id="next-step-raspberry-pi">
-<h3><span class="section-number">10.4.4. </span>Next step: Raspberry Pi<a class="headerlink" href="#next-step-raspberry-pi" title="Link to this heading">#</a></h3>
+<h3>Next step: Raspberry Pi<a class="headerlink" href="#next-step-raspberry-pi" title="Link to this heading">#</a></h3>
 <p>Now that we know our TF Lite model works, let’s put it on an embedded system!</p>
 <p>Make sure you downloaded your <code class="docutils literal notranslate"><span class="pre">.tflite</span></code> file!</p>
 </section>
@@ -815,19 +815,19 @@ The only difference is we will use the included <code class="docutils literal no
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">10.1. Pre-reading</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">10.2. Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-to-tf-lite">10.3. Convert to TF Lite</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-the-model">10.3.1. Upload the Model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-the-saved-model">10.3.2. Convert the saved model</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-converted-model">10.3.2.1. Save the converted model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-the-model">Upload the Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-the-saved-model">Convert the saved model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-converted-model">Save the converted model</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-model-sizes">10.3.3. Compare Model Sizes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-model-sizes">Compare Model Sizes</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conduct-inference-on-novel-images">10.4. Conduct inference on novel images</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-images">10.4.1. Upload images</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-tf-keras-api">10.4.2. Use TF Keras API</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-tf-lite-interpreter">10.4.3. Use TF Lite Interpreter</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-step-raspberry-pi">10.4.4. Next step: Raspberry Pi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-images">Upload images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-tf-keras-api">Use TF Keras API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-tf-lite-interpreter">Use TF Lite Interpreter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-step-raspberry-pi">Next step: Raspberry Pi</a></li>
 </ul>
 </li>
 </ul>

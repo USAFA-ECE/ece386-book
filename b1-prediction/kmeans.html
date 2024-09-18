@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. K-Means Clustering &#8212; ECE 386</title>
+    <title>3. ICE: K-Means Clustering &#8212; ECE 386</title>
   
   
   
@@ -61,7 +61,7 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Dimensionality" href="dimensionality.html" />
+    <link rel="next" title="4. Neural Networks" href="mnist-dnn.html" />
     <link rel="prev" title="2. Prediction Machines and ML Workflow" href="prediction-machines.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -184,9 +184,9 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dimensionality.html">4. Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mnist-dnn.html">5. Neural Networks</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mnist-dnn.html">4. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flask.html">5. Lab: Serving Digits with Flask</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
@@ -451,7 +451,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>K-Means Clustering</h1>
+    <h1>ICE: K-Means Clustering</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -462,28 +462,29 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">3.1. Pre-reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals">3.1.1. Goals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals">Goals</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-explore-the-dataset">3.2. Load and explore the dataset</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-data">3.2.1. Plot the data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-plot">3.2.1.1. 4D Plot</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-reduced-data">3.2.1.2. PCA-reduced data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-data">Plot the data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-plot">4D Plot</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-reduced-data">PCA-reduced data</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterate-with-k-means">3.3. Iterate with K-Means</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-through-kmeans">3.3.1. Step through kmeans</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-through-kmeans">Step through kmeans</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actual-fit">3.4. Actual Fit</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-our-evaluation-benchmark">3.4.1. Define our evaluation benchmark</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-benchmark">3.4.2. Run the benchmark</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predict">3.4.3. Predict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-our-evaluation-benchmark">Define our evaluation benchmark</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-benchmark">Run the benchmark</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predict">Predict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Predict</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#now-with-digits">3.5. Now with Digits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ice-deliverables">3.5. ICE Deliverables</a></li>
 </ul>
             </nav>
         </div>
@@ -495,8 +496,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="k-means-clustering">
-<h1><span class="section-number">3. </span>K-Means Clustering<a class="headerlink" href="#k-means-clustering" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="ice-k-means-clustering">
+<h1><span class="section-number">3. </span>ICE: K-Means Clustering<a class="headerlink" href="#ice-k-means-clustering" title="Link to this heading">#</a></h1>
 <section id="pre-reading">
 <h2><span class="section-number">3.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -505,7 +506,7 @@ document.write(`
 <p><img alt="K-Means Clustering" src="https://imgs.xkcd.com/comics/k_means_clustering.png" /></p>
 <p><em>According to my especially unsupervised K-means clustering algorithm, there are currently about 8 billion types of people in the world.</em></p>
 <section id="goals">
-<h3><span class="section-number">3.1.1. </span>Goals<a class="headerlink" href="#goals" title="Link to this heading">#</a></h3>
+<h3>Goals<a class="headerlink" href="#goals" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Learn to import and load scikit-learn datasets into numpy arrays</p></li>
 <li><p>Use <a class="reference external" href="https://scikit-learn.org/stable/modules/clustering.html#k-means">KMeans</a> to conduct unsupervised learning</p></li>
@@ -587,9 +588,9 @@ This dataset contains measurements from the Iris-Setosa, Iris-Versicolour, and I
 </div>
 </div>
 <section id="plot-the-data">
-<h3><span class="section-number">3.2.1. </span>Plot the data<a class="headerlink" href="#plot-the-data" title="Link to this heading">#</a></h3>
+<h3>Plot the data<a class="headerlink" href="#plot-the-data" title="Link to this heading">#</a></h3>
 <section id="d-plot">
-<h4><span class="section-number">3.2.1.1. </span>4D Plot<a class="headerlink" href="#d-plot" title="Link to this heading">#</a></h4>
+<h4>4D Plot<a class="headerlink" href="#d-plot" title="Link to this heading">#</a></h4>
 <p>If we use color to represent the 4th dimension on a 3D plot, we can visualize our data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -640,7 +641,7 @@ This dataset contains measurements from the Iris-Setosa, Iris-Versicolour, and I
 Honestly, this isn’t very helpful.</p>
 </section>
 <section id="pca-reduced-data">
-<h4><span class="section-number">3.2.1.2. </span>PCA-reduced data<a class="headerlink" href="#pca-reduced-data" title="Link to this heading">#</a></h4>
+<h4>PCA-reduced data<a class="headerlink" href="#pca-reduced-data" title="Link to this heading">#</a></h4>
 <p>Do we even need all four of those measurements??</p>
 <p>Principal Component Analysis (PCA) is a dimensionality reduction technique who’s goal is to reduce the number of features in a dataset while retaining as much variance (information) as possible.</p>
 <p>The Covariance/ Eigenvector/ Transform of PCA is beyond the scope of this course (try ECE 487!).</p>
@@ -731,7 +732,7 @@ K-means is an <em>unsupervised</em> algorithm, meaning it works on datasets even
 </div>
 </div>
 <section id="step-through-kmeans">
-<h3><span class="section-number">3.3.1. </span>Step through kmeans<a class="headerlink" href="#step-through-kmeans" title="Link to this heading">#</a></h3>
+<h3>Step through kmeans<a class="headerlink" href="#step-through-kmeans" title="Link to this heading">#</a></h3>
 <p>Before we use the builtin fit method, let’s step through what the algorithm is doing. We will do this with <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.MiniBatchKMeans.html">MiniBatchKMeans</a>.</p>
 <p>This first code block randomly picks centroids and then runs k-means once before plotting.</p>
 <p>The white <strong>X</strong>’s are the randomly selected centroids of each cluster.
@@ -794,7 +795,7 @@ This is defined as there being no meaningful change of the centroid locations be
 <li><p>Run the algorithm multiple times to compare the random initializations.</p></li>
 </ol>
 <section id="define-our-evaluation-benchmark">
-<h3><span class="section-number">3.4.1. </span>Define our evaluation benchmark<a class="headerlink" href="#define-our-evaluation-benchmark" title="Link to this heading">#</a></h3>
+<h3>Define our evaluation benchmark<a class="headerlink" href="#define-our-evaluation-benchmark" title="Link to this heading">#</a></h3>
 <p>Our benchmark will:</p>
 <ul class="simple">
 <li><p>create a pipeline which will scale the data using a <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html">sklearn.preprocessing.StandardScaler</a>;</p></li>
@@ -855,7 +856,7 @@ This is defined as there being no meaningful change of the centroid locations be
 </div>
 </section>
 <section id="run-the-benchmark">
-<h3><span class="section-number">3.4.2. </span>Run the benchmark<a class="headerlink" href="#run-the-benchmark" title="Link to this heading">#</a></h3>
+<h3>Run the benchmark<a class="headerlink" href="#run-the-benchmark" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -865,7 +866,7 @@ This is defined as there being no meaningful change of the centroid locations be
 
 <span class="c1"># Load a fresh copy of the dataset</span>
 <span class="n">data</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">n_classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">size</span>  <span class="c1"># What if we didn&#39;t know and made this mismatch??</span>
+<span class="n">n_classes</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># three types of flowers</span>
 <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span>
 
 <span class="nb">print</span><span class="p">(</span>
@@ -902,7 +903,62 @@ This is defined as there being no meaningful change of the centroid locations be
 </div>
 </section>
 <section id="predict">
-<h3><span class="section-number">3.4.3. </span>Predict<a class="headerlink" href="#predict" title="Link to this heading">#</a></h3>
+<h3>Predict<a class="headerlink" href="#predict" title="Link to this heading">#</a></h3>
+<p>Now that we have a fit model, let’s make a prediction on a sample!</p>
+<p>We will use the builtin <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans.predict">predict</a> method and the results of our PCA-based kmeans model.</p>
+<p>Because this is an unsupervised clustering algorithm, the clusters number from our true labels probably don’t match the ones that kmeans produces!</p>
+<p>The code below only works with two PCA components and <code class="docutils literal notranslate"><span class="pre">random_state=0</span></code> above; if you change that you’ll need to re-match te labels yourself.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">new_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">elif</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">new_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">new_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get a random sample</span>
+<span class="n">sample_id</span> <span class="o">=</span> <span class="n">randrange</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
+
+<span class="c1"># Reshape because we are only predicting on a single sample, but KMeans expects a 2D array</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">reduced_data</span><span class="p">[</span><span class="n">sample_id</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">kmeans_pca</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PCA Kmeans prediction for sample </span><span class="si">{</span><span class="n">sample_id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">prediction</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Correct label for sample </span><span class="si">{</span><span class="n">sample_id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">new_labels</span><span class="p">[</span><span class="n">sample_id</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="c1"># Make predictions for the entire set of samples</span>
+<span class="n">all_predictions</span> <span class="o">=</span> <span class="n">kmeans_pca</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">reduced_data</span><span class="p">)</span>
+
+<span class="c1"># Confusion matrix</span>
+<span class="n">confusion</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">new_labels</span><span class="p">,</span> <span class="n">all_predictions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Confusion matrix:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion</span><span class="p">)</span>
+
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">all_predictions</span><span class="p">,</span> <span class="n">new_labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Overall accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3>Predict<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>Now that we have a fit model, let’s make a prediction on a sample!</p>
 <p>We will use the builtin <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans.predict">predict</a> method and the results of our PCA-based kmeans model.</p>
 <p>Because this is an unsupervised clustering algorithm, the clusters number from our true labels probably don’t match the ones that kmeans produces!</p>
@@ -957,10 +1013,15 @@ This is defined as there being no meaningful change of the centroid locations be
 </div>
 </section>
 </section>
-<section id="now-with-digits">
-<h2><span class="section-number">3.5. </span>Now with Digits<a class="headerlink" href="#now-with-digits" title="Link to this heading">#</a></h2>
+<section id="ice-deliverables">
+<h2><span class="section-number">3.5. </span>ICE Deliverables<a class="headerlink" href="#ice-deliverables" title="Link to this heading">#</a></h2>
 <p>Now that you have k-means working on super simple dataset, let’s try one slightly more complicated!</p>
-<p>See <a class="reference external" href="https://scikit-learn.org/stable/datasets/toy_dataset.html#optical-recognition-of-handwritten-digits-dataset">scikit-learn load_digits</a>.</p>
+<ol class="arabic simple">
+<li><p>Use <a class="reference external" href="https://scikit-learn.org/stable/datasets/toy_dataset.html#optical-recognition-of-handwritten-digits-dataset">load_digits</a> to get a dataset of handwritten digits.</p></li>
+<li><p>Using the same <code class="docutils literal notranslate"><span class="pre">bench_k_means</span></code> function from above, fit a kmeans with no PCA (hint, pay attention to the number of clusters).</p></li>
+<li><p>Using the same <code class="docutils literal notranslate"><span class="pre">bench_k_means</span></code> function from above, fit PCA with 2, 8, and 16 components.</p></li>
+<li><p>Answer the questions on Gradescope for this ICE.</p></li>
+</ol>
 </section>
 </section>
 
@@ -1004,11 +1065,11 @@ This is defined as there being no meaningful change of the centroid locations be
       </div>
     </a>
     <a class="right-next"
-       href="dimensionality.html"
+       href="mnist-dnn.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Dimensionality</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Neural Networks</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1029,28 +1090,29 @@ This is defined as there being no meaningful change of the centroid locations be
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">3.1. Pre-reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals">3.1.1. Goals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals">Goals</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-explore-the-dataset">3.2. Load and explore the dataset</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-data">3.2.1. Plot the data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-plot">3.2.1.1. 4D Plot</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-reduced-data">3.2.1.2. PCA-reduced data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-data">Plot the data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-plot">4D Plot</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-reduced-data">PCA-reduced data</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterate-with-k-means">3.3. Iterate with K-Means</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-through-kmeans">3.3.1. Step through kmeans</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-through-kmeans">Step through kmeans</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actual-fit">3.4. Actual Fit</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-our-evaluation-benchmark">3.4.1. Define our evaluation benchmark</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-benchmark">3.4.2. Run the benchmark</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predict">3.4.3. Predict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-our-evaluation-benchmark">Define our evaluation benchmark</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-benchmark">Run the benchmark</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predict">Predict</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Predict</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#now-with-digits">3.5. Now with Digits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ice-deliverables">3.5. ICE Deliverables</a></li>
 </ul>
   </nav></div>
 

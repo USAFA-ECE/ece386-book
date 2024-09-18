@@ -184,9 +184,9 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">3. K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/dimensionality.html">4. Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">5. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">3. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">4. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/flask.html">5. Lab: Serving Digits with Flask</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
@@ -431,15 +431,15 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">17.1. Pre-reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">17.1.1. Objectives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-generation">17.2. Image generation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tutorial">17.2.1. The tutorial</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-documentation">17.2.2. The documentation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it-on-the-nuc">17.2.3. Try it on the NUC</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-api">17.2.4. Add the API</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-1">17.2.4.1. Prompt 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tutorial">The tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-documentation">The documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it-on-the-nuc">Try it on the NUC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-api">Add the API</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-1">Prompt 1</a></li>
 </ul>
 </li>
 </ul>
@@ -464,7 +464,7 @@ document.write(`
 <li><p><a class="reference external" href="https://huggingface.co/runwayml/stable-diffusion-v1-5">Stable Diffusion v1-5 Model Card</a></p></li>
 </ul>
 <section id="objectives">
-<h3><span class="section-number">17.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
+<h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Apply lessons-learned from containerization.</p></li>
 <li><p>Get a diffusion text to image model working on Jetson.</p></li>
@@ -476,7 +476,7 @@ document.write(`
 <h2><span class="section-number">17.2. </span>Image generation<a class="headerlink" href="#image-generation" title="Link to this heading">#</a></h2>
 <p><strong>My goal</strong> is to serve a text-to-image model on the Jetson Orin Nano.</p>
 <section id="the-tutorial">
-<h3><span class="section-number">17.2.1. </span>The tutorial<a class="headerlink" href="#the-tutorial" title="Link to this heading">#</a></h3>
+<h3>The tutorial<a class="headerlink" href="#the-tutorial" title="Link to this heading">#</a></h3>
 <p>I first read <a class="reference external" href="https://iomz.github.io/how-to/docker-diffusers-jetson/">Does Stable Diffusion run on NVIDIA Jetson AGX Xavier Developer Kit with CUDA?</a> and thought this might be possible!</p>
 <p>Following the tutorial under <strong>Run Diffusers on Docker</strong>,
 I quickly came to this command:</p>
@@ -490,7 +490,7 @@ I pulled the plug after 25 GB came down with dozens more promised.</p>
 for later reference, even though I can tell this person is <em>not</em> a docker expert.</p>
 </section>
 <section id="the-documentation">
-<h3><span class="section-number">17.2.2. </span>The documentation<a class="headerlink" href="#the-documentation" title="Link to this heading">#</a></h3>
+<h3>The documentation<a class="headerlink" href="#the-documentation" title="Link to this heading">#</a></h3>
 <p>The Hugging Face Diffusers Documentation has the suggestion:
 <a class="reference external" href="https://huggingface.co/docs/diffusers/tutorials/autopipeline#choose-an-autopipeline-for-your-task">Choose an AutoPipeline for your task</a> 🙏🏼</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">diffusers</span> <span class="kn">import</span> <span class="n">AutoPipelineForText2Image</span>
@@ -514,7 +514,7 @@ for later reference, even though I can tell this person is <em>not</em> a docker
 <p><strong>Let’s run that!</strong>… on my Intel NUC.</p>
 </section>
 <section id="try-it-on-the-nuc">
-<h3><span class="section-number">17.2.3. </span>Try it on the NUC<a class="headerlink" href="#try-it-on-the-nuc" title="Link to this heading">#</a></h3>
+<h3>Try it on the NUC<a class="headerlink" href="#try-it-on-the-nuc" title="Link to this heading">#</a></h3>
 <p>I do not have an NVIDIA GPU on this device.
 So, a quick DuckDuckGo search (ChatGPT actually got this one wrong)
 tells me about <code class="docutils literal notranslate"><span class="pre">torch.cuda.is_available()</span></code>. So I write:</p>
@@ -543,14 +543,14 @@ tells me about <code class="docutils literal notranslate"><span class="pre">torc
 </div>
 </section>
 <section id="add-the-api">
-<h3><span class="section-number">17.2.4. </span>Add the API<a class="headerlink" href="#add-the-api" title="Link to this heading">#</a></h3>
+<h3>Add the API<a class="headerlink" href="#add-the-api" title="Link to this heading">#</a></h3>
 <p>I want this thing to be served. Let’s try ChatGPT.</p>
 <p>Time for some <strong>prompt engineering.</strong></p>
 <p>First, I know I need to be specific about what I want
 as well as the steps I want the LLM to take.</p>
 <p>I’ve heard FastAPI is a good choice, but have never used it before.</p>
 <section id="prompt-1">
-<h4><span class="section-number">17.2.4.1. </span>Prompt 1<a class="headerlink" href="#prompt-1" title="Link to this heading">#</a></h4>
+<h4>Prompt 1<a class="headerlink" href="#prompt-1" title="Link to this heading">#</a></h4>
 <p>Here is what I try first</p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>I want to adapt the following code to serve a REST API where the user
 passes a prompt with <span class="sb">`prompt`</span> and a JPEG is returned.
@@ -702,15 +702,15 @@ the prompt above gave me a POST method. Maybe that’s better, in truth.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">17.1. Pre-reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">17.1.1. Objectives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-generation">17.2. Image generation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tutorial">17.2.1. The tutorial</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-documentation">17.2.2. The documentation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it-on-the-nuc">17.2.3. Try it on the NUC</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-api">17.2.4. Add the API</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-1">17.2.4.1. Prompt 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tutorial">The tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-documentation">The documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it-on-the-nuc">Try it on the NUC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-api">Add the API</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-1">Prompt 1</a></li>
 </ul>
 </li>
 </ul>

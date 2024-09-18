@@ -184,9 +184,9 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">3. K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/dimensionality.html">4. Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">5. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">3. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">4. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/flask.html">5. Lab: Serving Digits with Flask</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
@@ -431,12 +431,12 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#developing-in-a-container">18.1. Developing in a container</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manually">18.1.1. Manually</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code-remote">18.1.2. VS Code Remote</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manually">Manually</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code-remote">VS Code Remote</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-lab">18.2. Mini lab</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#helpful-commands">18.2.1. Helpful commands</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#helpful-commands">Helpful commands</a></li>
 </ul>
 </li>
 </ul>
@@ -456,7 +456,7 @@ document.write(`
 <section id="developing-in-a-container">
 <h2><span class="section-number">18.1. </span>Developing in a container<a class="headerlink" href="#developing-in-a-container" title="Link to this heading">#</a></h2>
 <section id="manually">
-<h3><span class="section-number">18.1.1. </span>Manually<a class="headerlink" href="#manually" title="Link to this heading">#</a></h3>
+<h3>Manually<a class="headerlink" href="#manually" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Mount the container as a volume with <code class="docutils literal notranslate"><span class="pre">-v</span></code></p></li>
 <li><p>Prototype</p></li>
@@ -465,7 +465,7 @@ document.write(`
 <p><img alt="Manual docker prototype" src="../_images/docker-manual-dev.png" /></p>
 </section>
 <section id="vs-code-remote">
-<h3><span class="section-number">18.1.2. </span>VS Code Remote<a class="headerlink" href="#vs-code-remote" title="Link to this heading">#</a></h3>
+<h3>VS Code Remote<a class="headerlink" href="#vs-code-remote" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://code.visualstudio.com/docs/devcontainers/containers">Developing inside a container</a></p>
 </section>
 </section>
@@ -479,7 +479,7 @@ document.write(`
 <li><p><em>Optionally</em>*, push the image</p></li>
 </ol>
 <section id="helpful-commands">
-<h3><span class="section-number">18.2.1. </span>Helpful commands<a class="headerlink" href="#helpful-commands" title="Link to this heading">#</a></h3>
+<h3>Helpful commands<a class="headerlink" href="#helpful-commands" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#workdir">WORKDIR</a> for setting working directory</p></li>
 <li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#add">ADD</a> for bringing in the file</p></li>
@@ -553,12 +553,12 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#developing-in-a-container">18.1. Developing in a container</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manually">18.1.1. Manually</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code-remote">18.1.2. VS Code Remote</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manually">Manually</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code-remote">VS Code Remote</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-lab">18.2. Mini lab</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#helpful-commands">18.2.1. Helpful commands</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#helpful-commands">Helpful commands</a></li>
 </ul>
 </li>
 </ul>

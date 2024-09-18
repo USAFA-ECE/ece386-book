@@ -63,7 +63,7 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. K-Means Clustering" href="kmeans.html" />
+    <link rel="next" title="3. ICE: K-Means Clustering" href="kmeans.html" />
     <link rel="prev" title="1. Hello, Colab!" href="hello-colab.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -186,9 +186,9 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="kmeans.html">3. K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dimensionality.html">4. Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mnist-dnn.html">5. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmeans.html">3. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mnist-dnn.html">4. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flask.html">5. Lab: Serving Digits with Flask</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
@@ -433,30 +433,30 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">2.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">2.1.1. Objectives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-machines">2.2. Prediction Machines</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#our-role-as-commanders">2.2.1. Our role as commanders</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#from-doctrine">2.2.1.1. From Doctrine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#our-role-as-commanders">Our role as commanders</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#from-doctrine">From Doctrine</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-a-decision">2.2.2. Making a Decision</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction">2.2.2.1. Prediction</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-of-prediction">2.2.2.1.1. Accuracy of prediction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-a-decision">Making a Decision</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction">Prediction</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-of-prediction">Accuracy of prediction</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#judgement">2.2.2.2. Judgement</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#judgement">Judgement</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#risk">2.2.3. Risk</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty">2.2.3.1. Uncertainty</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#risk">Risk</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty">Uncertainty</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-workflow">2.3. Machine Learning Workflow</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ml-workflow-into-prediction">2.3.1. ML Workflow into Prediction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ml-workflow-into-prediction">ML Workflow into Prediction</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closing-thought-from-afpd-1">2.4. Closing thought from AFPD-1</a></li>
@@ -480,7 +480,7 @@ document.write(`
 <h2><span class="section-number">2.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <p><em>TinyML</em>, Warden and Situnayake, 2019. <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml/9781492052036/ch03.html#:-:text=Chapter%203.%20Getting%20Up%20to%20Speed%20on%20Machine%20Learning">Chapter 3</a></p>
 <section id="objectives">
-<h3><span class="section-number">2.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
+<h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>I can frame a problem in terms of Prediction, Judgement, Decision, Action, Feedback and effectively communicate it to senior leaders as a way of reducing risk.</p>
 </div></blockquote>
@@ -494,10 +494,10 @@ document.write(`
 <section id="prediction-machines">
 <h2><span class="section-number">2.2. </span>Prediction Machines<a class="headerlink" href="#prediction-machines" title="Link to this heading">#</a></h2>
 <section id="our-role-as-commanders">
-<h3><span class="section-number">2.2.1. </span>Our role as commanders<a class="headerlink" href="#our-role-as-commanders" title="Link to this heading">#</a></h3>
+<h3>Our role as commanders<a class="headerlink" href="#our-role-as-commanders" title="Link to this heading">#</a></h3>
 <p>Our role as commanders is to exercise judgment and make risk decisions in an uncertain and adversarial environment</p>
 <section id="from-doctrine">
-<h4><span class="section-number">2.2.1.1. </span>From Doctrine<a class="headerlink" href="#from-doctrine" title="Link to this heading">#</a></h4>
+<h4>From Doctrine<a class="headerlink" href="#from-doctrine" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><p>It is a given in future conflicts that the joint force will be conducting operations in a contested environment. We must be prepared to execute in a degraded C2 environment where clearly delineated and forward thinking commander’s intent will be a requirement. It is imperative senior leaders provide our commanders with conditions-based authorities delegated to the lowest capable and competent level, and <strong>empower command by negation to accept the appropriate level of risk, all while working toward moments of clear C2.</strong> ~ General Charles Q. Brown, <a class="reference external" href="https://www.doctrine.af.mil/Portals/61/documents/AFDP_3-30/AFDP%203-30-Command-and-Control.pdf">AFPD-3-30</a></p>
 </div></blockquote>
@@ -506,14 +506,14 @@ document.write(`
 </section>
 </section>
 <section id="making-a-decision">
-<h3><span class="section-number">2.2.2. </span>Making a Decision<a class="headerlink" href="#making-a-decision" title="Link to this heading">#</a></h3>
+<h3>Making a Decision<a class="headerlink" href="#making-a-decision" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>The following is derived from <em>Prediction Machines: The Simple Economics of Artificial Intelligence</em> by Agrawal, Gans, and Goldfarb, 2018.</p>
 </div></blockquote>
 <p>A <em>decision</em> includes prediction, judgement, action, outcome, and data.</p>
 <p><img alt="Anatomy of a task" src="https://images.squarespace-cdn.com/content/v1/59d6456137c581acfcef3422/1541255026543-JS0Q6G7NY4O0TG8XL2ZA/Figure+7-1.png" /></p>
 <section id="prediction">
-<h4><span class="section-number">2.2.2.1. </span>Prediction<a class="headerlink" href="#prediction" title="Link to this heading">#</a></h4>
+<h4>Prediction<a class="headerlink" href="#prediction" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><p>The machine learning algorithm builds a <em>model</em> of the system based on the data we provide, through a process we call <em>training</em>.
 The model is a type of computer program. We run data through this model to make predictions, in a process called <em>inference</em>. <em>~ TinyML</em></p>
@@ -524,7 +524,7 @@ The model is a type of computer program. We run data through this model to make 
 <p>The Oakland A’s identified what problem they were trying to solve: the impact of a player on team performance and capitalized on that; see <em>Moneyball</em>.</p>
 <p>Jeff Hawkins argued that “The human cortex is an organ of prediction.”</p>
 <section id="accuracy-of-prediction">
-<h5><span class="section-number">2.2.2.1.1. </span>Accuracy of prediction<a class="headerlink" href="#accuracy-of-prediction" title="Link to this heading">#</a></h5>
+<h5>Accuracy of prediction<a class="headerlink" href="#accuracy-of-prediction" title="Link to this heading">#</a></h5>
 <p>In contrast to machines, humans are sometimes extremely good at prediction with little data.
 This is largely because of our broad context of the world.</p>
 <p>As dimensionality grows, humans’ ability to form accurate predictions diminishes.</p>
@@ -542,7 +542,7 @@ At some point, accuracy hits a threshold where the prediction can become transfo
 </section>
 </section>
 <section id="judgement">
-<h4><span class="section-number">2.2.2.2. </span>Judgement<a class="headerlink" href="#judgement" title="Link to this heading">#</a></h4>
+<h4>Judgement<a class="headerlink" href="#judgement" title="Link to this heading">#</a></h4>
 <p>Computers made arithmetic cheap.
 Internet made distribution, communication, and search cheap.
 AI has made prediction cheap.</p>
@@ -564,7 +564,7 @@ Judgement, whether by deliberation or experimentation, is costly (<em>especially
 </section>
 </section>
 <section id="risk">
-<h3><span class="section-number">2.2.3. </span>Risk<a class="headerlink" href="#risk" title="Link to this heading">#</a></h3>
+<h3>Risk<a class="headerlink" href="#risk" title="Link to this heading">#</a></h3>
 <p>A key task for a business leaders is to anticipate and manage various risks.</p>
 <p>Risk exposure matters when a decision can change ones exposure to risk.</p>
 <p>In the case of weather, an automated, decent prediction right now is preferable; the human only gets involved in extreme events.
@@ -582,7 +582,7 @@ Or risk can be managed with <strong>protection</strong>, where you take actions 
 <p>Prediction machines will provide new and better methods for managing risk.</p>
 <p><img alt="Average payoff from taking or leaving an umbrella" src="https://images.squarespace-cdn.com/content/v1/59d6456137c581acfcef3422/1541255131938-N61GEXKOS0ON05RLXDSI/Figure+7-3.png" /></p>
 <section id="uncertainty">
-<h4><span class="section-number">2.2.3.1. </span>Uncertainty<a class="headerlink" href="#uncertainty" title="Link to this heading">#</a></h4>
+<h4>Uncertainty<a class="headerlink" href="#uncertainty" title="Link to this heading">#</a></h4>
 <p>Perhaps the biggest weakness of prediction machines is the high confidence they can have in a wrong answer.</p>
 <p>Uncertainty means you need judgement when the prediction turns out to be wrong, not just when it is correct.
 Uncertainty increases the cost of judging a payoff for a given decision.</p>
@@ -629,7 +629,7 @@ Sub-bullets are added.</p>
 <p>Here is a similar visual representation:</p>
 <p><img alt="Microchip Basic Machine Learning Workflow - https://developerhelp.microchip.com/xwiki/bin/view/applications/machine-learning/basic-machine-learning-workflow/#Ibasic_ml_workflow.png" src="../_images/basic_ml_workflow.png" /></p>
 <section id="ml-workflow-into-prediction">
-<h3><span class="section-number">2.3.1. </span>ML Workflow into Prediction<a class="headerlink" href="#ml-workflow-into-prediction" title="Link to this heading">#</a></h3>
+<h3>ML Workflow into Prediction<a class="headerlink" href="#ml-workflow-into-prediction" title="Link to this heading">#</a></h3>
 <p>Again,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -693,7 +693,7 @@ control</strong>, and <strong>decentralized execution</strong>.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>K-Means Clustering</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>ICE: K-Means Clustering</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -714,30 +714,30 @@ control</strong>, and <strong>decentralized execution</strong>.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">2.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">2.1.1. Objectives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-machines">2.2. Prediction Machines</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#our-role-as-commanders">2.2.1. Our role as commanders</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#from-doctrine">2.2.1.1. From Doctrine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#our-role-as-commanders">Our role as commanders</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#from-doctrine">From Doctrine</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-a-decision">2.2.2. Making a Decision</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction">2.2.2.1. Prediction</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-of-prediction">2.2.2.1.1. Accuracy of prediction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-a-decision">Making a Decision</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction">Prediction</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-of-prediction">Accuracy of prediction</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#judgement">2.2.2.2. Judgement</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#judgement">Judgement</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#risk">2.2.3. Risk</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty">2.2.3.1. Uncertainty</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#risk">Risk</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty">Uncertainty</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-workflow">2.3. Machine Learning Workflow</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ml-workflow-into-prediction">2.3.1. ML Workflow into Prediction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ml-workflow-into-prediction">ML Workflow into Prediction</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closing-thought-from-afpd-1">2.4. Closing thought from AFPD-1</a></li>

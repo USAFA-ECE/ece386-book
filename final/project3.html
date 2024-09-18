@@ -186,9 +186,9 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">3. K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/dimensionality.html">4. Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">5. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">3. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">4. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/flask.html">5. Lab: Serving Digits with Flask</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
@@ -434,11 +434,11 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">29.1. Objectives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">29.2. Grading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-plan">29.2.1. Project Plan</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-and-models">29.2.2. Datasets and Models</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-implementation">29.2.3. Model Implementation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-application">29.2.4. Model Application</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-demonstration">29.2.5. Final Demonstration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-plan">Project Plan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-and-models">Datasets and Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-implementation">Model Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-application">Model Application</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-demonstration">Final Demonstration</a></li>
 </ul>
 </li>
 </ul>
@@ -489,7 +489,7 @@ or a Jupyter Notebook that outputs the byte model for TF Lite Micro on Arduino.<
 <p><strong>No, wait!</strong> Instead we will have checkpoints with deliverables designed to help you win.</p>
 <p>Each checkpoint will be submitted on Gradescope.</p>
 <section id="project-plan">
-<h3><span class="section-number">29.2.1. </span>Project Plan<a class="headerlink" href="#project-plan" title="Link to this heading">#</a></h3>
+<h3>Project Plan<a class="headerlink" href="#project-plan" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Identify what problem you are trying to solve.</p></li>
 <li><p>Discuss the problem in the context of prediction, judgement, and decision.</p></li>
@@ -499,7 +499,7 @@ or a Jupyter Notebook that outputs the byte model for TF Lite Micro on Arduino.<
 <p><img alt="Prediction Machines Anatomy of a Task" src="../_images/anatomy-of-task.png" /></p>
 </section>
 <section id="datasets-and-models">
-<h3><span class="section-number">29.2.2. </span>Datasets and Models<a class="headerlink" href="#datasets-and-models" title="Link to this heading">#</a></h3>
+<h3>Datasets and Models<a class="headerlink" href="#datasets-and-models" title="Link to this heading">#</a></h3>
 <p>You must do one of the following</p>
 <ul class="simple">
 <li><p>Use transfer learning <strong>or</strong></p></li>
@@ -512,16 +512,16 @@ or a Jupyter Notebook that outputs the byte model for TF Lite Micro on Arduino.<
 </ol>
 </section>
 <section id="model-implementation">
-<h3><span class="section-number">29.2.3. </span>Model Implementation<a class="headerlink" href="#model-implementation" title="Link to this heading">#</a></h3>
+<h3>Model Implementation<a class="headerlink" href="#model-implementation" title="Link to this heading">#</a></h3>
 <p>Get the model working!</p>
 </section>
 <section id="model-application">
-<h3><span class="section-number">29.2.4. </span>Model Application<a class="headerlink" href="#model-application" title="Link to this heading">#</a></h3>
+<h3>Model Application<a class="headerlink" href="#model-application" title="Link to this heading">#</a></h3>
 <p>Wrap your working model with some logic that makes the results of the prediction available to the user.
 This should work towards the goal you described in the first checkpoint.</p>
 </section>
 <section id="final-demonstration">
-<h3><span class="section-number">29.2.5. </span>Final Demonstration<a class="headerlink" href="#final-demonstration" title="Link to this heading">#</a></h3>
+<h3>Final Demonstration<a class="headerlink" href="#final-demonstration" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Demonstrate your application to the class</p></li>
 <li><p>Push code to GitHub</p></li>
@@ -597,11 +597,11 @@ This should work towards the goal you described in the first checkpoint.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">29.1. Objectives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">29.2. Grading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-plan">29.2.1. Project Plan</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-and-models">29.2.2. Datasets and Models</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-implementation">29.2.3. Model Implementation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-application">29.2.4. Model Application</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-demonstration">29.2.5. Final Demonstration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-plan">Project Plan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-and-models">Datasets and Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-implementation">Model Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-application">Model Application</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-demonstration">Final Demonstration</a></li>
 </ul>
 </li>
 </ul>

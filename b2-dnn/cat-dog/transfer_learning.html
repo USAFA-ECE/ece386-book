@@ -184,9 +184,9 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../b1-prediction/prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../b1-prediction/kmeans.html">3. K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../b1-prediction/dimensionality.html">4. Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../b1-prediction/mnist-dnn.html">5. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../b1-prediction/kmeans.html">3. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../b1-prediction/mnist-dnn.html">4. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../b1-prediction/flask.html">5. Lab: Serving Digits with Flask</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../b1-prediction/cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
@@ -464,27 +464,27 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">9.1. Pre-reading</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">9.2. Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing">9.3. Data preprocessing</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-download">9.3.1. Data download</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-the-dataset-for-performance">9.3.2. Configure the dataset for performance</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-data-augmentation">9.3.3. Use data augmentation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rescale-pixel-values">9.3.4. Rescale pixel values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-download">Data download</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-the-dataset-for-performance">Configure the dataset for performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-data-augmentation">Use data augmentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rescale-pixel-values">Rescale pixel values</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-base-model-from-the-pre-trained-convnets">9.4. Create the base model from the pre-trained convnets</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-extraction">9.5. Feature extraction</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#freeze-the-convolutional-base">9.5.1. Freeze the convolutional base</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-note-about-batchnormalization-layers">9.5.2. Important note about BatchNormalization layers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-classification-head">9.5.3. Add a classification head</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-the-model">9.5.4. Compile the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">9.5.5. Train the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-curves">9.5.6. Learning curves</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#freeze-the-convolutional-base">Freeze the convolutional base</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-note-about-batchnormalization-layers">Important note about BatchNormalization layers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-classification-head">Add a classification head</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-the-model">Compile the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">Train the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-curves">Learning curves</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning">9.6. Fine tuning</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-freeze-the-top-layers-of-the-model">9.6.1. Un-freeze the top layers of the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">9.6.2. Compile the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue-training-the-model">9.6.3. Continue training the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-and-prediction">9.6.4. Evaluation and prediction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-freeze-the-top-layers-of-the-model">Un-freeze the top layers of the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Compile the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue-training-the-model">Continue training the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-and-prediction">Evaluation and prediction</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-model">9.7. Save the model</a></li>
@@ -549,7 +549,7 @@ document.write(`
 <section id="data-preprocessing">
 <h2><span class="section-number">9.3. </span>Data preprocessing<a class="headerlink" href="#data-preprocessing" title="Link to this heading">#</a></h2>
 <section id="data-download">
-<h3><span class="section-number">9.3.1. </span>Data download<a class="headerlink" href="#data-download" title="Link to this heading">#</a></h3>
+<h3>Data download<a class="headerlink" href="#data-download" title="Link to this heading">#</a></h3>
 <p>In this tutorial, you will use a dataset containing several thousand images of cats and dogs. Download and extract a zip file containing the images, then create a <code class="docutils literal notranslate"><span class="pre">tf.data.Dataset</span></code> for training and validation using the <code class="docutils literal notranslate"><span class="pre">tf.keras.utils.image_dataset_from_directory</span></code> utility. You can learn more about loading images in this <a class="reference external" href="https://www.tensorflow.org/tutorials/load_data/images">tutorial</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -618,7 +618,7 @@ document.write(`
 </div>
 </section>
 <section id="configure-the-dataset-for-performance">
-<h3><span class="section-number">9.3.2. </span>Configure the dataset for performance<a class="headerlink" href="#configure-the-dataset-for-performance" title="Link to this heading">#</a></h3>
+<h3>Configure the dataset for performance<a class="headerlink" href="#configure-the-dataset-for-performance" title="Link to this heading">#</a></h3>
 <p>Use buffered prefetching to load images from disk without having I/O become blocking. To learn more about this method see the <a class="reference external" href="https://www.tensorflow.org/guide/data_performance">data performance</a> guide.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -633,7 +633,7 @@ document.write(`
 </div>
 </section>
 <section id="use-data-augmentation">
-<h3><span class="section-number">9.3.3. </span>Use data augmentation<a class="headerlink" href="#use-data-augmentation" title="Link to this heading">#</a></h3>
+<h3>Use data augmentation<a class="headerlink" href="#use-data-augmentation" title="Link to this heading">#</a></h3>
 <p>When you don’t have a large image dataset, it’s a good practice to artificially introduce sample diversity by applying random, yet realistic, transformations to the training images, such as rotation and horizontal flipping. This helps expose the model to different aspects of the training data and reduce <a class="reference external" href="https://www.tensorflow.org/tutorials/keras/overfit_and_underfit">overfitting</a>. You can learn more about data augmentation in this <a class="reference external" href="https://www.tensorflow.org/tutorials/images/data_augmentation">tutorial</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -665,7 +665,7 @@ document.write(`
 </div>
 </section>
 <section id="rescale-pixel-values">
-<h3><span class="section-number">9.3.4. </span>Rescale pixel values<a class="headerlink" href="#rescale-pixel-values" title="Link to this heading">#</a></h3>
+<h3>Rescale pixel values<a class="headerlink" href="#rescale-pixel-values" title="Link to this heading">#</a></h3>
 <p>In a moment, you will download <code class="docutils literal notranslate"><span class="pre">tf.keras.applications.MobileNetV2</span></code> for use as your base model. This model expects pixel values in <code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">1]</span></code>, but at this point, the pixel values in your images are in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">255]</span></code>. To rescale them, use the preprocessing method included with the model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -716,7 +716,7 @@ document.write(`
 <h2><span class="section-number">9.5. </span>Feature extraction<a class="headerlink" href="#feature-extraction" title="Link to this heading">#</a></h2>
 <p>In this step, you will freeze the convolutional base created from the previous step and to use as a feature extractor. Additionally, you add a classifier on top of it and train the top-level classifier.</p>
 <section id="freeze-the-convolutional-base">
-<h3><span class="section-number">9.5.1. </span>Freeze the convolutional base<a class="headerlink" href="#freeze-the-convolutional-base" title="Link to this heading">#</a></h3>
+<h3>Freeze the convolutional base<a class="headerlink" href="#freeze-the-convolutional-base" title="Link to this heading">#</a></h3>
 <p>It is important to freeze the convolutional base before you compile and train the model. Freezing (by setting layer.trainable = False) prevents the weights in a given layer from being updated during training. MobileNet V2 has many layers, so setting the entire model’s <code class="docutils literal notranslate"><span class="pre">trainable</span></code> flag to False will freeze all of them.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -727,7 +727,7 @@ document.write(`
 </div>
 </section>
 <section id="important-note-about-batchnormalization-layers">
-<h3><span class="section-number">9.5.2. </span>Important note about BatchNormalization layers<a class="headerlink" href="#important-note-about-batchnormalization-layers" title="Link to this heading">#</a></h3>
+<h3>Important note about BatchNormalization layers<a class="headerlink" href="#important-note-about-batchnormalization-layers" title="Link to this heading">#</a></h3>
 <p>Many models contain <code class="docutils literal notranslate"><span class="pre">tf.keras.layers.BatchNormalization</span></code> layers. This layer is a special case and precautions should be taken in the context of fine-tuning, as shown later in this tutorial.</p>
 <p>When you set <code class="docutils literal notranslate"><span class="pre">layer.trainable</span> <span class="pre">=</span> <span class="pre">False</span></code>, the <code class="docutils literal notranslate"><span class="pre">BatchNormalization</span></code> layer will run in inference mode, and will not update its mean and variance statistics.</p>
 <p>When you unfreeze a model that contains BatchNormalization layers in order to do fine-tuning, you should keep the BatchNormalization layers in inference mode by passing <code class="docutils literal notranslate"><span class="pre">training</span> <span class="pre">=</span> <span class="pre">False</span></code> when calling the base model. Otherwise, the updates applied to the non-trainable weights will destroy what the model has learned.</p>
@@ -742,7 +742,7 @@ document.write(`
 </div>
 </section>
 <section id="add-a-classification-head">
-<h3><span class="section-number">9.5.3. </span>Add a classification head<a class="headerlink" href="#add-a-classification-head" title="Link to this heading">#</a></h3>
+<h3>Add a classification head<a class="headerlink" href="#add-a-classification-head" title="Link to this heading">#</a></h3>
 <p>To generate predictions from the block of features, average over the spatial <code class="docutils literal notranslate"><span class="pre">5x5</span></code> spatial locations, using a <code class="docutils literal notranslate"><span class="pre">tf.keras.layers.GlobalAveragePooling2D</span></code> layer to convert the features to  a single 1280-element vector per image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -780,7 +780,7 @@ document.write(`
 </div>
 </section>
 <section id="compile-the-model">
-<h3><span class="section-number">9.5.4. </span>Compile the model<a class="headerlink" href="#compile-the-model" title="Link to this heading">#</a></h3>
+<h3>Compile the model<a class="headerlink" href="#compile-the-model" title="Link to this heading">#</a></h3>
 <p>Compile the model before training it. Since there are two classes, use the <code class="docutils literal notranslate"><span class="pre">tf.keras.losses.BinaryCrossentropy</span></code> loss with <code class="docutils literal notranslate"><span class="pre">from_logits=True</span></code> since the model provides a linear output.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -811,7 +811,7 @@ document.write(`
 </div>
 </section>
 <section id="train-the-model">
-<h3><span class="section-number">9.5.5. </span>Train the model<a class="headerlink" href="#train-the-model" title="Link to this heading">#</a></h3>
+<h3>Train the model<a class="headerlink" href="#train-the-model" title="Link to this heading">#</a></h3>
 <p>After training for 10 epochs, you should see ~94% accuracy on the validation set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -841,7 +841,7 @@ document.write(`
 </div>
 </section>
 <section id="learning-curves">
-<h3><span class="section-number">9.5.6. </span>Learning curves<a class="headerlink" href="#learning-curves" title="Link to this heading">#</a></h3>
+<h3>Learning curves<a class="headerlink" href="#learning-curves" title="Link to this heading">#</a></h3>
 <p>Let’s take a look at the learning curves of the training and validation accuracy/loss when using the MobileNetV2 base model as a fixed feature extractor.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -884,7 +884,7 @@ document.write(`
 <p>Note: This should only be attempted after you have trained the top-level classifier with the pre-trained model set to non-trainable. If you add a randomly initialized classifier on top of a pre-trained model and attempt to train all layers jointly, the magnitude of the gradient updates will be too large (due to the random weights from the classifier) and your pre-trained model will forget what it has learned.</p>
 <p>Also, you should try to fine-tune a small number of top layers rather than the whole MobileNet model. In most convolutional networks, the higher up a layer is, the more specialized it is. The first few layers learn very simple and generic features that generalize to almost all types of images. As you go higher up, the features are increasingly more specific to the dataset on which the model was trained. The goal of fine-tuning is to adapt these specialized features to work with the new dataset, rather than overwrite the generic learning.</p>
 <section id="un-freeze-the-top-layers-of-the-model">
-<h3><span class="section-number">9.6.1. </span>Un-freeze the top layers of the model<a class="headerlink" href="#un-freeze-the-top-layers-of-the-model" title="Link to this heading">#</a></h3>
+<h3>Un-freeze the top layers of the model<a class="headerlink" href="#un-freeze-the-top-layers-of-the-model" title="Link to this heading">#</a></h3>
 <p>All you need to do is unfreeze the <code class="docutils literal notranslate"><span class="pre">base_model</span></code> and set the bottom layers to be un-trainable. Then, you should recompile the model (necessary for these changes to take effect), and resume training.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -910,7 +910,7 @@ document.write(`
 </div>
 </section>
 <section id="id1">
-<h3><span class="section-number">9.6.2. </span>Compile the model<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<h3>Compile the model<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>As you are training a much larger model and want to readapt the pretrained weights, it is important to use a lower learning rate at this stage. Otherwise, your model could overfit very quickly.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -939,7 +939,7 @@ document.write(`
 </div>
 </section>
 <section id="continue-training-the-model">
-<h3><span class="section-number">9.6.3. </span>Continue training the model<a class="headerlink" href="#continue-training-the-model" title="Link to this heading">#</a></h3>
+<h3>Continue training the model<a class="headerlink" href="#continue-training-the-model" title="Link to this heading">#</a></h3>
 <p>If you trained to convergence earlier, this step will improve your accuracy by a few percentage points.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1000,7 +1000,7 @@ document.write(`
 </div>
 </section>
 <section id="evaluation-and-prediction">
-<h3><span class="section-number">9.6.4. </span>Evaluation and prediction<a class="headerlink" href="#evaluation-and-prediction" title="Link to this heading">#</a></h3>
+<h3>Evaluation and prediction<a class="headerlink" href="#evaluation-and-prediction" title="Link to this heading">#</a></h3>
 <p>Finally you can verify the performance of the model on new data using test set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1136,27 +1136,27 @@ In this case, you tuned your weights such that your model learned high-level fea
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">9.1. Pre-reading</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">9.2. Overview</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing">9.3. Data preprocessing</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-download">9.3.1. Data download</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-the-dataset-for-performance">9.3.2. Configure the dataset for performance</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-data-augmentation">9.3.3. Use data augmentation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rescale-pixel-values">9.3.4. Rescale pixel values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-download">Data download</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-the-dataset-for-performance">Configure the dataset for performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-data-augmentation">Use data augmentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rescale-pixel-values">Rescale pixel values</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-base-model-from-the-pre-trained-convnets">9.4. Create the base model from the pre-trained convnets</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-extraction">9.5. Feature extraction</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#freeze-the-convolutional-base">9.5.1. Freeze the convolutional base</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-note-about-batchnormalization-layers">9.5.2. Important note about BatchNormalization layers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-classification-head">9.5.3. Add a classification head</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-the-model">9.5.4. Compile the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">9.5.5. Train the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-curves">9.5.6. Learning curves</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#freeze-the-convolutional-base">Freeze the convolutional base</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-note-about-batchnormalization-layers">Important note about BatchNormalization layers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-classification-head">Add a classification head</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-the-model">Compile the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">Train the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-curves">Learning curves</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning">9.6. Fine tuning</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-freeze-the-top-layers-of-the-model">9.6.1. Un-freeze the top layers of the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">9.6.2. Compile the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue-training-the-model">9.6.3. Continue training the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-and-prediction">9.6.4. Evaluation and prediction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-freeze-the-top-layers-of-the-model">Un-freeze the top layers of the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Compile the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue-training-the-model">Continue training the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-and-prediction">Evaluation and prediction</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-model">9.7. Save the model</a></li>

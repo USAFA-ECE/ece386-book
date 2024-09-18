@@ -184,9 +184,9 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">3. K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/dimensionality.html">4. Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">5. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">3. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">4. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/flask.html">5. Lab: Serving Digits with Flask</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
@@ -431,21 +431,21 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">16.1. Pre-reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">16.1.1. Objectives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lesson">16.2. The Lesson</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependency-management">16.2.1. Dependency Management</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-containerization">16.2.2. What is containerization?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">16.2.3. Docker</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-engine">16.2.3.1. Docker Engine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependency-management">Dependency Management</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-containerization">What is containerization?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">Docker</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-engine">Docker Engine</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-dockerfile">16.2.4. Build Dockerfile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-dockerfile">Build Dockerfile</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tensorflow-on-jetson">16.3. Tensorflow on Jetson</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">16.3.1. Hello World</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">Hello World</a></li>
 </ul>
 </li>
 </ul>
@@ -467,7 +467,7 @@ document.write(`
 <li><p><a class="reference external" href="https://docs.docker.com/get-started/overview/">Docker overview</a></p></li>
 </ul>
 <section id="objectives">
-<h3><span class="section-number">16.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
+<h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Describe the difficulties with dependency management</p></li>
 <li><p>Explain what a container is and how it is different from a virtual machine</p></li>
@@ -478,7 +478,7 @@ document.write(`
 <section id="the-lesson">
 <h2><span class="section-number">16.2. </span>The Lesson<a class="headerlink" href="#the-lesson" title="Link to this heading">#</a></h2>
 <section id="dependency-management">
-<h3><span class="section-number">16.2.1. </span>Dependency Management<a class="headerlink" href="#dependency-management" title="Link to this heading">#</a></h3>
+<h3>Dependency Management<a class="headerlink" href="#dependency-management" title="Link to this heading">#</a></h3>
 <p>Managing dependencies is extremely challenging for complex projects.</p>
 <p>The challenge is even greater when you have specific builds
 trying to take advantage of hardware.</p>
@@ -510,7 +510,7 @@ keeping them separate from other projects or from the system!</p>
 <p><img alt="ship your machine" src="https://pbs.twimg.com/media/FPKqqiFX0AMRBu4?format=png" /></p>
 </section>
 <section id="what-is-containerization">
-<h3><span class="section-number">16.2.2. </span>What is containerization?<a class="headerlink" href="#what-is-containerization" title="Link to this heading">#</a></h3>
+<h3>What is containerization?<a class="headerlink" href="#what-is-containerization" title="Link to this heading">#</a></h3>
 <p>Virtual machines run <strong>a complete operating system–including its own kernel–</strong> on top of a hypervisor.</p>
 <p><img alt="Virtual machine architecture" src="https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/media/virtual-machine-diagram.svg" /></p>
 <p>In contrast, <strong>containers build on top of the host operating system’s kernel.</strong></p>
@@ -518,7 +518,7 @@ keeping them separate from other projects or from the system!</p>
 <p>Both offer benefits with isolation and portability, however there are <a class="reference external" href="https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/containers-vs-vm#containers-vs-virtual-machines-1">some key differences</a>.</p>
 </section>
 <section id="docker">
-<h3><span class="section-number">16.2.3. </span>Docker<a class="headerlink" href="#docker" title="Link to this heading">#</a></h3>
+<h3>Docker<a class="headerlink" href="#docker" title="Link to this heading">#</a></h3>
 <p>Docker has <em>completely revolutionized</em> the way the world operates software applications.</p>
 <ul class="simple">
 <li><p><strong>Docker Inc.</strong> is an American company that offers products such as Docker Hub and Docker Desktop.</p></li>
@@ -528,7 +528,7 @@ keeping them separate from other projects or from the system!</p>
 </ul>
 <p><img alt="docker future" src="https://thinkr.fr/wp-content/uploads/2019/07/back-to-the-future-docker.jpg" /></p>
 <section id="docker-engine">
-<h4><span class="section-number">16.2.3.1. </span>Docker Engine<a class="headerlink" href="#docker-engine" title="Link to this heading">#</a></h4>
+<h4>Docker Engine<a class="headerlink" href="#docker-engine" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><p>Docker Engine is an open source containerization technology for building and containerizing your applications. Docker Engine acts as a client-server application with:</p>
 <ul class="simple">
@@ -580,7 +580,7 @@ instead of a daemon and the ability to run rootless.</p>
 </section>
 </section>
 <section id="build-dockerfile">
-<h3><span class="section-number">16.2.4. </span>Build Dockerfile<a class="headerlink" href="#build-dockerfile" title="Link to this heading">#</a></h3>
+<h3>Build Dockerfile<a class="headerlink" href="#build-dockerfile" title="Link to this heading">#</a></h3>
 <p>What if you want to customize your container?</p>
 <p>Remember <strong>containers are supposed to be immutable</strong> so
 you shouldn’t modify them while running.</p>
@@ -614,7 +614,7 @@ Then you can pull it to somewhere else!</p>
 They can be found at <a class="reference external" href="https://catalog.ngc.nvidia.com/containers">NVIDIA NCG Catalog</a>.</p>
 <p>Here is a Hello World for GPU acceleration on the Jetson Orin Nano:</p>
 <section id="hello-world">
-<h3><span class="section-number">16.3.1. </span>Hello World<a class="headerlink" href="#hello-world" title="Link to this heading">#</a></h3>
+<h3>Hello World<a class="headerlink" href="#hello-world" title="Link to this heading">#</a></h3>
 <p>Browse to <a class="reference external" href="https://catalog.ngc.nvidia.com/orgs/nvidia/containers/l4t-tensorflow">Tensorflow Container for Jetson and Jetpack</a>.
 Read the page and check to make sure version match up.</p>
 <p>Pull the image… it’s several GB…</p>
@@ -705,21 +705,21 @@ python3<span class="w"> </span>tf_gpu_hello.py
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">16.1. Pre-reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">16.1.1. Objectives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lesson">16.2. The Lesson</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependency-management">16.2.1. Dependency Management</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-containerization">16.2.2. What is containerization?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">16.2.3. Docker</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-engine">16.2.3.1. Docker Engine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependency-management">Dependency Management</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-containerization">What is containerization?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">Docker</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-engine">Docker Engine</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-dockerfile">16.2.4. Build Dockerfile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-dockerfile">Build Dockerfile</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tensorflow-on-jetson">16.3. Tensorflow on Jetson</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">16.3.1. Hello World</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">Hello World</a></li>
 </ul>
 </li>
 </ul>

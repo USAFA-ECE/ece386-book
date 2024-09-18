@@ -184,9 +184,9 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">3. K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/dimensionality.html">4. Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">5. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">3. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">4. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/flask.html">5. Lab: Serving Digits with Flask</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
@@ -431,16 +431,16 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">25.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">25.1.1. Objectives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-expenses">25.2. Hardware Expenses</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-quantization">25.2.1. Advanced Quantization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-containment-for-generative-ai">25.2.2. Cost Containment for Generative AI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-quantization">Advanced Quantization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-containment-for-generative-ai">Cost Containment for Generative AI</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">25.3. Prompt Engineering</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-vs-few-shot">25.3.1. Zero-shot vs. few-shot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-vs-few-shot">Zero-shot vs. few-shot</a></li>
 </ul>
 </li>
 </ul>
@@ -462,7 +462,7 @@ document.write(`
 <li><p><a class="reference external" href="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api">Best practices for prompt engineering with OpenAI API</a></p></li>
 </ul>
 <section id="objectives">
-<h3><span class="section-number">25.1.1. </span>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
+<h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Explain hardware limits and challenges with LLMs.</p></li>
 <li><p>Employ simple prompt engineering tactics to produce better LLM results.</p></li>
@@ -512,12 +512,12 @@ document.write(`
 </div>
 <p><img alt="Buy NVIDIA GPUs" src="../_images/buy_nvidia.png" /></p>
 <section id="advanced-quantization">
-<h3><span class="section-number">25.2.1. </span>Advanced Quantization<a class="headerlink" href="#advanced-quantization" title="Link to this heading">#</a></h3>
+<h3>Advanced Quantization<a class="headerlink" href="#advanced-quantization" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://huggingface.co/blog/4bit-transformers-bitsandbytes">Hugging Face Bits and Bytes</a> can make these models much smaller.</p>
 <p><img alt="Floating point formats" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/bitsandbytes/FP8-scheme.png" /></p>
 </section>
 <section id="cost-containment-for-generative-ai">
-<h3><span class="section-number">25.2.2. </span>Cost Containment for Generative AI<a class="headerlink" href="#cost-containment-for-generative-ai" title="Link to this heading">#</a></h3>
+<h3>Cost Containment for Generative AI<a class="headerlink" href="#cost-containment-for-generative-ai" title="Link to this heading">#</a></h3>
 <p>From DeepLearning AI’s <a class="reference external" href="https://info.deeplearning.ai/ai-for-brain-surgery-microsofts-chatgpt-bill-googles-generative-phones-better-prompts"><em>The Batch</em> newsletter</a></p>
 <blockquote>
 <div><p>Microsoft is looking to control the expense of its reliance on OpenAI’s models.</p>
@@ -530,7 +530,7 @@ document.write(`
 <h2><span class="section-number">25.3. </span>Prompt Engineering<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>Pulled from <a class="reference external" href="https://developer.nvidia.com/blog/an-introduction-to-large-language-models-prompt-engineering-and-p-tuning/">NVIDIA – An Introduction to LLM: Prompt Engineering and P-Tuning</a></p>
 <section id="zero-shot-vs-few-shot">
-<h3><span class="section-number">25.3.1. </span>Zero-shot vs. few-shot<a class="headerlink" href="#zero-shot-vs-few-shot" title="Link to this heading">#</a></h3>
+<h3>Zero-shot vs. few-shot<a class="headerlink" href="#zero-shot-vs-few-shot" title="Link to this heading">#</a></h3>
 <p><img alt="Few-shot" src="../_images/few-shot.png" /></p>
 <p>Now time for a live demo!</p>
 </section>
@@ -602,16 +602,16 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">25.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">25.1.1. Objectives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-expenses">25.2. Hardware Expenses</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-quantization">25.2.1. Advanced Quantization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-containment-for-generative-ai">25.2.2. Cost Containment for Generative AI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-quantization">Advanced Quantization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-containment-for-generative-ai">Cost Containment for Generative AI</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">25.3. Prompt Engineering</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-vs-few-shot">25.3.1. Zero-shot vs. few-shot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-vs-few-shot">Zero-shot vs. few-shot</a></li>
 </ul>
 </li>
 </ul>

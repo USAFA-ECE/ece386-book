@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>20. M4-Cortex Processor &#8212; ECE 386</title>
+    <title>5. Lab: Serving Digits with Flask &#8212; ECE 386</title>
   
   
   
@@ -57,12 +57,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tfm/m4-cortex';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'b1-prediction/flask';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="21. Wake Word Detection" href="wake-word.html" />
-    <link rel="prev" title="19. YOLO" href="../jetson/yolo.html" />
+    <link rel="next" title="6. C&amp;C: Prediction and Dimensionality" href="cc-prediction.html" />
+    <link rel="prev" title="4. Neural Networks" href="mnist-dnn.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -181,13 +181,13 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Prediction</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">3. ICE: K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">4. Neural Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/flask.html">5. Lab: Serving Digits with Flask</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="hello-colab.html">1. Hello, Colab!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmeans.html">3. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mnist-dnn.html">4. Neural Networks</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Lab: Serving Digits with Flask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
 <ul class="nav bd-sidenav">
@@ -209,9 +209,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">19. YOLO</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">20. M4-Cortex Processor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wake-word.html">21. Wake Word Detection</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">20. M4-Cortex Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">21. Wake Word Detection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="nav bd-sidenav">
@@ -281,6 +281,37 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/usafa-ece/ai-hardware/blob/main/book/b1-prediction/flask.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -306,7 +337,7 @@
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Ftfm/m4-cortex.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fb1-prediction/flask.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -336,7 +367,7 @@
       
       
       
-      <li><a href="../_sources/tfm/m4-cortex.md" target="_blank"
+      <li><a href="../_sources/b1-prediction/flask.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -346,7 +377,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -420,7 +451,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>M4-Cortex Processor</h1>
+    <h1>Lab: Serving Digits with Flask</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -430,8 +461,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">20.1. Pre-reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">5.1. Pre-reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#colab-demo">5.2. Colab Demo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-a-terminal">Get a terminal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-python-script">Create python script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-script">Run the script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hit-the-api">Hit the API</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-lab">5.3. Pre-lab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">5.4. Lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#server">Server</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#client">Client</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">Deliverables</a></li>
 </ul>
 </li>
 </ul>
@@ -445,16 +487,188 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="m4-cortex-processor">
-<h1><span class="section-number">20. </span>M4-Cortex Processor<a class="headerlink" href="#m4-cortex-processor" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-serving-digits-with-flask">
+<h1><span class="section-number">5. </span>Lab: Serving Digits with Flask<a class="headerlink" href="#lab-serving-digits-with-flask" title="Link to this heading">#</a></h1>
+<p>Previously we made a model. Now it’s time to serve it so others can use it!</p>
 <section id="pre-reading">
-<h2><span class="section-number">20.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="https://www.arm.com/-/media/Arm%20Developer%20Community/PDF/Processor%20Datasheets/Arm%20Cortex-M4%20Processor%20Datasheet.pdf">Arm Cortex-M4 Datasheet</a></p>
-<section id="objectives">
-<h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
+<h2><span class="section-number">5.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Understand power and compute constraints on embedded systems</p></li>
-<li><p>Describe how M4 Cortex Processor is optimized for TF Lite Ops</p></li>
+<li><p>IBM’s <a class="reference external" href="https://www.ibm.com/topics/api">What is an API (application programming interface)?</a></p></li>
+</ul>
+</section>
+<section id="colab-demo">
+<h2><span class="section-number">5.2. </span>Colab Demo<a class="headerlink" href="#colab-demo" title="Link to this heading">#</a></h2>
+<p>This exercise simply demonstrates how to serve a flask app in Google Colab.</p>
+<section id="get-a-terminal">
+<h3>Get a terminal<a class="headerlink" href="#get-a-terminal" title="Link to this heading">#</a></h3>
+<p>First, we install <a class="reference external" href="https://github.com/InfuseAI/colab-xterm">colab-xterm</a>, which allows us to have an interactive terminal.
+We will need this to run the flask process, since normally colab runs a process and then kills it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">q</span> <span class="n">colab</span><span class="o">-</span><span class="n">xterm</span>
+<span class="o">%</span><span class="n">load_ext</span> <span class="n">colabxterm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">xterm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should now have an interactive terminal! Run a command in it, such as</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">pwd</span>
+</pre></div>
+</div>
+</section>
+<section id="create-python-script">
+<h3>Create python script<a class="headerlink" href="#create-python-script" title="Link to this heading">#</a></h3>
+<p>Next we will create the python file. Run the command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>server.py
+</pre></div>
+</div>
+<p>Vim is a ubiquitous text editor in linux systems. Enter insert mode by pressing the <strong>i</strong> key.
+Then paste in this code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s1">&#39;Hello, World!&#39;</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8890</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p>Figure out <a class="reference external" href="https://trends.google.com/trends/explore?date=today%205-y&amp;amp;q=how%20to%20exit%20vim&amp;amp;hl=en">how to exit Vim</a>.</p>
+<p>Once you exit the file, you can make sure you saved it properly with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>server.py
+</pre></div>
+</div>
+</section>
+<section id="run-the-script">
+<h3>Run the script<a class="headerlink" href="#run-the-script" title="Link to this heading">#</a></h3>
+<p>In production, you would query a domain and <a class="reference external" href="https://www.cloudflare.com/learning/dns/what-is-dns/">DNS</a> would resolve that to an IP address. But since we are just doing testing, simply look at what your IP address is with this command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ip<span class="w"> </span>a
+</pre></div>
+</div>
+<p>It shows a loopback at <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code> (this is a reserved address and <em>always</em> means “myself”).
+You will also see an eth0 address that probably starts with <code class="docutils literal notranslate"><span class="pre">172.</span></code>. This subnet is reserved for local networks.
+In production, this would be a public IP address, but this will work for now… we are just going to talk to ourselves.</p>
+<p>Run the script!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>server.py
+</pre></div>
+</div>
+<p>You should see something starting like:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Serving Flask app ‘server’
+…
+Press CTRL+C to quit</p></li>
+</ul>
+</div></blockquote>
+<p>Notice that the app accepts incoming connections on both IP interfaces.</p>
+</section>
+<section id="hit-the-api">
+<h3>Hit the API<a class="headerlink" href="#hit-the-api" title="Link to this heading">#</a></h3>
+<p>Now it’s time to connect to the API endpoint and see what we get!</p>
+<p>Down the road we’ll do this with Python, but for our quick test, just run the below cell.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">curl</span> <span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8890</span><span class="o">/</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should see a glorious <strong>Hello, World!</strong> returned!</p>
+<p>Back in your terminal, you should also see a “GET” request from yourself that was answered with a “200 OK” status code.
+You don’t need to go in-depth on <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418">HTTP response status codes</a>, but</p>
+<ul class="simple">
+<li><p>100s for info</p></li>
+<li><p>200s for success</p></li>
+<li><p>300s for redirect</p></li>
+<li><p>400s for client error</p></li>
+<li><p>500s for server error</p></li>
+</ul>
+<p>So a “404 Not Found” error is your fault, as the client, because you requested something that doesn’t exist!</p>
+</section>
+</section>
+<section id="pre-lab">
+<h2><span class="section-number">5.3. </span>Pre-lab<a class="headerlink" href="#pre-lab" title="Link to this heading">#</a></h2>
+<p>For this lab, you will serve your previously trained MNIST digits model.</p>
+<ol class="arabic simple">
+<li><p>Make your own copy of the template repository: <a class="github reference external" href="https://github.com/USAFA-ECE/ece386-lab01">USAFA-ECE/ece386-lab01</a></p></li>
+<li><p>Commit your Keras neural network model for predicting digits into <code class="docutils literal notranslate"><span class="pre">server/digits.keras</span></code></p></li>
+<li><p>Make four images of different handwritten digits and place them into <code class="docutils literal notranslate"><span class="pre">client/img/</span></code></p></li>
+</ol>
+</section>
+<section id="lab">
+<h2><span class="section-number">5.4. </span>Lab<a class="headerlink" href="#lab" title="Link to this heading">#</a></h2>
+<p>This lab will require significant self-learning! You’ll absolutely need to spend time reading documentation.</p>
+<p>Large Language Models (such as ChatGPT or Claude) are authorized for clarifying questions and how to do very specific things, <em>but</em> you cannot ask for a large chunk of the program. Furthermore, you <strong>must document in the README by:</strong></p>
+<ol class="arabic simple">
+<li><p>Stating  your  primary query AND</p></li>
+<li><p>Providing a link to the entire conversation.</p></li>
+</ol>
+<blockquote>
+<div><p>For example, this is ok:
+“Write a demo flask POST that can accepts an image and explain each line.”</p>
+<p>But this is <strong>not</strong> ok:
+“Write a flask app with a POST method that feeds an image into a Keras model.”</p>
+<p><em>Disclaimer</em>, I entered both of those prompts into ChatGPT and neither one was very good!
+You really, really, need to be careful taking code from LLMs.
+A better approach might be “I have this simple flask method, but am new to using the package.
+Can you help explain and critique it for me?”</p>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You should do your development and testing on a single local machine, and then deploy to the server.</p>
+</div>
+<section id="server">
+<h3>Server<a class="headerlink" href="#server" title="Link to this heading">#</a></h3>
+<p>You will use a Raspberry Pi as your server.
+All the code for the server will be located in the <code class="docutils literal notranslate"><span class="pre">server/</span></code> directory of your repository.</p>
+<ol class="arabic simple">
+<li><p>Clone your repository.</p></li>
+<li><p>Create a virtual environment on a Raspberry Pi.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">server/requirements.txt</span></code> to install packages.</p></li>
+<li><p>Serve the model with a flask app by running <code class="docutils literal notranslate"><span class="pre">digits.py</span></code></p></li>
+</ol>
+<p>The flask app should simply:</p>
+<ul class="simple">
+<li><p>Open the previously saved Keras model.</p></li>
+<li><p>Accept a POST request to <code class="docutils literal notranslate"><span class="pre">/predict</span></code>.</p></li>
+<li><p>Reshape and grayscale the image to work with the model’s input expectations.</p></li>
+<li><p>Conduct inference on the image and return an integer of the predicted class.</p></li>
+</ul>
+</section>
+<section id="client">
+<h3>Client<a class="headerlink" href="#client" title="Link to this heading">#</a></h3>
+<p>For your client, you can use any machine with Python and on the same network as the Pi.
+All the code for the client will be in the <code class="docutils literal notranslate"><span class="pre">client</span></code> directory of your repository.</p>
+<ol class="arabic simple">
+<li><p>Clone your repository.</p></li>
+<li><p>Create a virtual environment on your client.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">client/requirements.txt</span></code> to install packages.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">client.py</span> <span class="pre">&quot;xxx.xxx.xxx.xxx&quot;</span></code>, where the X’s are the IP address of the server.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">client.py</span></code> prompts the user for a path to an image. After hitting “enter” the client makes an HTTP POST request to the server, waits for the response, then displays the integer to the user.</p></li>
+<li><p>The client continues to prompt the user until the user exits with CTRL+C.</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <a class="reference external" href="https://requests.readthedocs.io/en/latest/">requests</a> package is easier to use than the built-in urllib.</p>
+</div>
+</section>
+<section id="deliverables">
+<h3>Deliverables<a class="headerlink" href="#deliverables" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Demonstrate your client-server exchange.</p></li>
+<li><p>Complete the three README’s in the repository (root, client, server).</p></li>
+<li><p>Push your code and submit to Gradescope.</p></li>
 </ul>
 </section>
 </section>
@@ -473,7 +687,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./tfm"
+            path: "./b1-prediction"
         },
         predefinedOutput: true
     }
@@ -491,20 +705,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../jetson/yolo.html"
+       href="mnist-dnn.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">19. </span>YOLO</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Neural Networks</p>
       </div>
     </a>
     <a class="right-next"
-       href="wake-word.html"
+       href="cc-prediction.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">21. </span>Wake Word Detection</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>C&amp;C: Prediction and Dimensionality</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -524,8 +738,19 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">20.1. Pre-reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">5.1. Pre-reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#colab-demo">5.2. Colab Demo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-a-terminal">Get a terminal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-python-script">Create python script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-script">Run the script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hit-the-api">Hit the API</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-lab">5.3. Pre-lab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">5.4. Lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#server">Server</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#client">Client</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">Deliverables</a></li>
 </ul>
 </li>
 </ul>
