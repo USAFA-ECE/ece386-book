@@ -502,7 +502,7 @@ document.write(`
 <section id="get-a-terminal">
 <h3>Get a terminal<a class="headerlink" href="#get-a-terminal" title="Link to this heading">#</a></h3>
 <p>First, we install <a class="reference external" href="https://github.com/InfuseAI/colab-xterm">colab-xterm</a>, which allows us to have an interactive terminal.
-We will need this to run the flask process, since normally colab runs a process and then kills it.</p>
+We will need this to run the app process, since normally colab runs a process and then kills it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install -q &quot;fastapi[standard]&quot;
@@ -630,7 +630,7 @@ You don’t need to go in-depth on <a class="reference external" href="https://d
 “Write a FastAPI app with a POST method that feeds an image into a Keras model.”</p>
 <p><em>Disclaimer</em>, I entered both of those prompts into ChatGPT and neither one was very good!
 You really, really, need to be careful taking code from LLMs.
-A better approach might be “I have this simple flask method, but am new to using the package.
+A better approach might be “I have this simple FastAPI method, but am new to using the package.
 Can you help explain and critique it for me?”</p>
 </div></blockquote>
 <div class="admonition note">
