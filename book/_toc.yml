@@ -10,23 +10,20 @@ parts:
       - file: b1-prediction/hello-colab
       - file: b1-prediction/prediction-machines
       - file: b1-prediction/kmeans
-      # - file: b1-prediction/dimensionality
-      # - file: b1-prediction/evaluating
+      - file: b1-prediction/cloud-hosting
       - file: b1-prediction/mnist-dnn
       - file: b1-prediction/serve-digits
       - file: b1-prediction/cc-prediction
   - caption: Neural Networks
     numbered: 2
     chapters:
-      - file: b2-dnn/neuralnet
-      - file: b2-dnn/gpu
-      - file: b2-dnn/dnn-explore
-      - file: b2-dnn/cat-dog/transfer_learning
-      - file: b2-dnn/cat-dog/tflite_convert
-      - file: b2-dnn/tflite_pi
-      - file: b2-dnn/workday1
-      - file: b2-dnn/workday2
-      - file: b2-dnn/cat-dog/live-cat
+      - file: b2-dnn/tensors
+      - file: b2-dnn/gpu-acceleration
+      - file: b2-dnn/whisper-transcription
+      - file: b2-dnn/convolution
+      - file: b2-dnn/transfer-learning
+      - file: b2-dnn/cat-v-dog
+      - file: b2-dnn/herding-cats
       - file: b2-dnn/cc-dnn
   - caption: NVIDIA Jetson
     numbered: 2

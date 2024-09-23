@@ -1,4 +1,4 @@
-# Live Inference 🐱 🐶
+# Herding 🐱 🐶
 
 ## Pre-Reading
 
