@@ -1,4 +1,4 @@
-# Linear Algebra and GPUs
+# Tensors and Dimensionality
 
 ## Pre-Reading
 
