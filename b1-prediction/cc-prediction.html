@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>6. C&amp;C: Prediction and Dimensionality &#8212; ECE 386</title>
+    <title>7. C&amp;C: Prediction and Dimensionality &#8212; ECE 386</title>
   
   
   
@@ -61,8 +61,8 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="7. Linear Algebra and GPUs" href="../b2-dnn/gpu.html" />
-    <link rel="prev" title="5. Lab: Serving Digits with FastAPI" href="serve-digits.html" />
+    <link rel="next" title="8. Tensors and Dimensionality" href="../b2-dnn/tensors.html" />
+    <link rel="prev" title="6. Lab: Serving Digits with FastAPI" href="serve-digits.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -185,20 +185,20 @@
 <li class="toctree-l1"><a class="reference internal" href="hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kmeans.html">3. ICE: K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mnist-dnn.html">4. Neural Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="serve-digits.html">5. Lab: Serving Digits with FastAPI</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. C&amp;C: Prediction and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud-hosting.html">4. Cloud Hosting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mnist-dnn.html">5. MNIST Digits with Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="serve-digits.html">6. Lab: Serving Digits with FastAPI</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/gpu.html">7. Linear Algebra and GPUs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/dnn-explore.html">8. DNN Exploration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-dog/transfer_learning.html">9. Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-dog/tflite_convert.html">10. TensorFlow Lite</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/tflite_pi.html">11. TF Lite 🥧</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/workday1.html">12. Workday 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/workday2.html">13. Workday 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-dog/live-cat.html">14. Live Inference 🐱 🐶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/tensors.html">8. Tensors and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/gpu-acceleration.html">9. ICE: GPU Acceleration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/whisper-transcription.html">10. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/convolution.html">11. Convolutional Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/transfer-learning.html">12. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-v-dog.html">13. Lab: Cats vs. Dogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/herding-cats.html">14. Herding 🐱 🐶</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cc-dnn.html">15. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NVIDIA Jetson</span></p>
@@ -430,8 +430,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">6.1. Pre-Reading</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">6.2. Objective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">7.1. Pre-Reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">7.2. Objective</a></li>
 </ul>
             </nav>
         </div>
@@ -444,16 +444,16 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="c-c-prediction-and-dimensionality">
-<h1><span class="section-number">6. </span>C&amp;C: Prediction and Dimensionality<a class="headerlink" href="#c-c-prediction-and-dimensionality" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">7. </span>C&amp;C: Prediction and Dimensionality<a class="headerlink" href="#c-c-prediction-and-dimensionality" title="Link to this heading">#</a></h1>
 <section id="pre-reading">
-<h2><span class="section-number">6.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://dropbox.tech/machine-learning/using-machine-learning-to-index-text-from-billions-of-images">Using machine learning to index text from billions of images</a>.
 This is one of my all-time favorite blog posts.</p></li>
 </ul>
 </section>
 <section id="objective">
-<h2><span class="section-number">6.2. </span>Objective<a class="headerlink" href="#objective" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.2. </span>Objective<a class="headerlink" href="#objective" title="Link to this heading">#</a></h2>
 <p>This is a <strong>Clarify and Communicate</strong> lesson.
 The objective of a C&amp;C is to:</p>
 <ol class="arabic simple">
@@ -510,15 +510,15 @@ specify where you’d look for the answer and approximately how long you think i
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Lab: Serving Digits with FastAPI</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Lab: Serving Digits with FastAPI</p>
       </div>
     </a>
     <a class="right-next"
-       href="../b2-dnn/gpu.html"
+       href="../b2-dnn/tensors.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Linear Algebra and GPUs</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Tensors and Dimensionality</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -538,8 +538,8 @@ specify where you’d look for the answer and approximately how long you think i
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">6.1. Pre-Reading</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">6.2. Objective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">7.1. Pre-Reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">7.2. Objective</a></li>
 </ul>
   </nav></div>
 

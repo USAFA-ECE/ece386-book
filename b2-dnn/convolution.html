@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Convolutional Neural Network &#8212; ECE 386</title>
+    <title>11. Convolutional Neural Network &#8212; ECE 386</title>
   
   
   
@@ -61,6 +61,8 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12. Transfer Learning" href="transfer-learning.html" />
+    <link rel="prev" title="10. ICE: Whisper Transcription" href="whisper-transcription.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,8 +125,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -185,20 +185,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">3. ICE: K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">4. Neural Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/serve-digits.html">5. Lab: Serving Digits with FastAPI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cloud-hosting.html">4. Cloud Hosting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">5. MNIST Digits with Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/serve-digits.html">6. Lab: Serving Digits with FastAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">7. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="gpu.html">7. Linear Algebra and GPUs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dnn-explore.html">8. DNN Exploration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cat-dog/transfer_learning.html">9. Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cat-dog/tflite_convert.html">10. TensorFlow Lite</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tflite_pi.html">11. TF Lite 🥧</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workday1.html">12. Workday 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workday2.html">13. Workday 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cat-dog/live-cat.html">14. Live Inference 🐱 🐶</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tensors.html">8. Tensors and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu-acceleration.html">9. ICE: GPU Acceleration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whisper-transcription.html">10. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Convolutional Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transfer-learning.html">12. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cat-v-dog.html">13. Lab: Cats vs. Dogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="herding-cats.html">14. Herding 🐱 🐶</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cc-dnn.html">15. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NVIDIA Jetson</span></p>
@@ -461,11 +461,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">11.1. Pre-reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lab">The lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lab">11.2. The lab</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tpu-detection">TPU detection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a></li>
@@ -489,9 +489,9 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="convolutional-neural-network">
-<h1>Convolutional Neural Network<a class="headerlink" href="#convolutional-neural-network" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">11. </span>Convolutional Neural Network<a class="headerlink" href="#convolutional-neural-network" title="Link to this heading">#</a></h1>
 <section id="pre-reading">
-<h2>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>3Blue1Brown <a class="reference external" href="https://youtu.be/KuXjwB4LzSA">But What is Convolution?</a> at least up to <strong>13:42</strong> but ideally the entire thing</p></li>
 <li><p>(Optional) Peruse the original tutorial: <a class="reference external" href="https://codelabs.developers.google.com/codelabs/keras-flowers-convnets/#2">Convolutional neural networks, with Keras and TPUs</a></p></li>
@@ -505,7 +505,7 @@ document.write(`
 </section>
 </section>
 <section id="the-lab">
-<h2>The lab<a class="headerlink" href="#the-lab" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">11.2. </span>The lab<a class="headerlink" href="#the-lab" title="Link to this heading">#</a></h2>
 <p>This is a Google Tutoiral. <strong>Read the CNN tips here</strong>: <a class="reference external" href="https://codelabs.developers.google.com/codelabs/keras-flowers-convnets/#5">Your custom convnet</a></p>
 <p>Then, open this notebook in colab, connect to a TPU instance, and try and win!</p>
 <hr class="docutils" />
@@ -943,6 +943,24 @@ limitations under the License.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="whisper-transcription.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>ICE: Whisper Transcription</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="transfer-learning.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Transfer Learning</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -959,11 +977,11 @@ limitations under the License.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">11.1. Pre-reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lab">The lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lab">11.2. The lab</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tpu-detection">TPU detection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a></li>

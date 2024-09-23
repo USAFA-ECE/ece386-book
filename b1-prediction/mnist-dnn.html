@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. Neural Networks &#8212; ECE 386</title>
+    <title>5. MNIST Digits with Neural Network &#8212; ECE 386</title>
   
   
   
@@ -61,8 +61,8 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. Lab: Serving Digits with FastAPI" href="serve-digits.html" />
-    <link rel="prev" title="3. ICE: K-Means Clustering" href="kmeans.html" />
+    <link rel="next" title="6. Lab: Serving Digits with FastAPI" href="serve-digits.html" />
+    <link rel="prev" title="4. Cloud Hosting" href="cloud-hosting.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -185,20 +185,20 @@
 <li class="toctree-l1"><a class="reference internal" href="hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="kmeans.html">3. ICE: K-Means Clustering</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Neural Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="serve-digits.html">5. Lab: Serving Digits with FastAPI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud-hosting.html">4. Cloud Hosting</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. MNIST Digits with Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="serve-digits.html">6. Lab: Serving Digits with FastAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc-prediction.html">7. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/gpu.html">7. Linear Algebra and GPUs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/dnn-explore.html">8. DNN Exploration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-dog/transfer_learning.html">9. Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-dog/tflite_convert.html">10. TensorFlow Lite</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/tflite_pi.html">11. TF Lite 🥧</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/workday1.html">12. Workday 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/workday2.html">13. Workday 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-dog/live-cat.html">14. Live Inference 🐱 🐶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/tensors.html">8. Tensors and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/gpu-acceleration.html">9. ICE: GPU Acceleration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/whisper-transcription.html">10. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/convolution.html">11. Convolutional Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/transfer-learning.html">12. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-v-dog.html">13. Lab: Cats vs. Dogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/herding-cats.html">14. Herding 🐱 🐶</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cc-dnn.html">15. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NVIDIA Jetson</span></p>
@@ -451,7 +451,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Neural Networks</h1>
+    <h1>MNIST Digits with Neural Network</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -461,11 +461,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">4.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">5.1. Pre-Reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-the-model">4.2. Make the model</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-the-model">5.2. Make the model</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-preprocess-the-data">Load and Preprocess the Data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-and-test-sets">Train and Test Sets</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-deep-neural-network">Build the Deep Neural Network</a></li>
@@ -475,13 +475,13 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">4.3. Train the model</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">5.3. Train the model</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transform-data">Transform Data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-model">Fit model</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-a-prediction">4.4. Make a Prediction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-model">4.5. Save the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-a-prediction">5.4. Make a Prediction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-model">5.5. Save the Model</a></li>
 </ul>
             </nav>
         </div>
@@ -493,13 +493,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="neural-networks">
-<h1><span class="section-number">4. </span>Neural Networks<a class="headerlink" href="#neural-networks" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="mnist-digits-with-neural-network">
+<h1><span class="section-number">5. </span>MNIST Digits with Neural Network<a class="headerlink" href="#mnist-digits-with-neural-network" title="Link to this heading">#</a></h1>
 <p>This notebook demonstrates the building and training of a deep neural network (DNN) for digit classification using the <code class="docutils literal notranslate"><span class="pre">load_digits</span></code> dataset from scikit-learn. The DNN is built using TensorFlow’s Keras API.</p>
 <section id="pre-reading">
-<h2><span class="section-number">4.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Chollet, <a class="reference external" href="https://learning.oreilly.com/library/view/deep-learning-with/9781617296864/Text/02.htm#:-:text=2.1%20A%20first%20look%20at%20a%20neural%20network">2.1 A first look at a neural network</a></p></li>
 <li><p>Video <a class="reference external" href="https://www.youtube.com/watch?v=aircAruvnKk">3Blue1Brown: But what is a neural network?</a></p></li>
 </ul>
 <section id="objectives">
@@ -513,7 +512,8 @@ document.write(`
 </section>
 </section>
 <section id="make-the-model">
-<h2><span class="section-number">4.2. </span>Make the model<a class="headerlink" href="#make-the-model" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.2. </span>Make the model<a class="headerlink" href="#make-the-model" title="Link to this heading">#</a></h2>
+<p>This exercise is taken from Chollet, <a class="reference external" href="https://learning.oreilly.com/library/view/deep-learning-with/9781617296864/Text/02.htm#:-:text=2.1%20A%20first%20look%20at%20a%20neural%20network">2.1 A first look at a neural network</a></p>
 <section id="load-and-preprocess-the-data">
 <h3>Load and Preprocess the Data<a class="headerlink" href="#load-and-preprocess-the-data" title="Link to this heading">#</a></h3>
 <p>We will use the same handwritten digits dataset we used with K-Means.</p>
@@ -636,7 +636,7 @@ The sum of these probabilities equals 1. We will assign our sample to the class 
 </section>
 </section>
 <section id="train-the-model">
-<h2><span class="section-number">4.3. </span>Train the model<a class="headerlink" href="#train-the-model" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.3. </span>Train the model<a class="headerlink" href="#train-the-model" title="Link to this heading">#</a></h2>
 <section id="transform-data">
 <h3>Transform Data<a class="headerlink" href="#transform-data" title="Link to this heading">#</a></h3>
 <p>Before training, we’ll preprocess the data by reshaping it into the shape the model expects and scaling it so that all values are in the [0, 1] interval. Previously, our training images were stored in an array of shape (60000, 28, 28) of type uint8 with values in the [0, 255] interval. We’ll transform it into a float32 array of shape (60000, 28 * 28) with values between 0 and 1.</p>
@@ -667,7 +667,7 @@ The sum of these probabilities equals 1. We will assign our sample to the class 
 </section>
 </section>
 <section id="make-a-prediction">
-<h2><span class="section-number">4.4. </span>Make a Prediction<a class="headerlink" href="#make-a-prediction" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.4. </span>Make a Prediction<a class="headerlink" href="#make-a-prediction" title="Link to this heading">#</a></h2>
 <p>Finally, we can evaluate the accuracy of the trained model on the validation set.</p>
 <p>Now that we have a trained model, we can use it to predict class probabilities for new digits—images that weren’t part of the training data, like those from the test set.</p>
 <div class="cell docutils container">
@@ -715,7 +715,7 @@ The sum of these probabilities equals 1. We will assign our sample to the class 
 </div>
 </section>
 <section id="save-the-model">
-<h2><span class="section-number">4.5. </span>Save the Model<a class="headerlink" href="#save-the-model" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.5. </span>Save the Model<a class="headerlink" href="#save-the-model" title="Link to this heading">#</a></h2>
 <p>We need to re-use this model later.
 Make sure to <strong>download</strong> the <code class="docutils literal notranslate"><span class="pre">digits.keras</span></code> file after you run this command!</p>
 <div class="cell docutils container">
@@ -760,12 +760,12 @@ Make sure to <strong>download</strong> the <code class="docutils literal notrans
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="kmeans.html"
+       href="cloud-hosting.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>ICE: K-Means Clustering</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Cloud Hosting</p>
       </div>
     </a>
     <a class="right-next"
@@ -773,7 +773,7 @@ Make sure to <strong>download</strong> the <code class="docutils literal notrans
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Lab: Serving Digits with FastAPI</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Lab: Serving Digits with FastAPI</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -793,11 +793,11 @@ Make sure to <strong>download</strong> the <code class="docutils literal notrans
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">4.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">5.1. Pre-Reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-the-model">4.2. Make the model</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-the-model">5.2. Make the model</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-preprocess-the-data">Load and Preprocess the Data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-and-test-sets">Train and Test Sets</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-deep-neural-network">Build the Deep Neural Network</a></li>
@@ -807,13 +807,13 @@ Make sure to <strong>download</strong> the <code class="docutils literal notrans
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">4.3. Train the model</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">5.3. Train the model</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transform-data">Transform Data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fit-model">Fit model</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-a-prediction">4.4. Make a Prediction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-model">4.5. Save the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-a-prediction">5.4. Make a Prediction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-model">5.5. Save the Model</a></li>
 </ul>
   </nav></div>
 

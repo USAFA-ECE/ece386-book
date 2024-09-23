@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Cat v Dog Workday &#8212; ECE 386</title>
+    <title>10. ICE: Whisper Transcription &#8212; ECE 386</title>
   
   
   
@@ -57,10 +57,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'b2-dnn/cat_dog_workday';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'b2-dnn/whisper-transcription';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11. Convolutional Neural Network" href="convolution.html" />
+    <link rel="prev" title="9. ICE: GPU Acceleration" href="gpu-acceleration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,8 +125,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -185,20 +185,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">3. ICE: K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">4. Neural Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/serve-digits.html">5. Lab: Serving Digits with FastAPI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">6. C&amp;C: Prediction and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cloud-hosting.html">4. Cloud Hosting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">5. MNIST Digits with Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/serve-digits.html">6. Lab: Serving Digits with FastAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">7. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="gpu.html">7. Linear Algebra and GPUs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dnn-explore.html">8. DNN Exploration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cat-dog/transfer_learning.html">9. Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cat-dog/tflite_convert.html">10. TensorFlow Lite</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tflite_pi.html">11. TF Lite 🥧</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workday1.html">12. Workday 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="workday2.html">13. Workday 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cat-dog/live-cat.html">14. Live Inference 🐱 🐶</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tensors.html">8. Tensors and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu-acceleration.html">9. ICE: GPU Acceleration</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convolution.html">11. Convolutional Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transfer-learning.html">12. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cat-v-dog.html">13. Lab: Cats vs. Dogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="herding-cats.html">14. Herding 🐱 🐶</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cc-dnn.html">15. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NVIDIA Jetson</span></p>
@@ -306,7 +306,7 @@
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fb2-dnn/cat_dog_workday.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fb2-dnn/whisper-transcription.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -336,7 +336,7 @@
       
       
       
-      <li><a href="../_sources/b2-dnn/cat_dog_workday.md" target="_blank"
+      <li><a href="../_sources/b2-dnn/whisper-transcription.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -418,7 +418,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Cat v Dog Workday</h1>
+    <h1>ICE: Whisper Transcription</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -432,9 +432,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="cat-v-dog-workday">
-<h1>Cat v Dog Workday<a class="headerlink" href="#cat-v-dog-workday" title="Link to this heading">#</a></h1>
-<p>Work on your Python code for the live inference application.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="ice-whisper-transcription">
+<h1><span class="section-number">10. </span>ICE: Whisper Transcription<a class="headerlink" href="#ice-whisper-transcription" title="Link to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -467,6 +466,24 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="gpu-acceleration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>ICE: GPU Acceleration</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="convolution.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>Convolutional Neural Network</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
