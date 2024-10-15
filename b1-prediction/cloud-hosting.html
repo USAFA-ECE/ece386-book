@@ -407,7 +407,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -423,6 +425,36 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">4.1. Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#internet-protocol">4.2. Internet Protocol</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#address">Address</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#subnet">Subnet</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#domain">Domain</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#port">Port</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cloud">4.3. The Cloud</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-application-architecture">Web Application Architecture</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-resources">Cloud Resources</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-machines">Virtual Machines</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#object-storage">Object Storage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">4.4. Next Steps</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -434,6 +466,213 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="cloud-hosting">
 <h1><span class="section-number">4. </span>Cloud Hosting<a class="headerlink" href="#cloud-hosting" title="Link to this heading">#</a></h1>
+<section id="pre-reading">
+<h2><span class="section-number">4.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.cloudflare.com/learning/network-layer/how-does-the-internet-work/">Cloudflare: How does the Internet work?</a></p></li>
+</ul>
+<section id="objectives">
+<h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="internet-protocol">
+<h2><span class="section-number">4.2. </span>Internet Protocol<a class="headerlink" href="#internet-protocol" title="Link to this heading">#</a></h2>
+<section id="address">
+<h3>Address<a class="headerlink" href="#address" title="Link to this heading">#</a></h3>
+<p>Every device on the internet has an IP address. Usually this address if IPv4 and looks like four numbers between 0-255, separated by dots.</p>
+<p>For examples, <code class="docutils literal notranslate"><span class="pre">192.168.1.40</span></code> is my current private IP address. <code class="docutils literal notranslate"><span class="pre">104.16.133.229</span></code> is <a class="reference external" href="http://Cloudflare.com">Cloudflare.com</a>’s current IP address.</p>
+<section id="subnet">
+<h4>Subnet<a class="headerlink" href="#subnet" title="Link to this heading">#</a></h4>
+<p>IP addresses belong to subnets. For this class, all you need to know is that when you are connected to a Wi-Fi router you are (typically) on the same subnet as the other devices.
+This means you can talk to those other devices, as long as the router doesn’t block that traffic (which is common on guest networks).</p>
+<p>The following [Private IPv4 address] are reserved for private use, meaning you won’t see them on the big Internet.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">192.168.0.0</span></code> – <code class="docutils literal notranslate"><span class="pre">192.168.255.255</span></code> (most common for home LAN)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">172.16.0.0</span></code> – <code class="docutils literal notranslate"><span class="pre">172.31.255.255</span></code> (Docker defaults to one of these)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">10.0.0.0</span></code> – <code class="docutils literal notranslate"><span class="pre">10.255.255.255</span></code> (more common on enterprise networks)</p></li>
+</ul>
+<p>There is also the reserved loopback subnet <code class="docutils literal notranslate"><span class="pre">127.0.0.0/8</span></code>; packets never leave the device. Yes, it’s okay to talk to yourself.</p>
+<p><img alt="There's no place like " src="https://i.redd.it/rcokvkzk62a01.jpg" /></p>
+<p><strong>Because of scarcity of IP addressed (there are only about 4 billion) we have to reuse some; hence, private vs. public IP.</strong></p>
+<p>You can find your private IP address with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Linux</span>
+ip<span class="w"> </span>a
+</pre></div>
+</div>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># Windows</span>
+<span class="n">ipconfig</span>
+</pre></div>
+</div>
+<p>You can find your public IP by searching “what is my IP” in a web browser.
+You can also visit or curl one of the many dedicated websites.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>ipconfig.io
+</pre></div>
+</div>
+<p>Notice your IP is tied to a fairly precise physical location!</p>
+</section>
+<section id="domain">
+<h4>Domain<a class="headerlink" href="#domain" title="Link to this heading">#</a></h4>
+<p>While all Internet-connected devices have an IP address, these addresses may change. Plus, it’s difficult to remember more than a few IP addresses; but it’s easy to remember a domain name!</p>
+<p>Examples of domain names include <code class="docutils literal notranslate"><span class="pre">google.com</span></code> or <code class="docutils literal notranslate"><span class="pre">usafa.edu</span></code>.</p>
+<p>Domain names are resolved to an IP address via a Domain Name Server (DNS) query.</p>
+<blockquote>
+<div><p>A computer’s IP address is like the physical address of a house. If someone calls a pizzeria to order a delivery, they need to provide their physical address. Without that address, the pizza delivery person will have no idea which house to deliver the pizza to. ~ <a class="reference external" href="https://www.cloudflare.com/learning/dns/glossary/what-is-my-ip-address/">Cloudflare: What is my IP address?</a></p>
+</div></blockquote>
+<figure class="align-default" id="id1">
+<img alt="https://cf-assets.www.cloudflare.com/slt3lc6tev37/54NvR4ArYd9isJUmbz5wbW/5abc7d8ece3a915683f8ed71d47ea28e/ddos-dns.svg" src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/54NvR4ArYd9isJUmbz5wbW/5abc7d8ece3a915683f8ed71d47ea28e/ddos-dns.svg" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">The DNS process for requesting the IP address of a web server.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>You can conduct a DNS query with <code class="docutils literal notranslate"><span class="pre">nslookup</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nslookup<span class="w"> </span>google.com
+</pre></div>
+</div>
+<p>This should show you the IP address of your DNS server as well as the IPv4 and IPv6 address of Google!</p>
+<p><strong>DNS carries major security concerns.</strong>
+Cloudflare provides the free, fast, and private DNS server <code class="docutils literal notranslate"><span class="pre">1.1.1.1</span></code>.</p>
+<p>Cloudflare also provide alternate DNS addresses via <a class="reference external" href="https://blog.cloudflare.com/introducing-1-1-1-1-for-families/">1.1.1.1 for Families</a>, which blocks lots of malware and adult content!</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>DNS is a thing that frequently goes wrong with networking.
+When debugging connectivity, try and do an nslookup and then try and access a website with the raw IP: <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">1.1.1.1</span></code>.</p>
+</div>
+</section>
+</section>
+<section id="port">
+<h3>Port<a class="headerlink" href="#port" title="Link to this heading">#</a></h3>
+<p>If an IP address is like a physical building address, the port is like the room number.</p>
+<blockquote>
+<div><p>A port is a virtual point where network connections start and end. Ports are software-based and managed by a computer’s operating system. Each port is associated with a specific process or service. Ports allow computers to easily differentiate between different kinds of traffic: emails go to a different port than webpages, for instance, even though both reach a computer over the same Internet connection. ~ <a class="reference external" href="https://www.cloudflare.com/learning/network-layer/what-is-a-computer-port/">Cloudflare: What is a computer port?</a></p>
+</div></blockquote>
+<p>Only one process may bind a port at a time.
+<strong>There are 65,535 possible port numbers.</strong> The first 1024 require sudo permissions to bind.</p>
+<p>Here are some common well-known ports:</p>
+<ul class="simple">
+<li><p><strong>Port 22</strong>: Secure Shell (SSH). SSH is one of many tunneling protocols that create secure network connections.</p></li>
+<li><p><strong>Port 53</strong>: Domain Name System (DNS). DNS is an essential process for the modern Internet; it matches human-readable domain names to machine-readable IP addresses, enabling users to load websites and applications without memorizing a long list of IP addresses.</p></li>
+<li><p><strong>Port 80</strong>: Hypertext Transfer Protocol (HTTP). HTTP is the protocol that makes the World Wide Web possible.</p></li>
+<li><p><strong>Port 443</strong>: HTTP Secure (HTTPS). HTTPS is the secure and encrypted version of HTTP. All HTTPS web traffic goes to port 443. Network services that use HTTPS for encryption, such as DNS over HTTPS, also connect at this port.</p></li>
+</ul>
+<p>You can view listening ports with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ss<span class="w"> </span>-tunlp
+</pre></div>
+</div>
+</section>
+</section>
+<section id="the-cloud">
+<h2><span class="section-number">4.3. </span>The Cloud<a class="headerlink" href="#the-cloud" title="Link to this heading">#</a></h2>
+<p>The ☁️ is just you renting time on someone elses computer.</p>
+<iframe
+  src="https://iframe.videodelivery.net/ad2223e095b603c44858996d4a727ea4"
+  width="640"
+  height="360"
+  frameborder="0"
+  allow="autoplay; encrypted-media"
+  allowfullscreen>
+</iframe>
+<p>AWS, Azure, and <a class="reference external" href="https://www.digitalocean.com/products/droplets">Digital Ocean</a> are all commercial cloud providers that will let you pay to rent their servers.
+These servers are in locations throughout the world!</p>
+<p>The <a class="reference external" href="https://aws.amazon.com/compliance/shared-responsibility-model/">Shared Responsibility Model</a> is extremely helpful for understanding the cloud:</p>
+<figure class="align-default" id="id2">
+<img alt="https://d1.awsstatic.com/security-center/Shared_Responsibility_Model_V2.59d1eccec334b366627e9295b304202faf7b899b.jpg" src="https://d1.awsstatic.com/security-center/Shared_Responsibility_Model_V2.59d1eccec334b366627e9295b304202faf7b899b.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">The AWS Shared Responsibility Model details the divide between who secures the hardware and virtualization software “of” the cloud (AWS) vs. the applications running “in” the cloud (the customer).</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>It is <em>astonishing</em> what cloud providers can serve you! But that depends…</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">On how well your manners are, and how big your pocketbook is. <a href="https://t.co/rW1GyKhSpI">pic.twitter.com/rW1GyKhSpI</a></p>&mdash; Star Wars (@starwars) <a href="https://twitter.com/starwars/status/1523738635970834432?ref_src=twsrc%5Etfw">May 9, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<section id="web-application-architecture">
+<h3>Web Application Architecture<a class="headerlink" href="#web-application-architecture" title="Link to this heading">#</a></h3>
+<p>Web applications are frequently described in terms of “front end” and “back end.”
+In this class we are exclusively concerned with the back end.</p>
+<ul class="simple">
+<li><p>The <strong>front end</strong> is the pretty website that you see. It is a collection of HTML, CSS, and JavaScript.
+Your web browser executes and renders the front end code.</p></li>
+<li><p>The <strong>back end</strong> is the part most people never see: the logic and databases that drive the application.
+This can be written in Go, Python, Rust, Kotlin, or many other languages.</p></li>
+</ul>
+<figure class="align-default" id="id3">
+<img alt="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210204220458/Web-Application-Three-Tier-Architecture.png" src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210204220458/Web-Application-Three-Tier-Architecture.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">The common <strong>Web Application Three Tier Architecture</strong>.
+See <a class="reference external" href="https://www.geeksforgeeks.org/how-web-works-web-application-architecture-for-beginners/">GeeksForGeeks: Web Applications for Beginners</a>
+for more information.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Databases are beyond the scope of this course.
+As a result, the application program interfaces (APIs) we use will not have persistence.
+Likewise, our business logic will consist almost entirely of conducting inference with a model.</p>
+</section>
+<section id="cloud-resources">
+<h3>Cloud Resources<a class="headerlink" href="#cloud-resources" title="Link to this heading">#</a></h3>
+<p>This is a crazy complex space. You can get various certifications or complete free learning:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aws.amazon.com/training/">AWS Training and Certification</a></p>
+<ul>
+<li><p>(<a class="reference external" href="https://aws.amazon.com/certification/certified-solutions-architect-associate/">AWS Certified Cloud Solutions Architect</a>
+is the one to start with if you <em>really</em> want to get into this world.)</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://learn.microsoft.com/en-us/training/azure/">Azure Training</a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This content is for educational purposes only.
+Nothing on this page constitutes an endorsement by the U.S. Government.</p>
+</div>
+<p>AWS is currently the world leader, with Microsoft Azure and Google Cloud Provider (GCP) nipping at its heals.</p>
+<p>DigitalOcean is smaller, but more user friendly (but also less capable) and oftentimes more affordable.
+They also offer <a class="reference external" href="https://www.digitalocean.com/github-students">$200 free credit via GitHub Student</a>.</p>
+<section id="virtual-machines">
+<h4>Virtual Machines<a class="headerlink" href="#virtual-machines" title="Link to this heading">#</a></h4>
+<p>You can have your very own virtual machine through <a class="reference external" href="https://aws.amazon.com/ec2/">AWS EC2</a>
+or <a class="reference external" href="https://www.digitalocean.com/products/droplets">DigitalOcean Droplets</a>.</p>
+<p>As of October 2024, here is the cheapest DO Droplet:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Memory</p></th>
+<th class="head"><p>vCPU</p></th>
+<th class="head"><p>Transfer</p></th>
+<th class="head"><p>SSD</p></th>
+<th class="head"><p>$/hr</p></th>
+<th class="head"><p>$/mo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>512 MiB</p></td>
+<td><p>1 vCPU</p></td>
+<td><p>500 GiB</p></td>
+<td><p>10 GiB</p></td>
+<td><p>$0.00595</p></td>
+<td><p>$4.00</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Cloud VMs are highly configurable, but a good default start is the latest LTS release of Ubuntu.</p>
+<p>You can also pick a geographic <strong>region</strong> to deploy the VM to.
+The location of a data center will impact latency, price, and legal considerations.</p>
+</section>
+<section id="object-storage">
+<h4>Object Storage<a class="headerlink" href="#object-storage" title="Link to this heading">#</a></h4>
+<p>AWS Simple Scalable Storage (<a class="reference external" href="https://aws.amazon.com/s3/">S3</a>) is the de facto standard for object storage.
+It is <em>object storage</em>, meaning you have to store/fetch/delete entire files, rather than parts of a file
+(changing parts of a file is <em>block storage</em>).</p>
+<p>S3 is great for serving static webpages and files, off-site backups, or massive datalakes!</p>
+<p>It has a generous free tier, then $0.023 per GB per month after that for storage.
+But watch out, because the data transfer out can get pricy for large applications.</p>
+</section>
+</section>
+</section>
+<section id="next-steps">
+<h2><span class="section-number">4.4. </span>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">ping</span></code> to talk to another computer on the LAN.</p></li>
+<li><p>Do an <code class="docutils literal notranslate"><span class="pre">nslookup</span></code> of a domain, and then <code class="docutils literal notranslate"><span class="pre">curl</span></code> the result.</p></li>
+<li><p>Browse some of the cloud provider offerings.</p></li>
+</ol>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -490,6 +729,43 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">4.1. Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#internet-protocol">4.2. Internet Protocol</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#address">Address</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#subnet">Subnet</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#domain">Domain</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#port">Port</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cloud">4.3. The Cloud</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-application-architecture">Web Application Architecture</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-resources">Cloud Resources</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-machines">Virtual Machines</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#object-storage">Object Storage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">4.4. Next Steps</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
