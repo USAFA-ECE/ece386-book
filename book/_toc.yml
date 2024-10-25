@@ -8,6 +8,7 @@ parts:
     numbered: 2
     chapters:
       - file: b1-prediction/hello-colab
+      - file: b1-prediction/networks-tooling
       - file: b1-prediction/prediction-machines
       - file: b1-prediction/kmeans
       - file: b1-prediction/cloud-hosting
