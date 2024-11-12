@@ -210,29 +210,34 @@ Let's see that in action:
 def type_error_demo_1(a, b):
     return a + b
 
-def type_error_demo_2(a: int, b: str) -> int:
+def type_error_demo_2(a: int, b: int) -> int:
     return a + b
 
-my_runtime_error = type_error_demo_1(99, 'problems')
-my_static_error = type_error_demo_2(0, 'here')
+# This will cause a problem at *run*
+my_runtime_error = type_error_demo_1(99, 'problems!')
+# This will cause an error at type check
+my_static_error = type_error_demo_2(0, 'problems.')
 ```
 
 If you try to run this script, Python will give you this Runtime error. It's hard to debug and will crash your app at an unknown time.
 
 ```text
 Traceback (most recent call last):
-  File "/tmp/type.py", line 12, in <module>
+  File "/tmp/type.py", line 8, in <module>
     my_runtime_error = type_error_demo_1(99, 'problems')
-  File "/tmp/type.py", line 7, in type_error_demo_1
+  File "/tmp/type.py", line 2, in type_error_demo_1
     return a + b
 TypeError: unsupported operand type(s) for +: 'int' and 'str'
 ```
 
-*But* if you use Pyright *before* running the code you get this! The exact problem, and where it is.
+*But* if you use Pyright *before* running the code you get this
+The exact problem (trying to pass "problems", which is a string instead of the expected int), and where it is.
 Just notice that you **must** provide the type hints.
 
 ```text
-/tmp/type.py:5:12 - error: Operator "+" not supported for types "int" and "str" (reportOperatorIssue)
+/tmp/type.py:10:40 - error: Argument of type "Literal['problems.']" cannot be assigned to parameter "b" of type "int" in function "type_error_demo_2"
+    "Literal['problems.']" is not assignable to "int" (reportArgumentType)
+1 error, 0 warnings, 0 informations
 ```
 
 See also!
@@ -242,9 +247,33 @@ See also!
 
 ### Jupyter Notebook
 
+We will just [Jupyter Notebook](https://jupyter-notebook.readthedocs.io/en/latest/notebook.html)
+to run code in VS Code, Google Colab, and our department AI server.
+These notebooks allow you to execute Python, save the results, commit with Git, and distribute them.
+
+As you saw in the previous lesson, you can open many of the pages in this course directly into Google Colab
+via the 🚀 button at the top of the page.
+
 ### GitHub
 
 This is where you will backup all of your completed code.
 Gradescope will also pull from your repos for assignment submission.
 
 For a refresher, see [ECE 281: GitHub Real Fast](https://usafa-ece.github.io/ece281-book/appendix/github.html)
+
+### GitHub and Jupyter
+
+The next homework assignment will have you fork a copy of this repository.
+You can then open your copy of this repo in whatever Jupyter instnace you are using.
+After you make changes to a file you can then push those changes from Jupyter to GitHub!
+This will then allow you to easily submit to Gradescope as well.
+
+```{tip}
+To push chnages from Google Colab to GitHub, you can simply hit **Ctrl+S**.
+This will open a "Save in Github" box. Make sure you have the correct repository (your fork)
+and the correct branch (probably `main`) selected.
+
+Always add a *helpful* commit message!
+```
+
+- Here are some additional ways to [Use Colab with GitHub](https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb)
