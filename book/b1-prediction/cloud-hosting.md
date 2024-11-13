@@ -161,3 +161,6 @@ A popular Python API Framework is FastAPI. Two big reasons to use it:
 ## Next Steps: FastAPI Demo
 
 We will run a simple FastAPI example!
+
+% TODO: Add FastAPI Example
+% TODO: decide if going with Poetry or venv
