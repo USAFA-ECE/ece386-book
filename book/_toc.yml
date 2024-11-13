@@ -8,11 +8,12 @@ parts:
     numbered: 2
     chapters:
       - file: b1-prediction/hello-colab
+      - file: b1-prediction/networks-tooling
       - file: b1-prediction/prediction-machines
       - file: b1-prediction/kmeans
       - file: b1-prediction/cloud-hosting
       - file: b1-prediction/mnist-dnn
-      - file: b1-prediction/serve-digits
+      - file: b1-prediction/lab-serve-digits
       - file: b1-prediction/cc-prediction
   - caption: Neural Networks
     numbered: 2
