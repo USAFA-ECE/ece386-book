@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "executablebookproject.myst-highlight",
+        "ms-toolsai.jupyter",
+        "davidanson.vscode-markdownlint",
+        "streetsidesoftware.code-spell-checker",
+        "ms-python.python"
+    ]
+}

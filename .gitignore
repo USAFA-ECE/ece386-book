@@ -3,7 +3,8 @@
 **/_build/
 
 # vscode
-.vscode/
+.vscode/*
+!.vscode/extensions.json
 
 # Things for training notebooks
 *.zip
