@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. Prediction Machines and ML Workflow &#8212; ECE 386</title>
+    <title>3. Prediction Machines and ML Workflow &#8212; ECE 386</title>
   
   
   
@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -63,10 +66,11 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. ICE: K-Means Clustering" href="kmeans.html" />
-    <link rel="prev" title="1. Hello, Colab!" href="hello-colab.html" />
+    <link rel="next" title="4. ICE: K-Means Clustering" href="kmeans.html" />
+    <link rel="prev" title="2. Networks and Tooling" href="networks-tooling.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -82,19 +86,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -102,7 +95,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -110,8 +102,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -127,7 +119,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -157,21 +150,17 @@
     
     
     <img src="../_static/logo.png" class="logo__image only-light" alt="ECE 386 - Home"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ECE 386 - Home"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="ECE 386 - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -185,58 +174,59 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Prediction</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="hello-colab.html">1. Hello, Colab!</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="kmeans.html">3. ICE: K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cloud-hosting.html">4. Cloud Hosting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mnist-dnn.html">5. MNIST Digits with Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="serve-digits.html">6. Lab: Serving Digits with FastAPI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cc-prediction.html">7. C&amp;C: Prediction and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networks-tooling.html">2. Networks and Tooling</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Prediction Machines and ML Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmeans.html">4. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud-hosting.html">5. Cloud Hosting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mnist-dnn.html">6. MNIST Digits with Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab-serve-digits.html">7. Lab: Serving Digits with FastAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc-prediction.html">8. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/tensors.html">8. Tensors and Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/gpu-acceleration.html">9. ICE: GPU Acceleration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/whisper-transcription.html">10. ICE: Whisper Transcription</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/convolution.html">11. Convolutional Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/transfer-learning.html">12. Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-v-dog.html">13. Lab: Cats vs. Dogs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/herding-cats.html">14. Herding 🐱 🐶</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cc-dnn.html">15. C&amp;C: Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/tensors.html">9. Tensors and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/gpu-acceleration.html">10. ICE: GPU Acceleration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/whisper-transcription.html">11. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/convolution.html">12. Convolutional Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/transfer-learning.html">13. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-v-dog.html">14. Lab: Cats vs. Dogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/herding-cats.html">15. Herding 🐱 🐶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cc-dnn.html">16. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NVIDIA Jetson</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">16. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">17. Diffusion Image Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">18. Containers Part 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">19. YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">17. Containerization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">18. Diffusion Image Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">19. Containers Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">20. YOLO</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">20. M4-Cortex Processor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">21. Wake Word Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">21. M4-Cortex Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">22. Wake Word Detection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">22. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">23. Transformers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-emergence.html">24. Emergence and Ethics of LLMs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/prompt-engineering.html">25. Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">23. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">24. Transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-emergence.html">25. Emergence and Ethics of LLMs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/prompt-engineering.html">26. Prompt Engineering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">26. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">27. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">28. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">29. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">30. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">31. Super Computers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">32. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">33. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">34. Bias and Ethics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">35. Final C&amp;C</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">36. LLM Red Team 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">37. LLM Red Team 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">38. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">27. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">28. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">29. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">30. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">31. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">32. Super Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">33. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">34. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">35. Bias and Ethics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">36. Final C&amp;C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">37. LLM Red Team 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">38. LLM Red Team 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">39. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -391,24 +381,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -432,11 +414,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">2.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">3.1. Pre-Reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-machines">2.2. Prediction Machines</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-machines">3.2. Prediction Machines</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#our-role-as-commanders">Our role as commanders</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#from-doctrine">From Doctrine</a></li>
 </ul>
@@ -455,11 +437,11 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-workflow">2.3. Machine Learning Workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-workflow">3.3. Machine Learning Workflow</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ml-workflow-into-prediction">ML Workflow into Prediction</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closing-thought-from-afpd-1">2.4. Closing thought from AFPD-1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closing-thought-from-afpd-1">3.4. Closing thought from AFPD-1</a></li>
 </ul>
             </nav>
         </div>
@@ -472,12 +454,12 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="prediction-machines-and-ml-workflow">
-<h1><span class="section-number">2. </span>Prediction Machines and ML Workflow<a class="headerlink" href="#prediction-machines-and-ml-workflow" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">3. </span>Prediction Machines and ML Workflow<a class="headerlink" href="#prediction-machines-and-ml-workflow" title="Link to this heading">#</a></h1>
 <blockquote>
 <div><p>The current wave of advances in artificial intelligence doesn’t actually bring us intelligence but instead a critical component of intelligence: prediction. ~ <em>Prediction Machines (4)</em></p>
 </div></blockquote>
 <section id="pre-reading">
-<h2><span class="section-number">2.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <p><em>TinyML</em>, Warden and Situnayake, 2019. <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml/9781492052036/ch03.html#:-:text=Chapter%203.%20Getting%20Up%20to%20Speed%20on%20Machine%20Learning">Chapter 3</a></p>
 <section id="objectives">
 <h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
@@ -492,7 +474,7 @@ document.write(`
 </section>
 <hr class="docutils" />
 <section id="prediction-machines">
-<h2><span class="section-number">2.2. </span>Prediction Machines<a class="headerlink" href="#prediction-machines" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.2. </span>Prediction Machines<a class="headerlink" href="#prediction-machines" title="Link to this heading">#</a></h2>
 <section id="our-role-as-commanders">
 <h3>Our role as commanders<a class="headerlink" href="#our-role-as-commanders" title="Link to this heading">#</a></h3>
 <p>Our role as commanders is to exercise judgment and make risk decisions in an uncertain and adversarial environment</p>
@@ -590,7 +572,7 @@ Uncertainty increases the cost of judging a payoff for a given decision.</p>
 </section>
 </section>
 <section id="machine-learning-workflow">
-<h2><span class="section-number">2.3. </span>Machine Learning Workflow<a class="headerlink" href="#machine-learning-workflow" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.3. </span>Machine Learning Workflow<a class="headerlink" href="#machine-learning-workflow" title="Link to this heading">#</a></h2>
 <p><em>TinyML</em> Chapter 3 presents the following <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml/9781492052036/ch03.html#:-:text=The%20Deep%20Learning%20Workflow">Deep Learning Workflow</a>.
 Sub-bullets are added.</p>
 <ol class="arabic simple">
@@ -640,7 +622,7 @@ Sub-bullets are added.</p>
 </section>
 </section>
 <section id="closing-thought-from-afpd-1">
-<h2><span class="section-number">2.4. </span>Closing thought from AFPD-1<a class="headerlink" href="#closing-thought-from-afpd-1" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.4. </span>Closing thought from AFPD-1<a class="headerlink" href="#closing-thought-from-afpd-1" title="Link to this heading">#</a></h2>
 <blockquote>
 <div><p>Airmen execute <strong>mission command</strong> through <strong>centralized command</strong>, <strong>distributed
 control</strong>, and <strong>decentralized execution</strong>.</p>
@@ -680,12 +662,12 @@ control</strong>, and <strong>decentralized execution</strong>.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="hello-colab.html"
+       href="networks-tooling.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Hello, Colab!</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Networks and Tooling</p>
       </div>
     </a>
     <a class="right-next"
@@ -693,7 +675,7 @@ control</strong>, and <strong>decentralized execution</strong>.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>ICE: K-Means Clustering</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>ICE: K-Means Clustering</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -704,7 +686,8 @@ control</strong>, and <strong>decentralized execution</strong>.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -713,11 +696,11 @@ control</strong>, and <strong>decentralized execution</strong>.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">2.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">3.1. Pre-Reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-machines">2.2. Prediction Machines</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-machines">3.2. Prediction Machines</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#our-role-as-commanders">Our role as commanders</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#from-doctrine">From Doctrine</a></li>
 </ul>
@@ -736,11 +719,11 @@ control</strong>, and <strong>decentralized execution</strong>.</p>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-workflow">2.3. Machine Learning Workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-workflow">3.3. Machine Learning Workflow</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ml-workflow-into-prediction">ML Workflow into Prediction</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closing-thought-from-afpd-1">2.4. Closing thought from AFPD-1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#closing-thought-from-afpd-1">3.4. Closing thought from AFPD-1</a></li>
 </ul>
   </nav></div>
 
@@ -789,8 +772,8 @@ By DFEC
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. Cloud Hosting &#8212; ECE 386</title>
+    <title>5. Cloud Hosting &#8212; ECE 386</title>
   
   
   
@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -61,10 +64,11 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. MNIST Digits with Neural Network" href="mnist-dnn.html" />
-    <link rel="prev" title="3. ICE: K-Means Clustering" href="kmeans.html" />
+    <link rel="next" title="6. MNIST Digits with Neural Network" href="mnist-dnn.html" />
+    <link rel="prev" title="4. ICE: K-Means Clustering" href="kmeans.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -80,19 +84,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -100,7 +93,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -108,8 +100,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -125,7 +117,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -155,21 +148,17 @@
     
     
     <img src="../_static/logo.png" class="logo__image only-light" alt="ECE 386 - Home"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ECE 386 - Home"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="ECE 386 - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -183,58 +172,59 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Prediction</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="hello-colab.html">1. Hello, Colab!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="kmeans.html">3. ICE: K-Means Clustering</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Cloud Hosting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mnist-dnn.html">5. MNIST Digits with Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="serve-digits.html">6. Lab: Serving Digits with FastAPI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cc-prediction.html">7. C&amp;C: Prediction and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networks-tooling.html">2. Networks and Tooling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prediction-machines.html">3. Prediction Machines and ML Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmeans.html">4. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Cloud Hosting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mnist-dnn.html">6. MNIST Digits with Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab-serve-digits.html">7. Lab: Serving Digits with FastAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc-prediction.html">8. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/tensors.html">8. Tensors and Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/gpu-acceleration.html">9. ICE: GPU Acceleration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/whisper-transcription.html">10. ICE: Whisper Transcription</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/convolution.html">11. Convolutional Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/transfer-learning.html">12. Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-v-dog.html">13. Lab: Cats vs. Dogs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/herding-cats.html">14. Herding 🐱 🐶</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cc-dnn.html">15. C&amp;C: Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/tensors.html">9. Tensors and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/gpu-acceleration.html">10. ICE: GPU Acceleration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/whisper-transcription.html">11. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/convolution.html">12. Convolutional Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/transfer-learning.html">13. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-v-dog.html">14. Lab: Cats vs. Dogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/herding-cats.html">15. Herding 🐱 🐶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cc-dnn.html">16. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NVIDIA Jetson</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">16. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">17. Diffusion Image Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">18. Containers Part 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">19. YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">17. Containerization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">18. Diffusion Image Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">19. Containers Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">20. YOLO</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">20. M4-Cortex Processor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">21. Wake Word Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">21. M4-Cortex Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">22. Wake Word Detection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">22. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">23. Transformers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-emergence.html">24. Emergence and Ethics of LLMs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/prompt-engineering.html">25. Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">23. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">24. Transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-emergence.html">25. Emergence and Ethics of LLMs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/prompt-engineering.html">26. Prompt Engineering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">26. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">27. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">28. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">29. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">30. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">31. Super Computers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">32. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">33. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">34. Bias and Ethics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">35. Final C&amp;C</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">36. LLM Red Team 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">37. LLM Red Team 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">38. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">27. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">28. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">29. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">30. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">31. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">32. Super Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">33. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">34. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">35. Bias and Ethics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">36. Final C&amp;C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">37. LLM Red Team 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">38. LLM Red Team 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">39. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -389,24 +379,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -430,29 +412,24 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">4.1. Pre-reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#internet-protocol">4.2. Internet Protocol</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#address">Address</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#subnet">Subnet</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#domain">Domain</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#port">Port</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cloud">4.3. The Cloud</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-application-architecture">Web Application Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">5.1. Pre-Reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cloud">5.2. The Cloud</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-resources">Cloud Resources</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-machines">Virtual Machines</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#object-storage">Object Storage</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#security">Security</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">4.4. Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#web-application-architecture">5.3. Web Application Architecture</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apis">APIs</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fastapi">FastAPI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-fastapi-demo">5.4. Next Steps: FastAPI Demo</a></li>
 </ul>
             </nav>
         </div>
@@ -465,104 +442,14 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="cloud-hosting">
-<h1><span class="section-number">4. </span>Cloud Hosting<a class="headerlink" href="#cloud-hosting" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">5. </span>Cloud Hosting<a class="headerlink" href="#cloud-hosting" title="Link to this heading">#</a></h1>
 <section id="pre-reading">
-<h2><span class="section-number">4.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.cloudflare.com/learning/network-layer/how-does-the-internet-work/">Cloudflare: How does the Internet work?</a></p></li>
+<li><p><a class="reference external" href="https://www.cloudflare.com/learning/cloud/what-is-the-cloud/">Cloudflare: What is the Cloud</a></p></li>
+<li><p>IBM’s <a class="reference external" href="https://www.ibm.com/topics/api">What is an API (application programming interface)?</a></p></li>
 </ul>
-<section id="objectives">
-<h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
-</section>
-</section>
-<section id="internet-protocol">
-<h2><span class="section-number">4.2. </span>Internet Protocol<a class="headerlink" href="#internet-protocol" title="Link to this heading">#</a></h2>
-<section id="address">
-<h3>Address<a class="headerlink" href="#address" title="Link to this heading">#</a></h3>
-<p>Every device on the internet has an IP address. Usually this address if IPv4 and looks like four numbers between 0-255, separated by dots.</p>
-<p>For examples, <code class="docutils literal notranslate"><span class="pre">192.168.1.40</span></code> is my current private IP address. <code class="docutils literal notranslate"><span class="pre">104.16.133.229</span></code> is <a class="reference external" href="http://Cloudflare.com">Cloudflare.com</a>’s current IP address.</p>
-<section id="subnet">
-<h4>Subnet<a class="headerlink" href="#subnet" title="Link to this heading">#</a></h4>
-<p>IP addresses belong to subnets. For this class, all you need to know is that when you are connected to a Wi-Fi router you are (typically) on the same subnet as the other devices.
-This means you can talk to those other devices, as long as the router doesn’t block that traffic (which is common on guest networks).</p>
-<p>The following [Private IPv4 address] are reserved for private use, meaning you won’t see them on the big Internet.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">192.168.0.0</span></code> – <code class="docutils literal notranslate"><span class="pre">192.168.255.255</span></code> (most common for home LAN)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">172.16.0.0</span></code> – <code class="docutils literal notranslate"><span class="pre">172.31.255.255</span></code> (Docker defaults to one of these)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">10.0.0.0</span></code> – <code class="docutils literal notranslate"><span class="pre">10.255.255.255</span></code> (more common on enterprise networks)</p></li>
-</ul>
-<p>There is also the reserved loopback subnet <code class="docutils literal notranslate"><span class="pre">127.0.0.0/8</span></code>; packets never leave the device. Yes, it’s okay to talk to yourself.</p>
-<p><img alt="There's no place like " src="https://i.redd.it/rcokvkzk62a01.jpg" /></p>
-<p><strong>Because of scarcity of IP addressed (there are only about 4 billion) we have to reuse some; hence, private vs. public IP.</strong></p>
-<p>You can find your private IP address with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Linux</span>
-ip<span class="w"> </span>a
-</pre></div>
-</div>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># Windows</span>
-<span class="n">ipconfig</span>
-</pre></div>
-</div>
-<p>You can find your public IP by searching “what is my IP” in a web browser.
-You can also visit or curl one of the many dedicated websites.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>ipconfig.io
-</pre></div>
-</div>
-<p>Notice your IP is tied to a fairly precise physical location!</p>
-</section>
-<section id="domain">
-<h4>Domain<a class="headerlink" href="#domain" title="Link to this heading">#</a></h4>
-<p>While all Internet-connected devices have an IP address, these addresses may change. Plus, it’s difficult to remember more than a few IP addresses; but it’s easy to remember a domain name!</p>
-<p>Examples of domain names include <code class="docutils literal notranslate"><span class="pre">google.com</span></code> or <code class="docutils literal notranslate"><span class="pre">usafa.edu</span></code>.</p>
-<p>Domain names are resolved to an IP address via a Domain Name Server (DNS) query.</p>
-<blockquote>
-<div><p>A computer’s IP address is like the physical address of a house. If someone calls a pizzeria to order a delivery, they need to provide their physical address. Without that address, the pizza delivery person will have no idea which house to deliver the pizza to. ~ <a class="reference external" href="https://www.cloudflare.com/learning/dns/glossary/what-is-my-ip-address/">Cloudflare: What is my IP address?</a></p>
-</div></blockquote>
-<figure class="align-default" id="id1">
-<img alt="https://cf-assets.www.cloudflare.com/slt3lc6tev37/54NvR4ArYd9isJUmbz5wbW/5abc7d8ece3a915683f8ed71d47ea28e/ddos-dns.svg" src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/54NvR4ArYd9isJUmbz5wbW/5abc7d8ece3a915683f8ed71d47ea28e/ddos-dns.svg" />
-<figcaption>
-<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">The DNS process for requesting the IP address of a web server.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<p>You can conduct a DNS query with <code class="docutils literal notranslate"><span class="pre">nslookup</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nslookup<span class="w"> </span>google.com
-</pre></div>
-</div>
-<p>This should show you the IP address of your DNS server as well as the IPv4 and IPv6 address of Google!</p>
-<p><strong>DNS carries major security concerns.</strong>
-Cloudflare provides the free, fast, and private DNS server <code class="docutils literal notranslate"><span class="pre">1.1.1.1</span></code>.</p>
-<p>Cloudflare also provide alternate DNS addresses via <a class="reference external" href="https://blog.cloudflare.com/introducing-1-1-1-1-for-families/">1.1.1.1 for Families</a>, which blocks lots of malware and adult content!</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>DNS is a thing that frequently goes wrong with networking.
-When debugging connectivity, try and do an nslookup and then try and access a website with the raw IP: <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">1.1.1.1</span></code>.</p>
-</div>
-</section>
-</section>
-<section id="port">
-<h3>Port<a class="headerlink" href="#port" title="Link to this heading">#</a></h3>
-<p>If an IP address is like a physical building address, the port is like the room number.</p>
-<blockquote>
-<div><p>A port is a virtual point where network connections start and end. Ports are software-based and managed by a computer’s operating system. Each port is associated with a specific process or service. Ports allow computers to easily differentiate between different kinds of traffic: emails go to a different port than webpages, for instance, even though both reach a computer over the same Internet connection. ~ <a class="reference external" href="https://www.cloudflare.com/learning/network-layer/what-is-a-computer-port/">Cloudflare: What is a computer port?</a></p>
-</div></blockquote>
-<p>Only one process may bind a port at a time.
-<strong>There are 65,535 possible port numbers.</strong> The first 1024 require sudo permissions to bind.</p>
-<p>Here are some common well-known ports:</p>
-<ul class="simple">
-<li><p><strong>Port 22</strong>: Secure Shell (SSH). SSH is one of many tunneling protocols that create secure network connections.</p></li>
-<li><p><strong>Port 53</strong>: Domain Name System (DNS). DNS is an essential process for the modern Internet; it matches human-readable domain names to machine-readable IP addresses, enabling users to load websites and applications without memorizing a long list of IP addresses.</p></li>
-<li><p><strong>Port 80</strong>: Hypertext Transfer Protocol (HTTP). HTTP is the protocol that makes the World Wide Web possible.</p></li>
-<li><p><strong>Port 443</strong>: HTTP Secure (HTTPS). HTTPS is the secure and encrypted version of HTTP. All HTTPS web traffic goes to port 443. Network services that use HTTPS for encryption, such as DNS over HTTPS, also connect at this port.</p></li>
-</ul>
-<p>You can view listening ports with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ss<span class="w"> </span>-tunlp
-</pre></div>
-</div>
-</section>
-</section>
-<section id="the-cloud">
-<h2><span class="section-number">4.3. </span>The Cloud<a class="headerlink" href="#the-cloud" title="Link to this heading">#</a></h2>
-<p>The ☁️ is just you renting time on someone elses computer.</p>
+<p>and</p>
 <iframe
   src="https://iframe.videodelivery.net/ad2223e095b603c44858996d4a727ea4"
   width="640"
@@ -571,39 +458,22 @@ When debugging connectivity, try and do an nslookup and then try and access a we
   allow="autoplay; encrypted-media"
   allowfullscreen>
 </iframe>
+</section>
+<section id="the-cloud">
+<h2><span class="section-number">5.2. </span>The Cloud<a class="headerlink" href="#the-cloud" title="Link to this heading">#</a></h2>
+<p>The ☁️ is just you renting time on someone elses computer.</p>
 <p>AWS, Azure, and <a class="reference external" href="https://www.digitalocean.com/products/droplets">Digital Ocean</a> are all commercial cloud providers that will let you pay to rent their servers.
-These servers are in locations throughout the world!</p>
+These servers are in locations throughout the world!
+Organizations can also run their own private “cloud,” meaning servers that they directly control and manage.</p>
 <p>The <a class="reference external" href="https://aws.amazon.com/compliance/shared-responsibility-model/">Shared Responsibility Model</a> is extremely helpful for understanding the cloud:</p>
-<figure class="align-default" id="id2">
+<figure class="align-default" id="id1">
 <img alt="https://d1.awsstatic.com/security-center/Shared_Responsibility_Model_V2.59d1eccec334b366627e9295b304202faf7b899b.jpg" src="https://d1.awsstatic.com/security-center/Shared_Responsibility_Model_V2.59d1eccec334b366627e9295b304202faf7b899b.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">The AWS Shared Responsibility Model details the divide between who secures the hardware and virtualization software “of” the cloud (AWS) vs. the applications running “in” the cloud (the customer).</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 5.1 </span><span class="caption-text">The AWS Shared Responsibility Model details the divide between who secures the hardware and virtualization software “of” the cloud (AWS) vs. the applications running “in” the cloud (the customer).</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>It is <em>astonishing</em> what cloud providers can serve you! But that depends…</p>
+<p>It is <em>astonishing</em> what cloud providers can serve you! <strong>But that depends…</strong></p>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">On how well your manners are, and how big your pocketbook is. <a href="https://t.co/rW1GyKhSpI">pic.twitter.com/rW1GyKhSpI</a></p>&mdash; Star Wars (@starwars) <a href="https://twitter.com/starwars/status/1523738635970834432?ref_src=twsrc%5Etfw">May 9, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<section id="web-application-architecture">
-<h3>Web Application Architecture<a class="headerlink" href="#web-application-architecture" title="Link to this heading">#</a></h3>
-<p>Web applications are frequently described in terms of “front end” and “back end.”
-In this class we are exclusively concerned with the back end.</p>
-<ul class="simple">
-<li><p>The <strong>front end</strong> is the pretty website that you see. It is a collection of HTML, CSS, and JavaScript.
-Your web browser executes and renders the front end code.</p></li>
-<li><p>The <strong>back end</strong> is the part most people never see: the logic and databases that drive the application.
-This can be written in Go, Python, Rust, Kotlin, or many other languages.</p></li>
-</ul>
-<figure class="align-default" id="id3">
-<img alt="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210204220458/Web-Application-Three-Tier-Architecture.png" src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210204220458/Web-Application-Three-Tier-Architecture.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">The common <strong>Web Application Three Tier Architecture</strong>.
-See <a class="reference external" href="https://www.geeksforgeeks.org/how-web-works-web-application-architecture-for-beginners/">GeeksForGeeks: Web Applications for Beginners</a>
-for more information.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<p>Databases are beyond the scope of this course.
-As a result, the application program interfaces (APIs) we use will not have persistence.
-Likewise, our business logic will consist almost entirely of conducting inference with a model.</p>
-</section>
 <section id="cloud-resources">
 <h3>Cloud Resources<a class="headerlink" href="#cloud-resources" title="Link to this heading">#</a></h3>
 <p>This is a crazy complex space. You can get various certifications or complete free learning:</p>
@@ -663,15 +533,81 @@ It is <em>object storage</em>, meaning you have to store/fetch/delete entire fil
 <p>It has a generous free tier, then $0.023 per GB per month after that for storage.
 But watch out, because the data transfer out can get pricy for large applications.</p>
 </section>
-</section>
-</section>
-<section id="next-steps">
-<h2><span class="section-number">4.4. </span>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<section id="security">
+<h4>Security<a class="headerlink" href="#security" title="Link to this heading">#</a></h4>
+<p>To be <em>extremely brief</em>:</p>
 <ol class="arabic simple">
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">ping</span></code> to talk to another computer on the LAN.</p></li>
-<li><p>Do an <code class="docutils literal notranslate"><span class="pre">nslookup</span></code> of a domain, and then <code class="docutils literal notranslate"><span class="pre">curl</span></code> the result.</p></li>
-<li><p>Browse some of the cloud provider offerings.</p></li>
+<li><p><strong>Identity and Access Management (IAM) is tricky.</strong> provides fine granularity of what people and programs can and cannot read/modify/delete <em>but</em> because it can be tricky to get these permissions correct, organizations often over-allocate permissions. Hackers love to take advantage of that.</p></li>
+<li><p><strong>“Secure” is rarely the default</strong>. (According to the shared responsibility model, that’s your job!). For example, although <a class="reference external" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/default-encryption-faq.html">S3 is now encrypted by default</a>, it took years and several high-profile breeches for this to be the case!</p></li>
+<li><p><strong>Managed Services Cost Money.</strong> If you want things like automatic updates, automatic logging, and more, the cloud provide can do that for you - this will help your security posture - but it cost more cash.</p></li>
 </ol>
+</section>
+</section>
+</section>
+<section id="web-application-architecture">
+<h2><span class="section-number">5.3. </span>Web Application Architecture<a class="headerlink" href="#web-application-architecture" title="Link to this heading">#</a></h2>
+<p>Web applications are frequently described in terms of “front end” and “back end.”
+In this class we are exclusively concerned with the back end.</p>
+<ul class="simple">
+<li><p>The <strong>front end</strong> is the pretty website that you see. It is a collection of HTML, CSS, and JavaScript.
+Your web browser executes and renders the front end code.</p></li>
+<li><p>The <strong>back end</strong> is the part most people never see: the logic and databases that drive the application.
+This can be written in Go, Python, Rust, Kotlin, or many other languages.</p></li>
+</ul>
+<figure class="align-default" id="id2">
+<img alt="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210204220458/Web-Application-Three-Tier-Architecture.png" src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210204220458/Web-Application-Three-Tier-Architecture.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5.2 </span><span class="caption-text">The common <strong>Web Application Three Tier Architecture</strong>.
+See <a class="reference external" href="https://www.geeksforgeeks.org/how-web-works-web-application-architecture-for-beginners/">GeeksForGeeks: Web Applications for Beginners</a>
+for more information.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p><strong>Databases</strong> are beyond the scope of this course. As a result, the apps we build will be stateless.
+They will focus on providing inference via a pre-trained model.</p>
+<section id="apis">
+<h3>APIs<a class="headerlink" href="#apis" title="Link to this heading">#</a></h3>
+<p>Application Program Interfaces (APIs) are a programmatic way to interact with a web application.</p>
+<p>There are many types, but we will use HTTP <a class="reference external" href="https://restfulapi.net/">RESTful APIs</a> in this course.</p>
+<p>Representational State Transfer (REST) is a software architecture that imposes conditions on how an API should work. These APIs are <strong>stateless</strong>, meaning each request contains authentication tokens and other information and is isolated from other requests. This is in contrast to keeping a long-lived connection open.</p>
+<p>Our APIs will primarily be HTTP <strong>GET</strong> requests - which get information from the server -
+or <strong>POST</strong> requests - which submit data to be processed.</p>
+<p>As an example <strong>GET</strong> request, you can fetch your username from GitHub!
+Use the <code class="docutils literal notranslate"><span class="pre">curl</span></code> command (which makes a GET request by default):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Replace octocat with your GitHub username</span>
+curl<span class="w"> </span>https://api.github.com/users/octocat
+</pre></div>
+</div>
+<section id="fastapi">
+<h4>FastAPI<a class="headerlink" href="#fastapi" title="Link to this heading">#</a></h4>
+<p>A popular Python API Framework is FastAPI. Two big reasons to use it:</p>
+<ol class="arabic simple">
+<li><p>The documentation is a pleasure to read</p></li>
+<li><p>It supports type annotations in <a class="reference external" href="https://fastapi.tiangolo.com/tutorial/path-params/#create-an-enum-class">path parameters</a> and <a class="reference external" href="https://fastapi.tiangolo.com/tutorial/response-model/#response-model-return-type">return types</a></p></li>
+</ol>
+<blockquote>
+<div><p>FastAPI will use this return type to:</p>
+<p><strong>Validate</strong> the returned data.</p>
+<ul class="simple">
+<li><p>If the data is invalid (e.g. you are missing a field), it means that your app code is broken, not returning what it should, and it will return a server error instead of returning incorrect data. This way you and your clients can be certain that they will receive the data and the data shape expected.</p></li>
+</ul>
+<p><strong>Add a JSON Schema</strong> for the response, in the OpenAPI path operation.</p>
+<ul class="simple">
+<li><p>This will be used by the automatic docs.</p></li>
+<li><p>It will also be used by automatic client code generation tools.</p></li>
+</ul>
+<p>But most importantly:</p>
+<p>It will <strong>limit and filter</strong> the output data to what is defined in the return type.</p>
+<ul class="simple">
+<li><p>This is particularly important for <strong>security</strong></p></li>
+</ul>
+<p><a class="reference external" href="https://fastapi.tiangolo.com/tutorial/response-model/"><em>~ Tutorial User Guide</em></a></p>
+</div></blockquote>
+</section>
+</section>
+</section>
+<section id="next-steps-fastapi-demo">
+<h2><span class="section-number">5.4. </span>Next Steps: FastAPI Demo<a class="headerlink" href="#next-steps-fastapi-demo" title="Link to this heading">#</a></h2>
+<p>We will run a simple FastAPI example!</p>
 </section>
 </section>
 
@@ -711,7 +647,7 @@ But watch out, because the data transfer out can get pricy for large application
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>ICE: K-Means Clustering</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>ICE: K-Means Clustering</p>
       </div>
     </a>
     <a class="right-next"
@@ -719,7 +655,7 @@ But watch out, because the data transfer out can get pricy for large application
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>MNIST Digits with Neural Network</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>MNIST Digits with Neural Network</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -730,7 +666,8 @@ But watch out, because the data transfer out can get pricy for large application
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -739,29 +676,24 @@ But watch out, because the data transfer out can get pricy for large application
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">4.1. Pre-reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#internet-protocol">4.2. Internet Protocol</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#address">Address</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#subnet">Subnet</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#domain">Domain</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#port">Port</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cloud">4.3. The Cloud</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-application-architecture">Web Application Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">5.1. Pre-Reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cloud">5.2. The Cloud</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-resources">Cloud Resources</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-machines">Virtual Machines</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#object-storage">Object Storage</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#security">Security</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">4.4. Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#web-application-architecture">5.3. Web Application Architecture</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apis">APIs</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fastapi">FastAPI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-fastapi-demo">5.4. Next Steps: FastAPI Demo</a></li>
 </ul>
   </nav></div>
 
@@ -810,8 +742,8 @@ By DFEC
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>8. Tensors and Dimensionality &#8212; ECE 386</title>
+    <title>9. Tensors and Dimensionality &#8212; ECE 386</title>
   
   
   
@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -63,10 +66,11 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9. ICE: GPU Acceleration" href="gpu-acceleration.html" />
-    <link rel="prev" title="7. C&amp;C: Prediction and Dimensionality" href="../b1-prediction/cc-prediction.html" />
+    <link rel="next" title="10. ICE: GPU Acceleration" href="gpu-acceleration.html" />
+    <link rel="prev" title="8. C&amp;C: Prediction and Dimensionality" href="../b1-prediction/cc-prediction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -82,19 +86,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -102,7 +95,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -110,8 +102,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -127,7 +119,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -157,21 +150,17 @@
     
     
     <img src="../_static/logo.png" class="logo__image only-light" alt="ECE 386 - Home"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ECE 386 - Home"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="ECE 386 - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -185,58 +174,59 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Prediction</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">3. ICE: K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cloud-hosting.html">4. Cloud Hosting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">5. MNIST Digits with Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/serve-digits.html">6. Lab: Serving Digits with FastAPI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">7. C&amp;C: Prediction and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/networks-tooling.html">2. Networks and Tooling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">3. Prediction Machines and ML Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">4. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cloud-hosting.html">5. Cloud Hosting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">6. MNIST Digits with Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-serve-digits.html">7. Lab: Serving Digits with FastAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">8. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Tensors and Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpu-acceleration.html">9. ICE: GPU Acceleration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="whisper-transcription.html">10. ICE: Whisper Transcription</a></li>
-<li class="toctree-l1"><a class="reference internal" href="convolution.html">11. Convolutional Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="transfer-learning.html">12. Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cat-v-dog.html">13. Lab: Cats vs. Dogs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="herding-cats.html">14. Herding 🐱 🐶</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cc-dnn.html">15. C&amp;C: Deep Neural Networks</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">9. Tensors and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu-acceleration.html">10. ICE: GPU Acceleration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whisper-transcription.html">11. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convolution.html">12. Convolutional Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transfer-learning.html">13. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cat-v-dog.html">14. Lab: Cats vs. Dogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="herding-cats.html">15. Herding 🐱 🐶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc-dnn.html">16. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NVIDIA Jetson</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">16. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">17. Diffusion Image Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">18. Containers Part 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">19. YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">17. Containerization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">18. Diffusion Image Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">19. Containers Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">20. YOLO</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">20. M4-Cortex Processor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">21. Wake Word Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">21. M4-Cortex Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">22. Wake Word Detection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">22. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">23. Transformers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-emergence.html">24. Emergence and Ethics of LLMs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/prompt-engineering.html">25. Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">23. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">24. Transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-emergence.html">25. Emergence and Ethics of LLMs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/prompt-engineering.html">26. Prompt Engineering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">26. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">27. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">28. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">29. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">30. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">31. Super Computers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">32. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">33. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">34. Bias and Ethics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">35. Final C&amp;C</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">36. LLM Red Team 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">37. LLM Red Team 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">38. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">27. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">28. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">29. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">30. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">31. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">32. Super Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">33. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">34. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">35. Bias and Ethics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">36. Final C&amp;C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">37. LLM Red Team 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">38. LLM Red Team 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">39. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -391,24 +381,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -432,11 +414,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">8.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">9.1. Pre-Reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">8.2. Linear Algebra</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">9.2. Linear Algebra</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-matrices">Vectors and Matrices</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-products">Dot Products</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication">Matrix Multiplication</a></li>
@@ -448,7 +430,7 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphics-processing-units">8.3. Graphics Processing Units</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphics-processing-units">9.3. Graphics Processing Units</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-execution">GPU Execution</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#general-matrix-multiplication">General Matrix Multiplication</a></li>
 </ul>
@@ -465,7 +447,7 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">8.4. Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">9.4. Conclusion</a></li>
 </ul>
             </nav>
         </div>
@@ -478,9 +460,9 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="tensors-and-dimensionality">
-<h1><span class="section-number">8. </span>Tensors and Dimensionality<a class="headerlink" href="#tensors-and-dimensionality" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">9. </span>Tensors and Dimensionality<a class="headerlink" href="#tensors-and-dimensionality" title="Link to this heading">#</a></h1>
 <section id="pre-reading">
-<h2><span class="section-number">8.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.techspot.com/article/2049-what-are-tensor-cores/">Explainer: What Are Tensor Cores? | TechSpot</a></p></li>
 <li><p>Peruse a little <a class="reference external" href="https://www.nvidia.com/en-us/data-center/tensor-cores/">NVIDIA Tensor Core marketing</a></p></li>
@@ -496,7 +478,7 @@ document.write(`
 </section>
 </section>
 <section id="linear-algebra">
-<h2><span class="section-number">8.2. </span>Linear Algebra<a class="headerlink" href="#linear-algebra" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.2. </span>Linear Algebra<a class="headerlink" href="#linear-algebra" title="Link to this heading">#</a></h2>
 <p>With NVIDIA recently becoming the <a class="reference external" href="https://www.marketwatch.com/story/nvidia-officially-closes-in-1-trillion-territory-becoming-seventh-u-s-company-to-hit-market-cap-milestone-88ead8f9">seventh company ever to hit $1 trillion market-cap</a> and the boom of AI, it is clear that GPUs are a critical hardware. But what are they and what do they actually do for AI computation?</p>
 <p><strong>Answer:</strong> The vast majority of modern machine learning is handled with linear algebra and a little bit of calculus.</p>
 <section id="vectors-and-matrices">
@@ -550,7 +532,7 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 </section>
 </section>
 <section id="graphics-processing-units">
-<h2><span class="section-number">8.3. </span>Graphics Processing Units<a class="headerlink" href="#graphics-processing-units" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.3. </span>Graphics Processing Units<a class="headerlink" href="#graphics-processing-units" title="Link to this heading">#</a></h2>
 <blockquote>
 <div><p><a class="reference external" href="https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/index.html">GPU Performance Background User’s Guide - NVIDIA Docs</a></p>
 </div></blockquote>
@@ -625,7 +607,7 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 </section>
 </section>
 <section id="conclusion">
-<h2><span class="section-number">8.4. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.4. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
 <p>The execution of linear algebra on GPUs is foundational to modern machine learning. Linear algebra provides the mathematical framework that underpins many machine learning algorithms. Neural networks, in particular, are heavily reliant on using weighted sums dot products to propagate information and adjust weights through the network layers.</p>
 <p>Graphics Processing Units (GPUs) with their highly parallelized structures have revolutionized the computational efficiency of these operations. Technologies like NVIDIA’s CUDA and Tensor Cores allow for the optimized execution of the matrix and vector operations that are so common in machine learning, significantly accelerating the training and inference processes of deep learning models.</p>
 <p>Understanding the performance dynamics of these GPUs—such as memory bandwidth, math bandwidth, and latency—allows for the optimized implementation of algorithms. Deep neural networks often need to be carefully designed and tuned to effectively leverage the computational capabilities of GPUs.</p>
@@ -669,7 +651,7 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>C&amp;C: Prediction and Dimensionality</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>C&amp;C: Prediction and Dimensionality</p>
       </div>
     </a>
     <a class="right-next"
@@ -677,7 +659,7 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>ICE: GPU Acceleration</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>ICE: GPU Acceleration</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -688,7 +670,8 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -697,11 +680,11 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">8.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">9.1. Pre-Reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">8.2. Linear Algebra</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">9.2. Linear Algebra</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-matrices">Vectors and Matrices</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-products">Dot Products</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication">Matrix Multiplication</a></li>
@@ -713,7 +696,7 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphics-processing-units">8.3. Graphics Processing Units</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphics-processing-units">9.3. Graphics Processing Units</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-execution">GPU Execution</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#general-matrix-multiplication">General Matrix Multiplication</a></li>
 </ul>
@@ -730,7 +713,7 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">8.4. Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">9.4. Conclusion</a></li>
 </ul>
   </nav></div>
 
@@ -779,8 +762,8 @@ By DFEC
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>

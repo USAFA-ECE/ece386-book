@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. ICE: K-Means Clustering &#8212; ECE 386</title>
+    <title>4. ICE: K-Means Clustering &#8212; ECE 386</title>
   
   
   
@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -61,10 +64,11 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Cloud Hosting" href="cloud-hosting.html" />
-    <link rel="prev" title="2. Prediction Machines and ML Workflow" href="prediction-machines.html" />
+    <link rel="next" title="5. Cloud Hosting" href="cloud-hosting.html" />
+    <link rel="prev" title="3. Prediction Machines and ML Workflow" href="prediction-machines.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -80,19 +84,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -100,7 +93,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -108,8 +100,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -125,7 +117,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -155,21 +148,17 @@
     
     
     <img src="../_static/logo.png" class="logo__image only-light" alt="ECE 386 - Home"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ECE 386 - Home"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="ECE 386 - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -183,58 +172,59 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Prediction</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="hello-colab.html">1. Hello, Colab!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. ICE: K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cloud-hosting.html">4. Cloud Hosting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mnist-dnn.html">5. MNIST Digits with Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="serve-digits.html">6. Lab: Serving Digits with FastAPI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cc-prediction.html">7. C&amp;C: Prediction and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networks-tooling.html">2. Networks and Tooling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prediction-machines.html">3. Prediction Machines and ML Workflow</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud-hosting.html">5. Cloud Hosting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mnist-dnn.html">6. MNIST Digits with Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab-serve-digits.html">7. Lab: Serving Digits with FastAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc-prediction.html">8. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/tensors.html">8. Tensors and Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/gpu-acceleration.html">9. ICE: GPU Acceleration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/whisper-transcription.html">10. ICE: Whisper Transcription</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/convolution.html">11. Convolutional Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/transfer-learning.html">12. Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-v-dog.html">13. Lab: Cats vs. Dogs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/herding-cats.html">14. Herding 🐱 🐶</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cc-dnn.html">15. C&amp;C: Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/tensors.html">9. Tensors and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/gpu-acceleration.html">10. ICE: GPU Acceleration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/whisper-transcription.html">11. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/convolution.html">12. Convolutional Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/transfer-learning.html">13. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-v-dog.html">14. Lab: Cats vs. Dogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/herding-cats.html">15. Herding 🐱 🐶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cc-dnn.html">16. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NVIDIA Jetson</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">16. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">17. Diffusion Image Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">18. Containers Part 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">19. YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">17. Containerization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">18. Diffusion Image Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">19. Containers Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">20. YOLO</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">20. M4-Cortex Processor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">21. Wake Word Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">21. M4-Cortex Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">22. Wake Word Detection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">22. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">23. Transformers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-emergence.html">24. Emergence and Ethics of LLMs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/prompt-engineering.html">25. Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">23. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">24. Transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-emergence.html">25. Emergence and Ethics of LLMs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/prompt-engineering.html">26. Prompt Engineering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">26. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">27. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">28. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">29. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">30. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">31. Super Computers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">32. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">33. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">34. Bias and Ethics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">35. Final C&amp;C</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">36. LLM Red Team 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">37. LLM Red Team 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">38. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">27. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">28. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">29. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">30. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">31. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">32. Super Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">33. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">34. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">35. Bias and Ethics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">36. Final C&amp;C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">37. LLM Red Team 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">38. LLM Red Team 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">39. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -420,24 +410,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -461,11 +443,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">3.1. Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">4.1. Pre-reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals">Goals</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-explore-the-dataset">3.2. Load and explore the dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-explore-the-dataset">4.2. Load and explore the dataset</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-data">Plot the data</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-plot">4D Plot</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-reduced-data">PCA-reduced data</a></li>
@@ -473,18 +455,17 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterate-with-k-means">3.3. Iterate with K-Means</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterate-with-k-means">4.3. Iterate with K-Means</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-through-kmeans">Step through kmeans</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actual-fit">3.4. Actual Fit</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actual-fit">4.4. Actual Fit</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-our-evaluation-benchmark">Define our evaluation benchmark</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-benchmark">Run the benchmark</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predict">Predict</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Predict</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ice-deliverables">3.5. ICE Deliverables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ice-deliverables">4.5. ICE Deliverables</a></li>
 </ul>
             </nav>
         </div>
@@ -497,9 +478,9 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ice-k-means-clustering">
-<h1><span class="section-number">3. </span>ICE: K-Means Clustering<a class="headerlink" href="#ice-k-means-clustering" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">4. </span>ICE: K-Means Clustering<a class="headerlink" href="#ice-k-means-clustering" title="Link to this heading">#</a></h1>
 <section id="pre-reading">
-<h2><span class="section-number">3.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/clustering.html">Scikit-learn Clustering</a> sections <code class="docutils literal notranslate"><span class="pre">2.3.1</span></code> and <code class="docutils literal notranslate"><span class="pre">2.3.2</span></code></p></li>
 </ul>
@@ -517,7 +498,7 @@ document.write(`
 </section>
 </section>
 <section id="load-and-explore-the-dataset">
-<h2><span class="section-number">3.2. </span>Load and explore the dataset<a class="headerlink" href="#load-and-explore-the-dataset" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.2. </span>Load and explore the dataset<a class="headerlink" href="#load-and-explore-the-dataset" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Google colab includes these by default, so you won&#39;t need to run</span>
@@ -669,7 +650,7 @@ K-means is an <em>unsupervised</em> algorithm, meaning it works on datasets even
 </section>
 </section>
 <section id="iterate-with-k-means">
-<h2><span class="section-number">3.3. </span>Iterate with K-Means<a class="headerlink" href="#iterate-with-k-means" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.3. </span>Iterate with K-Means<a class="headerlink" href="#iterate-with-k-means" title="Link to this heading">#</a></h2>
 <p>First, we’ll define a method <code class="docutils literal notranslate"><span class="pre">plot_kmeans</span></code> that will add color, centroids, and lines to our PCA plot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -784,7 +765,7 @@ Sometimes that results in better convergence than others!</p>
 </section>
 </section>
 <section id="actual-fit">
-<h2><span class="section-number">3.4. </span>Actual Fit<a class="headerlink" href="#actual-fit" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.4. </span>Actual Fit<a class="headerlink" href="#actual-fit" title="Link to this heading">#</a></h2>
 <p>Enough playing around! Let’s actually fit the clusters. We’ll do the following to help address some issues observed above.</p>
 <ol class="arabic simple">
 <li><p>Instead of specifying the number of iterations, use the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans.fit">fit</a>
@@ -957,64 +938,9 @@ This is defined as there being no meaningful change of the centroid locations be
 </div>
 </div>
 </section>
-<section id="id1">
-<h3>Predict<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<p>Now that we have a fit model, let’s make a prediction on a sample!</p>
-<p>We will use the builtin <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans.predict">predict</a> method and the results of our PCA-based kmeans model.</p>
-<p>Because this is an unsupervised clustering algorithm, the clusters number from our true labels probably don’t match the ones that kmeans produces!</p>
-<p>The code below only works with two PCA components and <code class="docutils literal notranslate"><span class="pre">random_state=0</span></code> above; if you change that you’ll need to re-match te labels yourself.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">new_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="k">elif</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">new_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">new_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get a random sample</span>
-<span class="n">sample_id</span> <span class="o">=</span> <span class="n">randrange</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
-
-<span class="c1"># Reshape because we are only predicting on a single sample, but KMeans expects a 2D array</span>
-<span class="n">sample</span> <span class="o">=</span> <span class="n">reduced_data</span><span class="p">[</span><span class="n">sample_id</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">prediction</span> <span class="o">=</span> <span class="n">kmeans_pca</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PCA Kmeans prediction for sample </span><span class="si">{</span><span class="n">sample_id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">prediction</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Correct label for sample </span><span class="si">{</span><span class="n">sample_id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">new_labels</span><span class="p">[</span><span class="n">sample_id</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
-
-<span class="c1"># Make predictions for the entire set of samples</span>
-<span class="n">all_predictions</span> <span class="o">=</span> <span class="n">kmeans_pca</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">reduced_data</span><span class="p">)</span>
-
-<span class="c1"># Confusion matrix</span>
-<span class="n">confusion</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">new_labels</span><span class="p">,</span> <span class="n">all_predictions</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Confusion matrix:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">confusion</span><span class="p">)</span>
-
-<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">all_predictions</span><span class="p">,</span> <span class="n">new_labels</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Overall accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 <section id="ice-deliverables">
-<h2><span class="section-number">3.5. </span>ICE Deliverables<a class="headerlink" href="#ice-deliverables" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.5. </span>ICE Deliverables<a class="headerlink" href="#ice-deliverables" title="Link to this heading">#</a></h2>
 <p>Now that you have k-means working on super simple dataset, let’s try one slightly more complicated!</p>
 <ol class="arabic simple">
 <li><p>Use <a class="reference external" href="https://scikit-learn.org/stable/datasets/toy_dataset.html#optical-recognition-of-handwritten-digits-dataset">load_digits</a> to get a dataset of handwritten digits.</p></li>
@@ -1061,7 +987,7 @@ This is defined as there being no meaningful change of the centroid locations be
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Prediction Machines and ML Workflow</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Prediction Machines and ML Workflow</p>
       </div>
     </a>
     <a class="right-next"
@@ -1069,7 +995,7 @@ This is defined as there being no meaningful change of the centroid locations be
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Cloud Hosting</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Cloud Hosting</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1080,7 +1006,8 @@ This is defined as there being no meaningful change of the centroid locations be
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1089,11 +1016,11 @@ This is defined as there being no meaningful change of the centroid locations be
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">3.1. Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">4.1. Pre-reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals">Goals</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-explore-the-dataset">3.2. Load and explore the dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-explore-the-dataset">4.2. Load and explore the dataset</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-data">Plot the data</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-plot">4D Plot</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-reduced-data">PCA-reduced data</a></li>
@@ -1101,18 +1028,17 @@ This is defined as there being no meaningful change of the centroid locations be
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterate-with-k-means">3.3. Iterate with K-Means</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterate-with-k-means">4.3. Iterate with K-Means</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-through-kmeans">Step through kmeans</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actual-fit">3.4. Actual Fit</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#actual-fit">4.4. Actual Fit</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-our-evaluation-benchmark">Define our evaluation benchmark</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-benchmark">Run the benchmark</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predict">Predict</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Predict</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ice-deliverables">3.5. ICE Deliverables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ice-deliverables">4.5. ICE Deliverables</a></li>
 </ul>
   </nav></div>
 
@@ -1161,8 +1087,8 @@ By DFEC
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>

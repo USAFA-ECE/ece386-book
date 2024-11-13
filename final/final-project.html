@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>26. Final Project &#8212; ECE 386</title>
+    <title>27. Final Project &#8212; ECE 386</title>
   
   
   
@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -69,10 +72,11 @@ window.addEventListener("load", () => mermaid.run());
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="27. Final Project" href="project1.html" />
-    <link rel="prev" title="25. Prompt Engineering" href="../nlp/prompt-engineering.html" />
+    <link rel="next" title="28. Final Project" href="project1.html" />
+    <link rel="prev" title="26. Prompt Engineering" href="../nlp/prompt-engineering.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -88,19 +92,8 @@ window.addEventListener("load", () => mermaid.run());
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -108,7 +101,6 @@ window.addEventListener("load", () => mermaid.run());
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -116,8 +108,8 @@ window.addEventListener("load", () => mermaid.run());
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -133,7 +125,8 @@ window.addEventListener("load", () => mermaid.run());
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -163,21 +156,17 @@ window.addEventListener("load", () => mermaid.run());
     
     
     <img src="../_static/logo.png" class="logo__image only-light" alt="ECE 386 - Home"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ECE 386 - Home"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="ECE 386 - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -191,58 +180,59 @@ window.addEventListener("load", () => mermaid.run());
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Prediction</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">2. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">3. ICE: K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cloud-hosting.html">4. Cloud Hosting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">5. MNIST Digits with Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/serve-digits.html">6. Lab: Serving Digits with FastAPI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">7. C&amp;C: Prediction and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/networks-tooling.html">2. Networks and Tooling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">3. Prediction Machines and ML Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/kmeans.html">4. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cloud-hosting.html">5. Cloud Hosting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">6. MNIST Digits with Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-serve-digits.html">7. Lab: Serving Digits with FastAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">8. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Neural Networks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/tensors.html">8. Tensors and Dimensionality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/gpu-acceleration.html">9. ICE: GPU Acceleration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/whisper-transcription.html">10. ICE: Whisper Transcription</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/convolution.html">11. Convolutional Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/transfer-learning.html">12. Transfer Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-v-dog.html">13. Lab: Cats vs. Dogs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/herding-cats.html">14. Herding 🐱 🐶</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cc-dnn.html">15. C&amp;C: Deep Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/tensors.html">9. Tensors and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/gpu-acceleration.html">10. ICE: GPU Acceleration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/whisper-transcription.html">11. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/convolution.html">12. Convolutional Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/transfer-learning.html">13. Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cat-v-dog.html">14. Lab: Cats vs. Dogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/herding-cats.html">15. Herding 🐱 🐶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-dnn/cc-dnn.html">16. C&amp;C: Deep Neural Networks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">NVIDIA Jetson</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">16. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">17. Diffusion Image Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">18. Containers Part 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">19. YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/containerization.html">17. Containerization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/diffusion.html">18. Diffusion Image Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">19. Containers Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">20. YOLO</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">20. M4-Cortex Processor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">21. Wake Word Detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">21. M4-Cortex Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">22. Wake Word Detection</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">22. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">23. Transformers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-emergence.html">24. Emergence and Ethics of LLMs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/prompt-engineering.html">25. Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/text-vectorization.html">23. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/transformers.html">24. Transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-emergence.html">25. Emergence and Ethics of LLMs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/prompt-engineering.html">26. Prompt Engineering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">26. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="project1.html">27. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="project2.html">28. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="project3.html">29. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="project4.html">30. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supercomputers.html">31. Super Computers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="project5.html">32. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="project6.html">33. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bias-ethics.html">34. Bias and Ethics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cc-final.html">35. Final C&amp;C</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">36. LLM Red Team 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">37. LLM Red Team 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wrapup.html">38. Wrap and Critique</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">27. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project1.html">28. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project2.html">29. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project3.html">30. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project4.html">31. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercomputers.html">32. Super Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project5.html">33. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project6.html">34. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bias-ethics.html">35. Bias and Ethics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc-final.html">36. Final C&amp;C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam1.html">37. LLM Red Team 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nlp/llm-redteam2.html">38. LLM Red Team 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wrapup.html">39. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -397,24 +387,16 @@ window.addEventListener("load", () => mermaid.run());
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -438,8 +420,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">26.1. Objectives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">26.2. Grading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">27.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">27.2. Grading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-plan">Project Plan</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-and-models">Datasets and Models</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-implementation">Model Implementation</a></li>
@@ -459,7 +441,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="final-project">
-<h1><span class="section-number">26. </span>Final Project<a class="headerlink" href="#final-project" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">27. </span>Final Project<a class="headerlink" href="#final-project" title="Link to this heading">#</a></h1>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>To better reflect the concept of a minimum viable product (MVP) the following modification is in effect.</p>
@@ -472,7 +454,7 @@ document.write(`
     </pre><p>This is a more agile approach.</p>
 <p><img alt="agile-development" src="https://bluenotes.anz.com/content/dam/bluenotes/images/articles/2017/November/VenterKoltPresoAgile_IMG1.png" /></p>
 <section id="objectives">
-<h2><span class="section-number">26.1. </span>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">27.1. </span>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Demonstrate knowledge of how <strong>prediction</strong> and <strong>judgement</strong> together contribute to a decision and action, as presented in <em>Prediction Machines.</em></p></li>
 <li><p>Employ quantization to reduce model size and improve performance on an edge device.</p></li>
@@ -489,7 +471,7 @@ or a Jupyter Notebook that outputs the byte model for TF Lite Micro on Arduino.<
 </ol>
 </section>
 <section id="grading">
-<h2><span class="section-number">26.2. </span>Grading<a class="headerlink" href="#grading" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">27.2. </span>Grading<a class="headerlink" href="#grading" title="Link to this heading">#</a></h2>
 <p>This final project is deliberately open ended, so invites the chance of failure!</p>
 <p><img alt="Risks" src="https://pbs.twimg.com/media/EbJXUC4X0AEXhlD?format=jpg" /></p>
 <p><strong>No, wait!</strong> Instead we will have checkpoints with deliverables designed to help you win.</p>
@@ -573,7 +555,7 @@ This should work towards the goal you described in the first checkpoint.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">25. </span>Prompt Engineering</p>
+        <p class="prev-next-title"><span class="section-number">26. </span>Prompt Engineering</p>
       </div>
     </a>
     <a class="right-next"
@@ -581,7 +563,7 @@ This should work towards the goal you described in the first checkpoint.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">27. </span>Final Project</p>
+        <p class="prev-next-title"><span class="section-number">28. </span>Final Project</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -592,7 +574,8 @@ This should work towards the goal you described in the first checkpoint.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -601,8 +584,8 @@ This should work towards the goal you described in the first checkpoint.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">26.1. Objectives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">26.2. Grading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">27.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">27.2. Grading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-plan">Project Plan</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-and-models">Datasets and Models</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-implementation">Model Implementation</a></li>
@@ -658,8 +641,8 @@ By DFEC
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>
