@@ -46,12 +46,8 @@ parts:
     numbered: 2
     chapters:
       - file: nlp/text-vectorization
-      - file: nlp/transformers
-      - file: nlp/llm-emergence
+      - file: nlp/llm
       - file: nlp/prompt-engineering
-      # - file: nlp/llm-redteam1
-      # - file: nlp/llm-redteam2
-      # - file: nlp/cc-nlp
   - caption: Final Block
     numbered: 2
     chapters:
