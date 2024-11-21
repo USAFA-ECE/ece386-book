@@ -48,7 +48,7 @@ We take two simple objects, the force of gravity, and *the ability to measure th
 
 ### LLMs as an Emergent Phenomena
 
-LLM Rules:
+LLM Steps:
 
 1. Use **self-attention** to compute relevancy between each word and every other word in the sentence.
 
@@ -57,7 +57,7 @@ Self-attention for **station** in the sentence "The train left the station on ti
 ~ *Deep Learning with Python, 2nd Ed.*, Fig. 11.6.
 ```
 
-2.
+2. Use **multi-head attention** to learn different groups of features for each token.
 
 ### (Bonus) The Mind as an Emergent Phenomena
 
