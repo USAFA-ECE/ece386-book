@@ -75,3 +75,13 @@ This should work towards the goal you described in the first checkpoint.
 - Push code to GitHub
 
 ![How neat is that](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.giphy.com%2Fmedia%2FCWKcLd53mbw0o%2Fgiphy.gif&f=1&nofb=1&ipt=06284ee4e024197bb39246e4df926c153d3c67fe2702025ecc1fdd12f844b9ec&ipo=images)
+
+---
+
+# Final Project Workday 1
+
+# Final Project Workday 2
+
+# Final Project Workday 3
+
+# Final Project Workday 4
