@@ -48,6 +48,10 @@ We take two simple objects, the force of gravity, and *the ability to measure th
 
 ### LLMs as an Emergent Phenomena
 
+<video width="320" height="240" controls>
+  <source src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/assisted-generation/gif_1_1080p.mov" type="video/mp4">
+</video>
+
 LLM Steps:
 
 1. Use **self-attention** to compute relevancy between each word and every other word in the sentence.
