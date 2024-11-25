@@ -42,12 +42,12 @@ parts:
 #     - file: tfm/lite-optimizations
 #     - file: tfm/magic-wand
 #     - file: tfm/cc-tfm
-  - caption: Natural Language Processing
+  - caption: Large Language Models
     numbered: 2
     chapters:
-      - file: nlp/text-vectorization
-      - file: nlp/llm
-      - file: nlp/prompt-engineering
+      - file: llm/text-vectorization
+      - file: llm/llm
+      - file: llm/prompt-engineering
   - caption: Final Block
     numbered: 2
     chapters:
