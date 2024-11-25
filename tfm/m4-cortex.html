@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>21. M4-Cortex Processor &#8212; ECE 386</title>
+    <title>M4-Cortex Processor &#8212; ECE 386</title>
   
   
   
@@ -64,8 +64,6 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="22. Wake Word Detection" href="wake-word.html" />
-    <link rel="prev" title="20. YOLO" href="../jetson/yolo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -116,6 +114,8 @@
     <div class="bd-container__inner bd-page-width">
       
       
+      
+        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -198,30 +198,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">19. Containers Part 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">20. YOLO</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">21. M4-Cortex Processor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wake-word.html">22. Wake Word Detection</a></li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Large Language Models</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../llm/text-vectorization.html">23. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../llm/llm.html">24. Large Language Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../llm/prompt-engineering.html">25. Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../llm/text-vectorization.html">21. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../llm/llm.html">22. Large Language Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../llm/prompt-engineering.html">23. Prompt Engineering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">26. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">27. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">28. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">29. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">30. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">31. Super Computers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">32. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">33. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">34. Bias and Ethics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">35. Final C&amp;C</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">36. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">24. Final Project</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">29. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -409,7 +399,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">21.1. Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
@@ -425,9 +415,9 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="m4-cortex-processor">
-<h1><span class="section-number">21. </span>M4-Cortex Processor<a class="headerlink" href="#m4-cortex-processor" title="Link to this heading">#</a></h1>
+<h1>M4-Cortex Processor<a class="headerlink" href="#m4-cortex-processor" title="Link to this heading">#</a></h1>
 <section id="pre-reading">
-<h2><span class="section-number">21.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+<h2>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://www.arm.com/-/media/Arm%20Developer%20Community/PDF/Processor%20Datasheets/Arm%20Cortex-M4%20Processor%20Datasheet.pdf">Arm Cortex-M4 Datasheet</a></p>
 <section id="objectives">
 <h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
@@ -469,24 +459,6 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../jetson/yolo.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">20. </span>YOLO</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="wake-word.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">22. </span>Wake Word Detection</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -504,7 +476,7 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">21.1. Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>

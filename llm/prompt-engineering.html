@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>25. Prompt Engineering &#8212; ECE 386</title>
+    <title>23. Prompt Engineering &#8212; ECE 386</title>
   
   
   
@@ -64,8 +64,8 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="26. Final Project" href="../final/final-project.html" />
-    <link rel="prev" title="24. Large Language Models" href="llm.html" />
+    <link rel="next" title="24. Final Project" href="../final/final-project.html" />
+    <link rel="prev" title="22. Large Language Models" href="llm.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -198,30 +198,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../jetson/container-pt2.html">19. Containers Part 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../jetson/yolo.html">20. YOLO</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tensorflow Lite Micro</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">21. M4-Cortex Processor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">22. Wake Word Detection</a></li>
-</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Large Language Models</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="text-vectorization.html">23. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="llm.html">24. Large Language Models</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">25. Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text-vectorization.html">21. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llm.html">22. Large Language Models</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">23. Prompt Engineering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">26. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">27. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">28. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">29. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">30. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">31. Super Computers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">32. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">33. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">34. Bias and Ethics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">35. Final C&amp;C</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">36. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">24. Final Project</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">29. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -409,16 +399,16 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">25.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">23.1. Pre-Reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-expenses">25.2. Hardware Expenses</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-expenses">23.2. Hardware Expenses</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-quantization">Advanced Quantization</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-containment-for-generative-ai">Cost Containment for Generative AI</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">25.3. Prompt Engineering</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">23.3. Prompt Engineering</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-vs-few-shot">Zero-shot vs. few-shot</a></li>
 </ul>
 </li>
@@ -434,9 +424,9 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="prompt-engineering">
-<h1><span class="section-number">25. </span>Prompt Engineering<a class="headerlink" href="#prompt-engineering" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">23. </span>Prompt Engineering<a class="headerlink" href="#prompt-engineering" title="Link to this heading">#</a></h1>
 <section id="pre-reading">
-<h2><span class="section-number">25.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">23.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api">Best practices for prompt engineering with OpenAI API</a></p></li>
 </ul>
@@ -449,7 +439,7 @@
 </section>
 </section>
 <section id="hardware-expenses">
-<h2><span class="section-number">25.2. </span>Hardware Expenses<a class="headerlink" href="#hardware-expenses" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">23.2. </span>Hardware Expenses<a class="headerlink" href="#hardware-expenses" title="Link to this heading">#</a></h2>
 <p>LLMs take <strong>a lot of RAM</strong>.</p>
 <p><a class="reference external" href="https://aituts.com/local-llms/">Table: 8-bit quantized LLaMA requirements</a></p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -506,7 +496,7 @@
 </section>
 </section>
 <section id="id1">
-<h2><span class="section-number">25.3. </span>Prompt Engineering<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">23.3. </span>Prompt Engineering<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>Pulled from <a class="reference external" href="https://developer.nvidia.com/blog/an-introduction-to-large-language-models-prompt-engineering-and-p-tuning/">NVIDIA – An Introduction to LLM: Prompt Engineering and P-Tuning</a></p>
 <section id="zero-shot-vs-few-shot">
 <h3>Zero-shot vs. few-shot<a class="headerlink" href="#zero-shot-vs-few-shot" title="Link to this heading">#</a></h3>
@@ -552,7 +542,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">24. </span>Large Language Models</p>
+        <p class="prev-next-title"><span class="section-number">22. </span>Large Language Models</p>
       </div>
     </a>
     <a class="right-next"
@@ -560,7 +550,7 @@
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">26. </span>Final Project</p>
+        <p class="prev-next-title"><span class="section-number">24. </span>Final Project</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -581,16 +571,16 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">25.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">23.1. Pre-Reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-expenses">25.2. Hardware Expenses</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-expenses">23.2. Hardware Expenses</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-quantization">Advanced Quantization</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-containment-for-generative-ai">Cost Containment for Generative AI</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">25.3. Prompt Engineering</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">23.3. Prompt Engineering</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-vs-few-shot">Zero-shot vs. few-shot</a></li>
 </ul>
 </li>
