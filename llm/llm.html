@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>37. LLM Red Team 1 &#8212; ECE 386</title>
+    <title>24. Large Language Models &#8212; ECE 386</title>
   
   
   
@@ -60,12 +60,14 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'nlp/llm-redteam1';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'llm/llm';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="38. LLM Red Team 2" href="llm-redteam2.html" />
-    <link rel="prev" title="36. Final C&amp;C" href="../final/cc-final.html" />
+    <link rel="next" title="25. Prompt Engineering" href="prompt-engineering.html" />
+    <link rel="prev" title="23. Text Vectorization" href="text-vectorization.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -203,28 +205,25 @@
 <li class="toctree-l1"><a class="reference internal" href="../tfm/m4-cortex.html">21. M4-Cortex Processor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tfm/wake-word.html">22. Wake Word Detection</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Natural Language Processing</span></p>
-<ul class="nav bd-sidenav">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Large Language Models</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="text-vectorization.html">23. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="transformers.html">24. Transformers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="llm-emergence.html">25. Emergence and Ethics of LLMs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prompt-engineering.html">26. Prompt Engineering</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">24. Large Language Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prompt-engineering.html">25. Prompt Engineering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">27. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">28. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">29. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">30. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">31. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">32. Super Computers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">33. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">34. Final Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">35. Bias and Ethics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">36. Final C&amp;C</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">37. LLM Red Team 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="llm-redteam2.html">38. LLM Red Team 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">39. Wrap and Critique</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">26. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project1.html">27. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project2.html">28. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project3.html">29. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project4.html">30. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/supercomputers.html">31. Super Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project5.html">32. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/project6.html">33. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/bias-ethics.html">34. Bias and Ethics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/cc-final.html">35. Final C&amp;C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">36. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -296,7 +295,7 @@
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fnlp/llm-redteam1.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fllm/llm.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -326,7 +325,7 @@
       
       
       
-      <li><a href="../_sources/nlp/llm-redteam1.md" target="_blank"
+      <li><a href="../_sources/llm/llm.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -389,7 +388,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -400,11 +401,29 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>LLM Red Team 1</h1>
+    <h1>Large Language Models</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">24.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformers">24.2. Transformers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#emergence">24.3. Emergence</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llms-as-an-emergent-phenomena">LLMs as an Emergent Phenomena</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bonus-the-mind-as-an-emergent-phenomena">(Bonus) The Mind as an Emergent Phenomena</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ethics">24.4. Ethics</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -414,8 +433,88 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="llm-red-team-1">
-<h1><span class="section-number">37. </span>LLM Red Team 1<a class="headerlink" href="#llm-red-team-1" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="large-language-models">
+<h1><span class="section-number">24. </span>Large Language Models<a class="headerlink" href="#large-language-models" title="Link to this heading">#</a></h1>
+<section id="pre-reading">
+<h2><span class="section-number">24.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>YouTube (0:00 - 8:35) <a class="reference external" href="https://youtu.be/SZorAJ4I-sA?si=NfWfV9U3TLAtccsh">Transformers, explained: Understand the model behind GPT, BERT, and T5</a></p></li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SZorAJ4I-sA?si=VCrQ4ys7S7wsTbXW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<ul class="simple">
+<li><p>YouTube (0:00 - 3:03) <a class="reference external" href="https://www.youtube.com/watch?v=wjZofJX0v4M">Transformers (how LLMs work) explained visually</a> -&gt; watch more if you <em>really</em> want to see what’s going on!</p></li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wjZofJX0v4M?si=o-yIPL6_80LcBt4D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<ul class="simple">
+<li><p>Optional: <a class="reference external" href="https://learning.oreilly.com/library/view/deep-learning-with/9781617296864/Text/11.htm#:-:text=architecture"><em>Deep Learning with Python</em>, 11.4: The Transformer Architecture</a></p></li>
+</ul>
+<section id="objectives">
+<h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Understand why transformer architecture and GPUs make LLMs possible</p></li>
+<li><p>Describe how LLMs exhibit emergent behavior.</p></li>
+<li><p>Discuss ethical considerations with LLMs.</p></li>
+</ul>
+</section>
+</section>
+<section id="transformers">
+<h2><span class="section-number">24.2. </span>Transformers<a class="headerlink" href="#transformers" title="Link to this heading">#</a></h2>
+</section>
+<section id="emergence">
+<h2><span class="section-number">24.3. </span>Emergence<a class="headerlink" href="#emergence" title="Link to this heading">#</a></h2>
+<p><strong>Emergence</strong> is when you combine relatively simple sets of rules and at some threshold a mind-blowing result manifests.</p>
+<p>This is one of my all time favorite books.</p>
+<p><img alt="The Emergence of Everything book" src="https://global.oup.com/academic/covers/pop-up/9780195173314" /></p>
+<blockquote>
+<div><p><strong>Emergence</strong> is the the opposite of reduction. The latter tries to move from the whole to the parts. It has been enormously successful. The former tries to generate the properties of the whole from an understanding of the parts. Both approaches can he mutually self-consistent.</p>
+</div></blockquote>
+<div class="math notranslate nohighlight">
+\[
+sand + glass funnel = ?
+\]</div>
+<p><img alt="Sand" src="https://images.unsplash.com/photo-1535631815644-2a104d57263b" /></p>
+<p><img alt="Glass funnel" src="https://www.corning.com/catalog/cls/products/p/pyrexFunnelFluted60AngleShortStem/images/6180_A.jpg/_jcr_content/renditions/product.zoom.1200.jpg" /></p>
+<p><img alt="Hourglass" src="https://images.unsplash.com/photo-1518281361980-b26bfd556770" /></p>
+<div class="math notranslate nohighlight">
+\[
+sand + glass funnel = time keeping
+\]</div>
+<p>We take two simple objects, the force of gravity, and <em>the ability to measure the fourth dimension <strong>emerges</strong></em>.</p>
+<section id="llms-as-an-emergent-phenomena">
+<h3>LLMs as an Emergent Phenomena<a class="headerlink" href="#llms-as-an-emergent-phenomena" title="Link to this heading">#</a></h3>
+<video width="320" height="240" controls>
+  <source src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/assisted-generation/gif_1_1080p.mov" type="video/mp4">
+</video>
+<p>LLM Steps:</p>
+<ol class="arabic simple">
+<li><p>Use <strong>self-attention</strong> to compute relevancy between each word and every other word in the sentence.</p></li>
+</ol>
+<figure class="align-default" id="id1">
+<img alt="../_images/deep_learning_with_python-fig-11-06.png" src="../_images/deep_learning_with_python-fig-11-06.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 24.1 </span><span class="caption-text">Self-attention for <strong>station</strong> in the sentence “The train left the station on time.”
+~ <em>Deep Learning with Python, 2nd Ed.</em>, Fig. 11.6.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>Use <strong>multi-head attention</strong> to learn different groups of features for each token.</p></li>
+</ol>
+</section>
+<section id="bonus-the-mind-as-an-emergent-phenomena">
+<h3>(Bonus) The Mind as an Emergent Phenomena<a class="headerlink" href="#bonus-the-mind-as-an-emergent-phenomena" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>There are a wide variety of understandings of what is meant by mind.</strong> The reductionist behaviorist tradition would argue that mind is an epiphenomenon of the activities of collections of neurons. They argue that minds do not in fact exist. At the opposite extreme, the idealist tradition going back to George Berkeley would argue that mind is all that exists, and matter is an epiphenomenon posited by minds for explanatory purposes. The Kantians would argue for the existence of both mind and matter, the latter being the ding an sich (thing in itself) that minds aspire to and cannot fully comprehend.</p>
+<p><strong>Our view is that all of the above is too simplistic.</strong> The universe, whatever its ultimate character, unfolds in a large number of emergences, all of which must he considered. <strong>The pruning rules of the emergences may go beyond the purely dynamic and exhibit a noetic character. It ultimately evolves into the mind, not as something that suddenly appears, but as a maturing character of an aging universe.</strong> This is something that we are just beginning to understand and, frustrating as it may be to admit such a degree of ignorance, we move ahead. <strong>That is our task as humans; some would call it knowing the mind of God and regard it as a vocation.</strong>
+~ <a class="reference external" href="https://www.goodreads.com/book/show/2301.The_Emergence_of_Everything"><em>The Emergence of Everything</em>, Harold J. Morowitz</a></p>
+</div></blockquote>
+</section>
+</section>
+<section id="ethics">
+<h2><span class="section-number">24.4. </span>Ethics<a class="headerlink" href="#ethics" title="Link to this heading">#</a></h2>
+<p>Large Language Models are trained on large datasets of language!</p>
+<p>Furthermore, <em>instruct</em> models are trained how to respond to queries.</p>
+<p>Both of these steps have the potential to introduce bias into the model.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -431,7 +530,7 @@
         },
         kernelOptions: {
             name: "python3",
-            path: "./nlp"
+            path: "./llm"
         },
         predefinedOutput: true
     }
@@ -449,20 +548,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../final/cc-final.html"
+       href="text-vectorization.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">36. </span>Final C&amp;C</p>
+        <p class="prev-next-title"><span class="section-number">23. </span>Text Vectorization</p>
       </div>
     </a>
     <a class="right-next"
-       href="llm-redteam2.html"
+       href="prompt-engineering.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">38. </span>LLM Red Team 2</p>
+        <p class="prev-next-title"><span class="section-number">25. </span>Prompt Engineering</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -472,6 +571,32 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">24.1. Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformers">24.2. Transformers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#emergence">24.3. Emergence</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llms-as-an-emergent-phenomena">LLMs as an Emergent Phenomena</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bonus-the-mind-as-an-emergent-phenomena">(Bonus) The Mind as an Emergent Phenomena</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ethics">24.4. Ethics</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
