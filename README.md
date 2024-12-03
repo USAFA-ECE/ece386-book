@@ -1,4 +1,6 @@
-# ECE 495: AI Hardware Applications
+# ECE 386: AI Hardware Applications
+
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 **Live website:** [https://usafa-ece.github.io/ai-hardware](https://usafa-ece.github.io/ai-hardware)
 
