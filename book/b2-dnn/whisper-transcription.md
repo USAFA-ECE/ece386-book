@@ -77,10 +77,11 @@ ENTRYPOINT ["python", "speech_recognition.py"]
 To build the image and name it `whisper` just execute this. The `.` sends the entire working directory to the builder.
 
 ```bash
+# This will fail; read on to find out why.
 docker buildx build . -t whisper
 ```
 
-That likely failed! We need to create the `speech_recognition.py` script!
+The failure is because we need to create the `speech_recognition.py` script!
 
 ## Python Script
 
@@ -112,16 +113,238 @@ docker run -it --rm --runtime nvidia mywhisper
 
 If all goes well, this will print **True** to the terminal!
 
+```{important}
+After you verify that CUDA is working in your container, **commit** your code and push to GitHub!
+
+Then delete the two lines from `speech_recognition.py`.
+```
+
 ### Record Audio
 
-First, import sounddevice:
+First, import SoundDevice and NumPy:
 
 ```python
 import sounddevice as sd
+import numpy as np
+import numpy.typing as npt
 ```
 
 Then create the following function:
 
 ```python
-
+def record_audio(duration_seconds: int = 10) -> npt.NDArray:
+    """Record duration_seconds of audio from default microphone.
+    Return a single channel numpy array."""
+    sample_rate = 16000  # Hz
+    samples = int(duration_seconds * sample_rate)
+    # Will use default microphone; on Jetson this is likely a USB WebCam
+    audio = sd.rec(samples, samplerate=sample_rate, channels=1, dtype=np.float32)
+    # Blocks until recording complete
+    sd.wait()
+    # Model expects single axis
+    return np.squeeze(audio, axis=1)
 ```
+
+Next, create a chunk of code that will be executed whenever this file is directly run by Python,
+`python speech_recognition.py`, exactly as our **ENTRYPOINT** is doing above!
+
+```python
+if __name__ == "__main__":
+
+    print("Recording...")
+    audio = record_audio()
+    print("Done")
+
+    print(audio) # Temporary line
+```
+
+Build your image again.
+
+Here is the updated command to run the container. It has a few more options, which you can learn more about here: [docker run](https://docs.docker.com/reference/cli/docker/container/run/#options).
+
+Most importantly, we are letting the container access the WebCam with `--device /dev/video0`
+and `--privileged`.
+
+```{warning}
+Use the `--privileged` flag with caution. A container with `--privileged` is not a securely sandboxed process. Containers in this mode can get a root shell on the host and take control over the system.
+```
+
+```bash
+docker run -it --rm --device /dev/video0 --privileged --runtime nvidia  whisper
+```
+
+~~~
+# Need to try this
+  --device /dev/snd:/dev/snd \
+  --device /dev/video0:/dev/video0 \
+  --cap-add SYS_ADMIN \
+  --cap-add SYS_RESOURCE \
+
+--device /dev/snd:/dev/snd: Maps the host's audio device.
+--device /dev/video0:/dev/video0: Maps the host's webcam device (adjust /dev/video* as needed for your webcam).
+--cap-add SYS_ADMIN: Grants administrative privileges required for some audio setups.
+--cap-add SYS_RESOURCE: Allows fine-grained resource management.
+~~~
+
+This should still fail!
+
+It turns out Python SoundDevice is a python binding for a C/C++ library...
+
+Search online to find what you need to install with `apt` and then add this to the Dockerfile.
+Make sure you add it **after** `WORKDIR /app` and **before** the `RUN pip...` command.
+
+```Dockerfile
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    # PUT APT LIBRARY HERE \
+    && rm -rf /var/lib/apt/lists/
+```from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
+
+```{tip}
+Docker builds images in layers and keeps those layers in a **cache**.
+If you invalidate a layer of the image during `docker buildx`,
+Docker rebuilds that layer and all subsequent layers.
+
+As a result, you typically want to construct your Dockerfile so that the most frequently changed
+things are at the bottom! In our case WORKDIR > RUN apt > RUN pip > COPY.
+
+Of course, this isn't perfect, but it **will save you a ton of time** while iterating.
+```
+
+Now, re-build and re-run!
+You should see some numbers printed out in an array 🎤
+
+### 🤗 Pipeline
+
+Hugging Face transformers pipelines can do [all sorts of cool tasks!](https://huggingface.co/docs/transformers/task_summary)
+
+Add this method to your `speech_recognition.py` script.
+It is extracted from the Distil-Whisper model card [short-form transcription](https://huggingface.co/distil-whisper/distil-medium.en#short-form-transcription).
+
+```python
+import torch
+from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, Pipeline, pipeline
+```
+
+```python
+def build_pipeline(
+    model_id: str, torch_dtype: torch.dtype, device: str
+) -> Pipeline:
+    """Creates a Hugging Face automatic-speech-recognition pipeline on the given device."""
+    model = AutoModelForSpeechSeq2Seq.from_pretrained(
+        model_id,
+        torch_dtype=torch_dtype,
+        low_cpu_mem_usage=True,
+        use_safetensors=True,
+    )
+    model.to(device)
+    processor = AutoProcessor.from_pretrained(model_id)
+    pipe = pipeline(
+        "automatic-speech-recognition",
+        model=model,
+        tokenizer=processor.tokenizer,
+        feature_extractor=processor.feature_extractor,
+        max_new_tokens=128,
+        torch_dtype=torch_dtype,
+        device=device,
+    )
+    return pipe
+```
+
+At this point you should have several imports and two methods!
+
+### The `__main__`
+
+Time to make those methods actually do something for us!
+
+You need one more import:
+
+```python
+import sys
+import time
+```
+
+`sys` will allow us to pass arguments to the script.
+For us, that means you can do something like `python speech_recognition.py distil-whisper/distil-large-v3`
+and get multi-lingual transcription!
+
+The following code should go at the very bottom of your script.
+
+```python
+if __name__ == "__main__":
+    # Get model as argument, default to "distil-whisper/distil-medium.en" if not given
+    model_id = sys.argv[1] if len(sys.argv) > 1 else "distil-whisper/distil-medium.en"
+    print("Using model_id {model_id}")
+    # Use GPU if available
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
+    print(f"Using device {device}.")
+
+    print("Building model pipeline...")
+    pipe = build_pipeline(model_id, torch_dtype, device)
+    print(type(pipe))
+    print("Done")
+
+    print("Recording...")
+    audio = record_audio()
+    print("Done")
+
+    print("Transcribing...")
+    start_time = time.time_ns()
+    speech = pipe(audio)
+    end_time = time.time_ns()
+    print("Done")
+
+    print(speech)
+    print(f"Transcription took {(end_time-start_time)/1000000000} seconds")
+```
+
+#### Black
+
+You should *almost always* run [Black](https://black.readthedocs.io/) on any Python script **before** you try and execute it!
+
+> "Any color you like."
+
+If you have not already done so, install Black with:
+
+```bash
+pipx install black
+```
+
+```{hint}
+**pipx** allows you to install and run Python applications in isolated environments.
+~~~bash
+sudo apt update
+sudo apt install pipx
+pipx ensurepath # Then must restart terminal
+~~~
+```
+
+Run black against your code to
+
+1. Check your code for common errors and bugs (known as linting).
+2. Reformat the code so it is easier to read. This style is opinionated - as you could guess - but it is extremely helpful once you get used to it.
+
+```bash
+black speech_recognition.py
+```
+
+Once Black exits cleanly, **commit your code and push to GitHub.**
+
+```{note}
+Our method declarations have **type hints** in the parameters and returns.
+You *could* use **PyRight** to verify these, and usually you *should*;
+however, this requires a virtual environment with all the same imports installed,
+which is beyond the scope of this ICE.
+
+Just take the instructors word for it that it passes:
+
+> $ pyright speech_recognition.py`
+>
+> 0 errors, 0 warnings, 0 informations
+```
+
+### Running
+
+At this point you should have a Dockerfile and Python script that you are pretty sure will work.
+
+Build your image one more time.
