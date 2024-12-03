@@ -10,29 +10,30 @@ parts:
       - file: b1-prediction/hello-colab
       - file: b1-prediction/networks-tooling
       - file: b1-prediction/prediction-machines
-      - file: b1-prediction/kmeans
+      # - file : b1-prediction/datasets
+      - file: b1-prediction/ice-kmeans
       - file: b1-prediction/cloud-hosting
       - file: b1-prediction/mnist-dnn
       - file: b1-prediction/lab-serve-digits
       - file: b1-prediction/cc-prediction
-  - caption: Neural Networks
+  # - caption: Edge Inference
+  #   numbered: 2
+  #   chapters:
+  #     - file: b2-edge/edge-intro
+  #     - file: b2-edge/lab-cortex-benchmark
+  #     - file: b2-edge/cortex-architecture
+  #     - file: b2-edge/quantization
+  #     - file: b2-edge/lab-impulse-kws
+  #     - file: b2-edge/command-risk
+  #     - file: b2-edge/cc-edge
+  - caption: Development Boards
     numbered: 2
     chapters:
-      - file: b2-dnn/tensors
-      - file: b2-dnn/gpu-acceleration
-      - file: b2-dnn/whisper-transcription
-      - file: b2-dnn/convolution
-      - file: b2-dnn/transfer-learning
-      - file: b2-dnn/cat-v-dog
-      - file: b2-dnn/herding-cats
-      - file: b2-dnn/cc-dnn
-  - caption: NVIDIA Jetson
-    numbered: 2
-    chapters:
-      - file: jetson/containerization
-      - file: jetson/diffusion
-      - file: jetson/container-pt2
-      - file: jetson/yolo
+      # - file: b3-devboard/ice-devboard
+      - file: b3-devboard/lab-cat-dog
+      - file: b3-devboard/containerization
+      - file: b3-devboard/ice-whisper
+      # - file: b2-dnn/cc-devboard
   - caption: Large Language Models
     numbered: 2
     chapters:
