@@ -1,0 +1,942 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>11. ICE: Whisper Transcription &#8212; ECE 386</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'b3-devboard/ice-whisper';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12. Text Vectorization" href="../llm/text-vectorization.html" />
+    <link rel="prev" title="10. Containerization" href="containerization.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="ECE 386 - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="ECE 386 - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    AI Hardware Applications
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Prediction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/networks-tooling.html">2. Networks and Tooling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">3. Prediction Machines and ML Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/ice-kmeans.html">4. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cloud-hosting.html">5. Cloud Hosting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">6. MNIST Digits with Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-serve-digits.html">7. Lab: Serving Digits with FastAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">8. C&amp;C: Prediction and Dimensionality</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Development Boards</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lab-cat-dog.html">9. Lab: Cats vs. Dogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="containerization.html">10. Containerization</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. ICE: Whisper Transcription</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Large Language Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../llm/text-vectorization.html">12. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../llm/llm.html">13. Large Language Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../llm/prompt-engineering.html">14. Prompt Engineering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">15. Final Project</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">20. Wrap and Critique</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/usafa-ece/ai-hardware" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fb3-devboard/ice-whisper.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/b3-devboard/ice-whisper.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ICE: Whisper Transcription</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">11.1. Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">11.2. Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile">11.3. Dockerfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-docker-image">Build Docker Image</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script">11.4. Python Script</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuda-test">CUDA Test</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-container">Run the container</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#record-audio">Record Audio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline">🤗 Pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main">The <code class="docutils literal notranslate"><span class="pre">__main__</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#black">Black</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running">11.5. Running</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#volumes">Volumes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-real-deal">The real deal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">11.6. Conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">Deliverables</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ice-whisper-transcription">
+<h1><span class="section-number">11. </span>ICE: Whisper Transcription<a class="headerlink" href="#ice-whisper-transcription" title="Link to this heading">#</a></h1>
+<p>In this ICE we will use <a class="reference external" href="https://huggingface.co/distil-whisper">Distil-Whipser</a> to transcribe audio to text.
+Transcription will run inside a Docker container on our NVIDIA Jetson Orin Nano.</p>
+<section id="background">
+<h2><span class="section-number">11.1. </span>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h2>
+<p>OpenAI’s <strong>Whisper</strong> models are cutting-edge speech processing models. They can do voice-to-text as well as translate between languages!</p>
+<p>Here is the abstract from their paper:</p>
+<blockquote>
+<div><p>We study the capabilities of speech processing systems trained simply to predict large amounts of transcripts of audio on the internet. When scaled to 680,000 hours of multilingual and multitask supervision, the resulting models generalize well to standard benchmarks and are often competitive with prior fully supervised results but in a zeroshot transfer setting without the need for any finetuning. When compared to humans, the models approach their accuracy and robustness. We are releasing models and inference code to serve as a foundation for further work on robust speech processing.</p>
+</div></blockquote>
+<p>Hugging Face 🤗 provides the <strong>Transformers</strong> library (backed by PyTorch) that allows you to
+<a class="reference external" href="https://huggingface.co/docs/transformers/model_doc/whisper">run whisper models in 4 lines of code</a>!</p>
+<p>They also released <a class="reference external" href="https://huggingface.co/distil-whisper"><strong>Distil-Whisper</strong></a>.</p>
+<blockquote>
+<div><p>Distil-Whisper is a distilled version of Whisper that is 6 times faster, 49% smaller, and performs within 1% word error rate (WER) on out-of-distribution evaluation sets.</p>
+</div></blockquote>
+<p>For this lab we will be primarily using <a class="reference external" href="https://huggingface.co/distil-whisper/distil-medium.en">distil-whisper/distil-medium.en</a>
+because it has the fastest throughput of the distilled models.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We will be asking questions about the paper <a class="reference external" href="https://arxiv.org/abs/2311.00430"><em>Distil-Whisper: Robust Knowledge Distillation via Large-Scale Pseudo Labelling</em></a>
+during the end of block Clarify &amp; Communicate.</p>
+<p>Abstract:</p>
+<blockquote>
+<div><p>As the size of pre-trained speech recognition models increases, running these large models in low-latency or resource-constrained environments becomes challenging. In this work, we leverage pseudo-labelling to assemble a large-scale open-source dataset which we use to distill the Whisper model into a smaller variant, called Distil-Whisper. Using a simple word error rate (WER) heuristic, we select only the highest quality pseudo-labels for training. The distilled model is 5.8 times faster with 51% fewer parameters, while performing to within 1% WER on out-of-distribution test data in a zero-shot transfer setting. Distil-Whisper maintains the robustness of the Whisper model to difficult acoustic conditions, while being less prone to hallucination errors on long-form audio. Distil-Whisper is designed to be paired with Whisper for speculative decoding, yielding a 2 times speed-up while mathematically ensuring the same outputs as the original model. To facilitate further research in this domain, we make our training code, inference code and models publicly accessible.</p>
+</div></blockquote>
+</div>
+</section>
+<section id="setup">
+<h2><span class="section-number">11.2. </span>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<p>Before you begin, make sure you have configured Git on your Jetson Orin Nano.
+This should include setting your email, username, and authenticating to GitHub.</p>
+<ol class="arabic simple">
+<li><p>Create a new GitHub repository, and name it something helpful.</p></li>
+<li><p>Clone the repository to your Jetson and open it in VSCode.</p></li>
+<li><p>Open a terminal in VSCode by pressing <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Shift</span></code> + ```
+or with the Terminal menu at the top of the window.</p></li>
+</ol>
+</section>
+<section id="dockerfile">
+<h2><span class="section-number">11.3. </span>Dockerfile<a class="headerlink" href="#dockerfile" title="Link to this heading">#</a></h2>
+<p>Create a Dockerfile</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>code<span class="w"> </span>Dockerfile
+</pre></div>
+</div>
+<p>We want to use the <a class="reference external" href="https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch">NVIDIA PyTorch Container</a>
+as our base image. You want the newest container that matches the version of CUDA installed on your Jetson.</p>
+<p>As of December 2024, we are using JetPack 6.1, which includes CUDA 12.6.</p>
+<p>Add this line to the start of your Dockerfile</p>
+<div class="highlight-Dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">nvcr.io/nvidia/pytorch:24.11-py3-igpu</span>
+</pre></div>
+</div>
+<p>Next, set a working directory for the application.
+If we don’t do this the following command will just stick things in <code class="docutils literal notranslate"><span class="pre">/</span></code>, which causes problems.</p>
+<div class="highlight-Dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+</pre></div>
+</div>
+<p>Next, install Python dependencies. According to the <a class="reference external" href="https://huggingface.co/distil-whisper/distil-medium.en">distil-medium.en</a>
+model card, you need t###### and a##### (up to you to find them!).</p>
+<p>We will also need <a class="reference external" href="https://python-sounddevice.readthedocs.io/">Python SoundDevice</a> to record audio.</p>
+<p>Finally, to keep the size of our final image small we will use the <code class="docutils literal notranslate"><span class="pre">--no-cache-dir</span></code> option.
+The <code class="docutils literal notranslate"><span class="pre">\</span></code> character allows us to break the command into multiple lines.
+The <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> chains commands; it will execute the second command if the first command executes successfully.
+Replace the “#” with the right letters.</p>
+<div class="highlight-Dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>--no-cache-dir<span class="w"> </span>pip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>t######<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>a######<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>sounddevice
+</pre></div>
+</div>
+<p>Next, we need to copy our python script into the Dockerfile.
+We can just copy the local file to the current working directory (that we set above with <code class="docutils literal notranslate"><span class="pre">WORKDIR</span></code>!) using <code class="docutils literal notranslate"><span class="pre">.</span></code></p>
+<div class="highlight-Dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span>speech_recognition.py<span class="w"> </span>.
+</pre></div>
+</div>
+<p>Finally, we tell our image where it should start to execute.
+We can always override this; for example to get a shell use <code class="docutils literal notranslate"><span class="pre">--entrypoint=/bin/bash</span></code> as an option to <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code>.</p>
+<div class="highlight-Dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">ENTRYPOINT</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;speech_recognition.py&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<section id="build-docker-image">
+<h3>Build Docker Image<a class="headerlink" href="#build-docker-image" title="Link to this heading">#</a></h3>
+<p>To build the image and name it <code class="docutils literal notranslate"><span class="pre">whisper</span></code> just execute this. The <code class="docutils literal notranslate"><span class="pre">.</span></code> sends the entire working directory to the builder.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This will fail; read on to find out why.</span>
+docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"> </span>.<span class="w"> </span>-t<span class="w"> </span>whisper
+</pre></div>
+</div>
+<p>The failure is because we need to create the <code class="docutils literal notranslate"><span class="pre">speech_recognition.py</span></code> script!</p>
+</section>
+</section>
+<section id="python-script">
+<h2><span class="section-number">11.4. </span>Python Script<a class="headerlink" href="#python-script" title="Link to this heading">#</a></h2>
+<section id="cuda-test">
+<h3>CUDA Test<a class="headerlink" href="#cuda-test" title="Link to this heading">#</a></h3>
+<p>Before we do anything else, we should make sure CUDA is working. If it is, that means our container can access the GPU!</p>
+<p>Create <code class="docutils literal notranslate"><span class="pre">speech_recognition.py</span></code>.</p>
+<p>If you go back to <a class="reference external" href="https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch">NVIDIA PyTorch Container</a> you will see
+an example of how to tell if CUDA is available. Find that and add these two lines to your script.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="c1"># TODO: check if CUDA is available</span>
+</pre></div>
+</div>
+<p>Now, build the container again! (<em>Hint: use the up-arrow in your terminal</em>).</p>
+<section id="run-the-container">
+<h4>Run the container<a class="headerlink" href="#run-the-container" title="Link to this heading">#</a></h4>
+<p>Once it is built you can see your images with <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">image</span> <span class="pre">list</span></code>.</p>
+<p>Assuming you see your image, you can run the following command.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference external" href="https://docs.docker.com/reference/cli/docker/container/run/#options">docker run</a> for option docs.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-it</span></code> allocates a new interactive terminal</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--rm</span></code> removes the container after it exits</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--runtime=nvidia</span></code> allows the container to access the Jetson GPU</p></li>
+</ul>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--runtime<span class="o">=</span>nvidia<span class="w"> </span>whisper
+</pre></div>
+</div>
+<p>If all goes well, this will print <strong>True</strong> to the terminal!</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>After you verify that CUDA is working in your container, <strong>commit</strong> your code and push to GitHub!</p>
+<p>Then delete the two lines from <code class="docutils literal notranslate"><span class="pre">speech_recognition.py</span></code>.</p>
+</div>
+</section>
+</section>
+<section id="record-audio">
+<h3>Record Audio<a class="headerlink" href="#record-audio" title="Link to this heading">#</a></h3>
+<p>First, import SoundDevice and NumPy:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sounddevice</span> <span class="k">as</span> <span class="nn">sd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.typing</span> <span class="k">as</span> <span class="nn">npt</span>
+</pre></div>
+</div>
+<p>Then create the following function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">record_audio</span><span class="p">(</span><span class="n">duration_seconds</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Record duration_seconds of audio from default microphone.</span>
+<span class="sd">    Return a single channel numpy array.&quot;&quot;&quot;</span>
+    <span class="n">sample_rate</span> <span class="o">=</span> <span class="mi">16000</span>  <span class="c1"># Hz</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">duration_seconds</span> <span class="o">*</span> <span class="n">sample_rate</span><span class="p">)</span>
+    <span class="c1"># Will use default microphone; on Jetson this is likely a USB WebCam</span>
+    <span class="n">audio</span> <span class="o">=</span> <span class="n">sd</span><span class="o">.</span><span class="n">rec</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">samplerate</span><span class="o">=</span><span class="n">sample_rate</span><span class="p">,</span> <span class="n">channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="c1"># Blocks until recording complete</span>
+    <span class="n">sd</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+    <span class="c1"># Model expects single axis</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, create a chunk of code that will be executed whenever this file is directly run by Python,
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">speech_recognition.py</span></code>, exactly as our <strong>ENTRYPOINT</strong> is doing above!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Recording...&quot;</span><span class="p">)</span>
+    <span class="n">audio</span> <span class="o">=</span> <span class="n">record_audio</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">audio</span><span class="p">)</span> <span class="c1"># Temporary line</span>
+</pre></div>
+</div>
+<p><strong>Build your image again.</strong></p>
+<p>Here is the updated command to run the container.
+We are letting the container access the webcam microphone with <code class="docutils literal notranslate"><span class="pre">--device</span> <span class="pre">/dev/snd</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--device<span class="o">=</span>/dev/snd<span class="w"> </span>--runtime<span class="o">=</span>nvidia<span class="w">  </span>whisper
+</pre></div>
+</div>
+<p><em>This should still fail!</em></p>
+<p>It turns out Python SoundDevice is a python binding for a C/C++ library…</p>
+<p>Search online to find what you need to install with <code class="docutils literal notranslate"><span class="pre">apt</span></code> and then add this to the Dockerfile.
+Make sure you add it <strong>after</strong> <code class="docutils literal notranslate"><span class="pre">WORKDIR</span> <span class="pre">/app</span></code> and <strong>before</strong> the <code class="docutils literal notranslate"><span class="pre">RUN</span> <span class="pre">pip...</span></code> command.</p>
+<div class="highlight-Dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="c1"># PUT APT LIBRARY HERE \</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Docker builds images in layers and keeps those layers in a <strong>cache</strong>.
+If you invalidate a layer of the image during <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">buildx</span></code>,
+Docker rebuilds that layer and all subsequent layers.</p>
+<p>As a result, you typically want to construct your Dockerfile so that the most frequently changed
+things are at the bottom! In our case WORKDIR &gt; RUN apt &gt; RUN pip &gt; COPY.</p>
+<p>Of course, this isn’t perfect, but it <strong>will save you a ton of time</strong> while iterating.</p>
+</div>
+<p>Now, re-build and re-run!
+You should see some numbers printed out in an array 🎤</p>
+</section>
+<section id="pipeline">
+<h3>🤗 Pipeline<a class="headerlink" href="#pipeline" title="Link to this heading">#</a></h3>
+<p>Hugging Face transformers pipelines can do <a class="reference external" href="https://huggingface.co/docs/transformers/task_summary">all sorts of cool tasks!</a></p>
+<p>Add this method to your <code class="docutils literal notranslate"><span class="pre">speech_recognition.py</span></code> script.
+It is extracted from the Distil-Whisper model card <a class="reference external" href="https://huggingface.co/distil-whisper/distil-medium.en#short-form-transcription">short-form transcription</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForSpeechSeq2Seq</span><span class="p">,</span> <span class="n">AutoProcessor</span><span class="p">,</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">pipeline</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_pipeline</span><span class="p">(</span>
+    <span class="n">model_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">torch_dtype</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pipeline</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a Hugging Face automatic-speech-recognition pipeline on the given device.&quot;&quot;&quot;</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSpeechSeq2Seq</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+        <span class="n">model_id</span><span class="p">,</span>
+        <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch_dtype</span><span class="p">,</span>
+        <span class="n">low_cpu_mem_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">use_safetensors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">processor</span> <span class="o">=</span> <span class="n">AutoProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_id</span><span class="p">)</span>
+    <span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
+        <span class="s2">&quot;automatic-speech-recognition&quot;</span><span class="p">,</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+        <span class="n">tokenizer</span><span class="o">=</span><span class="n">processor</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">,</span>
+        <span class="n">feature_extractor</span><span class="o">=</span><span class="n">processor</span><span class="o">.</span><span class="n">feature_extractor</span><span class="p">,</span>
+        <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
+        <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch_dtype</span><span class="p">,</span>
+        <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">pipe</span>
+</pre></div>
+</div>
+<p>At this point you should have several imports and two methods!</p>
+</section>
+<section id="the-main">
+<h3>The <code class="docutils literal notranslate"><span class="pre">__main__</span></code><a class="headerlink" href="#the-main" title="Link to this heading">#</a></h3>
+<p>Time to make those methods actually do something for us!</p>
+<p>You need one more import:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">sys</span></code> will allow us to pass arguments to the script.
+For us, that means you can do something like <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">speech_recognition.py</span> <span class="pre">distil-whisper/distil-large-v3</span></code>
+and get multi-lingual transcription!</p>
+<p>The following code should go at the very bottom of your script.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Get model as argument, default to &quot;distil-whisper/distil-medium.en&quot; if not given</span>
+    <span class="n">model_id</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;distil-whisper/distil-medium.en&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using model_id </span><span class="si">{model_id}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># Use GPU if available</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span>
+    <span class="n">torch_dtype</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">float16</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="n">torch</span><span class="o">.</span><span class="n">float32</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using device </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Building model pipeline...&quot;</span><span class="p">)</span>
+    <span class="n">pipe</span> <span class="o">=</span> <span class="n">build_pipeline</span><span class="p">(</span><span class="n">model_id</span><span class="p">,</span> <span class="n">torch_dtype</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">pipe</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Recording...&quot;</span><span class="p">)</span>
+    <span class="n">audio</span> <span class="o">=</span> <span class="n">record_audio</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Transcribing...&quot;</span><span class="p">)</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time_ns</span><span class="p">()</span>
+    <span class="n">speech</span> <span class="o">=</span> <span class="n">pipe</span><span class="p">(</span><span class="n">audio</span><span class="p">)</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time_ns</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">speech</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Transcription took </span><span class="si">{</span><span class="p">(</span><span class="n">end_time</span><span class="o">-</span><span class="n">start_time</span><span class="p">)</span><span class="o">/</span><span class="mi">1000000000</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="black">
+<h4>Black<a class="headerlink" href="#black" title="Link to this heading">#</a></h4>
+<p>You should <em>almost always</em> run <a class="reference external" href="https://black.readthedocs.io/">Black</a> on any Python script <strong>before</strong> you try and execute it!</p>
+<blockquote>
+<div><p>“Any color you like.”</p>
+</div></blockquote>
+<p>If you have not already done so, install Black with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pipx<span class="w"> </span>install<span class="w"> </span>black
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>pipx</strong> allows you to install and run Python applications in isolated environments.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>pipx
+pipx<span class="w"> </span>ensurepath<span class="w"> </span><span class="c1"># Then must restart terminal</span>
+</pre></div>
+</div>
+</div>
+<p>Run black against your code to</p>
+<ol class="arabic simple">
+<li><p>Check your code for common errors and bugs (known as linting).</p></li>
+<li><p>Reformat the code so it is easier to read. This style is opinionated - as you could guess - but it is extremely helpful once you get used to it.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>black<span class="w"> </span>speech_recognition.py
+</pre></div>
+</div>
+<p>Once Black exits cleanly, <strong>commit your code and push to GitHub.</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Our method declarations have <strong>type hints</strong> in the parameters and returns.
+You <em>could</em> use <strong>PyRight</strong> to verify these, and usually you <em>should</em>;
+however, this requires a virtual environment with all the same imports installed,
+which is beyond the scope of this ICE.</p>
+<p>Just take the instructors word for it that it passes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pyright<span class="w"> </span>speech_recognition.py
+<span class="m">0</span><span class="w"> </span>errors,<span class="w"> </span><span class="m">0</span><span class="w"> </span>warnings,<span class="w"> </span><span class="m">0</span><span class="w"> </span>informations
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="running">
+<h2><span class="section-number">11.5. </span>Running<a class="headerlink" href="#running" title="Link to this heading">#</a></h2>
+<p>At this point you should have a Dockerfile and Python script that you are pretty sure will work.</p>
+<p><strong>Build your image one more time.</strong></p>
+<section id="volumes">
+<h3>Volumes<a class="headerlink" href="#volumes" title="Link to this heading">#</a></h3>
+<p>The Hugging Face models can be quite large, so we don’t want to have to download them every single time we restart a container.
+We could bake them in to the image, but that would just bloat the image and reduce flexibility.</p>
+<p>Instead, we are going to use <a class="reference external" href="https://docs.docker.com/engine/storage/volumes/">docker volumes</a>!</p>
+<p>Create a volume named <code class="docutils literal notranslate"><span class="pre">huggingface</span></code>. You can think of this as a folder managed by docker.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>huggingface
+</pre></div>
+</div>
+<p>You can see your current volumes with <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">volume</span> <span class="pre">ls</span></code>.</p>
+<p>We can tell a container to mount this volume by passing the <code class="docutils literal notranslate"><span class="pre">-v</span></code> flag to <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code>.
+The syntax is <code class="docutils literal notranslate"><span class="pre">named_volume:path_in_container</span></code> (you can also pass read/write permissions, which we aren’t going to).</p>
+<p>According to the Internet, Hugging Face transformers store things at <code class="docutils literal notranslate"><span class="pre">$HOME/.cache/huggingface/hub</span></code>.
+Since we are running our container as root, our home directory (<code class="docutils literal notranslate"><span class="pre">$HOME</span></code> is an environment variable that holds this) is just <code class="docutils literal notranslate"><span class="pre">/root</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In production you should not run containers as a root user because it is a security vulnerability.</p>
+<p>The proper way to do it is to <a class="reference external" href="https://huggingface.co/docs/huggingface_hub/guides/manage-cache">manage the Hugging Face cache</a>
+with <code class="docutils literal notranslate"><span class="pre">ENV</span> <span class="pre">HF_HUB_CACHE=/app/.cache/</span></code> in the Dockerfile; also, employ <code class="docutils literal notranslate"><span class="pre">USER</span></code> or <code class="docutils literal notranslate"><span class="pre">--user</span></code> to not run the container as root.</p>
+<p>But! That’s beyond the scope of this ICE.</p>
+</div>
+</section>
+<section id="the-real-deal">
+<h3>The real deal<a class="headerlink" href="#the-real-deal" title="Link to this heading">#</a></h3>
+<p>Our final run command will have a few more tweaks:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--ipc=host</span></code> increases the shared memory that the container is allowed to use</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code> for the volume mount, as discussed above</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--device<span class="o">=</span>/dev/snd<span class="w"> </span>--runtime<span class="o">=</span>nvidia<span class="w"> </span>--ipc<span class="o">=</span>host<span class="w"> </span>-v<span class="w"> </span>huggingface:/root/.cache/huggingface/hub<span class="w"> </span>whisper
+</pre></div>
+</div>
+<p>Be sure to recite from your Contrails while recording, and then see it printed to the screen!</p>
+</section>
+</section>
+<section id="conclusion">
+<h2><span class="section-number">11.6. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>In this ICE you learned how to use a 🤗 transformer pipeline to run Distil-Whisper in a Docker container on your NVIDIA Jetson Orin Nano.</p>
+<p>We would typically use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">push</span></code> to publish your built image to someplace like DockerHub so that other people can use it.
+But, seeing as it’s several gigabytes, it isn’t worth the upload time. That’s ok though because it can always be rebuilt from the Dockerfile!</p>
+<section id="deliverables">
+<h3>Deliverables<a class="headerlink" href="#deliverables" title="Link to this heading">#</a></h3>
+<p>To complete this ICE,</p>
+<ol class="arabic simple">
+<li><p>Commit all your code and push to GitHub</p></li>
+<li><p>Complete the associated Gradescope ICE assignment.</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You will need to use this ICE for your final project!</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./b3-devboard"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="containerization.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Containerization</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../llm/text-vectorization.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Text Vectorization</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">11.1. Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">11.2. Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile">11.3. Dockerfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-docker-image">Build Docker Image</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script">11.4. Python Script</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuda-test">CUDA Test</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-container">Run the container</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#record-audio">Record Audio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline">🤗 Pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main">The <code class="docutils literal notranslate"><span class="pre">__main__</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#black">Black</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running">11.5. Running</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#volumes">Volumes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-real-deal">The real deal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">11.6. Conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">Deliverables</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By DFEC
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
