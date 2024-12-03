@@ -211,3 +211,24 @@ sudo docker push docker.io/your-username/mypub-ip:latest
 # Notice that you don't need the Dockerfile anymore!
 sudo docker pull docker.io/your-username/alpine-publicip:latest
 ```
+
+## Ultralytics YOLO
+
+```{note}
+The instructor should demo this!
+It's easy, but the image is large and takes time to pull.
+```
+
+Ultralytics publishes a Docker image that lets you run YOLO (You Only Look Once) object detection on your Jetson Orin Nano!
+
+[Quick Start Guide: NVIDIA Jetson with Ultralytics YOLO11](https://docs.ultralytics.com/guides/nvidia-jetson/)
+
+```bash
+docker pull ultralytics/ultralytics:latest-jetson-jetpack6
+```
+
+Plug in a webcam, run this, and then click on the link it provides to open a browser!
+
+```bash
+docker run -it --rm --device=/dev/video0 --runtime=nvidia --ipc=host ultralytics/ultralytics:latest-jetson-jetpack6 yolo streamlist-predict
+```
