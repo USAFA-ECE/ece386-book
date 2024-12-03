@@ -1,12 +1,38 @@
 # ICE: Whisper Transcription
 
 In this ICE we will use [Distil-Whipser](https://huggingface.co/distil-whisper) to transcribe audio to text.
+Transcription will run inside a Docker container on our NVIDIA Jetson Orin Nano.
 
 ## Background
 
+OpenAI's **Whisper** models are cutting-edge speech processing models. They can do voice-to-text as well as translate between languages!
+
+Here is the abstract from their paper:
+
+> We study the capabilities of speech processing systems trained simply to predict large amounts of transcripts of audio on the internet. When scaled to 680,000 hours of multilingual and multitask supervision, the resulting models generalize well to standard benchmarks and are often competitive with prior fully supervised results but in a zeroshot transfer setting without the need for any finetuning. When compared to humans, the models approach their accuracy and robustness. We are releasing models and inference code to serve as a foundation for further work on robust speech processing.
+
+Hugging Face 🤗 provides the **Transformers** library (backed by PyTorch) that allows you to
+[run whisper models in 4 lines of code](https://huggingface.co/docs/transformers/model_doc/whisper)!
+
+They also released [**Distil-Whisper**](https://huggingface.co/distil-whisper).
+
+> Distil-Whisper is a distilled version of Whisper that is 6 times faster, 49% smaller, and performs within 1% word error rate (WER) on out-of-distribution evaluation sets.
+
+For this lab we will be primarily using [distil-whisper/distil-medium.en](https://huggingface.co/distil-whisper/distil-medium.en)
+because it has the fastest throughput of the distilled models.
+
+```{note}
+We will be asking questions about the paper [*Distil-Whisper: Robust Knowledge Distillation via Large-Scale Pseudo Labelling*](https://arxiv.org/abs/2311.00430)
+during the end of block Clarify & Communicate.
+
+Abstract:
+
+> As the size of pre-trained speech recognition models increases, running these large models in low-latency or resource-constrained environments becomes challenging. In this work, we leverage pseudo-labelling to assemble a large-scale open-source dataset which we use to distill the Whisper model into a smaller variant, called Distil-Whisper. Using a simple word error rate (WER) heuristic, we select only the highest quality pseudo-labels for training. The distilled model is 5.8 times faster with 51% fewer parameters, while performing to within 1% WER on out-of-distribution test data in a zero-shot transfer setting. Distil-Whisper maintains the robustness of the Whisper model to difficult acoustic conditions, while being less prone to hallucination errors on long-form audio. Distil-Whisper is designed to be paired with Whisper for speculative decoding, yielding a 2 times speed-up while mathematically ensuring the same outputs as the original model. To facilitate further research in this domain, we make our training code, inference code and models publicly accessible.
+```
+
 ## Setup
 
-Before you begin, make sure you have configured git on your Jetson Orin Nano.
+Before you begin, make sure you have configured Git on your Jetson Orin Nano.
 This should include setting your email, username, and authenticating to GitHub.
 
 1. Create a new GitHub repository, and name it something helpful.
@@ -99,16 +125,24 @@ import torch
 # TODO: check if CUDA is available
 ```
 
-Now, build the container again! (Hint: use the up-arrow in your terminal).
+Now, build the container again! (*Hint: use the up-arrow in your terminal*).
 
 #### Run the container
 
 Once it is built you can see your images with `docker image list`.
 
-Assuming you see your image, you can run the following command:
+Assuming you see your image, you can run the following command.
+
+```{note}
+See [docker run](https://docs.docker.com/reference/cli/docker/container/run/#options) for option docs.
+
+- `-it` allocates a new interactive terminal
+- `--rm` removes the container after it exits
+- `--runtime=nvidia` allows the container to access the Jetson GPU
+```
 
 ```bash
-docker run -it --rm --runtime nvidia mywhisper
+docker run -it --rm --runtime=nvidia whisper
 ```
 
 If all goes well, this will print **True** to the terminal!
@@ -158,35 +192,16 @@ if __name__ == "__main__":
     print(audio) # Temporary line
 ```
 
-Build your image again.
+**Build your image again.**
 
-Here is the updated command to run the container. It has a few more options, which you can learn more about here: [docker run](https://docs.docker.com/reference/cli/docker/container/run/#options).
-
-Most importantly, we are letting the container access the WebCam with `--device /dev/video0`
-and `--privileged`.
-
-```{warning}
-Use the `--privileged` flag with caution. A container with `--privileged` is not a securely sandboxed process. Containers in this mode can get a root shell on the host and take control over the system.
-```
+Here is the updated command to run the container.
+We are letting the container access the webcam microphone with `--device /dev/snd`.
 
 ```bash
-docker run -it --rm --device /dev/video0 --privileged --runtime nvidia  whisper
+docker run -it --rm --device=/dev/snd --runtime=nvidia  whisper
 ```
 
-~~~
-# Need to try this
-  --device /dev/snd:/dev/snd \
-  --device /dev/video0:/dev/video0 \
-  --cap-add SYS_ADMIN \
-  --cap-add SYS_RESOURCE \
-
---device /dev/snd:/dev/snd: Maps the host's audio device.
---device /dev/video0:/dev/video0: Maps the host's webcam device (adjust /dev/video* as needed for your webcam).
---cap-add SYS_ADMIN: Grants administrative privileges required for some audio setups.
---cap-add SYS_RESOURCE: Allows fine-grained resource management.
-~~~
-
-This should still fail!
+*This should still fail!*
 
 It turns out Python SoundDevice is a python binding for a C/C++ library...
 
@@ -197,7 +212,7 @@ Make sure you add it **after** `WORKDIR /app` and **before** the `RUN pip...` co
 RUN apt-get update && apt-get install -y --no-install-recommends \
     # PUT APT LIBRARY HERE \
     && rm -rf /var/lib/apt/lists/
-```from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
+```
 
 ```{tip}
 Docker builds images in layers and keeps those layers in a **cache**.
@@ -310,7 +325,7 @@ If you have not already done so, install Black with:
 pipx install black
 ```
 
-```{hint}
+```{tip}
 **pipx** allows you to install and run Python applications in isolated environments.
 ~~~bash
 sudo apt update
@@ -338,13 +353,75 @@ which is beyond the scope of this ICE.
 
 Just take the instructors word for it that it passes:
 
-> $ pyright speech_recognition.py`
->
-> 0 errors, 0 warnings, 0 informations
+~~~bash
+$ pyright speech_recognition.py
+0 errors, 0 warnings, 0 informations
+~~~
 ```
 
-### Running
+## Running
 
 At this point you should have a Dockerfile and Python script that you are pretty sure will work.
 
-Build your image one more time.
+**Build your image one more time.**
+
+### Volumes
+
+The Hugging Face models can be quite large, so we don't want to have to download them every single time we restart a container.
+We could bake them in to the image, but that would just bloat the image and reduce flexibility.
+
+Instead, we are going to use [docker volumes](https://docs.docker.com/engine/storage/volumes/)!
+
+Create a volume named `huggingface`. You can think of this as a folder managed by docker.
+
+```bash
+docker volume create huggingface
+```
+
+You can see your current volumes with `docker volume ls`.
+
+We can tell a container to mount this volume by passing the `-v` flag to `docker run`.
+The syntax is `named_volume:path_in_container` (you can also pass read/write permissions, which we aren't going to).
+
+According to the Internet, Hugging Face transformers store things at `$HOME/.cache/huggingface/hub`.
+Since we are running our container as root, our home directory (`$HOME` is an environment variable that holds this) is just `/root`.
+
+```{warning}
+In production you should not run containers as a root user because it is a security vulnerability.
+
+The proper way to do it is to [manage the Hugging Face cache](https://huggingface.co/docs/huggingface_hub/guides/manage-cache)
+with `ENV HF_HUB_CACHE=/app/.cache/` in the Dockerfile; also, employ `USER` or `--user` to not run the container as root.
+
+But! That's beyond the scope of this ICE.
+```
+
+### The real deal
+
+Our final run command will have a few more tweaks:
+
+- `--ipc=host` increases the shared memory that the container is allowed to use
+- `-v` for the volume mount, as discussed above
+
+```bash
+docker run -it --rm --device=/dev/snd --runtime=nvidia --ipc=host -v huggingface:/root/.cache/huggingface/hub whisper
+```
+
+Be sure to recite from your Contrails while recording, and then see it printed to the screen!
+
+## Conclusion
+
+In this ICE you learned how to use a 🤗 transformer pipeline to run Distil-Whisper in a Docker container on your NVIDIA Jetson Orin Nano.
+
+We would typically use `docker push` to publish your built image to someplace like DockerHub so that other people can use it.
+But, seeing as it's several gigabytes, it isn't worth the upload time. That's ok though because it can always be rebuilt from the Dockerfile!
+
+### Deliverables
+
+To complete this ICE,
+
+1. Commit all your code and push to GitHub
+2. Complete the associated Gradescope ICE assignment.
+
+```{tip}
+You will need to use this ICE for your final project!
+```
