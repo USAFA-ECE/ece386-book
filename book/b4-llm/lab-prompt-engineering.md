@@ -1,4 +1,4 @@
-# Prompt Engineering
+# Lab: Prompt Engineering
 
 ## Pre-Reading
 
@@ -49,3 +49,5 @@ Pulled from [NVIDIA -- An Introduction to LLM: Prompt Engineering and P-Tuning](
 ![Few-shot](../img/few-shot.png)
 
 Now time for a live demo!
+
+# Lab Workday

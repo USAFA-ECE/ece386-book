@@ -33,15 +33,17 @@ parts:
       - file: b3-devboard/lab-cat-dog
       - file: b3-devboard/containerization
       - file: b3-devboard/ice-whisper
-      # - file: b2-dnn/cc-devboard
+      - file: b3-devboard/gpu-architecture
+      - file: b3-devboard/ice-gpu-acceleration
   - caption: Large Language Models
     numbered: 2
     chapters:
-      - file: llm/text-vectorization
-      - file: llm/llm
-      - file: llm/prompt-engineering
+      - file: b4-llm/text-vectorization
+      - file: b4-llm/llm
+      - file: b4-llm/lab-prompt-engineering
+      - file: b4-llm/cc-gpu-llm
   - caption: Final Block
     numbered: 2
     chapters:
-      - file: final/final-project
-      - file: final/wrapup
+      - file: b5-final/final-project
+      - file: b5-final/wrapup
