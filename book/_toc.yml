@@ -16,11 +16,11 @@ parts:
       - file: b1-prediction/mnist-dnn
       - file: b1-prediction/lab-serve-digits
       - file: b1-prediction/cc-prediction
-  # - caption: Edge Inference
-  #   numbered: 2
-  #   chapters:
+  - caption: Edge Inference
+    numbered: 2
+    chapters:
   #     - file: b2-edge/edge-intro
-  #     - file: b2-edge/lab-cortex-benchmark
+      - file: b2-edge/lab-cortex-benchmark
   #     - file: b2-edge/cortex-architecture
   #     - file: b2-edge/quantization
   #     - file: b2-edge/lab-impulse-kws
