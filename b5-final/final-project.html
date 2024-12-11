@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>16. Prompt Engineering &#8212; ECE 386</title>
+    <title>31. Final Project &#8212; ECE 386</title>
   
   
   
@@ -60,12 +60,20 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'llm/prompt-engineering';</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'b5-final/final-project';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="17. Final Project" href="../final/final-project.html" />
-    <link rel="prev" title="15. Large Language Models" href="llm.html" />
+    <link rel="next" title="36. Wrap and Critique" href="wrapup.html" />
+    <link rel="prev" title="30. C&amp;C GPUs and LLMs" href="../b4-llm/cc-gpu-llm.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -174,37 +182,51 @@
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/networks-tooling.html">2. Networks and Tooling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">3. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/ice-kmeans.html">4. ICE: K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cloud-hosting.html">5. Cloud Hosting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">6. MNIST Digits with Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-serve-digits.html">7. Lab: Serving Digits with FastAPI</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/datasets.html">4. Datasets and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/ice-kmeans.html">5. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cloud-hosting.html">6. Cloud Hosting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-digits-dnn.html">7. Lab: Handwritten Digits - DNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-digits-api.html">8. Lab: Handwritten Digits - FastAPI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">9. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Edge Inference</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-cortex-benchmark.html">10. Lab: Cortex DSP Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/edge-intro.html">10. Edge Inference Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-cortex-benchmark.html">11. Lab: Cortex DSP Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/cortex-architecture.html">12. ARM Cortex Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/quantization.html">13. Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-impulse-kws.html">14. Lab: Edge Impulse KWS</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/command-risk.html">16. Command and Risk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/cc-edge.html">17. C&amp;C: Edge Inference</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Development Boards</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/lab-cat-dog.html">11. Lab: Cats vs. Dogs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/containerization.html">12. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/ice-whisper.html">13. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/ice-devboard.html">18. ICE: Development Boards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/lab-cat-dog.html">19. Lab: Cats vs. Dogs</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/containerization.html">22. Containerization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/ice-whisper.html">23. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/gpu-architecture.html">24. GPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/ice-gpu-acceleration.html">25. ICE: GPU Acceleration</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Large Language Models</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="text-vectorization.html">14. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="llm.html">15. Large Language Models</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">16. Prompt Engineering</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../b4-llm/text-vectorization.html">26. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b4-llm/llm.html">27. Large Language Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b4-llm/lab-prompt-engineering.html">28. Lab: Prompt Engineering</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../b4-llm/cc-gpu-llm.html">30. C&amp;C GPUs and LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">17. Final Project</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">31. Final Project</a></li>
 
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">22. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wrapup.html">36. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -276,7 +298,7 @@
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fllm/prompt-engineering.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fb5-final/final-project.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -306,7 +328,7 @@
       
       
       
-      <li><a href="../_sources/llm/prompt-engineering.md" target="_blank"
+      <li><a href="../_sources/b5-final/final-project.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -382,7 +404,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Prompt Engineering</h1>
+    <h1>Final Project</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -392,20 +414,24 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">16.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-expenses">16.2. Hardware Expenses</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-quantization">Advanced Quantization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-containment-for-generative-ai">Cost Containment for Generative AI</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">16.3. Prompt Engineering</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-vs-few-shot">Zero-shot vs. few-shot</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">31. Final Project</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">31.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">31.2. Grading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-plan">Project Plan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-and-models">Datasets and Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-implementation">Model Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-application">Model Application</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-demonstration">Final Demonstration</a></li>
 </ul>
 </li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-1">32. Final Project Workday 1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-2">33. Final Project Workday 2</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-3">34. Final Project Workday 3</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-4">35. Final Project Workday 4</a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -416,87 +442,96 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="prompt-engineering">
-<h1><span class="section-number">16. </span>Prompt Engineering<a class="headerlink" href="#prompt-engineering" title="Link to this heading">#</a></h1>
-<section id="pre-reading">
-<h2><span class="section-number">16.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api">Best practices for prompt engineering with OpenAI API</a></p></li>
-</ul>
-<section id="objectives">
-<h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Explain hardware limits and challenges with LLMs.</p></li>
-<li><p>Employ simple prompt engineering tactics to produce better LLM results.</p></li>
-</ul>
-</section>
-</section>
-<section id="hardware-expenses">
-<h2><span class="section-number">16.2. </span>Hardware Expenses<a class="headerlink" href="#hardware-expenses" title="Link to this heading">#</a></h2>
-<p>LLMs take <strong>a lot of RAM</strong>.</p>
-<p><a class="reference external" href="https://aituts.com/local-llms/">Table: 8-bit quantized LLaMA requirements</a></p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-center"><p>Model</p></th>
-<th class="head text-center"><p>VRAM Used</p></th>
-<th class="head text-center"><p>Minimum Total VRAM</p></th>
-<th class="head text-center"><p>Card examples</p></th>
-<th class="head text-center"><p>RAM/Swap to Load*</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-center"><p>LLaMA-7B</p></td>
-<td class="text-center"><p>9.2GB</p></td>
-<td class="text-center"><p>10GB</p></td>
-<td class="text-center"><p>3060 12GB, 3080 10GB</p></td>
-<td class="text-center"><p>24 GB</p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>LLaMA-13B</p></td>
-<td class="text-center"><p>16.3GB</p></td>
-<td class="text-center"><p>20GB</p></td>
-<td class="text-center"><p>3090, 3090 Ti, 4090</p></td>
-<td class="text-center"><p>32 GB</p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>LLaMA-30B</p></td>
-<td class="text-center"><p>36GB</p></td>
-<td class="text-center"><p>40GB</p></td>
-<td class="text-center"><p>A6000 48GB, A100 40GB</p></td>
-<td class="text-center"><p>64 GB</p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>LLaMA-65B</p></td>
-<td class="text-center"><p>74GB</p></td>
-<td class="text-center"><p>80GB</p></td>
-<td class="text-center"><p>A100 80GB</p></td>
-<td class="text-center"><p>128 GB</p></td>
-</tr>
-</tbody>
-</table>
+  <section class="tex2jax_ignore mathjax_ignore" id="final-project">
+<h1><span class="section-number">31. </span>Final Project<a class="headerlink" href="#final-project" title="Link to this heading">#</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>To better reflect the concept of a minimum viable product (MVP) the following modification is in effect.</p>
 </div>
-<p><img alt="Buy NVIDIA GPUs" src="../_images/buy_nvidia.png" /></p>
-<section id="advanced-quantization">
-<h3>Advanced Quantization<a class="headerlink" href="#advanced-quantization" title="Link to this heading">#</a></h3>
-<p><a class="reference external" href="https://huggingface.co/blog/4bit-transformers-bitsandbytes">Hugging Face Bits and Bytes</a> can make these models much smaller.</p>
-<p><img alt="Floating point formats" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/bitsandbytes/FP8-scheme.png" /></p>
+<pre  class="mermaid">
+        graph LR
+    A((Development Board)) --&gt; OR{OR}
+    B((Transfer Learning)) --&gt; OR
+    OR --&gt;O((MVP))
+    </pre><p>This is a more agile approach.</p>
+<p><img alt="agile-development" src="https://bluenotes.anz.com/content/dam/bluenotes/images/articles/2017/November/VenterKoltPresoAgile_IMG1.png" /></p>
+<section id="objectives">
+<h2><span class="section-number">31.1. </span>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Demonstrate knowledge of how <strong>prediction</strong> and <strong>judgement</strong> together contribute to a decision and action, as presented in <em>Prediction Machines.</em></p></li>
+<li><p>Employ quantization to reduce model size and improve performance on an edge device.</p></li>
+<li><p>Demonstrate knwoledge of dependency management while deploying a model.</p></li>
+</ul>
+<p><strong>Every</strong> project must:</p>
+<ol class="arabic simple">
+<li><p>Use some form of quantization. If quantization is built-in, determine what type it is and where it is built in.</p></li>
+<li><p>Be pushed to a public GitHub repository</p></li>
+<li><p>Include either a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> (if deploying with containerization),
+or a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> if deploying with a Python virtual environment,
+or a Jupyter Notebook that outputs the byte model for TF Lite Micro on Arduino.</p></li>
+<li><p>Include a README that describes how to deploy and use the program and model.</p></li>
+</ol>
 </section>
-<section id="cost-containment-for-generative-ai">
-<h3>Cost Containment for Generative AI<a class="headerlink" href="#cost-containment-for-generative-ai" title="Link to this heading">#</a></h3>
-<p>From DeepLearning AI’s <a class="reference external" href="https://info.deeplearning.ai/ai-for-brain-surgery-microsofts-chatgpt-bill-googles-generative-phones-better-prompts"><em>The Batch</em> newsletter</a></p>
-<blockquote>
-<div><p>Microsoft is looking to control the expense of its reliance on OpenAI’s models.</p>
-<p><strong>What’s new:</strong> Microsoft seeks to build leaner language models that perform nearly as well as ChatGPT but cost less to run, The Information reported.</p>
-<p><strong>How it works:</strong> Microsoft offers a line of AI-powered tools that complement the company’s flagship products including Windows, Microsoft 365, and GitHub. Known as Copilot, the line is based on OpenAI models. Serving those models to 1 billion-plus users could amount to an enormous expense, and it occupies processing power that would be useful elsewhere. To manage the cost, Microsoft’s developers are using knowledge distillation, in which a smaller model is trained to mimic the output of a larger one, as well as other techniques.</p>
-</div></blockquote>
+<section id="grading">
+<h2><span class="section-number">31.2. </span>Grading<a class="headerlink" href="#grading" title="Link to this heading">#</a></h2>
+<p>This final project is deliberately open ended, so invites the chance of failure!</p>
+<p><img alt="Risks" src="https://pbs.twimg.com/media/EbJXUC4X0AEXhlD?format=jpg" /></p>
+<p><strong>No, wait!</strong> Instead we will have checkpoints with deliverables designed to help you win.</p>
+<p>Each checkpoint will be submitted on Gradescope.</p>
+<section id="project-plan">
+<h3>Project Plan<a class="headerlink" href="#project-plan" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Identify what problem you are trying to solve.</p></li>
+<li><p>Discuss the problem in the context of prediction, judgement, and decision.</p></li>
+<li><p>Elaborate on the steps of the engineering method/ ML Workflow that you will take to reach your goal.</p></li>
+<li><p>Identify a class of models that you think will be helpful in achieving your end state.</p></li>
+</ol>
+<p><img alt="Prediction Machines Anatomy of a Task" src="../_images/anatomy-of-task.png" /></p>
+</section>
+<section id="datasets-and-models">
+<h3>Datasets and Models<a class="headerlink" href="#datasets-and-models" title="Link to this heading">#</a></h3>
+<p>You must do one of the following</p>
+<ul class="simple">
+<li><p>Use transfer learning <strong>or</strong></p></li>
+<li><p>Compare performance of several pre-canned models <strong>or</strong></p></li>
+<li><p>Use advanced quantization</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>If you will be conducting transfer learning, identify a dataset that fits your needs.</p></li>
+<li><p>Identify at least one, but ideally multiple, base models that you will use.</p></li>
+</ol>
+</section>
+<section id="model-implementation">
+<h3>Model Implementation<a class="headerlink" href="#model-implementation" title="Link to this heading">#</a></h3>
+<p>Get the model working!</p>
+</section>
+<section id="model-application">
+<h3>Model Application<a class="headerlink" href="#model-application" title="Link to this heading">#</a></h3>
+<p>Wrap your working model with some logic that makes the results of the prediction available to the user.
+This should work towards the goal you described in the first checkpoint.</p>
+</section>
+<section id="final-demonstration">
+<h3>Final Demonstration<a class="headerlink" href="#final-demonstration" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Demonstrate your application to the class</p></li>
+<li><p>Push code to GitHub</p></li>
+</ul>
+<p><img alt="How neat is that" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.giphy.com%2Fmedia%2FCWKcLd53mbw0o%2Fgiphy.gif&amp;f=1&amp;nofb=1&amp;ipt=06284ee4e024197bb39246e4df926c153d3c67fe2702025ecc1fdd12f844b9ec&amp;ipo=images" /></p>
 </section>
 </section>
-<section id="id1">
-<h2><span class="section-number">16.3. </span>Prompt Engineering<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>Pulled from <a class="reference external" href="https://developer.nvidia.com/blog/an-introduction-to-large-language-models-prompt-engineering-and-p-tuning/">NVIDIA – An Introduction to LLM: Prompt Engineering and P-Tuning</a></p>
-<section id="zero-shot-vs-few-shot">
-<h3>Zero-shot vs. few-shot<a class="headerlink" href="#zero-shot-vs-few-shot" title="Link to this heading">#</a></h3>
-<p><img alt="Few-shot" src="../_images/few-shot.png" /></p>
-<p>Now time for a live demo!</p>
 </section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="final-project-workday-1">
+<h1><span class="section-number">32. </span>Final Project Workday 1<a class="headerlink" href="#final-project-workday-1" title="Link to this heading">#</a></h1>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="final-project-workday-2">
+<h1><span class="section-number">33. </span>Final Project Workday 2<a class="headerlink" href="#final-project-workday-2" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="final-project-workday-3">
+<h1><span class="section-number">34. </span>Final Project Workday 3<a class="headerlink" href="#final-project-workday-3" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="final-project-workday-4">
+<h1><span class="section-number">35. </span>Final Project Workday 4<a class="headerlink" href="#final-project-workday-4" title="Link to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -512,7 +547,7 @@
         },
         kernelOptions: {
             name: "python3",
-            path: "./llm"
+            path: "./b5-final"
         },
         predefinedOutput: true
     }
@@ -530,20 +565,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="llm.html"
+       href="../b4-llm/cc-gpu-llm.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">15. </span>Large Language Models</p>
+        <p class="prev-next-title"><span class="section-number">30. </span>C&amp;C GPUs and LLMs</p>
       </div>
     </a>
     <a class="right-next"
-       href="../final/final-project.html"
+       href="wrapup.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">17. </span>Final Project</p>
+        <p class="prev-next-title"><span class="section-number">36. </span>Wrap and Critique</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -564,20 +599,24 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">16.1. Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-expenses">16.2. Hardware Expenses</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-quantization">Advanced Quantization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-containment-for-generative-ai">Cost Containment for Generative AI</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">16.3. Prompt Engineering</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-vs-few-shot">Zero-shot vs. few-shot</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">31. Final Project</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">31.1. Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">31.2. Grading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-plan">Project Plan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-and-models">Datasets and Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-implementation">Model Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-application">Model Application</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-demonstration">Final Demonstration</a></li>
 </ul>
 </li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-1">32. Final Project Workday 1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-2">33. Final Project Workday 2</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-3">34. Final Project Workday 3</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-4">35. Final Project Workday 4</a></li>
+</ul>
+
   </nav></div>
 
 </div></div>

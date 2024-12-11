@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>C&amp;C NLP &#8212; ECE 386</title>
+    <title>18. ICE: Development Boards &#8212; ECE 386</title>
   
   
   
@@ -60,10 +60,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'llm/cc-nlp';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'b3-devboard/ice-devboard';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="19. Lab: Cats vs. Dogs" href="lab-cat-dog.html" />
+    <link rel="prev" title="17. C&amp;C: Edge Inference" href="../b2-edge/cc-edge.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -114,8 +116,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -174,37 +174,51 @@
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/networks-tooling.html">2. Networks and Tooling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">3. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/ice-kmeans.html">4. ICE: K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cloud-hosting.html">5. Cloud Hosting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">6. MNIST Digits with Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-serve-digits.html">7. Lab: Serving Digits with FastAPI</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/datasets.html">4. Datasets and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/ice-kmeans.html">5. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cloud-hosting.html">6. Cloud Hosting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-digits-dnn.html">7. Lab: Handwritten Digits - DNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-digits-api.html">8. Lab: Handwritten Digits - FastAPI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">9. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Edge Inference</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-cortex-benchmark.html">10. Lab: Cortex DSP Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/edge-intro.html">10. Edge Inference Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-cortex-benchmark.html">11. Lab: Cortex DSP Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/cortex-architecture.html">12. ARM Cortex Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/quantization.html">13. Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-impulse-kws.html">14. Lab: Edge Impulse KWS</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/command-risk.html">16. Command and Risk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/cc-edge.html">17. C&amp;C: Edge Inference</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Development Boards</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/lab-cat-dog.html">11. Lab: Cats vs. Dogs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/containerization.html">12. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/ice-whisper.html">13. ICE: Whisper Transcription</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">18. ICE: Development Boards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab-cat-dog.html">19. Lab: Cats vs. Dogs</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="containerization.html">22. Containerization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ice-whisper.html">23. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu-architecture.html">24. GPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ice-gpu-acceleration.html">25. ICE: GPU Acceleration</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Large Language Models</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="text-vectorization.html">14. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="llm.html">15. Large Language Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prompt-engineering.html">16. Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b4-llm/text-vectorization.html">26. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b4-llm/llm.html">27. Large Language Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b4-llm/lab-prompt-engineering.html">28. Lab: Prompt Engineering</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../b4-llm/cc-gpu-llm.html">30. C&amp;C GPUs and LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">17. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b5-final/final-project.html">31. Final Project</a></li>
 
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">22. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b5-final/wrapup.html">36. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -251,6 +265,37 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/usafa-ece/ai-hardware/blob/main/book/b3-devboard/ice-devboard.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -276,7 +321,7 @@
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fllm/cc-nlp.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fb3-devboard/ice-devboard.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -306,7 +351,7 @@
       
       
       
-      <li><a href="../_sources/llm/cc-nlp.md" target="_blank"
+      <li><a href="../_sources/b3-devboard/ice-devboard.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -316,7 +361,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -380,7 +425,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>C&C NLP</h1>
+    <h1>ICE: Development Boards</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -394,8 +439,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="c-c-nlp">
-<h1>C&amp;C NLP<a class="headerlink" href="#c-c-nlp" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="ice-development-boards">
+<h1><span class="section-number">18. </span>ICE: Development Boards<a class="headerlink" href="#ice-development-boards" title="Link to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -411,7 +456,7 @@
         },
         kernelOptions: {
             name: "python3",
-            path: "./llm"
+            path: "./b3-devboard"
         },
         predefinedOutput: true
     }
@@ -428,6 +473,24 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../b2-edge/cc-edge.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>C&amp;C: Edge Inference</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lab-cat-dog.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">19. </span>Lab: Cats vs. Dogs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               

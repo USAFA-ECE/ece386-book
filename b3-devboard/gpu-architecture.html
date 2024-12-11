@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Tensors and Dimensionality &#8212; ECE 386</title>
+    <title>24. GPU Architecture &#8212; ECE 386</title>
   
   
   
@@ -62,10 +62,12 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'b3-devboard/tensors';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'b3-devboard/gpu-architecture';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="25. ICE: GPU Acceleration" href="ice-gpu-acceleration.html" />
+    <link rel="prev" title="23. ICE: Whisper Transcription" href="ice-whisper.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -116,8 +118,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -176,37 +176,51 @@
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/networks-tooling.html">2. Networks and Tooling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">3. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/ice-kmeans.html">4. ICE: K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cloud-hosting.html">5. Cloud Hosting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">6. MNIST Digits with Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-serve-digits.html">7. Lab: Serving Digits with FastAPI</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/datasets.html">4. Datasets and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/ice-kmeans.html">5. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cloud-hosting.html">6. Cloud Hosting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-digits-dnn.html">7. Lab: Handwritten Digits - DNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-digits-api.html">8. Lab: Handwritten Digits - FastAPI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">9. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Edge Inference</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-cortex-benchmark.html">10. Lab: Cortex DSP Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/edge-intro.html">10. Edge Inference Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-cortex-benchmark.html">11. Lab: Cortex DSP Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/cortex-architecture.html">12. ARM Cortex Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/quantization.html">13. Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-impulse-kws.html">14. Lab: Edge Impulse KWS</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/command-risk.html">16. Command and Risk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/cc-edge.html">17. C&amp;C: Edge Inference</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Development Boards</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lab-cat-dog.html">11. Lab: Cats vs. Dogs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="containerization.html">12. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ice-whisper.html">13. ICE: Whisper Transcription</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ice-devboard.html">18. ICE: Development Boards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab-cat-dog.html">19. Lab: Cats vs. Dogs</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="containerization.html">22. Containerization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ice-whisper.html">23. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">24. GPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ice-gpu-acceleration.html">25. ICE: GPU Acceleration</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Large Language Models</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../llm/text-vectorization.html">14. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../llm/llm.html">15. Large Language Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../llm/prompt-engineering.html">16. Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b4-llm/text-vectorization.html">26. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b4-llm/llm.html">27. Large Language Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b4-llm/lab-prompt-engineering.html">28. Lab: Prompt Engineering</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../b4-llm/cc-gpu-llm.html">30. C&amp;C GPUs and LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">17. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b5-final/final-project.html">31. Final Project</a></li>
 
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">22. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b5-final/wrapup.html">36. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -278,7 +292,7 @@
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fb3-devboard/tensors.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fb3-devboard/gpu-architecture.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -308,7 +322,7 @@
       
       
       
-      <li><a href="../_sources/b3-devboard/tensors.md" target="_blank"
+      <li><a href="../_sources/b3-devboard/gpu-architecture.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -384,7 +398,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Tensors and Dimensionality</h1>
+    <h1>GPU Architecture</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -394,11 +408,11 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">24.1. Pre-Reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">Linear Algebra</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">24.2. Linear Algebra</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-matrices">Vectors and Matrices</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-products">Dot Products</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication">Matrix Multiplication</a></li>
@@ -410,7 +424,7 @@
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphics-processing-units">Graphics Processing Units</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphics-processing-units">24.3. Graphics Processing Units</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-execution">GPU Execution</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#general-matrix-multiplication">General Matrix Multiplication</a></li>
 </ul>
@@ -427,7 +441,7 @@
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">24.4. Conclusion</a></li>
 </ul>
             </nav>
         </div>
@@ -439,10 +453,10 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="tensors-and-dimensionality">
-<h1>Tensors and Dimensionality<a class="headerlink" href="#tensors-and-dimensionality" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="gpu-architecture">
+<h1><span class="section-number">24. </span>GPU Architecture<a class="headerlink" href="#gpu-architecture" title="Link to this heading">#</a></h1>
 <section id="pre-reading">
-<h2>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">24.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.techspot.com/article/2049-what-are-tensor-cores/">Explainer: What Are Tensor Cores? | TechSpot</a></p></li>
 <li><p>Peruse a little <a class="reference external" href="https://www.nvidia.com/en-us/data-center/tensor-cores/">NVIDIA Tensor Core marketing</a></p></li>
@@ -458,7 +472,7 @@
 </section>
 </section>
 <section id="linear-algebra">
-<h2>Linear Algebra<a class="headerlink" href="#linear-algebra" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">24.2. </span>Linear Algebra<a class="headerlink" href="#linear-algebra" title="Link to this heading">#</a></h2>
 <p>With NVIDIA recently becoming the <a class="reference external" href="https://www.marketwatch.com/story/nvidia-officially-closes-in-1-trillion-territory-becoming-seventh-u-s-company-to-hit-market-cap-milestone-88ead8f9">seventh company ever to hit $1 trillion market-cap</a> and the boom of AI, it is clear that GPUs are a critical hardware. But what are they and what do they actually do for AI computation?</p>
 <p><strong>Answer:</strong> The vast majority of modern machine learning is handled with linear algebra and a little bit of calculus.</p>
 <section id="vectors-and-matrices">
@@ -512,7 +526,7 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 </section>
 </section>
 <section id="graphics-processing-units">
-<h2>Graphics Processing Units<a class="headerlink" href="#graphics-processing-units" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">24.3. </span>Graphics Processing Units<a class="headerlink" href="#graphics-processing-units" title="Link to this heading">#</a></h2>
 <blockquote>
 <div><p><a class="reference external" href="https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/index.html">GPU Performance Background User’s Guide - NVIDIA Docs</a></p>
 </div></blockquote>
@@ -587,7 +601,7 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 </section>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">24.4. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
 <p>The execution of linear algebra on GPUs is foundational to modern machine learning. Linear algebra provides the mathematical framework that underpins many machine learning algorithms. Neural networks, in particular, are heavily reliant on using weighted sums dot products to propagate information and adjust weights through the network layers.</p>
 <p>Graphics Processing Units (GPUs) with their highly parallelized structures have revolutionized the computational efficiency of these operations. Technologies like NVIDIA’s CUDA and Tensor Cores allow for the optimized execution of the matrix and vector operations that are so common in machine learning, significantly accelerating the training and inference processes of deep learning models.</p>
 <p>Understanding the performance dynamics of these GPUs—such as memory bandwidth, math bandwidth, and latency—allows for the optimized implementation of algorithms. Deep neural networks often need to be carefully designed and tuned to effectively leverage the computational capabilities of GPUs.</p>
@@ -625,6 +639,24 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="ice-whisper.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">23. </span>ICE: Whisper Transcription</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ice-gpu-acceleration.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">25. </span>ICE: GPU Acceleration</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -642,11 +674,11 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">24.1. Pre-Reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">Linear Algebra</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">24.2. Linear Algebra</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-matrices">Vectors and Matrices</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-products">Dot Products</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication">Matrix Multiplication</a></li>
@@ -658,7 +690,7 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphics-processing-units">Graphics Processing Units</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphics-processing-units">24.3. Graphics Processing Units</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-execution">GPU Execution</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#general-matrix-multiplication">General Matrix Multiplication</a></li>
 </ul>
@@ -675,7 +707,7 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">24.4. Conclusion</a></li>
 </ul>
   </nav></div>
 

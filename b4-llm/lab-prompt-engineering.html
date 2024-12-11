@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>M4-Cortex Processor &#8212; ECE 386</title>
+    <title>28. Lab: Prompt Engineering &#8212; ECE 386</title>
   
   
   
@@ -60,10 +60,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tfm/m4-cortex';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'b4-llm/lab-prompt-engineering';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="30. C&amp;C GPUs and LLMs" href="cc-gpu-llm.html" />
+    <link rel="prev" title="27. Large Language Models" href="llm.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -114,8 +116,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -204,12 +204,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../b3-devboard/ice-gpu-acceleration.html">25. ICE: GPU Acceleration</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Large Language Models</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b4-llm/text-vectorization.html">26. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b4-llm/llm.html">27. Large Language Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b4-llm/lab-prompt-engineering.html">28. Lab: Prompt Engineering</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="text-vectorization.html">26. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llm.html">27. Large Language Models</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">28. Lab: Prompt Engineering</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="../b4-llm/cc-gpu-llm.html">30. C&amp;C GPUs and LLMs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cc-gpu-llm.html">30. C&amp;C GPUs and LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="nav bd-sidenav">
@@ -290,7 +290,7 @@
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Ftfm/m4-cortex.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fb4-llm/lab-prompt-engineering.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -320,7 +320,7 @@
       
       
       
-      <li><a href="../_sources/tfm/m4-cortex.md" target="_blank"
+      <li><a href="../_sources/b4-llm/lab-prompt-engineering.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -396,7 +396,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>M4-Cortex Processor</h1>
+    <h1>Lab: Prompt Engineering</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -406,11 +406,25 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">28. Lab: Prompt Engineering</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">28.1. Pre-Reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-expenses">28.2. Hardware Expenses</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-quantization">Advanced Quantization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-containment-for-generative-ai">Cost Containment for Generative AI</a></li>
 </ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering">28.3. Prompt Engineering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-vs-few-shot">Zero-shot vs. few-shot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-workday">29. Lab Workday</a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -421,19 +435,90 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="m4-cortex-processor">
-<h1>M4-Cortex Processor<a class="headerlink" href="#m4-cortex-processor" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-prompt-engineering">
+<h1><span class="section-number">28. </span>Lab: Prompt Engineering<a class="headerlink" href="#lab-prompt-engineering" title="Link to this heading">#</a></h1>
 <section id="pre-reading">
-<h2>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="https://www.arm.com/-/media/Arm%20Developer%20Community/PDF/Processor%20Datasheets/Arm%20Cortex-M4%20Processor%20Datasheet.pdf">Arm Cortex-M4 Datasheet</a></p>
+<h2><span class="section-number">28.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api">Best practices for prompt engineering with OpenAI API</a></p></li>
+</ul>
 <section id="objectives">
 <h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Understand power and compute constraints on embedded systems</p></li>
-<li><p>Describe how M4 Cortex Processor is optimized for TF Lite Ops</p></li>
+<li><p>Explain hardware limits and challenges with LLMs.</p></li>
+<li><p>Employ simple prompt engineering tactics to produce better LLM results.</p></li>
 </ul>
 </section>
 </section>
+<section id="hardware-expenses">
+<h2><span class="section-number">28.2. </span>Hardware Expenses<a class="headerlink" href="#hardware-expenses" title="Link to this heading">#</a></h2>
+<p>LLMs take <strong>a lot of RAM</strong>.</p>
+<p><a class="reference external" href="https://aituts.com/local-llms/">Table: 8-bit quantized LLaMA requirements</a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Model</p></th>
+<th class="head text-center"><p>VRAM Used</p></th>
+<th class="head text-center"><p>Minimum Total VRAM</p></th>
+<th class="head text-center"><p>Card examples</p></th>
+<th class="head text-center"><p>RAM/Swap to Load*</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>LLaMA-7B</p></td>
+<td class="text-center"><p>9.2GB</p></td>
+<td class="text-center"><p>10GB</p></td>
+<td class="text-center"><p>3060 12GB, 3080 10GB</p></td>
+<td class="text-center"><p>24 GB</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>LLaMA-13B</p></td>
+<td class="text-center"><p>16.3GB</p></td>
+<td class="text-center"><p>20GB</p></td>
+<td class="text-center"><p>3090, 3090 Ti, 4090</p></td>
+<td class="text-center"><p>32 GB</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>LLaMA-30B</p></td>
+<td class="text-center"><p>36GB</p></td>
+<td class="text-center"><p>40GB</p></td>
+<td class="text-center"><p>A6000 48GB, A100 40GB</p></td>
+<td class="text-center"><p>64 GB</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>LLaMA-65B</p></td>
+<td class="text-center"><p>74GB</p></td>
+<td class="text-center"><p>80GB</p></td>
+<td class="text-center"><p>A100 80GB</p></td>
+<td class="text-center"><p>128 GB</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img alt="Buy NVIDIA GPUs" src="../_images/buy_nvidia.png" /></p>
+<section id="advanced-quantization">
+<h3>Advanced Quantization<a class="headerlink" href="#advanced-quantization" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://huggingface.co/blog/4bit-transformers-bitsandbytes">Hugging Face Bits and Bytes</a> can make these models much smaller.</p>
+<p><img alt="Floating point formats" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/bitsandbytes/FP8-scheme.png" /></p>
+</section>
+<section id="cost-containment-for-generative-ai">
+<h3>Cost Containment for Generative AI<a class="headerlink" href="#cost-containment-for-generative-ai" title="Link to this heading">#</a></h3>
+<p>From DeepLearning AI’s <a class="reference external" href="https://info.deeplearning.ai/ai-for-brain-surgery-microsofts-chatgpt-bill-googles-generative-phones-better-prompts"><em>The Batch</em> newsletter</a></p>
+<blockquote>
+<div><p>Microsoft is looking to control the expense of its reliance on OpenAI’s models.</p>
+<p><strong>What’s new:</strong> Microsoft seeks to build leaner language models that perform nearly as well as ChatGPT but cost less to run, The Information reported.</p>
+<p><strong>How it works:</strong> Microsoft offers a line of AI-powered tools that complement the company’s flagship products including Windows, Microsoft 365, and GitHub. Known as Copilot, the line is based on OpenAI models. Serving those models to 1 billion-plus users could amount to an enormous expense, and it occupies processing power that would be useful elsewhere. To manage the cost, Microsoft’s developers are using knowledge distillation, in which a smaller model is trained to mimic the output of a larger one, as well as other techniques.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="prompt-engineering">
+<h2><span class="section-number">28.3. </span>Prompt Engineering<a class="headerlink" href="#prompt-engineering" title="Link to this heading">#</a></h2>
+<p>Pulled from <a class="reference external" href="https://developer.nvidia.com/blog/an-introduction-to-large-language-models-prompt-engineering-and-p-tuning/">NVIDIA – An Introduction to LLM: Prompt Engineering and P-Tuning</a></p>
+<section id="zero-shot-vs-few-shot">
+<h3>Zero-shot vs. few-shot<a class="headerlink" href="#zero-shot-vs-few-shot" title="Link to this heading">#</a></h3>
+<p><img alt="Few-shot" src="../_images/few-shot.png" /></p>
+<p>Now time for a live demo!</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="lab-workday">
+<h1><span class="section-number">29. </span>Lab Workday<a class="headerlink" href="#lab-workday" title="Link to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -449,7 +534,7 @@
         },
         kernelOptions: {
             name: "python3",
-            path: "./tfm"
+            path: "./b4-llm"
         },
         predefinedOutput: true
     }
@@ -466,6 +551,24 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="llm.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">27. </span>Large Language Models</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cc-gpu-llm.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">30. </span>C&amp;C GPUs and LLMs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -483,11 +586,25 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">28. Lab: Prompt Engineering</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">28.1. Pre-Reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-expenses">28.2. Hardware Expenses</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-quantization">Advanced Quantization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-containment-for-generative-ai">Cost Containment for Generative AI</a></li>
 </ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering">28.3. Prompt Engineering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-shot-vs-few-shot">Zero-shot vs. few-shot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-workday">29. Lab Workday</a></li>
+</ul>
+
   </nav></div>
 
 </div></div>

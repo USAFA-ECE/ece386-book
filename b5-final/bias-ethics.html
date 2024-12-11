@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>17. Final Project &#8212; ECE 386</title>
+    <title>Bias and Ethics &#8212; ECE 386</title>
   
   
   
@@ -60,20 +60,10 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
-    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
-    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
-    <script type="module">
-import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
-window.addEventListener("load", () => mermaid.run());
-</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'final/final-project';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'b5-final/bias-ethics';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="22. Wrap and Critique" href="wrapup.html" />
-    <link rel="prev" title="16. Prompt Engineering" href="../llm/prompt-engineering.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -124,6 +114,8 @@ window.addEventListener("load", () => mermaid.run());
     <div class="bd-container__inner bd-page-width">
       
       
+      
+        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -182,37 +174,51 @@ window.addEventListener("load", () => mermaid.run());
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/networks-tooling.html">2. Networks and Tooling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">3. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/ice-kmeans.html">4. ICE: K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cloud-hosting.html">5. Cloud Hosting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">6. MNIST Digits with Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-serve-digits.html">7. Lab: Serving Digits with FastAPI</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/datasets.html">4. Datasets and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/ice-kmeans.html">5. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cloud-hosting.html">6. Cloud Hosting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-digits-dnn.html">7. Lab: Handwritten Digits - DNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-digits-api.html">8. Lab: Handwritten Digits - FastAPI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">9. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Edge Inference</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-cortex-benchmark.html">10. Lab: Cortex DSP Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/edge-intro.html">10. Edge Inference Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-cortex-benchmark.html">11. Lab: Cortex DSP Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/cortex-architecture.html">12. ARM Cortex Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/quantization.html">13. Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-impulse-kws.html">14. Lab: Edge Impulse KWS</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/command-risk.html">16. Command and Risk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/cc-edge.html">17. C&amp;C: Edge Inference</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Development Boards</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/lab-cat-dog.html">11. Lab: Cats vs. Dogs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/containerization.html">12. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/ice-whisper.html">13. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/ice-devboard.html">18. ICE: Development Boards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/lab-cat-dog.html">19. Lab: Cats vs. Dogs</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/containerization.html">22. Containerization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/ice-whisper.html">23. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/gpu-architecture.html">24. GPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/ice-gpu-acceleration.html">25. ICE: GPU Acceleration</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Large Language Models</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../llm/text-vectorization.html">14. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../llm/llm.html">15. Large Language Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../llm/prompt-engineering.html">16. Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b4-llm/text-vectorization.html">26. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b4-llm/llm.html">27. Large Language Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b4-llm/lab-prompt-engineering.html">28. Lab: Prompt Engineering</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../b4-llm/cc-gpu-llm.html">30. C&amp;C GPUs and LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">17. Final Project</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="final-project.html">31. Final Project</a></li>
 
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="wrapup.html">22. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wrapup.html">36. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -284,7 +290,7 @@ window.addEventListener("load", () => mermaid.run());
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Ffinal/final-project.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fb5-final/bias-ethics.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -314,7 +320,7 @@ window.addEventListener("load", () => mermaid.run());
       
       
       
-      <li><a href="../_sources/final/final-project.md" target="_blank"
+      <li><a href="../_sources/b5-final/bias-ethics.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -390,7 +396,7 @@ window.addEventListener("load", () => mermaid.run());
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Final Project</h1>
+    <h1>Bias and Ethics</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -400,24 +406,11 @@ window.addEventListener("load", () => mermaid.run());
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">17. Final Project</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">17.1. Objectives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">17.2. Grading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-plan">Project Plan</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-and-models">Datasets and Models</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-implementation">Model Implementation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-application">Model Application</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-demonstration">Final Demonstration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-Reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-bias">Types of Bias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amazon-resume-tool">Amazon Resume Tool</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-bias-with-what-if-tool">Explore Bias With What-If Tool</a></li>
 </ul>
-</li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-1">18. Final Project Workday 1</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-2">19. Final Project Workday 2</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-3">20. Final Project Workday 3</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-4">21. Final Project Workday 4</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -428,96 +421,55 @@ window.addEventListener("load", () => mermaid.run());
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="final-project">
-<h1><span class="section-number">17. </span>Final Project<a class="headerlink" href="#final-project" title="Link to this heading">#</a></h1>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>To better reflect the concept of a minimum viable product (MVP) the following modification is in effect.</p>
-</div>
-<pre  class="mermaid">
-        graph LR
-    A((Development Board)) --&gt; OR{OR}
-    B((Transfer Learning)) --&gt; OR
-    OR --&gt;O((MVP))
-    </pre><p>This is a more agile approach.</p>
-<p><img alt="agile-development" src="https://bluenotes.anz.com/content/dam/bluenotes/images/articles/2017/November/VenterKoltPresoAgile_IMG1.png" /></p>
-<section id="objectives">
-<h2><span class="section-number">17.1. </span>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="bias-and-ethics">
+<h1>Bias and Ethics<a class="headerlink" href="#bias-and-ethics" title="Link to this heading">#</a></h1>
+<p><img alt="SMBC: Rise of the Machines" src="https://www.smbc-comics.com/comics/1538492931-20181002.png" /></p>
+<section id="pre-reading">
+<h2>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Demonstrate knowledge of how <strong>prediction</strong> and <strong>judgement</strong> together contribute to a decision and action, as presented in <em>Prediction Machines.</em></p></li>
-<li><p>Employ quantization to reduce model size and improve performance on an edge device.</p></li>
-<li><p>Demonstrate knwoledge of dependency management while deploying a model.</p></li>
+<li><p>Take at least one <a class="reference external" href="https://implicit.harvard.edu/implicit/takeatest.html">Project Implicit</a> test</p></li>
+<li><p><a class="reference external" href="https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias">Google’s “Fairness: Types of Bias</a></p></li>
 </ul>
-<p><strong>Every</strong> project must:</p>
-<ol class="arabic simple">
-<li><p>Use some form of quantization. If quantization is built-in, determine what type it is and where it is built in.</p></li>
-<li><p>Be pushed to a public GitHub repository</p></li>
-<li><p>Include either a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> (if deploying with containerization),
-or a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> if deploying with a Python virtual environment,
-or a Jupyter Notebook that outputs the byte model for TF Lite Micro on Arduino.</p></li>
-<li><p>Include a README that describes how to deploy and use the program and model.</p></li>
-</ol>
 </section>
-<section id="grading">
-<h2><span class="section-number">17.2. </span>Grading<a class="headerlink" href="#grading" title="Link to this heading">#</a></h2>
-<p>This final project is deliberately open ended, so invites the chance of failure!</p>
-<p><img alt="Risks" src="https://pbs.twimg.com/media/EbJXUC4X0AEXhlD?format=jpg" /></p>
-<p><strong>No, wait!</strong> Instead we will have checkpoints with deliverables designed to help you win.</p>
-<p>Each checkpoint will be submitted on Gradescope.</p>
-<section id="project-plan">
-<h3>Project Plan<a class="headerlink" href="#project-plan" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p>Identify what problem you are trying to solve.</p></li>
-<li><p>Discuss the problem in the context of prediction, judgement, and decision.</p></li>
-<li><p>Elaborate on the steps of the engineering method/ ML Workflow that you will take to reach your goal.</p></li>
-<li><p>Identify a class of models that you think will be helpful in achieving your end state.</p></li>
-</ol>
-<p><img alt="Prediction Machines Anatomy of a Task" src="../_images/anatomy-of-task.png" /></p>
+<section id="types-of-bias">
+<h2>Types of Bias<a class="headerlink" href="#types-of-bias" title="Link to this heading">#</a></h2>
+<p>Recent USC publication funded by DARPA: <a class="reference external" href="https://arxiv.org/pdf/1908.09635.pdf">A Survey on Bias and Fairness in Machine Learning</a>.</p>
 </section>
-<section id="datasets-and-models">
-<h3>Datasets and Models<a class="headerlink" href="#datasets-and-models" title="Link to this heading">#</a></h3>
-<p>You must do one of the following</p>
+<section id="amazon-resume-tool">
+<h2>Amazon Resume Tool<a class="headerlink" href="#amazon-resume-tool" title="Link to this heading">#</a></h2>
+<p>From <em>Reuters</em>, <a class="reference external" href="https://www.reuters.com/article/us-amazon-com-jobs-automation-insight-idUSKCN1MK08G/">Insight - Amazon scraps secret AI recruiting tool that showed bias against women</a>.</p>
+<blockquote>
+<div><p>SAN FRANCISCO (Reuters) - <a class="reference external" href="http://Amazon.com">Amazon.com</a> Inc’s machine-learning specialists uncovered a big problem: their new recruiting engine did not like women.</p>
+<p>The team had been building computer programs since 2014 to review job applicants’ resumes with the aim of mechanizing the search for top talent, five people familiar with the effort told Reuters.</p>
+<p>Automation has been key to Amazon’s e-commerce dominance, be it inside warehouses or driving pricing decisions. The company’s experimental hiring tool used artificial intelligence to give job candidates scores ranging from one to five stars - much like shoppers rate products on Amazon, some of the people said.</p>
+<p>“Everyone wanted this holy grail,” one of the people said. “They literally wanted it to be an engine where I’m going to give you 100 resumes, it will spit out the top five, and we’ll hire those.”</p>
+<p>But by 2015, the company realized its new system was not rating candidates for software developer jobs and other technical posts in a gender-neutral way.</p>
+<p>That is because Amazon’s computer models were trained to vet applicants by observing patterns in resumes submitted to the company over a 10-year period. Most came from men, a reflection of male dominance across the tech industry. (For a graphic on gender breakdowns in tech, see: <a class="reference external" href="http://tmsnrt.rs/2OfPWoD">tmsnrt.rs/2OfPWoD</a>)</p>
+<p>In effect, Amazon’s system taught itself that male candidates were preferable. It penalized resumes that included the word “women’s,” as in “women’s chess club captain.” And it downgraded graduates of two all-women’s colleges, according to people familiar with the matter. They did not specify the names of the schools.</p>
+<p>Amazon edited the programs to make them neutral to these particular terms. But that was no guarantee that the machines would not devise other ways of sorting candidates that could prove discriminatory, the people said.</p>
+<p>The Seattle company ultimately disbanded the team by the start of last year because executives lost hope for the project, according to the people, who spoke on condition of anonymity. Amazon’s recruiters looked at the recommendations generated by the tool when searching for new hires, but never relied solely on those rankings, they said.</p>
+</div></blockquote>
+</section>
+<section id="explore-bias-with-what-if-tool">
+<h2>Explore Bias With What-If Tool<a class="headerlink" href="#explore-bias-with-what-if-tool" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>Compare two binary classification models that predict whether a person earns more than $50k a year, based on their census information. Examine how different features affect each models’ prediction, in relation to each other. ~ <a class="reference external" href="http://archive.ics.uci.edu/dataset/20/census+income">UCI Census Income Dataset</a></p>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p>Go to <a class="reference external" href="https://pair-code.github.io/what-if-tool/get-started/">What-If Tool, Getting Started</a></p></li>
+<li><p>Under Web dmoes select <a class="reference external" href="https://pair-code.github.io/what-if-tool/demos/uci.html">Compare income classification on UCI census data</a></p></li>
+<li><p>In the dashboard click <strong>Performance &amp; Fairness</strong></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Over-50K</span></code> as the <strong>Ground Truth Feature</strong></p></li>
+<li><p>Experiment with slices and optimization strategies.</p></li>
+<li><p>In particular, look at false positives and negatives</p></li>
+</ol>
 <ul class="simple">
-<li><p>Use transfer learning <strong>or</strong></p></li>
-<li><p>Compare performance of several pre-canned models <strong>or</strong></p></li>
-<li><p>Use advanced quantization</p></li>
+<li><p>How is the <strong>Threshold</strong> adjusted?</p></li>
+<li><p>What do these adjustments mean?</p></li>
 </ul>
-<ol class="arabic simple">
-<li><p>If you will be conducting transfer learning, identify a dataset that fits your needs.</p></li>
-<li><p>Identify at least one, but ideally multiple, base models that you will use.</p></li>
-</ol>
+<p><img alt="False positive and negatives" src="https://d2eehagpk5cl65.cloudfront.net/img/q60/uploads/2020/04/TestGridDreamstime.jpg" /></p>
+<p><a class="reference external" href="https://pair-code.github.io/what-if-tool/learn/">More resources on What-If Tool</a></p>
 </section>
-<section id="model-implementation">
-<h3>Model Implementation<a class="headerlink" href="#model-implementation" title="Link to this heading">#</a></h3>
-<p>Get the model working!</p>
-</section>
-<section id="model-application">
-<h3>Model Application<a class="headerlink" href="#model-application" title="Link to this heading">#</a></h3>
-<p>Wrap your working model with some logic that makes the results of the prediction available to the user.
-This should work towards the goal you described in the first checkpoint.</p>
-</section>
-<section id="final-demonstration">
-<h3>Final Demonstration<a class="headerlink" href="#final-demonstration" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Demonstrate your application to the class</p></li>
-<li><p>Push code to GitHub</p></li>
-</ul>
-<p><img alt="How neat is that" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.giphy.com%2Fmedia%2FCWKcLd53mbw0o%2Fgiphy.gif&amp;f=1&amp;nofb=1&amp;ipt=06284ee4e024197bb39246e4df926c153d3c67fe2702025ecc1fdd12f844b9ec&amp;ipo=images" /></p>
-</section>
-</section>
-</section>
-<hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="final-project-workday-1">
-<h1><span class="section-number">18. </span>Final Project Workday 1<a class="headerlink" href="#final-project-workday-1" title="Link to this heading">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="final-project-workday-2">
-<h1><span class="section-number">19. </span>Final Project Workday 2<a class="headerlink" href="#final-project-workday-2" title="Link to this heading">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="final-project-workday-3">
-<h1><span class="section-number">20. </span>Final Project Workday 3<a class="headerlink" href="#final-project-workday-3" title="Link to this heading">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="final-project-workday-4">
-<h1><span class="section-number">21. </span>Final Project Workday 4<a class="headerlink" href="#final-project-workday-4" title="Link to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -533,7 +485,7 @@ This should work towards the goal you described in the first checkpoint.</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./final"
+            path: "./b5-final"
         },
         predefinedOutput: true
     }
@@ -550,24 +502,6 @@ This should work towards the goal you described in the first checkpoint.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../llm/prompt-engineering.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">16. </span>Prompt Engineering</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="wrapup.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">22. </span>Wrap and Critique</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -585,24 +519,11 @@ This should work towards the goal you described in the first checkpoint.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">17. Final Project</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">17.1. Objectives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">17.2. Grading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-plan">Project Plan</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-and-models">Datasets and Models</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-implementation">Model Implementation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-application">Model Application</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-demonstration">Final Demonstration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-Reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-bias">Types of Bias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amazon-resume-tool">Amazon Resume Tool</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-bias-with-what-if-tool">Explore Bias With What-If Tool</a></li>
 </ul>
-</li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-1">18. Final Project Workday 1</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-2">19. Final Project Workday 2</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-3">20. Final Project Workday 3</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-4">21. Final Project Workday 4</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>14. Text Vectorization &#8212; ECE 386</title>
+    <title>26. Text Vectorization &#8212; ECE 386</title>
   
   
   
@@ -68,12 +68,12 @@
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
 window.addEventListener("load", () => mermaid.run());
 </script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'llm/text-vectorization';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'b4-llm/text-vectorization';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="15. Large Language Models" href="llm.html" />
-    <link rel="prev" title="13. ICE: Whisper Transcription" href="../b3-devboard/ice-whisper.html" />
+    <link rel="next" title="27. Large Language Models" href="llm.html" />
+    <link rel="prev" title="25. ICE: GPU Acceleration" href="../b3-devboard/ice-gpu-acceleration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -182,37 +182,51 @@ window.addEventListener("load", () => mermaid.run());
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/networks-tooling.html">2. Networks and Tooling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/prediction-machines.html">3. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/ice-kmeans.html">4. ICE: K-Means Clustering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cloud-hosting.html">5. Cloud Hosting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">6. MNIST Digits with Neural Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-serve-digits.html">7. Lab: Serving Digits with FastAPI</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/datasets.html">4. Datasets and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/ice-kmeans.html">5. ICE: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cloud-hosting.html">6. Cloud Hosting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-digits-dnn.html">7. Lab: Handwritten Digits - DNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-digits-api.html">8. Lab: Handwritten Digits - FastAPI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">9. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Edge Inference</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-cortex-benchmark.html">10. Lab: Cortex DSP Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/edge-intro.html">10. Edge Inference Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-cortex-benchmark.html">11. Lab: Cortex DSP Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/cortex-architecture.html">12. ARM Cortex Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/quantization.html">13. Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-impulse-kws.html">14. Lab: Edge Impulse KWS</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/command-risk.html">16. Command and Risk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/cc-edge.html">17. C&amp;C: Edge Inference</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Development Boards</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/lab-cat-dog.html">11. Lab: Cats vs. Dogs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/containerization.html">12. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/ice-whisper.html">13. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/ice-devboard.html">18. ICE: Development Boards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/lab-cat-dog.html">19. Lab: Cats vs. Dogs</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/containerization.html">22. Containerization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/ice-whisper.html">23. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/gpu-architecture.html">24. GPU Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/ice-gpu-acceleration.html">25. ICE: GPU Acceleration</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Large Language Models</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">14. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="llm.html">15. Large Language Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prompt-engineering.html">16. Prompt Engineering</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">26. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llm.html">27. Large Language Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab-prompt-engineering.html">28. Lab: Prompt Engineering</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="cc-gpu-llm.html">30. C&amp;C GPUs and LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">17. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b5-final/final-project.html">31. Final Project</a></li>
 
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">22. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b5-final/wrapup.html">36. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -267,7 +281,7 @@ window.addEventListener("load", () => mermaid.run());
       
       
       
-      <li><a href="https://colab.research.google.com/github/usafa-ece/ai-hardware/blob/main/book/llm/text-vectorization.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/usafa-ece/ai-hardware/blob/main/book/b4-llm/text-vectorization.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -315,7 +329,7 @@ window.addEventListener("load", () => mermaid.run());
       
       
       
-      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fllm/text-vectorization.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ai-hardware/issues/new?title=Issue%20on%20page%20%2Fb4-llm/text-vectorization.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -345,7 +359,7 @@ window.addEventListener("load", () => mermaid.run());
       
       
       
-      <li><a href="../_sources/llm/text-vectorization.ipynb" target="_blank"
+      <li><a href="../_sources/b4-llm/text-vectorization.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -431,11 +445,11 @@ window.addEventListener("load", () => mermaid.run());
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">14.1. Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">26.1. Pre-reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">14.2. Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">26.2. Overview</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natural-language-processing">Natural Language Processing</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#math-with-words">Math with Words</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exploration">Exploration</a></li>
@@ -446,14 +460,14 @@ window.addEventListener("load", () => mermaid.run());
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">Indexing</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">14.3. Exercise</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">26.3. Exercise</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explore">Explore</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#word-clouds">Word Clouds</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardize">14.4. Standardize</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardize">26.4. Standardize</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-words">Stop Words</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stemming">Stemming</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lemmatization">Lemmatization</a></li>
@@ -461,15 +475,15 @@ window.addEventListener("load", () => mermaid.run());
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenize">14.5. Tokenize</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#index">14.6. Index</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenize">26.5. Tokenize</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#index">26.6. Index</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-of-words">Bag of Words</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bigrams">Bigrams</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">14.7. Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">26.7. Conclusion</a></li>
 </ul>
             </nav>
         </div>
@@ -482,10 +496,10 @@ window.addEventListener("load", () => mermaid.run());
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="text-vectorization">
-<h1><span class="section-number">14. </span>Text Vectorization<a class="headerlink" href="#text-vectorization" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">26. </span>Text Vectorization<a class="headerlink" href="#text-vectorization" title="Link to this heading">#</a></h1>
 <p>The first step in Natural Language Processing (NLP) is to get the words into a format that we can do math on them.</p>
 <section id="pre-reading">
-<h2><span class="section-number">14.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">26.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <p>Lightly read this:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.deeplearning.ai/resources/natural-language-processing/">DeepLearning AI: A Complete Guide to Natural Language Processing</a></p></li>
@@ -504,7 +518,7 @@ window.addEventListener("load", () => mermaid.run());
 </section>
 </section>
 <section id="overview">
-<h2><span class="section-number">14.2. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">26.2. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <section id="natural-language-processing">
 <h3>Natural Language Processing<a class="headerlink" href="#natural-language-processing" title="Link to this heading">#</a></h3>
 <blockquote>
@@ -562,7 +576,7 @@ window.addEventListener("load", () => mermaid.run());
 </section>
 </section>
 <section id="exercise">
-<h2><span class="section-number">14.3. </span>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">26.3. </span>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h2>
 <p>For this exercise we will use <a class="reference external" href="https://www.presidency.ucsb.edu/documents/app-categories/spoken-addresses-and-remarks/presidential/inaugural-addresses">Inaugural Addresses from American Presidents</a>.</p>
 <p>Go to the website now and think how you might put all of these into an easy-to-ingest document.</p>
 <p>Fortunately, I”ve already extracted some of these and placed them in <a class="reference download internal" download="" href="../_downloads/87beeb0ef3dbf9c0885c085903f931e5/inaugural_addresses.csv"><span class="xref download myst">book/data/inagural_addresses.csv</span></a></p>
@@ -654,7 +668,7 @@ window.addEventListener("load", () => mermaid.run());
 </section>
 </section>
 <section id="standardize">
-<h2><span class="section-number">14.4. </span>Standardize<a class="headerlink" href="#standardize" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">26.4. </span>Standardize<a class="headerlink" href="#standardize" title="Link to this heading">#</a></h2>
 <p>We will do the following to standardize our dataset:</p>
 <ol class="arabic simple">
 <li><p>Convert to lowercase</p></li>
@@ -723,7 +737,7 @@ The code above deliberately prevented this by passing the argument <code class="
 </section>
 </section>
 <section id="tokenize">
-<h2><span class="section-number">14.5. </span>Tokenize<a class="headerlink" href="#tokenize" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">26.5. </span>Tokenize<a class="headerlink" href="#tokenize" title="Link to this heading">#</a></h2>
 <p>Because of how <code class="docutils literal notranslate"><span class="pre">nltk</span></code> works, we will actually standardize while we tokenize. In our case, we will just do <strong>word</strong> tokens, but there are <em>many</em> other options!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -773,7 +787,7 @@ The code above deliberately prevented this by passing the argument <code class="
 </div>
 </section>
 <section id="index">
-<h2><span class="section-number">14.6. </span>Index<a class="headerlink" href="#index" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">26.6. </span>Index<a class="headerlink" href="#index" title="Link to this heading">#</a></h2>
 <p>Now we get to put our standardized words into a vector!</p>
 <p>We will be using scikit-learn”s <a class="reference external" href="https://www.geeksforgeeks.org/using-countvectorizer-to-extracting-features-from-text/">CountVectorizer to Extracting Features from Text (Geeks for Geeks)</a>.</p>
 <blockquote>
@@ -833,7 +847,7 @@ As a pro, such matrices can be highly compressed. However, they also present uni
 </section>
 </section>
 <section id="conclusion">
-<h2><span class="section-number">14.7. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">26.7. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
 <p>In this exercise you”ve learned some basics of how to explore, standardize, tokenize, and index words! This is critical to understand how NLP (including Large Language Models) is possible!</p>
 </section>
 </section>
@@ -851,7 +865,7 @@ As a pro, such matrices can be highly compressed. However, they also present uni
         },
         kernelOptions: {
             name: "python3",
-            path: "./llm"
+            path: "./b4-llm"
         },
         predefinedOutput: true
     }
@@ -869,12 +883,12 @@ As a pro, such matrices can be highly compressed. However, they also present uni
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../b3-devboard/ice-whisper.html"
+       href="../b3-devboard/ice-gpu-acceleration.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">13. </span>ICE: Whisper Transcription</p>
+        <p class="prev-next-title"><span class="section-number">25. </span>ICE: GPU Acceleration</p>
       </div>
     </a>
     <a class="right-next"
@@ -882,7 +896,7 @@ As a pro, such matrices can be highly compressed. However, they also present uni
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">15. </span>Large Language Models</p>
+        <p class="prev-next-title"><span class="section-number">27. </span>Large Language Models</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -903,11 +917,11 @@ As a pro, such matrices can be highly compressed. However, they also present uni
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">14.1. Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">26.1. Pre-reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">14.2. Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">26.2. Overview</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#natural-language-processing">Natural Language Processing</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#math-with-words">Math with Words</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exploration">Exploration</a></li>
@@ -918,14 +932,14 @@ As a pro, such matrices can be highly compressed. However, they also present uni
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">Indexing</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">14.3. Exercise</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">26.3. Exercise</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explore">Explore</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#word-clouds">Word Clouds</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardize">14.4. Standardize</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardize">26.4. Standardize</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-words">Stop Words</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stemming">Stemming</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lemmatization">Lemmatization</a></li>
@@ -933,15 +947,15 @@ As a pro, such matrices can be highly compressed. However, they also present uni
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenize">14.5. Tokenize</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#index">14.6. Index</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenize">26.5. Tokenize</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#index">26.6. Index</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-of-words">Bag of Words</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bigrams">Bigrams</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">14.7. Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">26.7. Conclusion</a></li>
 </ul>
   </nav></div>
 

@@ -1,4 +1,4 @@
-# Tensors and Dimensionality
+# GPU Architecture
 
 ## Pre-Reading
 
