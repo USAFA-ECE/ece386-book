@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>8. C&amp;C: Prediction and Dimensionality &#8212; ECE 386</title>
+    <title>9. C&amp;C: Prediction and Dimensionality &#8212; ECE 386</title>
   
   
   
@@ -64,7 +64,7 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9. Lab: Cats vs. Dogs" href="../b3-devboard/lab-cat-dog.html" />
+    <link rel="next" title="10. Lab: Cortex DSP Benchmark" href="../b2-edge/lab-cortex-benchmark.html" />
     <link rel="prev" title="7. Lab: Serving Digits with FastAPI" href="lab-serve-digits.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -178,28 +178,33 @@
 <li class="toctree-l1"><a class="reference internal" href="cloud-hosting.html">5. Cloud Hosting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mnist-dnn.html">6. MNIST Digits with Neural Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lab-serve-digits.html">7. Lab: Serving Digits with FastAPI</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. C&amp;C: Prediction and Dimensionality</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">9. C&amp;C: Prediction and Dimensionality</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Edge Inference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-cortex-benchmark.html">10. Lab: Cortex DSP Benchmark</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Development Boards</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/lab-cat-dog.html">9. Lab: Cats vs. Dogs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/containerization.html">10. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/ice-whisper.html">11. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/lab-cat-dog.html">11. Lab: Cats vs. Dogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/containerization.html">12. Containerization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b3-devboard/ice-whisper.html">13. ICE: Whisper Transcription</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Large Language Models</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../llm/text-vectorization.html">12. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../llm/llm.html">13. Large Language Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../llm/prompt-engineering.html">14. Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../llm/text-vectorization.html">14. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../llm/llm.html">15. Large Language Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../llm/prompt-engineering.html">16. Prompt Engineering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">15. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">17. Final Project</a></li>
 
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">20. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">22. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -387,8 +392,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">8.1. Pre-Reading</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">8.2. Objective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">9.1. Pre-Reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">9.2. Objective</a></li>
 </ul>
             </nav>
         </div>
@@ -401,16 +406,16 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="c-c-prediction-and-dimensionality">
-<h1><span class="section-number">8. </span>C&amp;C: Prediction and Dimensionality<a class="headerlink" href="#c-c-prediction-and-dimensionality" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">9. </span>C&amp;C: Prediction and Dimensionality<a class="headerlink" href="#c-c-prediction-and-dimensionality" title="Link to this heading">#</a></h1>
 <section id="pre-reading">
-<h2><span class="section-number">8.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://dropbox.tech/machine-learning/using-machine-learning-to-index-text-from-billions-of-images">Using machine learning to index text from billions of images</a>.
 This is one of my all-time favorite blog posts.</p></li>
 </ul>
 </section>
 <section id="objective">
-<h2><span class="section-number">8.2. </span>Objective<a class="headerlink" href="#objective" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.2. </span>Objective<a class="headerlink" href="#objective" title="Link to this heading">#</a></h2>
 <p>This is a <strong>Clarify and Communicate</strong> lesson.
 The objective of a C&amp;C is to:</p>
 <ol class="arabic simple">
@@ -471,11 +476,11 @@ specify where you’d look for the answer and approximately how long you think i
       </div>
     </a>
     <a class="right-next"
-       href="../b3-devboard/lab-cat-dog.html"
+       href="../b2-edge/lab-cortex-benchmark.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>Lab: Cats vs. Dogs</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Lab: Cortex DSP Benchmark</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -496,8 +501,8 @@ specify where you’d look for the answer and approximately how long you think i
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">8.1. Pre-Reading</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">8.2. Objective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">9.1. Pre-Reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">9.2. Objective</a></li>
 </ul>
   </nav></div>
 

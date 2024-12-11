@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>11. ICE: Whisper Transcription &#8212; ECE 386</title>
+    <title>13. ICE: Whisper Transcription &#8212; ECE 386</title>
   
   
   
@@ -64,8 +64,8 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="12. Text Vectorization" href="../llm/text-vectorization.html" />
-    <link rel="prev" title="10. Containerization" href="containerization.html" />
+    <link rel="next" title="14. Text Vectorization" href="../llm/text-vectorization.html" />
+    <link rel="prev" title="12. Containerization" href="containerization.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -178,28 +178,33 @@
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cloud-hosting.html">5. Cloud Hosting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/mnist-dnn.html">6. MNIST Digits with Neural Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/lab-serve-digits.html">7. Lab: Serving Digits with FastAPI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">8. C&amp;C: Prediction and Dimensionality</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">9. C&amp;C: Prediction and Dimensionality</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Edge Inference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-cortex-benchmark.html">10. Lab: Cortex DSP Benchmark</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Development Boards</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lab-cat-dog.html">9. Lab: Cats vs. Dogs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="containerization.html">10. Containerization</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab-cat-dog.html">11. Lab: Cats vs. Dogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="containerization.html">12. Containerization</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. ICE: Whisper Transcription</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Large Language Models</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../llm/text-vectorization.html">12. Text Vectorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../llm/llm.html">13. Large Language Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../llm/prompt-engineering.html">14. Prompt Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../llm/text-vectorization.html">14. Text Vectorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../llm/llm.html">15. Large Language Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../llm/prompt-engineering.html">16. Prompt Engineering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">15. Final Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/final-project.html">17. Final Project</a></li>
 
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">20. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final/wrapup.html">22. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -387,13 +392,13 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">11.1. Background</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">11.2. Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile">11.3. Dockerfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">13.1. Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">13.2. Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile">13.3. Dockerfile</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-docker-image">Build Docker Image</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script">11.4. Python Script</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script">13.4. Python Script</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuda-test">CUDA Test</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-container">Run the container</a></li>
 </ul>
@@ -406,12 +411,12 @@
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running">11.5. Running</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running">13.5. Running</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#volumes">Volumes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-real-deal">The real deal</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">11.6. Conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">13.6. Conclusion</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">Deliverables</a></li>
 </ul>
 </li>
@@ -427,11 +432,11 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ice-whisper-transcription">
-<h1><span class="section-number">11. </span>ICE: Whisper Transcription<a class="headerlink" href="#ice-whisper-transcription" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">13. </span>ICE: Whisper Transcription<a class="headerlink" href="#ice-whisper-transcription" title="Link to this heading">#</a></h1>
 <p>In this ICE we will use <a class="reference external" href="https://huggingface.co/distil-whisper">Distil-Whipser</a> to transcribe audio to text.
 Transcription will run inside a Docker container on our NVIDIA Jetson Orin Nano.</p>
 <section id="background">
-<h2><span class="section-number">11.1. </span>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.1. </span>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h2>
 <p>OpenAI’s <strong>Whisper</strong> models are cutting-edge speech processing models. They can do voice-to-text as well as translate between languages!</p>
 <p>Here is the abstract from their paper:</p>
 <blockquote>
@@ -456,7 +461,7 @@ during the end of block Clarify &amp; Communicate.</p>
 </div>
 </section>
 <section id="setup">
-<h2><span class="section-number">11.2. </span>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.2. </span>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
 <p>Before you begin, make sure you have configured Git on your Jetson Orin Nano.
 This should include setting your email, username, and authenticating to GitHub.</p>
 <ol class="arabic simple">
@@ -467,7 +472,7 @@ or with the Terminal menu at the top of the window.</p></li>
 </ol>
 </section>
 <section id="dockerfile">
-<h2><span class="section-number">11.3. </span>Dockerfile<a class="headerlink" href="#dockerfile" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.3. </span>Dockerfile<a class="headerlink" href="#dockerfile" title="Link to this heading">#</a></h2>
 <p>Create a Dockerfile</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>code<span class="w"> </span>Dockerfile
 </pre></div>
@@ -519,7 +524,7 @@ docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"
 </section>
 </section>
 <section id="python-script">
-<h2><span class="section-number">11.4. </span>Python Script<a class="headerlink" href="#python-script" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.4. </span>Python Script<a class="headerlink" href="#python-script" title="Link to this heading">#</a></h2>
 <section id="cuda-test">
 <h3>CUDA Test<a class="headerlink" href="#cuda-test" title="Link to this heading">#</a></h3>
 <p>Before we do anything else, we should make sure CUDA is working. If it is, that means our container can access the GPU!</p>
@@ -734,7 +739,7 @@ which is beyond the scope of this ICE.</p>
 </section>
 </section>
 <section id="running">
-<h2><span class="section-number">11.5. </span>Running<a class="headerlink" href="#running" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.5. </span>Running<a class="headerlink" href="#running" title="Link to this heading">#</a></h2>
 <p>At this point you should have a Dockerfile and Python script that you are pretty sure will work.</p>
 <p><strong>Build your image one more time.</strong></p>
 <section id="volumes">
@@ -773,7 +778,7 @@ with <code class="docutils literal notranslate"><span class="pre">ENV</span> <sp
 </section>
 </section>
 <section id="conclusion">
-<h2><span class="section-number">11.6. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">13.6. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
 <p>In this ICE you learned how to use a 🤗 transformer pipeline to run Distil-Whisper in a Docker container on your NVIDIA Jetson Orin Nano.</p>
 <p>We would typically use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">push</span></code> to publish your built image to someplace like DockerHub so that other people can use it.
 But, seeing as it’s several gigabytes, it isn’t worth the upload time. That’s ok though because it can always be rebuilt from the Dockerfile!</p>
@@ -828,7 +833,7 @@ But, seeing as it’s several gigabytes, it isn’t worth the upload time. That�
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">10. </span>Containerization</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Containerization</p>
       </div>
     </a>
     <a class="right-next"
@@ -836,7 +841,7 @@ But, seeing as it’s several gigabytes, it isn’t worth the upload time. That�
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">12. </span>Text Vectorization</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Text Vectorization</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -857,13 +862,13 @@ But, seeing as it’s several gigabytes, it isn’t worth the upload time. That�
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">11.1. Background</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">11.2. Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile">11.3. Dockerfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">13.1. Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">13.2. Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile">13.3. Dockerfile</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-docker-image">Build Docker Image</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script">11.4. Python Script</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script">13.4. Python Script</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuda-test">CUDA Test</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-container">Run the container</a></li>
 </ul>
@@ -876,12 +881,12 @@ But, seeing as it’s several gigabytes, it isn’t worth the upload time. That�
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running">11.5. Running</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running">13.5. Running</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#volumes">Volumes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-real-deal">The real deal</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">11.6. Conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">13.6. Conclusion</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">Deliverables</a></li>
 </ul>
 </li>
