@@ -13,8 +13,8 @@ parts:
       - file: b1-prediction/datasets
       - file: b1-prediction/ice-kmeans
       - file: b1-prediction/cloud-hosting
-      - file: b1-prediction/mnist-dnn
-      - file: b1-prediction/lab-serve-digits
+      - file: b1-prediction/lab-digits-dnn
+      - file: b1-prediction/lab-digits-api
       - file: b1-prediction/cc-prediction
   - caption: Edge Inference
     numbered: 2
