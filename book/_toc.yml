@@ -10,7 +10,7 @@ parts:
       - file: b1-prediction/hello-colab
       - file: b1-prediction/networks-tooling
       - file: b1-prediction/prediction-machines
-      # - file : b1-prediction/datasets
+      - file: b1-prediction/datasets
       - file: b1-prediction/ice-kmeans
       - file: b1-prediction/cloud-hosting
       - file: b1-prediction/mnist-dnn
@@ -19,17 +19,17 @@ parts:
   - caption: Edge Inference
     numbered: 2
     chapters:
-  #     - file: b2-edge/edge-intro
+      - file: b2-edge/edge-intro
       - file: b2-edge/lab-cortex-benchmark
-  #     - file: b2-edge/cortex-architecture
-  #     - file: b2-edge/quantization
-  #     - file: b2-edge/lab-impulse-kws
-  #     - file: b2-edge/command-risk
-  #     - file: b2-edge/cc-edge
+      - file: b2-edge/cortex-architecture
+      - file: b2-edge/quantization
+      - file: b2-edge/lab-impulse-kws
+      - file: b2-edge/command-risk
+      - file: b2-edge/cc-edge
   - caption: Development Boards
     numbered: 2
     chapters:
-      # - file: b3-devboard/ice-devboard
+      - file: b3-devboard/ice-devboard
       - file: b3-devboard/lab-cat-dog
       - file: b3-devboard/containerization
       - file: b3-devboard/ice-whisper
