@@ -1,1 +1,0 @@
-# ICE: Whisper Transcription
