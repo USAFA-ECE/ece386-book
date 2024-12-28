@@ -173,9 +173,7 @@ For large files (such as datasets) or for files where changes are copied (such a
 You can make an HTTP request with `curl` or `wget`.
 See `man curl` or `man wget` for more options (such as how to save output to a file).
 
-## Tooling
-
-### Python
+## Python
 
 In my opinion, Python is a terrible language and in a perfect world Julia would have overtaken Python &
 people would build other things with Go, Rust, or Kotlin. *sigh*.
@@ -188,23 +186,46 @@ If you need to brush up on your Python, see the following from ECE 487 - Advance
 - [Python Intermediate](https://stanbaek.github.io/ece487/PythonIntermediate.html)
 - [NumPy](https://stanbaek.github.io/ece487/NumPy.html)
 
-#### Type Hints
+### Type Hints
 
-It is an expectation in this course that **you will use type hints in function declarations and global variables** in this course.
+It is an expectation in this course that **you will use type hints in function declarations and global variables**.
 
 You should verify these hints are valid in VS Code via Pylance, which comes with Microsoft's official Python Extension [`ms-python.python`](https://marketplace.visualstudio.com/items?itemName=ms-python.python).
 
 Alternatively, you can use [PyRight](https://pypi.org/project/pyright/) directly.
 
-Here is an example and resources:
+**Global variables** are any variables declared outside of a function.
 
 ```python
-# Simple hint for arg and return type
+# Example of a global variable with a type hint
+age: int = 21
+```
+
+**Function declarations** may include parameters and return values.
+
+```python
+# Example of a function declaration with type hint for parameter and return
 def stringify(num: int) -> str:
+    '''Stringify casts an integer into a string'''
     return str(num)
 ```
 
-Let's see that in action:
+```{tip}
+Why don't we require type hints on all variables?
+
+Python is a *dynamically typed* language, which adds flexibility and generally makes writing scripts quicker.
+Some languages are statically typed - which comes with great benefits - but makes the code more rigid.
+
+Adding type hints to every variable in Python (which the interpreter discards anyways!)
+generally isn't worth the tradeoff for how long it takes to write the code and the decreased flexibility.
+
+**Adding hints to just global variables and function declarations is an engineering compromise that
+gets a lot of benefit for very little overhead.**
+```
+
+#### Type hints preventing errors
+
+We use type hints to **bias toward build-time errors** *instead* of runtime errors.
 
 ```python
 def type_error_demo_1(a, b):
@@ -219,7 +240,8 @@ my_runtime_error = type_error_demo_1(99, 'problems!')
 my_static_error = type_error_demo_2(0, 'problems.')
 ```
 
-If you try to run this script, Python will give you this Runtime error. It's hard to debug and will crash your app at an unknown time.
+If you try to run this script, Python will give you this runtime error.
+It's hard to debug and will crash your app at an unknown time.
 
 ```text
 Traceback (most recent call last):
@@ -230,8 +252,8 @@ Traceback (most recent call last):
 TypeError: unsupported operand type(s) for +: 'int' and 'str'
 ```
 
-*But* if you use Pyright *before* running the code you get this
-The exact problem (trying to pass "problems", which is a string instead of the expected int), and where it is.
+*But* if you use Pyright *before* running the code you get the exact problem
+(trying to pass "problems", which is a string instead of the expected int), and where it is.
 Just notice that you **must** provide the type hints.
 
 ```text
@@ -240,10 +262,12 @@ Just notice that you **must** provide the type hints.
 1 error, 0 warnings, 0 informations
 ```
 
-See also!
+#### Further reading
 
 - [Python Types Intro (FastAPI)](https://fastapi.tiangolo.com/python-types/)
 - [Type Hints Cheat Sheet (MyPy)](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html)
+
+## Tooling
 
 ### Jupyter Notebook
 
