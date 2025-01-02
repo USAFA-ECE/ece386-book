@@ -7,6 +7,15 @@
 
 Note, if you are taking ECE 485 and plan to do something on GPUs then the [Tensor Core White Paper](https://resources.nvidia.com/en-us-tensor-core) could be useful for your research!
 
+(Maybe???)
+- **What's a Tensor?**, Dan Fleisch. You may want to speed up the video a tad:
+
+- If you have experience in linear algebra, [start at 6:15](https://youtu.be/f5liqUk0ZTw?t=375)
+- If you are seriously in a hurry watch at least [from 10:20 - 11:20](https://youtu.be/f5liqUk0ZTw?t=620)
+- If you are new to linear algebra, watch the entire video.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/f5liqUk0ZTw?si=02YMXVF0YpBT1FMF&amp;start=375" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ### Objectives
 
 - Discuss why linear algebra and GPUs are the bedrock of machine learning.
