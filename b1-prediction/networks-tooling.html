@@ -64,7 +64,7 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Prediction Machines and ML Workflow" href="prediction-machines.html" />
+    <link rel="next" title="3. Prediction Machines" href="prediction-machines.html" />
     <link rel="prev" title="1. Hello, Colab!" href="hello-colab.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -173,8 +173,8 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Networks and Tooling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prediction-machines.html">3. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="datasets.html">4. Datasets and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prediction-machines.html">3. Prediction Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="datasets.html">4. Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ice-kmeans.html">5. ICE: K-Means Clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cloud-hosting.html">6. Cloud Hosting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lab-digits-dnn.html">7. Lab: Handwritten Digits - DNN</a></li>
@@ -433,11 +433,15 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#http-requests">HTTP Requests</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tooling">2.4. Tooling</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hints">Type Hints</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">2.4. Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hints">Type Hints</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hints-preventing-errors">Type hints preventing errors</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further reading</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tooling">2.5. Tooling</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">Jupyter Notebook</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github">GitHub</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-and-jupyter">GitHub and Jupyter</a></li>
@@ -606,10 +610,8 @@ scp<span class="w"> </span>pi@192.168.0.37:/home/pi/their_file<span class="w"> <
 See <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">curl</span></code> or <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">wget</span></code> for more options (such as how to save output to a file).</p>
 </section>
 </section>
-<section id="tooling">
-<h2><span class="section-number">2.4. </span>Tooling<a class="headerlink" href="#tooling" title="Link to this heading">#</a></h2>
 <section id="python">
-<h3>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h3>
+<h2><span class="section-number">2.4. </span>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
 <p>In my opinion, Python is a terrible language and in a perfect world Julia would have overtaken Python &amp;
 people would build other things with Go, Rust, or Kotlin. <em>sigh</em>.
 Alas, the reality is that the entire tech sector has jumped on the Python bandwagon and it is here to stay
@@ -621,17 +623,35 @@ as the language of data science and machine learning.</p>
 <li><p><a class="reference external" href="https://stanbaek.github.io/ece487/NumPy.html">NumPy</a></p></li>
 </ul>
 <section id="type-hints">
-<h4>Type Hints<a class="headerlink" href="#type-hints" title="Link to this heading">#</a></h4>
-<p>It is an expectation in this course that <strong>you will use type hints in function declarations and global variables</strong> in this course.</p>
+<h3>Type Hints<a class="headerlink" href="#type-hints" title="Link to this heading">#</a></h3>
+<p>It is an expectation in this course that <strong>you will use type hints in function declarations and global variables</strong>.</p>
 <p>You should verify these hints are valid in VS Code via Pylance, which comes with Microsoft’s official Python Extension <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python"><code class="docutils literal notranslate"><span class="pre">ms-python.python</span></code></a>.</p>
 <p>Alternatively, you can use <a class="reference external" href="https://pypi.org/project/pyright/">PyRight</a> directly.</p>
-<p>Here is an example and resources:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple hint for arg and return type</span>
+<p><strong>Global variables</strong> are any variables declared outside of a function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example of a global variable with a type hint</span>
+<span class="n">age</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">21</span>
+</pre></div>
+</div>
+<p><strong>Function declarations</strong> may include parameters and return values.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example of a function declaration with type hint for parameter and return</span>
 <span class="k">def</span> <span class="nf">stringify</span><span class="p">(</span><span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Stringify casts an integer into a string&#39;&#39;&#39;</span>
     <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Let’s see that in action:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Why don’t we require type hints on all variables?</p>
+<p>Python is a <em>dynamically typed</em> language, which adds flexibility and generally makes writing scripts quicker.
+Some languages are statically typed - which comes with great benefits - but makes the code more rigid.</p>
+<p>Adding type hints to every variable in Python (which the interpreter discards anyways!)
+generally isn’t worth the tradeoff for how long it takes to write the code and the decreased flexibility.</p>
+<p><strong>Adding hints to just global variables and function declarations is an engineering compromise that
+gets a lot of benefit for very little overhead.</strong></p>
+</div>
+<section id="type-hints-preventing-errors">
+<h4>Type hints preventing errors<a class="headerlink" href="#type-hints-preventing-errors" title="Link to this heading">#</a></h4>
+<p>We use type hints to <strong>bias toward build-time errors</strong> <em>instead</em> of runtime errors.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">type_error_demo_1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
 
@@ -644,7 +664,8 @@ as the language of data science and machine learning.</p>
 <span class="n">my_static_error</span> <span class="o">=</span> <span class="n">type_error_demo_2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;problems.&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>If you try to run this script, Python will give you this Runtime error. It’s hard to debug and will crash your app at an unknown time.</p>
+<p>If you try to run this script, Python will give you this runtime error.
+It’s hard to debug and will crash your app at an unknown time.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
   File &quot;/tmp/type.py&quot;, line 8, in &lt;module&gt;
     my_runtime_error = type_error_demo_1(99, &#39;problems&#39;)
@@ -653,21 +674,26 @@ as the language of data science and machine learning.</p>
 TypeError: unsupported operand type(s) for +: &#39;int&#39; and &#39;str&#39;
 </pre></div>
 </div>
-<p><em>But</em> if you use Pyright <em>before</em> running the code you get this
-The exact problem (trying to pass “problems”, which is a string instead of the expected int), and where it is.
+<p><em>But</em> if you use Pyright <em>before</em> running the code you get the exact problem
+(trying to pass “problems”, which is a string instead of the expected int), and where it is.
 Just notice that you <strong>must</strong> provide the type hints.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/tmp/type.py:10:40 - error: Argument of type &quot;Literal[&#39;problems.&#39;]&quot; cannot be assigned to parameter &quot;b&quot; of type &quot;int&quot; in function &quot;type_error_demo_2&quot;
     &quot;Literal[&#39;problems.&#39;]&quot; is not assignable to &quot;int&quot; (reportArgumentType)
 1 error, 0 warnings, 0 informations
 </pre></div>
 </div>
-<p>See also!</p>
+</section>
+<section id="further-reading">
+<h4>Further reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><a class="reference external" href="https://fastapi.tiangolo.com/python-types/">Python Types Intro (FastAPI)</a></p></li>
 <li><p><a class="reference external" href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html">Type Hints Cheat Sheet (MyPy)</a></p></li>
 </ul>
 </section>
 </section>
+</section>
+<section id="tooling">
+<h2><span class="section-number">2.5. </span>Tooling<a class="headerlink" href="#tooling" title="Link to this heading">#</a></h2>
 <section id="jupyter-notebook">
 <h3>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Link to this heading">#</a></h3>
 <p>We will just <a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/latest/notebook.html">Jupyter Notebook</a>
@@ -746,7 +772,7 @@ and the correct branch (probably <code class="docutils literal notranslate"><spa
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Prediction Machines and ML Workflow</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Prediction Machines</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -789,11 +815,15 @@ and the correct branch (probably <code class="docutils literal notranslate"><spa
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#http-requests">HTTP Requests</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tooling">2.4. Tooling</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hints">Type Hints</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">2.4. Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hints">Type Hints</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hints-preventing-errors">Type hints preventing errors</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further reading</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tooling">2.5. Tooling</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">Jupyter Notebook</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github">GitHub</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#github-and-jupyter">GitHub and Jupyter</a></li>

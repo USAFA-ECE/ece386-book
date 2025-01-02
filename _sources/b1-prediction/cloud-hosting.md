@@ -160,7 +160,150 @@ A popular Python API Framework is FastAPI. Two big reasons to use it:
 
 ## Next Steps: FastAPI Demo
 
-We will run a simple FastAPI example!
+First, log on to your Raspberry Pi. Open two terminals.
 
-% TODO: Add FastAPI Example
-% TODO: decide if going with Poetry or venv
+### Terminal 1
+
+Open a fresh terminal. Print your current working directory.
+
+Make a folder for this lab:
+
+```bash
+mkdir fastapi-demo
+cd fastapi-demo
+```
+
+#### Create python script
+
+Next we will create the python file.
+
+Run the command
+
+```bash
+vim hello.py
+```
+
+Vim is a ubiquitous text editor in linux systems. Enter insert mode by pressing the `i` key.
+Then paste in this code:
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
+```
+
+Figure out [how to exit Vim](https://trends.google.com/trends/explore?date=today%205-y&q=how%20to%20exit%20vim&hl=en).
+
+Once you exit the file, you can make sure you saved it properly with
+
+```bash
+cat hello.py
+```
+
+#### Setup Virtual Environment
+
+We want to isolate our Python dependencies for this project
+from the system Python dependencies (or very bad things will happen).
+
+Create a Python virtual environment.
+
+```bash
+python3 -m venv .venv
+```
+
+Activate the virtual environment
+
+```bash
+source .venv/bin/activate
+```
+
+Verify that you are using the venv.
+You should also see `.venv` ahead of your bash prompt.
+
+```bash
+# Should output ~/.venv/bin/pyhton NOT /usr/bin/python
+which python
+```
+
+```{note}
+You can use `deactivate` to exit the venv.
+```
+
+```{danger}
+You must restart a virtual environment *every* time you open a new terminal.
+
+If you forget to this and start installing things with `pip` prior to running `source` you might break your system.
+If you forget to activate and start trying to run scripts they will fail because of missing modules.
+
+Pay attention to where you are in your terminal!
+```
+
+#### Run the script
+
+Now that we are inside our venv (you are, right???) install FastAPI.
+
+```bash
+pip install fastapi[standard]
+```
+
+Check out the docs
+
+```bash
+fastapi --help
+```
+
+This shows both `dev` and `run`. Look at `dev`
+
+```bash
+fastapi dev --help
+```
+
+This says
+
+>  Usage: fastapi dev [OPTIONS] [PATH]
+>
+>  **Run a FastAPI app in development mode. 🧪**
+>
+>  This is equivalent to fastapi run but with reload enabled and listening on the 127.0.0.1 address.
+
+Ok! So that's what we want. Just keep in mind that you won't be able to communicate with your app from external devices because
+it's only listening on loopback.
+
+Run the script
+
+```bash
+fastapi dev hello.py
+```
+
+This will output useful info. Take note of the **port** it's serving.
+
+### Terminal 2
+
+Time to hit the API!
+
+Open a second terminal alongside the first, then run:
+
+```bash
+# Replace xxxx with the port number you are serving the app on
+curl 127.0.0.1:xxxx
+```
+
+You should see a glorious **{"Hello": "World"}** returned! Yes, that's [JSON](https://www.w3schools.com/whatis/whatis_json.asp) being returned.
+JSON is a standard way of representing text data, and you'll need to learn to work with it a bit.
+
+Back in **Terminal 1**, you should also see a "GET" request from yourself that was answered with a "200 OK" status code.
+
+You don't need to go in-depth on [HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418), but
+
+- 100s for info
+- 200s for success
+- 300s for redirect
+- 400s for client error
+- 500s for server error
+
+So a "404 Not Found" error is your fault, as the client, because you requested something that doesn't exist!

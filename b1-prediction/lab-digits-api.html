@@ -173,8 +173,8 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="hello-colab.html">1. Hello, Colab!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="networks-tooling.html">2. Networks and Tooling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prediction-machines.html">3. Prediction Machines and ML Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="datasets.html">4. Datasets and Dimensionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prediction-machines.html">3. Prediction Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="datasets.html">4. Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ice-kmeans.html">5. ICE: K-Means Clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cloud-hosting.html">6. Cloud Hosting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lab-digits-dnn.html">7. Lab: Handwritten Digits - DNN</a></li>
@@ -443,14 +443,7 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-lab">8.1. Pre-lab</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#colab-demo">8.2. Colab Demo</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-a-terminal">Get a terminal</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-python-script">Create python script</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-script">Run the script</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hit-the-api">Hit the API</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">8.3. Lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">8.2. Lab</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#server">Server</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#client">Client</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">Deliverables</a></li>
@@ -480,118 +473,8 @@
 <li><p>Make four images of different handwritten digits and place them into <code class="docutils literal notranslate"><span class="pre">client/img/</span></code></p></li>
 </ol>
 </section>
-<section id="colab-demo">
-<h2><span class="section-number">8.2. </span>Colab Demo<a class="headerlink" href="#colab-demo" title="Link to this heading">#</a></h2>
-<p>This exercise simply demonstrates how to serve a <a class="reference external" href="https://github.com/FastAPI/FastAPI">FastAPI</a> app in Google Colab.</p>
-<section id="get-a-terminal">
-<h3>Get a terminal<a class="headerlink" href="#get-a-terminal" title="Link to this heading">#</a></h3>
-<p>First, we install <a class="reference external" href="https://github.com/InfuseAI/colab-xterm">colab-xterm</a>, which allows us to have an interactive terminal.
-We will need this to run the app process, since normally colab runs a process and then kills it.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install -q &quot;fastapi[standard]&quot;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-q<span class="w"> </span>colab-xterm
-<span class="o">%</span><span class="k">load_ext</span> colabxterm
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">xterm</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>You should now have an interactive terminal! Run a command in it, such as</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">pwd</span>
-</pre></div>
-</div>
-</section>
-<section id="create-python-script">
-<h3>Create python script<a class="headerlink" href="#create-python-script" title="Link to this heading">#</a></h3>
-<p>Next we will create the python file. Run the command</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>hello.py
-</pre></div>
-</div>
-<p>Vim is a ubiquitous text editor in linux systems. Enter insert mode by pressing the <strong>i</strong> key.
-Then paste in this code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">read_root</span><span class="p">():</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;Hello&quot;</span><span class="p">:</span> <span class="s2">&quot;World&quot;</span><span class="p">}</span>
-
-</pre></div>
-</div>
-<p>Figure out <a class="reference external" href="https://trends.google.com/trends/explore?date=today%205-y&amp;amp;q=how%20to%20exit%20vim&amp;amp;hl=en">how to exit Vim</a>.</p>
-<p>Once you exit the file, you can make sure you saved it properly with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>hello.py
-</pre></div>
-</div>
-</section>
-<section id="run-the-script">
-<h3>Run the script<a class="headerlink" href="#run-the-script" title="Link to this heading">#</a></h3>
-<p>In production, you would query a domain and <a class="reference external" href="https://www.cloudflare.com/learning/dns/what-is-dns/">DNS</a> would resolve that to an IP address. But since we are just doing testing, simply look at what your IP address is with this command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ip<span class="w"> </span>a
-</pre></div>
-</div>
-<p>It shows a loopback at <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code> (this is a reserved address and <em>always</em> means “myself”).
-You will also see an eth0 address that probably starts with <code class="docutils literal notranslate"><span class="pre">172.</span></code>. This subnet is reserved for local networks.
-In production, this would be a public IP address, but this will work for now… we are just going to talk to ourselves.</p>
-<p>Run the script! We will use dev mode.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, view help menu</span>
-fastapi<span class="w"> </span>dev<span class="w"> </span>--help
-
-<span class="c1"># Then, you can run the app</span>
-<span class="c1"># 8000 is the default port</span>
-fastapi<span class="w"> </span>dev<span class="w"> </span>hello.py
-</pre></div>
-</div>
-<p>You should see something starting like:</p>
-<blockquote>
-<div><p>Serving at: <a class="reference external" href="http://127.0.0.1:8000">http://127.0.0.1:8000</a>
-…
-Application startup somplete.</p>
-</div></blockquote>
-<p>Notice that in <code class="docutils literal notranslate"><span class="pre">dev</span></code> mode you get automatic reloading and more debug info, <em>but</em> the app only listens on the local host.
-In <code class="docutils literal notranslate"><span class="pre">run</span></code> mode FastAPI will listen on all interfaces.</p>
-</section>
-<section id="hit-the-api">
-<h3>Hit the API<a class="headerlink" href="#hit-the-api" title="Link to this heading">#</a></h3>
-<p>Now it’s time to connect to the API endpoint and see what we get!</p>
-<p>Down the road we’ll do this with Python, but for our quick test, just run the below cell.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>curl<span class="w"> </span><span class="m">127</span>.0.0.1:8000/
-</pre></div>
-</div>
-</div>
-</div>
-<p>You should see a glorious <strong>{“Hello”: “World”}</strong> returned! Yes, that’s <a class="reference external" href="https://www.w3schools.com/whatis/whatis_json.asp">JSON</a> being returned.
-JSON is a standard way of representing text data, and you’ll need to learn to work with it a bit.</p>
-<p>Back in your terminal, you should also see a “GET” request from yourself that was answered with a “200 OK” status code.
-You don’t need to go in-depth on <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418">HTTP response status codes</a>, but</p>
-<ul class="simple">
-<li><p>100s for info</p></li>
-<li><p>200s for success</p></li>
-<li><p>300s for redirect</p></li>
-<li><p>400s for client error</p></li>
-<li><p>500s for server error</p></li>
-</ul>
-<p>So a “404 Not Found” error is your fault, as the client, because you requested something that doesn’t exist!</p>
-</section>
-</section>
 <section id="lab">
-<h2><span class="section-number">8.3. </span>Lab<a class="headerlink" href="#lab" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">8.2. </span>Lab<a class="headerlink" href="#lab" title="Link to this heading">#</a></h2>
 <p>This lab will require significant self-learning! You’ll absolutely need to spend time reading documentation.</p>
 <p>Large Language Models (such as ChatGPT or Claude) are authorized for clarifying questions and how to do very specific things, <em>but</em> you cannot ask for a large chunk of the program. Furthermore, you <strong>must document in the README by:</strong></p>
 <ol class="arabic simple">
@@ -724,14 +607,7 @@ All the code for the client will be in the <code class="docutils literal notrans
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-lab">8.1. Pre-lab</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#colab-demo">8.2. Colab Demo</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-a-terminal">Get a terminal</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-python-script">Create python script</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-script">Run the script</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hit-the-api">Hit the API</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">8.3. Lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">8.2. Lab</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#server">Server</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#client">Client</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">Deliverables</a></li>
