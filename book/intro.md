@@ -15,7 +15,8 @@ All assignments are submitted via Gradescope.
 | **Lesson Due** | **Type** | **Tasks**                                                                                        |
 |----------------|----------|--------------------------------------------------------------------------------------------------|
 | 06             | ICE      | K-means classification of handwritten digits                                                     |
-| 07             | Prelab   | Raspberry Pi setup, FastAPI demo from "Cloud Hosting", System design                             |
+| 07             | ICE      | DNN classification of handwritten digits                                                         |
+| 08             | Prelab   | Raspberry Pi setup, FastAPI demo from "Cloud Hosting", System design                             |
 | 09             | Lab      | Handwritten Digits DNN & FastAPI                                                                 |
 | 10             | C&C      | Block 1: Machine Prediction                                                                      |
 | 11             | Prelab   | ECE 281 instruction set architecture review, Your questions about DSP reading, Arduino IDE setup |

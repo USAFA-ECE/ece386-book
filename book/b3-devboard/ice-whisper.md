@@ -1,4 +1,4 @@
-# ICE: Whisper Transcription
+# ICE 3: Whisper Transcription
 
 In this ICE we will use [Distil-Whipser](https://huggingface.co/distil-whisper) to transcribe audio to text.
 Transcription will run inside a Docker container on our NVIDIA Jetson Orin Nano.
