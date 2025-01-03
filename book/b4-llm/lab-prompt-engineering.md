@@ -1,4 +1,4 @@
-# Lab: Prompt Engineering
+# Lab 6: Prompt Engineering
 
 ## Pre-Reading
 

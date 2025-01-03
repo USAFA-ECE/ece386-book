@@ -1,3 +1,3 @@
-# Lab: Edge Impulse KWS
+# Lab 4: Edge Impulse KWS
 
 # Lab Workday
