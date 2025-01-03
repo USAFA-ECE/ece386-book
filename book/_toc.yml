@@ -12,8 +12,8 @@ parts:
       - file: b1-prediction/prediction-machines
       - file: b1-prediction/datasets
       - file: b1-prediction/ice-kmeans
+      - file: b1-prediction/ice-digits-dnn
       - file: b1-prediction/cloud-hosting
-      - file: b1-prediction/lab-digits-dnn
       - file: b1-prediction/lab-digits-api
       - file: b1-prediction/cc-prediction
   - caption: Edge Inference
