@@ -29,12 +29,12 @@ parts:
   - caption: Development Boards
     numbered: 2
     chapters:
-      - file: b3-devboard/ice-devboard
       - file: b3-devboard/lab-cat-dog
       - file: b3-devboard/containerization
       - file: b3-devboard/ice-whisper
       - file: b3-devboard/gpu-architecture
       - file: b3-devboard/ice-gpu-acceleration
+      - file: b3-devboard/student-choice
   - caption: Large Language Models
     numbered: 2
     chapters:
