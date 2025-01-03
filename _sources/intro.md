@@ -40,7 +40,7 @@ This course has the following types of assignments:
 - **Daily briefs** are based on the lesson reading or previous lesson content
 - **Final project** is cumulative and worth 25% of the grade
 
-```mermaid
+```{mermaid}
 pie title Final Grade Weighting
     "Prelabs/ICE" : 25
     "Labs" : 30
@@ -48,7 +48,7 @@ pie title Final Grade Weighting
     "Quizzes" : 30
 ```
 
-```mermaid
+```{mermaid}
 pie title Final Grade Weighting
     "Prelabs/ICE" : 20
     "Labs" : 25
