@@ -1,4 +1,4 @@
-# Lab: Cortex DSP Benchmark
+# Lab 2: Cortex DSP Benchmark
 
 ## Pre-reading
 
