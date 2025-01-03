@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>25. ICE: GPU Acceleration &#8212; ECE 386</title>
+    <title>24. ICE: GPU Acceleration &#8212; ECE 386</title>
   
   
   
@@ -64,8 +64,8 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="26. Text Vectorization" href="../b4-llm/text-vectorization.html" />
-    <link rel="prev" title="24. GPU Architecture" href="gpu-architecture.html" />
+    <link rel="next" title="25. Student Choice" href="student-choice.html" />
+    <link rel="prev" title="23. GPU Architecture" href="gpu-architecture.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -194,14 +194,14 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Development Boards</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="ice-devboard.html">18. ICE: Development Boards</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab-cat-dog.html">19. Lab: Cats vs. Dogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab-cat-dog.html">18. Lab: Cats vs. Dogs</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="containerization.html">22. Containerization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ice-whisper.html">23. ICE: Whisper Transcription</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gpu-architecture.html">24. GPU Architecture</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">25. ICE: GPU Acceleration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="containerization.html">21. Containerization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ice-whisper.html">22. ICE: Whisper Transcription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu-architecture.html">23. GPU Architecture</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">24. ICE: GPU Acceleration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="student-choice.html">25. Student Choice</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Large Language Models</span></p>
 <ul class="nav bd-sidenav">
@@ -442,14 +442,14 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product">25.1. Dot Product</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product">24.1. Dot Product</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu-timing">CPU Timing</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-timing">GPU Timing</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-benchmark">Running the benchmark</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product-results">Dot Product Results</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-tensor-operation">25.2. Another Tensor Operation</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-tensor-operation">24.2. Another Tensor Operation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
 </ul>
 </li>
@@ -465,7 +465,7 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ice-gpu-acceleration">
-<h1><span class="section-number">25. </span>ICE: GPU Acceleration<a class="headerlink" href="#ice-gpu-acceleration" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">24. </span>ICE: GPU Acceleration<a class="headerlink" href="#ice-gpu-acceleration" title="Link to this heading">#</a></h1>
 <p>Let’s check out some different PyTorch arithmetic on the CPU vs. GPU!</p>
 <p>We’ll present the same code for both TensorFlow and Pytorch.</p>
 <div class="cell docutils container">
@@ -519,7 +519,7 @@ This should always be your first step!</p>
 </div>
 </div>
 <section id="dot-product">
-<h2><span class="section-number">25.1. </span>Dot Product<a class="headerlink" href="#dot-product" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">24.1. </span>Dot Product<a class="headerlink" href="#dot-product" title="Link to this heading">#</a></h2>
 <p>Dot products are <strong>extremely</strong> common tensor operations. They are used deep neural networks and linear algebra applications.</p>
 <p>A dot product is essentially just a bunch of multiplications and additions.</p>
 <ul class="simple">
@@ -707,7 +707,7 @@ This is also indidcated by the <strong>gpu_speedup</strong> being less than 1.</
 </section>
 </section>
 <section id="another-tensor-operation">
-<h2><span class="section-number">25.2. </span>Another Tensor Operation<a class="headerlink" href="#another-tensor-operation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">24.2. </span>Another Tensor Operation<a class="headerlink" href="#another-tensor-operation" title="Link to this heading">#</a></h2>
 <p>Your task is to repeat this benchmark below, but finding the minimum element in a <strong>1D tensor</strong>.
 You only need to do it with <strong>one</strong> framework.</p>
 <p>Use either</p>
@@ -773,15 +773,15 @@ You only need to do it with <strong>one</strong> framework.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">24. </span>GPU Architecture</p>
+        <p class="prev-next-title"><span class="section-number">23. </span>GPU Architecture</p>
       </div>
     </a>
     <a class="right-next"
-       href="../b4-llm/text-vectorization.html"
+       href="student-choice.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">26. </span>Text Vectorization</p>
+        <p class="prev-next-title"><span class="section-number">25. </span>Student Choice</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -802,14 +802,14 @@ You only need to do it with <strong>one</strong> framework.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product">25.1. Dot Product</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product">24.1. Dot Product</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu-timing">CPU Timing</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-timing">GPU Timing</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-benchmark">Running the benchmark</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product-results">Dot Product Results</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-tensor-operation">25.2. Another Tensor Operation</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-tensor-operation">24.2. Another Tensor Operation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
 </ul>
 </li>
