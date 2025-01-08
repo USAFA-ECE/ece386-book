@@ -267,6 +267,50 @@ Just notice that you **must** provide the type hints.
 - [Python Types Intro (FastAPI)](https://fastapi.tiangolo.com/python-types/)
 - [Type Hints Cheat Sheet (MyPy)](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html)
 
+### Format and Lint
+
+Format really matters in Python for two reasons:
+
+1. It is white space delimited (which is *dumb*, but here we are), so an error will cause a true error.
+2. A standard format makes code easier to read and debug.
+
+Most IDEs will help to some extent. You should always **lint** code you write.
+
+> [Linting](https://code.visualstudio.com/docs/python/linting) helps to prevent errors by analyzing code for common syntactical, stylistic, and functional errors
+> and unconventional programming practices. Although there is a little overlap between formatting and linting, the two capabilities are complementary.
+> ~ [Formatting Python in VS Code](https://code.visualstudio.com/docs/python/formatting)
+
+#### Format with Black
+
+I recommend using [Black](https://black.readthedocs.io/en/stable/index.html) for format.
+
+```python
+# Black will standardize these to both use double quotes
+print("Hey!")
+print('How are you?')
+```
+
+According to the [docs](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter),
+you can ensure VS Code formats Python files with black on save by [installing Microsoft's Black Formatter extension](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter)
+and then adding using **View > Command Palette... and run Preferences: Open User Settings (JSON)** and adding the following between the `{ }`:
+
+```json
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
+  }
+```
+
+#### Lint with Pylance
+
+Microsoft's **Pylance** is included in the official [VS Code Python Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and is a great linter!
+
+```python
+# Pylance will complain that y is not declared
+x = y + 3
+print(x)
+```
+
 ## Tooling
 
 ### Jupyter Notebook

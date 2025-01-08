@@ -4,6 +4,7 @@
         "ms-toolsai.jupyter",
         "davidanson.vscode-markdownlint",
         "streetsidesoftware.code-spell-checker",
-        "ms-python.python"
+        "ms-python.python",
+        "ms-python.black-formatter"
     ]
 }
