@@ -30,7 +30,7 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -459,6 +459,7 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">6.4. Train the model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-a-prediction">6.5. Make a Prediction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-the-dataset">Beyond the Dataset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-accuracy">Overall Accuracy</a></li>
 </ul>
 </li>
@@ -491,11 +492,26 @@
 <li><p>Get a model for classifying handwritten digits</p></li>
 </ul>
 <p>This notebook is a modification of Chollet’s, <a class="reference external" href="https://learning.oreilly.com/library/view/deep-learning-with/9781617296864/Text/02.htm#:-:text=2.1%20A%20first%20look%20at%20a%20neural%20network"><em>Deep Learning with Python</em>, 2.1 A first look at a neural network</a> <a class="reference external" href="https://github.com/fchollet/deep-learning-with-python-notebooks/blob/master/chapter02_mathematical-building-blocks.ipynb">GitHub notebook</a>
-with a few additions from</p>
+with a few additions from <a class="reference external" href="https://www.tensorflow.org/tutorials/images/transfer_learning">TensorFlow Tutorials</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Google colab includes by default, so you won&#39;t need to run</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Google colab includes by default, so you probably won&#39;t need to run</span>
 <span class="o">%</span><span class="k">pip</span> install -q matplotlib
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running Tensorflow version&quot;</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+
+<span class="n">device_name</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">gpu_device_name</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">device_name</span> <span class="o">==</span> <span class="s2">&quot;/device:GPU:0&quot;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using GPU: </span><span class="si">{</span><span class="n">device_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No GPU detected; running on CPU.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -508,7 +524,7 @@ with a few additions from</p>
 <p>The MNIST dataset comes preloaded in Keras, in the form of a set of four <strong>train</strong> and <strong>test</strong> NumPy arrays.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.datasets</span> <span class="kn">import</span> <span class="n">mnist</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">mnist</span>
 
 <span class="p">(</span><span class="n">train_images</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">),</span> <span class="p">(</span><span class="n">test_images</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">)</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
 </pre></div>
@@ -518,11 +534,11 @@ with a few additions from</p>
 <p>Visualize the dataset</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 
-<span class="k">def</span> <span class="nf">show_images</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">show_images</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Show 100 random images from the dataset&quot;&quot;&quot;</span>
     <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">35</span><span class="p">))</span>
@@ -607,8 +623,8 @@ The sum of these probabilities equals 1. We will assign our sample to the class 
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">keras</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras</span><span class="w"> </span><span class="kn">import</span> <span class="n">layers</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
     <span class="p">[</span>
@@ -714,12 +730,12 @@ The sum of these probabilities equals 1. We will assign our sample to the class 
 <p>Whichever class corresponds with the element that has highest probability is the class we predict.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">highest_prediction_index</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">highest_prediction_index</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span>
     <span class="s2">&quot;Index of highest probability:&quot;</span><span class="p">,</span>
     <span class="n">highest_prediction_index</span><span class="p">,</span>
     <span class="s2">&quot;with probability:&quot;</span><span class="p">,</span>
-    <span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">highest_prediction_index</span><span class="p">],</span>
+    <span class="n">prediction</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">highest_prediction_index</span><span class="p">],</span>
     <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">True label:&quot;</span><span class="p">,</span>
     <span class="n">test_labels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
 <span class="p">)</span>
@@ -738,6 +754,34 @@ The true label agrees!</p>
 </div>
 </div>
 </div>
+<section id="beyond-the-dataset">
+<h3>Beyond the Dataset<a class="headerlink" href="#beyond-the-dataset" title="Link to this heading">#</a></h3>
+<p>In the upcoming Lab we will want to use this model to predict on digits <em>we</em> create!</p>
+<p>To do this we’ll need to pass the network <em>exactly</em> the same shape tensor of the appropriate type.</p>
+<ol class="arabic simple">
+<li><p>Identify the name of the variable we pass to <code class="docutils literal notranslate"><span class="pre">model.predict()</span></code> above.</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">type</span></code> function on that variable to get the type.</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">shape</span></code> attribute of that variable to get the shape.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: replace None with `type` function call on the sample given to `predict` method</span>
+<span class="c1"># Upload the output of this cell to Gradescope</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type model expects:&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: replace None with `shape` attribute of the sample given to `predict` method</span>
+<span class="c1"># Upload the output of this cell to Gradescope</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape model expects:&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="overall-accuracy">
 <h3>Overall Accuracy<a class="headerlink" href="#overall-accuracy" title="Link to this heading">#</a></h3>
 <p>On average, how good is our model at classifying such never-before-seen digits? Let’s check by computing average accuracy over the entire test set.</p>
@@ -767,7 +811,12 @@ Make sure to <strong>download</strong> the <code class="docutils literal notrans
 </section>
 <section id="deliverables">
 <h2><span class="section-number">6.7. </span>Deliverables<a class="headerlink" href="#deliverables" title="Link to this heading">#</a></h2>
-<p><strong>After downloading your model</strong> upload a copy of your Jupyter Notebook to Gradescope.</p>
+<p>Submit the following to the Gradescope ICE 2 assignment:</p>
+<ul class="simple">
+<li><p>The type and shape outputs</p></li>
+<li><p>Your Keras model</p></li>
+<li><p>This completed notebook</p></li>
+</ul>
 </section>
 </section>
 
@@ -853,6 +902,7 @@ Make sure to <strong>download</strong> the <code class="docutils literal notrans
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">6.4. Train the model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-a-prediction">6.5. Make a Prediction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-the-dataset">Beyond the Dataset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-accuracy">Overall Accuracy</a></li>
 </ul>
 </li>

@@ -30,7 +30,7 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -550,7 +550,7 @@ docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"
 <p>Create <code class="docutils literal notranslate"><span class="pre">speech_recognition.py</span></code>.</p>
 <p>If you go back to <a class="reference external" href="https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch">NVIDIA PyTorch Container</a> you will see
 an example of how to tell if CUDA is available. Find that and add these two lines to your script.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 <span class="c1"># TODO: check if CUDA is available</span>
 </pre></div>
 </div>
@@ -582,13 +582,13 @@ an example of how to tell if CUDA is available. Find that and add these two line
 <section id="record-audio">
 <h3>Record Audio<a class="headerlink" href="#record-audio" title="Link to this heading">#</a></h3>
 <p>First, import SoundDevice and NumPy:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sounddevice</span> <span class="k">as</span> <span class="nn">sd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">numpy.typing</span> <span class="k">as</span> <span class="nn">npt</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sounddevice</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">npt</span>
 </pre></div>
 </div>
 <p>Then create the following function:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">record_audio</span><span class="p">(</span><span class="n">duration_seconds</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">record_audio</span><span class="p">(</span><span class="n">duration_seconds</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Record duration_seconds of audio from default microphone.</span>
 <span class="sd">    Return a single channel numpy array.&quot;&quot;&quot;</span>
     <span class="n">sample_rate</span> <span class="o">=</span> <span class="mi">16000</span>  <span class="c1"># Hz</span>
@@ -644,11 +644,11 @@ You should see some numbers printed out in an array 🎤</p>
 <p>Hugging Face transformers pipelines can do <a class="reference external" href="https://huggingface.co/docs/transformers/task_summary">all sorts of cool tasks!</a></p>
 <p>Add this method to your <code class="docutils literal notranslate"><span class="pre">speech_recognition.py</span></code> script.
 It is extracted from the Distil-Whisper model card <a class="reference external" href="https://huggingface.co/distil-whisper/distil-medium.en#short-form-transcription">short-form transcription</a>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForSpeechSeq2Seq</span><span class="p">,</span> <span class="n">AutoProcessor</span><span class="p">,</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">pipeline</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModelForSpeechSeq2Seq</span><span class="p">,</span> <span class="n">AutoProcessor</span><span class="p">,</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">pipeline</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_pipeline</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">build_pipeline</span><span class="p">(</span>
     <span class="n">model_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">torch_dtype</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="nb">str</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pipeline</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a Hugging Face automatic-speech-recognition pipeline on the given device.&quot;&quot;&quot;</span>
@@ -678,8 +678,8 @@ It is extracted from the Distil-Whisper model card <a class="reference external"
 <h3>The <code class="docutils literal notranslate"><span class="pre">__main__</span></code><a class="headerlink" href="#the-main" title="Link to this heading">#</a></h3>
 <p>Time to make those methods actually do something for us!</p>
 <p>You need one more import:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">sys</span></code> will allow us to pass arguments to the script.

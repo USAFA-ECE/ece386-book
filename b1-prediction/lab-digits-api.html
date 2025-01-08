@@ -30,7 +30,7 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -442,8 +442,9 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-lab">8.1. Pre-lab</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">8.2. Lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collaboration-policy">8.1. Collaboration Policy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">8.2. Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">8.3. Lab</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#server">Server</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#client">Client</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">Deliverables</a></li>
@@ -463,44 +464,61 @@
   <section class="tex2jax_ignore mathjax_ignore" id="lab-1-handwritten-digits-fastapi">
 <h1><span class="section-number">8. </span>Lab 1: Handwritten Digits - FastAPI<a class="headerlink" href="#lab-1-handwritten-digits-fastapi" title="Link to this heading">#</a></h1>
 <p>In <a class="reference internal" href="ice-digits-dnn.html"><span class="std std-doc">ICE 2</span></a> we made a model. Now it’s time to serve it so others can use it!</p>
-<section id="pre-lab">
-<h2><span class="section-number">8.1. </span>Pre-lab<a class="headerlink" href="#pre-lab" title="Link to this heading">#</a></h2>
-<p>For this lab, you will serve your previously trained MNIST digits model.</p>
-<ol class="arabic simple">
-<li><p>Make your own copy of the template repository: <a class="github reference external" href="https://github.com/USAFA-ECE/ece386-lab01">USAFA-ECE/ece386-lab01</a></p></li>
-<li><p>Commit your Keras neural network model for predicting digits into <code class="docutils literal notranslate"><span class="pre">server/digits.keras</span></code></p></li>
-<li><p>Make four images of different handwritten digits and place them into <code class="docutils literal notranslate"><span class="pre">client/img/</span></code></p></li>
-</ol>
-</section>
-<section id="lab">
-<h2><span class="section-number">8.2. </span>Lab<a class="headerlink" href="#lab" title="Link to this heading">#</a></h2>
-<p>This lab will require significant self-learning! You’ll absolutely need to spend time reading documentation.</p>
-<p>Large Language Models (such as ChatGPT or Claude) are authorized for clarifying questions and how to do very specific things, <em>but</em> you cannot ask for a large chunk of the program. Furthermore, you <strong>must document in the README by:</strong></p>
+<p><strong>Objective:</strong> one device (the <em>server</em>) expose an API that accepts POST HTTP requests containing an image; the method returns the inferred label of the digit in that image. A second device (the <em>client</em>) makes requests to the server’s API using pre-produced images.</p>
+<section id="collaboration-policy">
+<h2><span class="section-number">8.1. </span>Collaboration Policy<a class="headerlink" href="#collaboration-policy" title="Link to this heading">#</a></h2>
+<p>This Lab may be done in <strong>teams of two</strong>.</p>
+<p>Large Language Models (such as ChatGPT or Claude) are authorized for clarifying questions and how to do very specific things, <em>but</em> you cannot ask for a large chunk of the program. Furthermore, you <strong>must document in your <code class="docutils literal notranslate"><span class="pre">README.md</span></code> by:</strong></p>
 <ol class="arabic simple">
 <li><p>Stating  your  primary query AND</p></li>
 <li><p>Providing a link to the entire conversation.</p></li>
 </ol>
+<p>For example, this is ok:</p>
 <blockquote>
-<div><p>For example, this is ok:
-“Write a demo FastAPI POST that can accepts an image and explain each line.”</p>
-<p>But this is <strong>not</strong> ok:
-“Write a FastAPI app with a POST method that feeds an image into a Keras model.”</p>
-<p><em>Disclaimer</em>, I entered both of those prompts into ChatGPT and neither one was very good!
-You really, really, need to be careful taking code from LLMs.
-A better approach might be “I have this simple FastAPI method, but am new to using the package.
-Can you help explain and critique it for me?”</p>
+<div><p>“In a FastAPI POST function how should I accept a PNG image?”</p>
 </div></blockquote>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You should do your development and testing on a single local machine, and then deploy to the server.</p>
+<p>But this is <strong>not</strong> ok:</p>
+<blockquote>
+<div><p>“Write a FastAPI app with a POST method that feeds an image into a Keras model.”</p>
+</div></blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You really, really, need to be careful taking code from LLMs.</p>
+<p>A better approach might be “I have this simple FastAPI method, but am new to using the package.
+Can you help explain and critique it for me?”</p>
+</div>
+</section>
+<section id="setup">
+<h2><span class="section-number">8.2. </span>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<p>You can complete this lab on your Raspberry Pi (recommended) or on a Linux VM of your choice.</p>
+<ol class="arabic simple">
+<li><p>Make your own copy of the template repository: <a class="github reference external" href="https://github.com/USAFA-ECE/ece386-lab01">USAFA-ECE/ece386-lab01</a></p></li>
+<li><p>Add and commit your Keras neural network model for predicting digits into <code class="docutils literal notranslate"><span class="pre">server/digits.keras</span></code></p></li>
+<li><p>Make ten images of handwritten digits (one for each digit) place them into <code class="docutils literal notranslate"><span class="pre">client/img/</span></code>.</p>
+<ul class="simple">
+<li><p>You can use Paint or any application you want</p></li>
+<li><p>Pay attention to how many pixels these images should be</p></li>
+<li><p>Try to make them resemble images in the original dataset</p></li>
+<li><p>Save the image with the correct digit as the filename</p></li>
+<li><p>Use PNG format</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="lab">
+<h2><span class="section-number">8.3. </span>Lab<a class="headerlink" href="#lab" title="Link to this heading">#</a></h2>
+<p>This lab will require significant self-learning! You’ll absolutely need to spend time reading documentation.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Remember to use type hints on function definitions and global variables!</p>
 </div>
 <section id="server">
 <h3>Server<a class="headerlink" href="#server" title="Link to this heading">#</a></h3>
-<p>You will use a Raspberry Pi as your server.
-All the code for the server will be located in the <code class="docutils literal notranslate"><span class="pre">server/</span></code> directory of your repository.</p>
+<p>For the server you may either use a Raspberry Pi <em>or</em> the DFEC AI Server.</p>
+<p>All the code for the server will be located in the <code class="docutils literal notranslate"><span class="pre">server/</span></code> directory of your repository.</p>
 <ol class="arabic simple">
 <li><p>Clone your repository.</p></li>
-<li><p>Create a virtual environment on a Raspberry Pi.</p></li>
+<li><p>Create and activate a virtual environment.</p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">server/requirements.txt</span></code> to install packages.</p></li>
 <li><p>Serve the model with <code class="docutils literal notranslate"><span class="pre">fastapi</span> <span class="pre">run</span> <span class="pre">digits.py</span></code></p></li>
 </ol>
@@ -514,11 +532,11 @@ All the code for the server will be located in the <code class="docutils literal
 </section>
 <section id="client">
 <h3>Client<a class="headerlink" href="#client" title="Link to this heading">#</a></h3>
-<p>For your client, you can use any machine with Python and on the same network as the Pi.
-All the code for the client will be in the <code class="docutils literal notranslate"><span class="pre">client</span></code> directory of your repository.</p>
+<p>For your client, you can use any machine with Python and on the same network as the Pi. This can include another Raspberry Pi or your laptop.
+All the code for the client will be in the <code class="docutils literal notranslate"><span class="pre">client/</span></code> directory of your repository.</p>
 <ol class="arabic simple">
 <li><p>Clone your repository.</p></li>
-<li><p>Create a virtual environment on your client.</p></li>
+<li><p>Create and activate a virtual environment.</p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">client/requirements.txt</span></code> to install packages.</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">client.py</span> <span class="pre">&quot;xxx.xxx.xxx.xxx&quot;</span></code>, where the X’s are the IP address of the server.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">client.py</span></code> prompts the user for a path to an image. After hitting “enter” the client makes an HTTP POST request to the server, waits for the response, then displays the integer to the user.</p></li>
@@ -605,8 +623,9 @@ All the code for the client will be in the <code class="docutils literal notrans
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-lab">8.1. Pre-lab</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">8.2. Lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collaboration-policy">8.1. Collaboration Policy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">8.2. Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">8.3. Lab</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#server">Server</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#client">Client</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">Deliverables</a></li>

@@ -30,7 +30,7 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -519,17 +519,17 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">pathlib</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
 
-<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span>
-<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">models</span>
-<span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras</span><span class="w"> </span><span class="kn">import</span> <span class="n">layers</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
 
 <span class="c1"># Set the seed value for experiment reproducibility.</span>
 <span class="n">seed</span> <span class="o">=</span> <span class="mi">42</span>
@@ -622,7 +622,7 @@ label names: [&#39;down&#39; &#39;go&#39; &#39;left&#39; &#39;no&#39; &#39;right
 <p>This dataset only contains single channel audio, so use the <code class="docutils literal notranslate"><span class="pre">tf.squeeze</span></code> function to drop the extra axis:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">squeeze</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">squeeze</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
     <span class="n">audio</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">audio</span><span class="p">,</span> <span class="n">labels</span>
 
@@ -704,7 +704,7 @@ Ideally you’d keep it in a separate directory, but in this case you can use <c
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_spectrogram</span><span class="p">(</span><span class="n">waveform</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_spectrogram</span><span class="p">(</span><span class="n">waveform</span><span class="p">):</span>
     <span class="c1"># Convert the waveform to a spectrogram via a STFT.</span>
     <span class="n">spectrogram</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">stft</span><span class="p">(</span><span class="n">waveform</span><span class="p">,</span> <span class="n">frame_length</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">frame_step</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
     <span class="c1"># Obtain the magnitude of the STFT.</span>
@@ -773,7 +773,7 @@ Audio playback
 <p>Now, define a function for displaying a spectrogram:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_spectrogram</span><span class="p">(</span><span class="n">spectrogram</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_spectrogram</span><span class="p">(</span><span class="n">spectrogram</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">spectrogram</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">spectrogram</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
         <span class="n">spectrogram</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">spectrogram</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
@@ -813,7 +813,7 @@ Audio playback
 <p>Now, create spectrogramn datasets from the audio datasets:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_spec_ds</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">make_spec_ds</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">ds</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
         <span class="n">map_func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">audio</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="p">(</span><span class="n">get_spectrogram</span><span class="p">(</span><span class="n">audio</span><span class="p">),</span> <span class="n">label</span><span class="p">),</span>
         <span class="n">num_parallel_calls</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">AUTOTUNE</span><span class="p">,</span>
@@ -1263,7 +1263,7 @@ ____________________________________________________________________________
 <span class="n">train_ds</span><span class="o">.</span><span class="n">element_spec</span>
 
 
-<span class="k">def</span> <span class="nf">squeeze</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">squeeze</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
     <span class="n">audio</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">audio</span><span class="p">,</span> <span class="n">labels</span>
 
@@ -1294,7 +1294,7 @@ label names: [&#39;left&#39; &#39;right&#39;]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_spec_ds</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">make_spec_ds</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">ds</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
         <span class="n">map_func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">audio</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="p">(</span><span class="n">get_spectrogram</span><span class="p">(</span><span class="n">audio</span><span class="p">),</span> <span class="n">label</span><span class="p">),</span>
         <span class="n">num_parallel_calls</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">AUTOTUNE</span><span class="p">,</span>
@@ -1364,7 +1364,7 @@ label names: [&#39;left&#39; &#39;right&#39;]
 <span class="nn">File ~/ai-hardware/.venv/lib/python3.10/site-packages/tensorflow/python/util/traceback_utils.py:153,</span> in <span class="ni">filter_traceback.&lt;locals&gt;.error_handler</span><span class="nt">(*args, **kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">151</span> <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">152</span>   <span class="n">filtered_tb</span> <span class="o">=</span> <span class="n">_process_traceback_frames</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">__traceback__</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">153</span>   <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">filtered_tb</span><span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
+<span class="ne">--&gt; </span><span class="mi">153</span>   <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">filtered_tb</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
 <span class="g g-Whitespace">    </span><span class="mi">154</span> <span class="k">finally</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">155</span>   <span class="k">del</span> <span class="n">filtered_tb</span>
 
@@ -1424,8 +1424,8 @@ Epoch 10/10
 <p>The model’s not very easy to use if you have to apply those preprocessing steps before passing data to the model for inference. So build an end-to-end version:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExportModel</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ExportModel</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
 
         <span class="c1"># Accept either a string-filename or a batch of waveforms.</span>
@@ -1436,7 +1436,7 @@ Epoch 10/10
         <span class="p">)</span>
 
     <span class="nd">@tf</span><span class="o">.</span><span class="n">function</span>
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="c1"># If they pass a string, load the file and decode it.</span>
         <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">tf</span><span class="o">.</span><span class="n">string</span><span class="p">:</span>
             <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -1541,7 +1541,7 @@ Epoch 10/10
 <span class="n">train_ds</span><span class="o">.</span><span class="n">element_spec</span>
 
 
-<span class="k">def</span> <span class="nf">squeeze</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">squeeze</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
     <span class="n">audio</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">audio</span><span class="p">,</span> <span class="n">labels</span>
 

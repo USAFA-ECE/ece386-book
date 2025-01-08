@@ -30,7 +30,7 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -474,8 +474,8 @@ for later reference, even though I can tell this person is <em>not</em> a docker
 <h3>The documentation<a class="headerlink" href="#the-documentation" title="Link to this heading">#</a></h3>
 <p>The Hugging Face Diffusers Documentation has the suggestion:
 <a class="reference external" href="https://huggingface.co/docs/diffusers/tutorials/autopipeline#choose-an-autopipeline-for-your-task">Choose an AutoPipeline for your task</a> 🙏🏼</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">diffusers</span> <span class="kn">import</span> <span class="n">AutoPipelineForText2Image</span>
-<span class="kn">import</span> <span class="nn">torch</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">diffusers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoPipelineForText2Image</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 
 <span class="n">pipeline</span> <span class="o">=</span> <span class="n">AutoPipelineForText2Image</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
     <span class="s2">&quot;runwayml/stable-diffusion-v1-5&quot;</span><span class="p">,</span> <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">,</span> <span class="n">use_safetensors</span><span class="o">=</span><span class="kc">True</span>
@@ -499,7 +499,7 @@ for later reference, even though I can tell this person is <em>not</em> a docker
 <p>I do not have an NVIDIA GPU on this device.
 So, a quick DuckDuckGo search (ChatGPT actually got this one wrong)
 tells me about <code class="docutils literal notranslate"><span class="pre">torch.cuda.is_available()</span></code>. So I write:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">cuda</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">cuda</span>
 
 <span class="c1"># Use GPU if available; otherwise, cpu</span>
 <span class="k">if</span> <span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
