@@ -2,7 +2,7 @@
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-**Live website:** [https://usafa-ece.github.io/ai-hardware](https://usafa-ece.github.io/ai-hardware)
+**Live website:** [https://usafa-ece.github.io/ece386-book](https://usafa-ece.github.io/ece386-book)
 
 Contains all course code and the [Jupyter Book](https://jupyterbook.org/en/stable/intro.html) static website to [GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages)
 that is automatically built with [GitHub Actions](https://docs.github.com/en/actions).
