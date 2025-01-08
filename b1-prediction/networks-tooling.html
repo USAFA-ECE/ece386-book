@@ -439,6 +439,11 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further reading</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#format-and-lint">Format and Lint</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#format-with-black">Format with Black</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lint-with-pylance">Lint with Pylance</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tooling">2.5. Tooling</a><ul class="nav section-nav flex-column">
@@ -691,6 +696,47 @@ Just notice that you <strong>must</strong> provide the type hints.</p>
 </ul>
 </section>
 </section>
+<section id="format-and-lint">
+<h3>Format and Lint<a class="headerlink" href="#format-and-lint" title="Link to this heading">#</a></h3>
+<p>Format really matters in Python for two reasons:</p>
+<ol class="arabic simple">
+<li><p>It is white space delimited (which is <em>dumb</em>, but here we are), so an error will cause a true error.</p></li>
+<li><p>A standard format makes code easier to read and debug.</p></li>
+</ol>
+<p>Most IDEs will help to some extent. You should always <strong>lint</strong> code you write.</p>
+<blockquote>
+<div><p><a class="reference external" href="https://code.visualstudio.com/docs/python/linting">Linting</a> helps to prevent errors by analyzing code for common syntactical, stylistic, and functional errors
+and unconventional programming practices. Although there is a little overlap between formatting and linting, the two capabilities are complementary.
+~ <a class="reference external" href="https://code.visualstudio.com/docs/python/formatting">Formatting Python in VS Code</a></p>
+</div></blockquote>
+<section id="format-with-black">
+<h4>Format with Black<a class="headerlink" href="#format-with-black" title="Link to this heading">#</a></h4>
+<p>I recommend using <a class="reference external" href="https://black.readthedocs.io/en/stable/index.html">Black</a> for format.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Black will standardize these to both use double quotes</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hey!&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;How are you?&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>According to the <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter">docs</a>,
+you can ensure VS Code formats Python files with black on save by <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter">installing Microsoft’s Black Formatter extension</a>
+and then adding using <strong>View &gt; Command Palette… and run Preferences: Open User Settings (JSON)</strong> and adding the following between the <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">}</span></code>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&quot;[python]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;editor.defaultFormatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ms-python.black-formatter&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;editor.formatOnSave&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="lint-with-pylance">
+<h4>Lint with Pylance<a class="headerlink" href="#lint-with-pylance" title="Link to this heading">#</a></h4>
+<p>Microsoft’s <strong>Pylance</strong> is included in the official <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">VS Code Python Extension</a> and is a great linter!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pylance will complain that y is not declared</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 <section id="tooling">
 <h2><span class="section-number">2.5. </span>Tooling<a class="headerlink" href="#tooling" title="Link to this heading">#</a></h2>
@@ -819,6 +865,11 @@ and the correct branch (probably <code class="docutils literal notranslate"><spa
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hints">Type Hints</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hints-preventing-errors">Type hints preventing errors</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further reading</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#format-and-lint">Format and Lint</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#format-with-black">Format with Black</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lint-with-pylance">Lint with Pylance</a></li>
 </ul>
 </li>
 </ul>
