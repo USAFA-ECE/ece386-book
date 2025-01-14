@@ -446,6 +446,35 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">4.2. Last Time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-makes-a-dataset">4.3. What makes a dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-ideal-dataset">An Ideal Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-expertise">Domain Expertise</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ethics">Ethics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representing-datasets-as-tensors">4.4. Representing Datasets as Tensors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-tensor">What is a Tensor?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-examples-of-data-tensors">4.5. Real-World examples of data tensors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-validation-sets">4.6. Train, Test, &amp; Validation Sets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-and-test">Train and Test</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate">Evaluate</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validation">Validation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-validation-during-training">Using Validation During Training</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#platforms-for-hosting-datasets">4.7. Platforms for Hosting Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-refined-web">Example: Refined Web</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -459,6 +488,9 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="datasets">
 <h1><span class="section-number">4. </span>Datasets<a class="headerlink" href="#datasets" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p>Collecting a dataset is typically the most difficult, time-consuming, and expensive part of any edge AI project. It’s also the most likely place you will make terrible, hard-to-detect mistakes that can doom your project to failure. ~ <a class="reference external" href="https://learning.oreilly.com/library/view/ai-at-the/9781098120191/ch07.html#:-:text=Collecting%20a%20dataset,project%20to%20failure."><em>AI at the Edge</em></a></p>
+</div></blockquote>
 <section id="pre-reading">
 <h2><span class="section-number">4.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -468,10 +500,213 @@
 <section id="objectives">
 <h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
+<li><p>Describe an ideal dataset for machine learning.</p></li>
 <li><p>Understand how samples in a dataset can be represented as n-rank tensors.</p></li>
 <li><p>Distinguish between the functions of train, test, and validation set splits.</p></li>
 <li><p>List some popular platforms for dataset hosting.</p></li>
 </ol>
+</section>
+</section>
+<section id="last-time">
+<h2><span class="section-number">4.2. </span>Last Time<a class="headerlink" href="#last-time" title="Link to this heading">#</a></h2>
+<p><img alt="The Prediction Machine" src="img/my_prediction_machine.png" /></p>
+</section>
+<section id="what-makes-a-dataset">
+<h2><span class="section-number">4.3. </span>What makes a dataset<a class="headerlink" href="#what-makes-a-dataset" title="Link to this heading">#</a></h2>
+<p>See Situnayake and Plunkett’s <a class="reference external" href="https://learning.oreilly.com/library/view/ai-at-the/9781098120191/ch07.html">*AI at the Edge: Chapter 7 How to Build a Dataset</a> for more info.</p>
+<p>A dataset contains: <strong>samples</strong>, each of which may contain many <strong>features</strong> of various data types.
+Many datasets also contain <em>labels</em> which are a special kind of feature that indicate the desired output of a trained model for a given sample.</p>
+<p>It is common for datasets to have <em>metadata</em> about the dataset itself, such as how the data was collected.</p>
+<section id="an-ideal-dataset">
+<h3>An Ideal Dataset<a class="headerlink" href="#an-ideal-dataset" title="Link to this heading">#</a></h3>
+<p>An ideal dataset has the following properties:</p>
+<ul class="simple">
+<li><p>Relevant to the problem you are trying to solve</p></li>
+<li><p>Representative of all the various conditions your model might encounter in its real-world task</p></li>
+<li><p>Balanced quantities of those various conditions</p></li>
+<li><p>Reliable, containing as few errors as possible</p></li>
+<li><p>Formatted in a way that it can be easily employed</p></li>
+<li><p>Documented sufficiently for you to answer the above questions</p></li>
+<li><p>Appropriately sized to address your problem</p></li>
+</ul>
+<section id="domain-expertise">
+<h4>Domain Expertise<a class="headerlink" href="#domain-expertise" title="Link to this heading">#</a></h4>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Even with the perfect dataset, it is crucial to consult <strong>domain experts</strong> to help you understand the data and the <strong>context</strong>.</p>
+<p>Without this, you will likely misunderstand the problem and get undesired outcomes.</p>
+</div>
+<p>Domain experts can help you make sure that your dataset is representative and reliable.</p>
+</section>
+</section>
+<section id="ethics">
+<h3>Ethics<a class="headerlink" href="#ethics" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p>The quality of your dataset will shape your application’s social consequences more than any other factor. No matter how carefully you have worked to investigate the ethical issues around your project, and to design an application that delivers benefit while being safe, the limitations of your dataset dictate your ability to understand and avoid unintentional harm. ~ <em>AI at the Edge</em></p>
+</div></blockquote>
+</section>
+</section>
+<section id="representing-datasets-as-tensors">
+<h2><span class="section-number">4.4. </span>Representing Datasets as Tensors<a class="headerlink" href="#representing-datasets-as-tensors" title="Link to this heading">#</a></h2>
+<p>Machine learning datasets cover myriad use-cases and come in numerous forms.
+For example, here is a screenshot of the trending datasets on <a class="reference external" href="https://www.kaggle.com/datasets">Kaggle</a>, an extremely popular platform for hosting ML datasets and models.</p>
+<p><img alt="Trending Kaggle datasets" src="img/kaggle_datasets.png" /></p>
+<p>Yet, to be useful in training a neural network they must be converted into a regular form upon which we can do math.</p>
+<p><strong>All datasets for machine learning must be represented as tensors.</strong>
+<em>WHY???</em> Because we need to do math on them! (Spoiler alert: Especially dot-products, which GPUs are really good at!)</p>
+<section id="what-is-a-tensor">
+<h3>What is a Tensor?<a class="headerlink" href="#what-is-a-tensor" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p>At its core, a tensor is a container for data—usually numerical data. So, it’s a container for numbers. You may be already familiar with matrices, which are rank-2 tensors: tensors are a generalization of matrices to an arbitrary number of dimensions (note that in the context of tensors, a dimension is often called an axis). ~ <em>Deep Learning With Python</em></p>
+</div></blockquote>
+<p>A <em>tensor</em> is simply an array of numbers arranged along one or more axes.</p>
+<p><img alt="Dimensions of a Tensor (JavaPoint)" src="https://images.javatpoint.com/tutorial/pytorch/images/pytorch-tensors.png" /></p>
+<p>For a helpful visual breakdown, see Dan Fleisch’s <a class="reference external" href="https://youtu.be/f5liqUk0ZTw?">What is a Tensor? (YouTube)</a></p>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/f5liqUk0ZTw?si=02YMXVF0YpBT1FMF&amp;start=375" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a Rank-3 Tensor in Numpy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">37</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">11</span><span class="p">]],</span>
+        <span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">37</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2016</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+        <span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">37</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">11</span><span class="p">]],</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dimensions: </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape: </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data Type: </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Value of item at position (1, 2, 3): </span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dimensions: 3
+Shape: (3, 3, 5)
+Data Type: int64
+Value of item at position (1, 2, 3): 2016
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="real-world-examples-of-data-tensors">
+<h2><span class="section-number">4.5. </span>Real-World examples of data tensors<a class="headerlink" href="#real-world-examples-of-data-tensors" title="Link to this heading">#</a></h2>
+<p>See <a class="reference external" href="https://learning.oreilly.com/library/view/deep-learning-with/9781617296864/Text/02.htm#:-:text=2.2.8%20Real-world%20examples%20of%20data%20tensors">Cholet, <em>Deep Learning with Python, 2nd Ed</em>: 2.2.8-12</a></p>
+<p>In ML datasets axis 0 is the <em>sample axis</em>.
+Along this axis are <em>batches</em> of multiple samples. Processing data in batches speeds up learning and inference.</p>
+<p>The other axes of a tensor are specific to the dataset, but typically fall into:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><em>Vector data</em>: Rank-2 tensors of shape (samples, features), where each sample is a vector of numerical attributes (“features”)</p></li>
+<li><p><em>Timeseries data or sequence data</em>: Rank-3 tensors of shape (samples, timesteps, features), where each sample is a sequence (of length timesteps) of feature vectors</p></li>
+<li><p><em>Images</em>: Rank-4 tensors of shape (samples, height, width, channels), where each sample is a 2D grid of pixels, and each pixel is represented by a vector of values (“channels”)</p></li>
+<li><p><em>Video</em>: Rank-5 tensors of shape (samples, frames, height, width, channels), where each sample is a sequence (of length frames) of images</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="train-test-validation-sets">
+<h2><span class="section-number">4.6. </span>Train, Test, &amp; Validation Sets<a class="headerlink" href="#train-test-validation-sets" title="Link to this heading">#</a></h2>
+<p>We need our trained models to be able to <em>generalize</em> to samples from the world that they’ve never seen before.</p>
+<p>See Stevens, <a class="reference external" href="https://learning.oreilly.com/library/view/deep-learning-with/9781617295263/Text/05.xhtml#:-:text=5.5.3%20Training%2C%20validation%2C%20and%20overfitting"><em>Deep Learning with PyTorch</em>, 5.5.3 Training, validation, and overfitting</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Training split</strong> is used directly to develop an algorithm, typically by training a machine learning model.</p></li>
+<li><p><strong>Validation split</strong> is used to evaluate the model <em>during</em> iterative training</p></li>
+<li><p><strong>Testing split</strong> is kept aside until the very end of training. It is used in a final pass to ensure that the model is able to perform well on data that it has never been exposed to before</p></li>
+</ul>
+<p><a class="reference external" href="https://learning.oreilly.com/library/view/ai-at-the/9781098120191/ch07.html#:-:text=Splitting%20Your%20Data"><em>AI at the Edge</em></a></p>
+</div></blockquote>
+<section id="train-and-test">
+<h3>Train and Test<a class="headerlink" href="#train-and-test" title="Link to this heading">#</a></h3>
+<p>Some datasets are pre-split into test and train.</p>
+<p>Some datasets you manually make the split yourself.</p>
+<p>For competitions the test set may be kept secret by the host and they will run it against your model without you ever seeing it!</p>
+<ul class="simple">
+<li><p>The <strong>training set</strong> is the part of the dataset we use to <em>optimize</em> our model.</p></li>
+<li><p>The <strong>test set</strong> is the part of the dataset we use to <em>evaluate</em> our model.</p></li>
+</ul>
+<p>We want as much data as possible to train against, <em>but</em> we need samples that our model has never seen to evaluate against. Just like how you practice homework problems but an exam has similar problems that you have never seen, rather than identical problems to the homework.</p>
+<p>For a standard dataset an <strong>80/20 train/test split is typical</strong>.
+For smaller datasets you may want to reserve more for training while for larger datasets you can devote more to test.</p>
+<section id="evaluate">
+<h4>Evaluate<a class="headerlink" href="#evaluate" title="Link to this heading">#</a></h4>
+<p>For labeled data, Keras has the builtin evaluate method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test_loss</span><span class="p">,</span> <span class="n">test_acc</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_images</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;test_acc: </span><span class="si">{</span><span class="n">test_acc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="validation">
+<h3>Validation<a class="headerlink" href="#validation" title="Link to this heading">#</a></h3>
+<p>What if we were making a model to fit a curve of points in our training set and we came up with two options, shown in blue vs. red below:</p>
+<p><img alt="Stevens: Overfitting" src="img/CH05_F14_Stevens2_overfittring.png" /></p>
+<p>Clearly we should go with the blue model because the red one just looks… wrong.
+The second model is <em>overfitting</em>,</p>
+<blockquote>
+<div><p><strong>Overfitting</strong> a model happens when the model’s performance continues to improve on the training set but degrades on the validation set. This is usually due to the model not generalizing, and instead memorizing the desired outputs for the training set. ~ Stevens, <em>Deep Learning with PyTorch</em></p>
+</div></blockquote>
+<p>We can use a <em>validation set</em> to monitor overfitting.
+The figure below shows training loss as a blue solid line and validation loss as a red dotted line.</p>
+<p><img alt="Stevens: Fig. 14, overfitting scenarios" src="img/CH05_F16_Stevens2_train_val_loss.png" /></p>
+<p>When we are training a model we want to see the loss steadily decreasing as we iterate.</p>
+<ul class="simple">
+<li><p><strong>A</strong> no learning is happening</p></li>
+<li><p><strong>B</strong> overfitting because validation loss is increasing while training loss is decreasing</p></li>
+<li><p><strong>C</strong> ideal, both decreasing</p></li>
+<li><p><strong>D</strong> acceptable, because both decreasing although some overfitting still occurring</p></li>
+</ul>
+<p>For a standard dataset, taking <strong>20% of the already split train set for validation is typical</strong>.
+This means an approximate train/validate/test spilt of 74/16/20
+It is critical that all three sets evenly represent all classes.</p>
+<section id="using-validation-during-training">
+<h4>Using Validation During Training<a class="headerlink" href="#using-validation-during-training" title="Link to this heading">#</a></h4>
+<p>In Keras the <a class="reference external" href="https://keras.io/api/models/model_training_apis/#fit-method"><code class="docutils literal notranslate"><span class="pre">fit()</span></code> method</a> includes the following optional parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">validation_split</span></code> is a fraction of the training data to use for validation and provide its evaluation at the end of each epoch.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validation_data</span></code> allows you to pass in a pre-split validation set.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Note that validation_split just takes samples from the end of the dataset, so you need to make sure these are representative.</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
+    <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="platforms-for-hosting-datasets">
+<h2><span class="section-number">4.7. </span>Platforms for Hosting Datasets<a class="headerlink" href="#platforms-for-hosting-datasets" title="Link to this heading">#</a></h2>
+<p>We will see that scikit-learn, TensorFlow, and PyTorch all have datasets included in their libraries.
+But real datasets are very large and hosted separately.</p>
+<p>Popular platforms for hosting datasets:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.kaggle.com/datasets">Kaggle</a></p></li>
+<li><p><a class="reference external" href="https://huggingface.co/datasets">🤗 HuggingFace</a></p></li>
+<li><p><a class="reference external" href="https://data.gov/">data.gov</a></p></li>
+<li><p>Or see the <a class="reference external" href="https://www.geeksforgeeks.org/top-dataset-websites/">GeeksforGeeks “Top 10 Dataset Websites</a></p></li>
+</ul>
+<section id="example-refined-web">
+<h3>Example: Refined Web<a class="headerlink" href="#example-refined-web" title="Link to this heading">#</a></h3>
+<p>The Technology Innovation Institute, a research institution funded by the Abu Dhabi government, created and released the <a class="reference external" href="https://huggingface.co/datasets/tiiuae/falcon-refinedweb">Refined Web Dataset</a>. TII uses Refined Web to train its Falcon family of large language models, which topped the LLM leader boards at one point last year.</p>
+<blockquote>
+<div><p>RefinedWeb is built through stringent filtering and large-scale deduplication of CommonCrawl; we found models trained on RefinedWeb to achieve performance in-line or better than models trained on curated datasets, while only relying on web data.</p>
+<p>This public extract should contain 500-650GT depending on the tokenizer you use, and can be enhanced with the curated corpora of your choosing. This public extract is about ~500GB to download, requiring <strong>2.8TB of local storage once unpacked</strong>.</p>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Don&#39;t run this unless you have time snd space for 500GB to download...</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="n">rw</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;tiiuae/falcon-refinedweb&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See <a class="reference external" href="https://huggingface.co/datasets/tiiuae/falcon-refinedweb">tiiuae/falcon-refinedweb</a> for more!</p>
 </section>
 </section>
 </section>
@@ -543,6 +778,35 @@
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">4.1. Pre-Reading</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#last-time">4.2. Last Time</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-makes-a-dataset">4.3. What makes a dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-ideal-dataset">An Ideal Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-expertise">Domain Expertise</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ethics">Ethics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representing-datasets-as-tensors">4.4. Representing Datasets as Tensors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-tensor">What is a Tensor?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-examples-of-data-tensors">4.5. Real-World examples of data tensors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-validation-sets">4.6. Train, Test, &amp; Validation Sets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-and-test">Train and Test</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate">Evaluate</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validation">Validation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-validation-during-training">Using Validation During Training</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#platforms-for-hosting-datasets">4.7. Platforms for Hosting Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-refined-web">Example: Refined Web</a></li>
 </ul>
 </li>
 </ul>
