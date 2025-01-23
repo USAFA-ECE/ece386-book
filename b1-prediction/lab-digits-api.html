@@ -514,12 +514,12 @@ Can you help explain and critique it for me?”</p>
 </div>
 <section id="server">
 <h3>Server<a class="headerlink" href="#server" title="Link to this heading">#</a></h3>
-<p>For the server you may either use a Raspberry Pi <em>or</em> the DFEC AI Server.</p>
+<p>For the server you may either use a Raspberry Pi <em>or</em> the DFEC AI Server <em>or</em> any computer you want.</p>
 <p>All the code for the server will be located in the <code class="docutils literal notranslate"><span class="pre">server/</span></code> directory of your repository.</p>
 <ol class="arabic simple">
-<li><p>Clone your repository.</p></li>
+<li><p>Clone your repository and <code class="docutils literal notranslate"><span class="pre">cd</span></code> into <code class="docutils literal notranslate"><span class="pre">./server</span></code></p></li>
 <li><p>Create and activate a virtual environment.</p></li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">server/requirements.txt</span></code> to install packages.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code> to install server packages.</p></li>
 <li><p>Serve the model with <code class="docutils literal notranslate"><span class="pre">fastapi</span> <span class="pre">run</span> <span class="pre">digits.py</span></code></p></li>
 </ol>
 <p>The app should simply:</p>
@@ -535,10 +535,10 @@ Can you help explain and critique it for me?”</p>
 <p>For your client, you can use any machine with Python and on the same network as the Pi. This can include another Raspberry Pi or your laptop.
 All the code for the client will be in the <code class="docutils literal notranslate"><span class="pre">client/</span></code> directory of your repository.</p>
 <ol class="arabic simple">
-<li><p>Clone your repository.</p></li>
+<li><p>Clone your repository and <code class="docutils literal notranslate"><span class="pre">cd</span></code> into <code class="docutils literal notranslate"><span class="pre">./client/</span></code></p></li>
 <li><p>Create and activate a virtual environment.</p></li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">client/requirements.txt</span></code> to install packages.</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">client.py</span> <span class="pre">&quot;xxx.xxx.xxx.xxx&quot;</span></code>, where the X’s are the IP address of the server.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code> to install client packages.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">client.py</span> <span class="pre">xxx.xxx.xxx.xxx</span> <span class="pre">8000</span></code>, where the X’s are the IP address of the server and the number is the port.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">client.py</span></code> prompts the user for a path to an image. After hitting “enter” the client makes an HTTP POST request to the server, waits for the response, then displays the integer to the user.</p></li>
 <li><p>The client continues to prompt the user until the user exits with CTRL+C.</p></li>
 </ol>
@@ -549,10 +549,15 @@ All the code for the client will be in the <code class="docutils literal notrans
 </section>
 <section id="deliverables">
 <h3>Deliverables<a class="headerlink" href="#deliverables" title="Link to this heading">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The lab1 repo has a GitHub Action that Lints with Black and Pyright on both the client and the server.</p>
+<p>You should ensure the Action is passing prior to submitting to Gradescope.</p>
+</div>
 <ul class="simple">
 <li><p>Demonstrate your client-server exchange.</p></li>
 <li><p>Complete the three README’s in the repository (root, client, server).</p></li>
-<li><p>Push your code and submit to Gradescope.</p></li>
+<li><p>Push your code and submit to Gradescope (see GitHub Actions below)</p></li>
 </ul>
 </section>
 </section>
