@@ -24,7 +24,7 @@ parts:
       - file: b2-edge/cortex-architecture
       - file: b2-edge/quantization
       - file: b2-edge/lab-impulse-kws
-      - file: b2-edge/command-risk
+      - file: b2-edge/memory-management
       - file: b2-edge/cc-edge
   - caption: Development Boards
     numbered: 2
@@ -46,4 +46,8 @@ parts:
     numbered: 2
     chapters:
       - file: b5-final/final-project
+      - file: b5-final/command-risk
+      - file: b5-final/student-choice
+      - file: b5-final/alternative-architectures
+      - file: b5-final/supercomputers
       - file: b5-final/wrapup
