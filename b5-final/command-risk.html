@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Wake Word Detection &#8212; ECE 386</title>
+    <title>36. Command and Risk &#8212; ECE 386</title>
   
   
   
@@ -60,10 +60,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tfm/wake-word';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'b5-final/command-risk';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="37. Student Choice" href="student-choice.html" />
+    <link rel="prev" title="31. Final Project" href="final-project.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -114,8 +116,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -212,17 +212,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../b4-llm/cc-gpu-llm.html">30. C&amp;C GPUs and LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../b5-final/final-project.html">31. Final Project</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="final-project.html">31. Final Project</a></li>
 
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../b5-final/command-risk.html">36. Command and Risk</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b5-final/student-choice.html">37. Student Choice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b5-final/alternative-architectures.html">38. Alternative Architectures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b5-final/supercomputers.html">39. Super Computers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../b5-final/wrapup.html">40. Wrap and Critique</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">36. Command and Risk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="student-choice.html">37. Student Choice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alternative-architectures.html">38. Alternative Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercomputers.html">39. Super Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wrapup.html">40. Wrap and Critique</a></li>
 </ul>
 
     </div>
@@ -299,7 +299,7 @@
       
       
       
-      <li><a href="https://github.com/usafa-ece/ece386-book/issues/new?title=Issue%20on%20page%20%2Ftfm/wake-word.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ece386-book/issues/new?title=Issue%20on%20page%20%2Fb5-final/command-risk.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -329,7 +329,7 @@
       
       
       
-      <li><a href="../_sources/tfm/wake-word.md" target="_blank"
+      <li><a href="../_sources/b5-final/command-risk.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -392,9 +392,7 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -405,27 +403,11 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Wake Word Detection</h1>
+    <h1>Command and Risk</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">Lab</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-arduino">Setup Arduino</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-example">Run Example</a></li>
-</ul>
-</li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -435,49 +417,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="wake-word-detection">
-<h1>Wake Word Detection<a class="headerlink" href="#wake-word-detection" title="Link to this heading">#</a></h1>
-<section id="pre-reading">
-<h2>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
-<p><em>TinyML</em> <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml/9781492052036/ch07.html#:-:text=Chapter%207.%20Wake-Word%20Detection%3A%20Building%20an%20Application">Chapter 7</a></p>
-<ul class="simple">
-<li><p>Everything from the start up to the paragraph “There are many more tests in the example, but exploring these few will give us an understanding of the key moving parts.”</p></li>
-<li><p>Subsection <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml/9781492052036/ch07.html#:-:text=How%20the%20feature%20provider%20converts%20audio%20to%20a%20spectrogram">How the feature provider converts audio to a spectrogram</a></p></li>
-<li><p>Subsection <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml/9781492052036/ch07.html#:-:text=The%20Command%20Recognizer">The Command Recognizer</a> up to the code blocks</p></li>
-</ul>
-<section id="objectives">
-<h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Understand how spectral samples can be processed for ML</p></li>
-<li><p>Deploy a pre-trained model to TFLite Micro on Arduino</p></li>
-</ul>
-</section>
-</section>
-<section id="lab">
-<h2>Lab<a class="headerlink" href="#lab" title="Link to this heading">#</a></h2>
-<section id="setup-arduino">
-<h3>Setup Arduino<a class="headerlink" href="#setup-arduino" title="Link to this heading">#</a></h3>
-<p>Open Arduino IDE.</p>
-<p>Navigate to <a class="reference external" href="https://github.com/tensorflow/tflite-micro-arduino-examples">tensorflow/tflite-micro-arduino-examples (github.com)</a>
-and download the repository as a zipfile.</p>
-<p>Add the examples zipfile to Arduino IDE libraries via <strong>Sketch &gt; Include Library &gt; Add .ZIP Library</strong></p>
-<p><img alt="Add example zipfile to Arduino IDE" src="../_images/arduino-ide-library.png" /></p>
-<p>Plug in your Nano 33 BLE Sense to your laptop using a micro USB cable.</p>
-</section>
-<section id="run-example">
-<h3>Run Example<a class="headerlink" href="#run-example" title="Link to this heading">#</a></h3>
-<p>See <em>TinyML</em> Chapter 7: <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml/9781492052036/ch07.html#:-:text=Arduino">Arduino</a> for more detail.</p>
-<ul class="simple">
-<li><p>Open the <strong>micro_speech</strong> example from the newly added library.</p></li>
-<li><p>Peruse the code files to get an idea of what you are about to run.</p></li>
-<li><p>Select Nano 33 BLE Sense device</p></li>
-<li><p>Select COM port</p></li>
-<li><p>Upload the code</p></li>
-</ul>
-<p>Compiling will take a while. After uploading, a verbal “Yes” should give you a green light.
-A verbal “No” will give you a red light. Any other word will be blue.</p>
-</section>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="command-and-risk">
+<h1><span class="section-number">36. </span>Command and Risk<a class="headerlink" href="#command-and-risk" title="Link to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -493,7 +434,7 @@ A verbal “No” will give you a red light. Any other word will be blue.</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./tfm"
+            path: "./b5-final"
         },
         predefinedOutput: true
     }
@@ -510,36 +451,30 @@ A verbal “No” will give you a red light. Any other word will be blue.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="final-project.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">31. </span>Final Project</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="student-choice.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">37. </span>Student Choice</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-Reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">Lab</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-arduino">Setup Arduino</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-example">Run Example</a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
