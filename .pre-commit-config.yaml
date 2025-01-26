@@ -1,7 +1,7 @@
 ---
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v5.0.0
     hooks:
     -   id: check-yaml
     -   id: detect-private-key
@@ -10,19 +10,19 @@ repos:
     -   id: trailing-whitespace
 
 -   repo: https://github.com/psf/black
-    rev: 23.3.0
+    rev: 24.10.0
     hooks:
     -   id: black-jupyter
         # It is recommended to specify the latest version of Python
         # supported by your project here, or alternatively use
-        language_version: python3.10
+        language_version: python3.12
 
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.4.0
+    rev: v1.14.1
     hooks:
     -   id: mypy
 
 -   repo: https://github.com/PyCQA/flake8
-    rev: 6.0.0
+    rev: 7.1.1
     hooks:
       - id: flake8
