@@ -34,7 +34,7 @@ parts:
       - file: b3-devboard/ice-whisper
       - file: b3-devboard/gpu-architecture
       - file: b3-devboard/ice-gpu-acceleration
-      - file: b3-devboard/student-choice
+      # - file: b3-devboard/student-choice
   - caption: Large Language Models
     numbered: 2
     chapters:
