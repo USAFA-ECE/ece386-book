@@ -216,3 +216,67 @@ Upload unknown and noise samples to your project ([instructions here if needed](
 by **Perform test/train split.**
 
 ## Create Impulse
+
+This section *mostly** follows section 4, 5, & 6 of the tutorial, but not exactly.
+
+Under Impulse design, on the left sidebar, click on the **Create impulse**.
+
+Then click **Add a processing block** and then **Audio (MFCC)**.
+
+> Extracts features from audio signals using Mel Frequency Cepstral Coefficients, great for human voice.
+
+Next, **Add a learning block** and select **Classification**.
+
+> Learns patterns from data, and can apply these to new data. Great for categorizing movement or recognizing audio.
+
+When you are done it should look like this. Click **Save Impulse**.
+
+![KWS Impulse Design Blocks](../img/kws_impulse_design.png)
+
+### MFCC Block
+
+Follow the tutorial to [configure your MFCC block](https://docs.edgeimpulse.com/docs/tutorials/end-to-end-tutorials/responding-to-your-voice#id-5.-configure-the-mfcc-block)
+and generate features.
+
+### Classification Block
+
+Follow the tutorial to [Configure your neural network](https://docs.edgeimpulse.com/docs/tutorials/end-to-end-tutorials/responding-to-your-voice#id-6.-configure-the-neural-network) *but*...
+
+- Also select data augmentation to warp time
+- Follow the steps in [*TinyML*](https://learning.oreilly.com/library/view/tinyml-cookbook/9781837637362/Text/Chapter_04.xhtml#:-:text=How%20to%20do%20it...) to use **2D Convolution** and get better accuracy than 1D Convolution. You only have to delete two lines of code and edit one other.
+
+```{note}
+I benchmarked 1D and 2D as well as the available [MobilenetV2 transfer learning](https://docs.edgeimpulse.com/docs/edge-impulse-studio/learning-blocks/transfer-learning-few-shot)
+
+Here are my results for int8 quantized models on the EON compiler:
+
+| Model       | Test set accuracy (%) | Memory Usage (KB) | Latency (ms) |
+|-------------|-----------------------|-------------------|--------------|
+| 1D-Conv     | 94.12                 | **15.4**          | 276          |
+| 2D-Conv     | 83.53                 | **15.4**          | **261**      |
+| MobilenetV2 | **98.82**             | 216.3             | 1020         |
+
+Notice that although MobilenetV2 is extremely accurate,
+it has *4x the latency* and *barely* fits in our available RAM!
+```
+
+After training is completed, make sure you select **Quantized (int8)** for Model version.
+Then explore your confusion matrix.
+Which type of error do you care about the most, and how did your model perform specifically in that regard?
+
+### Test Results
+
+After you've trained your model, select **Model testing** in the left side bar.
+
+Then click the green **Classify all** button to run the model against your test dataset.
+
+See [Classifying new data](https://docs.edgeimpulse.com/docs/tutorials/end-to-end-tutorials/responding-to-your-voice#id-7.-classifying-new-data) for some tips about exploring misclassifications.
+
+## Deployment
+
+*After* running your test set on your model, click **Deployment** on the left side bar.
+
+Use your phone to scan the Run this Model **QR Code**
+and give it a test drive.
+
+Once you are happy with that, time to put it on the Arduino!
