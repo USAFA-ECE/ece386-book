@@ -7,7 +7,31 @@ When your device spots your keyword it will turn on an LED!
 
 ### Reading
 
-Read Iodice's [*TinyML Cookbook, 2nd Ed*, Chapter 4: "Using Edge Impulse and the Arduino Nano to Control LEDs with Voice Commands"](https://learning.oreilly.com/library/view/tinyml-cookbook/9781837637362/Text/Chapter_04.xhtml). *Yes. You have to read it.**
+For Iodice's [*TinyML Cookbook, 2nd Ed*, Chapter 4: "Using Edge Impulse and the Arduino Nano to Control LEDs with Voice Commands"](https://learning.oreilly.com/library/view/tinyml-cookbook/9781837637362/Text/Chapter_04.xhtml):
+
+Here is the chapter Summary... first.
+
+> The recipes presented in this chapter demonstrated how to build an end-to-end KWS application with Edge Impulse and the Arduino Nano.
+>
+> Initially, we learned how to prepare the dataset by recording audio samples with a smartphone and the Arduino Nano directly from Edge Impulse.
+>
+> Afterward, we delved into model design. Here, we introduced the MFE (or Mel-spectrogram) as a suitable input feature for training a CNN model for KWS.
+>
+> Then, we trained a generic CNN and used the Edge Impulse EON Tuner to discover more efficient model architectures for our target platform regarding accuracy, latency performance, and memory consumption.
+>
+> Finally, we tested the model’s accuracy on the test dataset and live audio samples recorded with a smartphone and deployed the KWS application on the Arduino Nano.
+>
+>In this chapter, we have started discussing how to build a tinyML application with a microphone using Edge Impulse and the Arduino Nano. With the next project, we will continue this discussion on the Raspberry Pi Pico to recognize music genres with the help of TensorFlow and the CMSIS-DSP library.
+
+You need to read the following excerpts:
+
+- *Read* the intro, up through the "Technical Requirements"
+- *Skim* "Acquiring audio data with a smartphone" and "Acquiring audio data with the Arduino Nano"
+- *Read* [Extracting MFE features from audio samples](https://learning.oreilly.com/library/view/tinyml-cookbook/9781837637362/Text/Chapter_04.xhtml#:-:text=Extracting%20MFE%20features%20from%20audio%20samples) up to but not including "How to do it..."
+- *Read* [Designing and training a CNN](https://learning.oreilly.com/library/view/tinyml-cookbook/9781837637362/Text/Chapter_04.xhtml#:-:text=Designing%20and%20training%20a%20CNN) up to but not including "Step 3."
+- *Read* [Keyword spotting on the Arduino Nano](https://learning.oreilly.com/library/view/tinyml-cookbook/9781837637362/Text/Chapter_04.xhtml#:-:text=Keyword%20spotting%20on%20the%20Arduino%20Nano) through "Step 1", then *skim* the rest.
+
+*Yes, you have to read them.*
 
 ### Data Collection
 
@@ -280,3 +304,13 @@ Use your phone to scan the Run this Model **QR Code**
 and give it a test drive.
 
 Once you are happy with that, time to put it on the Arduino!
+
+### Library Setup
+
+Go to **Deployment** and search deployment options for **Arduino Library**.
+
+Then find the **EON Compiler Quantized (int8)**.
+
+Make sure you screenshot or **record** those stats!
+
+Then select, **Build** and **Download**.
