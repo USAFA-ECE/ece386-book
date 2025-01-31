@@ -314,3 +314,53 @@ Then find the **EON Compiler Quantized (int8)**.
 Make sure you screenshot or **record** those stats!
 
 Then select, **Build** and **Download**.
+
+#### Arduino Import Library
+
+%% Need to add something about library location not being backed up to One Drive?
+
+- Open Arduino IDE on your Desktop.
+- Go to **Sketch > Include Library > Add .ZIP Library**
+- Choose the .zip you downloaded from Edge Impulse.
+
+Next we will open `nano_ble33_sense_microphone_continuous` example from
+**File >  Examples > Examples from Custom Libraries > *your project name*_inferencing > nan_ble33_sense > nano_ble33_sense_microphone_continuous**
+
+Now, save that as a new file, such as `kws_lab` or something. This is because you aren't allowed to modify examples.
+
+**Before you do anything else** you should initialize a git repository in the folder where your `.ino` is
+and commit it with something like "Original nano_ble33_sense_microphone_continuous example".
+
+That way if you break it in the next step you can revert!
+
+Plug in your Nano 33 and click the **Verify** check mark. Then go take a long walk.
+Fortunately, the IDE caches the compilation of the included libraries, so subsequent compilations are much faster.
+
+### Modify the Example
+
+We want to modify the example to flash the built in LED whenever your keyword is heard!
+
+**First**, read the example and *sort of* try and understand what it's doing.
+Then download the program to your Nano and open up the Serial monitor and try it out!
+
+Once you have the loose hang of what it's doing, let's get going.
+
+Open the [Nano 33 BLE Rev2 Pinout](https://docs.arduino.cc/resources/pinouts/ABX00069-full-pinout.pdf) data sheet.
+Find the DEFINE term for the yellow LED that's built into the board.
+
+Next, use the DEFINED name to set the appropriate
+[`pinMode()`](https://reference.arduino.cc/reference/en/language/functions/digital-io/pinmode/)
+in your `setup()` function.
+
+Follow [**Step 6**](https://learning.oreilly.com/library/view/tinyml-cookbook/9781837637362/Text/Chapter_04.xhtml#:-:text=Step%206%3A)
+in *TinyML* to disable the MA filter.
+
+Then modify **Step 8/9** to [`digitalWrite()`](https://reference.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/)
+HIGH to your LED if your class was heard; otherwise, write LOW.
+
+```{note}
+If you use `delay()` it will pause the thread... meanwhile, the audio buffer is still filling up!
+
+This will produce a buffer overrun error. Perhaps ok for debugging now, but ultimately we don't want to miss samples because
+we aren't letting our thread do work.
+```
