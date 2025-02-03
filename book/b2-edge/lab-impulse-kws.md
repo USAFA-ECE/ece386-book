@@ -317,7 +317,12 @@ Then select, **Build** and **Download**.
 
 #### Arduino Import Library
 
-%% Need to add something about library location not being backed up to One Drive?
+```{note}
+You do need to open Explorer.exe and right click on `Documents/Arduino/` and select **always keep on device.**
+
+The Arduino Docs recommend changing your sketch and library location to something outside of OneDrive,
+but if you at least keep them on device it should be ok.
+```
 
 - Open Arduino IDE on your Desktop.
 - Go to **Sketch > Include Library > Add .ZIP Library**
@@ -364,3 +369,9 @@ If you use `delay()` it will pause the thread... meanwhile, the audio buffer is 
 This will produce a buffer overrun error. Perhaps ok for debugging now, but ultimately we don't want to miss samples because
 we aren't letting our thread do work.
 ```
+
+## Deliverables
+
+1. Demo your working keyword-triggered LED to your instructor! (And your fans at home that helped you collect data 😁)
+2. Push your code to GitHub (You will need it for the final project!)
+3. Complete the Gradescope assignment.
