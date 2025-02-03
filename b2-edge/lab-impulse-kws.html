@@ -415,8 +415,46 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">15. Lab 3: Edge Impulse KWS</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-workday">16. Lab Workday</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">15. Lab 3: Edge Impulse KWS</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prelab">15.1. Prelab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading">Reading</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-collection">Data Collection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equipment-setup">Equipment Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#edge-impulse-cli">Edge Impulse CLI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#arduino-cli">Arduino CLI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dialout-group">Dialout Group</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arduino-firmware">Arduino Firmware</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-workday">16. Lab Workday</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing">16.1. Data Processing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collect-samples-with-nano">Collect Samples with Nano</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#split-samples">Split Samples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-a-dataset">Download a dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-train-split">Test/Train Split</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-impulse">16.2. Create Impulse</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mfcc-block">MFCC Block</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-block">Classification Block</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-results">Test Results</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment">16.3. Deployment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#library-setup">Library Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#arduino-import-library">Arduino Import Library</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modify-the-example">Modify the Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">16.4. Deliverables</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -431,9 +469,343 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lab-3-edge-impulse-kws">
 <h1><span class="section-number">15. </span>Lab 3: Edge Impulse KWS<a class="headerlink" href="#lab-3-edge-impulse-kws" title="Link to this heading">#</a></h1>
+<p>In this lab we will make a “Hey, Siri” type device that continuously listens for a keyword.
+When your device spots your keyword it will turn on an LED!</p>
+<section id="prelab">
+<h2><span class="section-number">15.1. </span>Prelab<a class="headerlink" href="#prelab" title="Link to this heading">#</a></h2>
+<section id="reading">
+<h3>Reading<a class="headerlink" href="#reading" title="Link to this heading">#</a></h3>
+<p>For Iodice’s <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml-cookbook/9781837637362/Text/Chapter_04.xhtml"><em>TinyML Cookbook, 2nd Ed</em>, Chapter 4: “Using Edge Impulse and the Arduino Nano to Control LEDs with Voice Commands”</a>:</p>
+<p>Here is the chapter Summary… first.</p>
+<blockquote>
+<div><p>The recipes presented in this chapter demonstrated how to build an end-to-end KWS application with Edge Impulse and the Arduino Nano.</p>
+<p>Initially, we learned how to prepare the dataset by recording audio samples with a smartphone and the Arduino Nano directly from Edge Impulse.</p>
+<p>Afterward, we delved into model design. Here, we introduced the MFE (or Mel-spectrogram) as a suitable input feature for training a CNN model for KWS.</p>
+<p>Then, we trained a generic CNN and used the Edge Impulse EON Tuner to discover more efficient model architectures for our target platform regarding accuracy, latency performance, and memory consumption.</p>
+<p>Finally, we tested the model’s accuracy on the test dataset and live audio samples recorded with a smartphone and deployed the KWS application on the Arduino Nano.</p>
+<p>In this chapter, we have started discussing how to build a tinyML application with a microphone using Edge Impulse and the Arduino Nano. With the next project, we will continue this discussion on the Raspberry Pi Pico to recognize music genres with the help of TensorFlow and the CMSIS-DSP library.</p>
+</div></blockquote>
+<p>You need to read the following excerpts:</p>
+<ul class="simple">
+<li><p><em>Read</em> the intro, up through the “Technical Requirements”</p></li>
+<li><p><em>Skim</em> “Acquiring audio data with a smartphone” and “Acquiring audio data with the Arduino Nano”</p></li>
+<li><p><em>Read</em> <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml-cookbook/9781837637362/Text/Chapter_04.xhtml#:-:text=Extracting%20MFE%20features%20from%20audio%20samples">Extracting MFE features from audio samples</a> up to but not including “How to do it…”</p></li>
+<li><p><em>Read</em> <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml-cookbook/9781837637362/Text/Chapter_04.xhtml#:-:text=Designing%20and%20training%20a%20CNN">Designing and training a CNN</a> up to but not including “Step 3.”</p></li>
+<li><p><em>Read</em> <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml-cookbook/9781837637362/Text/Chapter_04.xhtml#:-:text=Keyword%20spotting%20on%20the%20Arduino%20Nano">Keyword spotting on the Arduino Nano</a> through “Step 1”, then <em>skim</em> the rest.</p></li>
+</ul>
+<p><em>Yes, you have to read them.</em></p>
 </section>
+<section id="data-collection">
+<h3>Data Collection<a class="headerlink" href="#data-collection" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p>Collecting a dataset is typically the most difficult, time-consuming, and expensive part of any edge AI project. It’s also the most likely place you will make terrible, hard-to-detect mistakes that can doom your project to failure. ~ <a class="reference external" href="https://learning.oreilly.com/library/view/ai-at-the/9781098120191/ch07.html#:-:text=Collecting%20a%20dataset,project%20to%20failure."><em>AI at the Edge</em></a></p>
+</div></blockquote>
+<p>You need to think of a great keyword! It should be at least two syllabus, three ideally.
+Examples (that you can’t use) include ‘Hey Siri’, ‘OK, Google’, ‘Alexa’, ‘Hello World’.</p>
+<p>Once you think of your awesome keyword:</p>
+<ol class="arabic simple">
+<li><p>Create an <a class="reference external" href="https://edgeimpulse.com/">Edge Impulse</a> account; I used my afacademy email.</p></li>
+<li><p>Login, then <strong>Create a new project</strong> (top right of <a class="reference external" href="https://studio.edgeimpulse.com/studio/profile/projects">projects page</a>). You can name it <code class="docutils literal notranslate"><span class="pre">kws_lab</span></code> or whatever you want.</p></li>
+<li><p>Click <strong>Data acquisition</strong> in the left sidebar.</p></li>
+<li><p>In the <em>Collect data</em>* box, click the chip symbol in the top right; hovering says “connect a development board”</p></li>
+<li><p>Scan the QR code to connect your phone.</p></li>
+<li><p>Change the label to “keyword” or something helpful</p></li>
+<li><p>Record 10 seconds of you saying your keyword in spaced intervals.</p></li>
+</ol>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The Reading ^^ that you <em>definitely</em> did goes into detail for <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml-cookbook/9781837637362/Text/Chapter_04.xhtml#:-:text=Collecting%20audio%20samples%20for%20KWS">collecting audio samples for KWS</a>.</p>
+</div>
+<p>Go back to your dashboard and make sure the samples look good. Once they do…</p>
+<p><strong>Copy the QR Code</strong> or <strong>grab URL from the QR code</strong>. Mine started with <code class="docutils literal notranslate"><span class="pre">https://smartphone.edgeimpulse.com/index.html?apiKey=</span></code> and had a 67-character API key.</p>
+<p>Then…</p>
+<p><strong>Share</strong> with your friends and family!</p>
+<p>Be sure to give them <em>very specific instructions</em>* on how to record themselves saying your keyword.
+Your goal is to get lots of different people saying your keyword so that you have a robust dataset.</p>
+<p>Ideally, you have several minutes of audio prior to the lab starting… best of luck!</p>
+</section>
+<section id="equipment-setup">
+<h3>Equipment Setup<a class="headerlink" href="#equipment-setup" title="Link to this heading">#</a></h3>
+<p>Strictly speaking, you can wait to do equipment setup until during the lab…
+up to you to decide which type of risk you want to accept, commander!</p>
+<p>On your <strong>Raspberry Pi</strong> we will install edge-impulse-cli and arduino-cli.</p>
+<p>Before doing anything, let’s update the installed software.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>upgrade<span class="w"> </span>-y
+</pre></div>
+</div>
+<section id="edge-impulse-cli">
+<h4>Edge Impulse CLI<a class="headerlink" href="#edge-impulse-cli" title="Link to this heading">#</a></h4>
+<p>Now do the relevant portions from the <a class="reference external" href="https://docs.edgeimpulse.com/docs/tools/edge-impulse-cli/cli-installation#installation-linux-ubuntu-macos-and-raspbian-os">Linux installation docs</a>.</p>
+<p>Specifically,</p>
+<ul class="simple">
+<li><p>Install node</p></li>
+<li><p>Verify node version and path</p></li>
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">edge-impulse-cli</span></code></p></li>
+</ul>
+<p>After installing you need to <code class="docutils literal notranslate"><span class="pre">exit</span></code> that terminal and open a new one.</p>
+<p>Then verify it installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>edge-impulse-daemon<span class="w"> </span>--version
+</pre></div>
+</div>
+</section>
+<section id="arduino-cli">
+<h4>Arduino CLI<a class="headerlink" href="#arduino-cli" title="Link to this heading">#</a></h4>
+<p>Install <code class="docutils literal notranslate"><span class="pre">arduino-cli</span></code> according to <a class="reference external" href="https://arduino.github.io/arduino-cli/1.1/installation/">the docs</a></p>
+<p>First, ensure <code class="docutils literal notranslate"><span class="pre">~/.local/bin</span></code> is on your PATH.</p>
+<p>The environment variable <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> is a list of directories that the OS will search for executables, <em>in order.</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This shows your home directory, which uses the ~ symbol for short</span>
+<span class="c1"># We expect it to be /home/pi/ by default, but it can be whatever!</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$HOME</span>
+
+<span class="c1"># This will print your current path.</span>
+<span class="c1"># We expect to see ~/.local/bin/ towards the end,</span>
+<span class="c1"># but instead of ~ it will be the result from the previous command</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span>
+</pre></div>
+</div>
+<p>We want to install the Arduino CLI to somewhere on our path. If we do <code class="docutils literal notranslate"><span class="pre">~/.local/bin</span></code> we don’t need <code class="docutils literal notranslate"><span class="pre">sudo</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">BINDIR</span><span class="o">=</span>~/.local/bin<span class="w"> </span>sh
+</pre></div>
+</div>
+<p>Verify installation</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>arduino-cli<span class="w"> </span>version
+</pre></div>
+</div>
+</section>
+<section id="dialout-group">
+<h4>Dialout Group<a class="headerlink" href="#dialout-group" title="Link to this heading">#</a></h4>
+<p>Lastly, we need to add your user to the Linux dialout group.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It took Capt Yarbrough two entire afternoons to figure out that this needs to be done 🫠</p>
+</div>
+<p>The dialout group grants users permissions to access serial ports and modems.
+Our Arduino board and daemon will connect to the serial port in such a way that we’ll need this.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>dialout<span class="w"> </span><span class="nv">$USER</span>
+</pre></div>
+</div>
+<p>Then reboot.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>reboot
+</pre></div>
+</div>
+<p>Once logged back in, user <code class="docutils literal notranslate"><span class="pre">pi</span></code> (or whoever you are) should be in dialout group.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span>dialout<span class="w"> </span>/etc/group
+</pre></div>
+</div>
+</section>
+</section>
+<section id="arduino-firmware">
+<h3>Arduino Firmware<a class="headerlink" href="#arduino-firmware" title="Link to this heading">#</a></h3>
+<p>Follow the instructions to <a class="reference external" href="https://docs.edgeimpulse.com/docs/edge-ai-hardware/mcu/arduino-nano-33-ble-sense#id-1.-connect-the-development-board-to-your-computer">connect edge impulse to the Arduino Nano 33 BLE Sense</a>.</p>
+<p>Specifically, you need to <strong>connect the board</strong> and <strong>update firmware.</strong>
+You don’t strictly need to do the “setting keys” part, but it might be helpful.</p>
+<p><img alt="RESET to launch bootloader" src="https://docs.edgeimpulse.com/~gitbook/image?url=https%3A%2F%2F3586622393-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FGEgcCk4PkS5Pa6uBabld%252Fuploads%252Fgit-blob-c47c9b3fde5e9a23528f23e997f35a51c1e3be3e%252Fb302301-out.gif%3Falt%3Dmedia&amp;width=768&amp;dpr=2&amp;quality=100&amp;sign=347037cf&amp;sv=2" /></p>
+<p>If successful you should see a message like</p>
+<blockquote>
+<div><p>Flashed your Arduino Nano 33 BLE development board.</p>
+</div></blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You <em>can</em> do all of this on Raspberry Pi or you <em>can</em> do all of this on Windows.
+But I’ve found that:</p>
+<ol class="arabic simple">
+<li><p>Installing node and these things on Windows is a bad idea.</p></li>
+<li><p>Folks like to be able to take their board and laptop out of the lab and still do work.</p></li>
+</ol>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="lab-workday">
 <h1><span class="section-number">16. </span>Lab Workday<a class="headerlink" href="#lab-workday" title="Link to this heading">#</a></h1>
+<section id="data-processing">
+<h2><span class="section-number">16.1. </span>Data Processing<a class="headerlink" href="#data-processing" title="Link to this heading">#</a></h2>
+<p>At this point hopefully your friends and family have uploaded lots of samples of your <strong>keyword</strong> to your Edge Impulse project!</p>
+<p>These samples were recorded on a phone microphone. However, we are going to be using our Arduino for real-world inference. As such, we will record some samples with the Nano’s builtin microphone.</p>
+<p>Once we do that, we’ll need to process all this data so that it’s ready to use!</p>
+<section id="collect-samples-with-nano">
+<h3>Collect Samples with Nano<a class="headerlink" href="#collect-samples-with-nano" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p>Building the dataset with recordings obtained with the mobile phone’s microphone is undoubtedly good enough for many applications. However, to prevent any potential loss in accuracy during the model’s deployment, we should also include audio clips recorded with the microphone used by the end application in the dataset. ~ <em>TinyML Cookbook</em></p>
+</div></blockquote>
+<p>To get started, you can connect your Arduino - with the Edge Impulse firmware already flashed - to your <a class="reference external" href="http://EdgeImpulse.com">EdgeImpulse.com</a> online project.</p>
+<p>You can do this on your laptop, Pi, whatever; you <em>must</em> use Edge or Chrome.</p>
+<ol class="arabic simple">
+<li><p>Connect your Arduino to laptop with USB</p></li>
+<li><p>Open your online project</p></li>
+<li><p>Click on <strong>Data acquisition</strong> in the left sidebar</p></li>
+<li><p>In the Collect data box, click the USB symbol in the top right.</p></li>
+<li><p>Your browser will open a popup, select Nano 33.</p></li>
+</ol>
+<p><img alt="USB Data Acquisition" src="https://www.edgeimpulse.com/blog/content/images/je9uegn_gb6tafqvonescoqifgxo0eeuasl0nlvzgccgtxvftqffldoumu3ix_dcrfmbcdiixr0rjlozivgqty8hfbgawhjq4gv7jk0_xti5ap8a3gqn22e5yen7qn2aah3wyw6u.gif" /></p>
+<p><strong>Record about 50 samples of yourself saying the keyword, using your Nano microphone.</strong></p>
+</section>
+<section id="split-samples">
+<h3>Split Samples<a class="headerlink" href="#split-samples" title="Link to this heading">#</a></h3>
+<p>And now, for the fun, grueling, reality of machine learning: data processing!</p>
+<p>Follow the guidance in <em>TinyML</em> combined with <a class="reference external" href="https://docs.edgeimpulse.com/docs/tutorials/end-to-end-tutorials/responding-to-your-voice">Edge Impulse Tutorial: Responding to your voice</a> to:</p>
+<ol class="arabic simple">
+<li><p>Crop samples where your grandma said something that doesn’t match the label</p></li>
+<li><p>Split samples into 1 second samples</p></li>
+</ol>
+<p><img alt="'Split sample' automatically cuts out the interesting parts of an audio file." src="https://docs.edgeimpulse.com/~gitbook/image?url=https%3A%2F%2F3586622393-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FGEgcCk4PkS5Pa6uBabld%252Fuploads%252Fgit-blob-91dbe818857626614de046667b0ad9f624afe655%252F83ae234-screenshot_2020-11-19_at_222215.png%3Falt%3Dmedia&amp;width=768&amp;dpr=1&amp;quality=100&amp;sign=4dd985db&amp;sv=2" /></p>
+</section>
+<section id="download-a-dataset">
+<h3>Download a dataset<a class="headerlink" href="#download-a-dataset" title="Link to this heading">#</a></h3>
+<p>Download the <a class="reference external" href="https://cdn.edgeimpulse.com/datasets/Audio+Classification+-+Keyword+Spotting.zip">keyword spotting dataset</a>
+and unzip it to your computer.</p>
+<p><strong>Delete any file that starts with “helloworld”</strong> since that’s not a label we want.</p>
+<p>We want <em>roughly</em> the same number of samples in each of our classes: noise, unknown, keyword.
+There are about 300 files in the  the <code class="docutils literal notranslate"><span class="pre">testing/</span></code> directory, so just over two minutes of audio each for “noise” and “unknown.”
+<strong>That’s hopefully about how many “keyword” samples you have!</strong>
+The <code class="docutils literal notranslate"><span class="pre">training/</span></code> directory has many more samples… you probably don’t need that many, so don’t upload it.</p>
+<p>If you don’t have about two minutes of keyword samples, you need to either go get more data or upload less data to keep your classes balanced…</p>
+<p>Upload unknown and noise samples to your project (<a class="reference external" href="https://docs.edgeimpulse.com/docs/tutorials/end-to-end-tutorials/responding-to-your-voice#id-3.-building-your-dataset">instructions here if needed</a>).</p>
+</section>
+<section id="test-train-split">
+<h3>Test/Train Split<a class="headerlink" href="#test-train-split" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://docs.edgeimpulse.com/docs/tutorials/end-to-end-tutorials/responding-to-your-voice#rebalancing-your-dataset">Rebalance your dataset</a>
+by <strong>Perform test/train split.</strong></p>
+</section>
+</section>
+<section id="create-impulse">
+<h2><span class="section-number">16.2. </span>Create Impulse<a class="headerlink" href="#create-impulse" title="Link to this heading">#</a></h2>
+<p>This section <em>mostly</em>* follows section 4, 5, &amp; 6 of the tutorial, but not exactly.</p>
+<p>Under Impulse design, on the left sidebar, click on the <strong>Create impulse</strong>.</p>
+<p>Then click <strong>Add a processing block</strong> and then <strong>Audio (MFCC)</strong>.</p>
+<blockquote>
+<div><p>Extracts features from audio signals using Mel Frequency Cepstral Coefficients, great for human voice.</p>
+</div></blockquote>
+<p>Next, <strong>Add a learning block</strong> and select <strong>Classification</strong>.</p>
+<blockquote>
+<div><p>Learns patterns from data, and can apply these to new data. Great for categorizing movement or recognizing audio.</p>
+</div></blockquote>
+<p>When you are done it should look like this. Click <strong>Save Impulse</strong>.</p>
+<p><img alt="KWS Impulse Design Blocks" src="../_images/kws_impulse_design.png" /></p>
+<section id="mfcc-block">
+<h3>MFCC Block<a class="headerlink" href="#mfcc-block" title="Link to this heading">#</a></h3>
+<p>Follow the tutorial to <a class="reference external" href="https://docs.edgeimpulse.com/docs/tutorials/end-to-end-tutorials/responding-to-your-voice#id-5.-configure-the-mfcc-block">configure your MFCC block</a>
+and generate features.</p>
+</section>
+<section id="classification-block">
+<h3>Classification Block<a class="headerlink" href="#classification-block" title="Link to this heading">#</a></h3>
+<p>Follow the tutorial to <a class="reference external" href="https://docs.edgeimpulse.com/docs/tutorials/end-to-end-tutorials/responding-to-your-voice#id-6.-configure-the-neural-network">Configure your neural network</a> <em>but</em>…</p>
+<ul class="simple">
+<li><p>Also select data augmentation to warp time</p></li>
+<li><p>Follow the steps in <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml-cookbook/9781837637362/Text/Chapter_04.xhtml#:-:text=How%20to%20do%20it..."><em>TinyML</em></a> to use <strong>2D Convolution</strong> and get better accuracy than 1D Convolution. You only have to delete two lines of code and edit one other.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I benchmarked 1D and 2D as well as the available <a class="reference external" href="https://docs.edgeimpulse.com/docs/edge-impulse-studio/learning-blocks/transfer-learning-few-shot">MobilenetV2 transfer learning</a></p>
+<p>Here are my results for int8 quantized models on the EON compiler:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Test set accuracy (%)</p></th>
+<th class="head"><p>Memory Usage (KB)</p></th>
+<th class="head"><p>Latency (ms)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1D-Conv</p></td>
+<td><p>94.12</p></td>
+<td><p><strong>15.4</strong></p></td>
+<td><p>276</p></td>
+</tr>
+<tr class="row-odd"><td><p>2D-Conv</p></td>
+<td><p>83.53</p></td>
+<td><p><strong>15.4</strong></p></td>
+<td><p><strong>261</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>MobilenetV2</p></td>
+<td><p><strong>98.82</strong></p></td>
+<td><p>216.3</p></td>
+<td><p>1020</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Notice that although MobilenetV2 is extremely accurate,
+it has <em>4x the latency</em> and <em>barely</em> fits in our available RAM!</p>
+</div>
+<p>After training is completed, make sure you select <strong>Quantized (int8)</strong> for Model version.
+Then explore your confusion matrix.
+Which type of error do you care about the most, and how did your model perform specifically in that regard?</p>
+</section>
+<section id="test-results">
+<h3>Test Results<a class="headerlink" href="#test-results" title="Link to this heading">#</a></h3>
+<p>After you’ve trained your model, select <strong>Model testing</strong> in the left side bar.</p>
+<p>Then click the green <strong>Classify all</strong> button to run the model against your test dataset.</p>
+<p>See <a class="reference external" href="https://docs.edgeimpulse.com/docs/tutorials/end-to-end-tutorials/responding-to-your-voice#id-7.-classifying-new-data">Classifying new data</a> for some tips about exploring misclassifications.</p>
+</section>
+</section>
+<section id="deployment">
+<h2><span class="section-number">16.3. </span>Deployment<a class="headerlink" href="#deployment" title="Link to this heading">#</a></h2>
+<p><em>After</em> running your test set on your model, click <strong>Deployment</strong> on the left side bar.</p>
+<p>Use your phone to scan the Run this Model <strong>QR Code</strong>
+and give it a test drive.</p>
+<p>Once you are happy with that, time to put it on the Arduino!</p>
+<section id="library-setup">
+<h3>Library Setup<a class="headerlink" href="#library-setup" title="Link to this heading">#</a></h3>
+<p>Go to <strong>Deployment</strong> and search deployment options for <strong>Arduino Library</strong>.</p>
+<p>Then find the <strong>EON Compiler Quantized (int8)</strong>.</p>
+<p>Make sure you screenshot or <strong>record</strong> those stats!</p>
+<p>Then select, <strong>Build</strong> and <strong>Download</strong>.</p>
+<section id="arduino-import-library">
+<h4>Arduino Import Library<a class="headerlink" href="#arduino-import-library" title="Link to this heading">#</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You do need to open Explorer.exe and right click on <code class="docutils literal notranslate"><span class="pre">Documents/Arduino/</span></code> and select <strong>always keep on device.</strong></p>
+<p>The Arduino Docs recommend changing your sketch and library location to something outside of OneDrive,
+but if you at least keep them on device it should be ok.</p>
+</div>
+<ul class="simple">
+<li><p>Open Arduino IDE on your Desktop.</p></li>
+<li><p>Go to <strong>Sketch &gt; Include Library &gt; Add .ZIP Library</strong></p></li>
+<li><p>Choose the .zip you downloaded from Edge Impulse.</p></li>
+</ul>
+<p>Next we will open <code class="docutils literal notranslate"><span class="pre">nano_ble33_sense_microphone_continuous</span></code> example from
+<strong>File &gt;  Examples &gt; Examples from Custom Libraries &gt; <em>your project name</em>_inferencing &gt; nan_ble33_sense &gt; nano_ble33_sense_microphone_continuous</strong></p>
+<p>Now, save that as a new file, such as <code class="docutils literal notranslate"><span class="pre">kws_lab</span></code> or something. This is because you aren’t allowed to modify examples.</p>
+<p><strong>Before you do anything else</strong> you should initialize a git repository in the folder where your <code class="docutils literal notranslate"><span class="pre">.ino</span></code> is
+and commit it with something like “Original nano_ble33_sense_microphone_continuous example”.</p>
+<p>That way if you break it in the next step you can revert!</p>
+<p>Plug in your Nano 33 and click the <strong>Verify</strong> check mark. Then go take a long walk.
+Fortunately, the IDE caches the compilation of the included libraries, so subsequent compilations are much faster.</p>
+</section>
+</section>
+<section id="modify-the-example">
+<h3>Modify the Example<a class="headerlink" href="#modify-the-example" title="Link to this heading">#</a></h3>
+<p>We want to modify the example to flash the built in LED whenever your keyword is heard!</p>
+<p><strong>First</strong>, read the example and <em>sort of</em> try and understand what it’s doing.
+Then download the program to your Nano and open up the Serial monitor and try it out!</p>
+<p>Once you have the loose hang of what it’s doing, let’s get going.</p>
+<p>Open the <a class="reference external" href="https://docs.arduino.cc/resources/pinouts/ABX00069-full-pinout.pdf">Nano 33 BLE Rev2 Pinout</a> data sheet.
+Find the DEFINE term for the yellow LED that’s built into the board.</p>
+<p>Next, use the DEFINED name to set the appropriate
+<a class="reference external" href="https://reference.arduino.cc/reference/en/language/functions/digital-io/pinmode/"><code class="docutils literal notranslate"><span class="pre">pinMode()</span></code></a>
+in your <code class="docutils literal notranslate"><span class="pre">setup()</span></code> function.</p>
+<p>Follow <a class="reference external" href="https://learning.oreilly.com/library/view/tinyml-cookbook/9781837637362/Text/Chapter_04.xhtml#:-:text=Step%206%3A"><strong>Step 6</strong></a>
+in <em>TinyML</em> to disable the MA filter.</p>
+<p>Then modify <strong>Step 8/9</strong> to <a class="reference external" href="https://reference.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/"><code class="docutils literal notranslate"><span class="pre">digitalWrite()</span></code></a>
+HIGH to your LED if your class was heard; otherwise, write LOW.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you use <code class="docutils literal notranslate"><span class="pre">delay()</span></code> it will pause the thread… meanwhile, the audio buffer is still filling up!</p>
+<p>This will produce a buffer overrun error. Perhaps ok for debugging now, but ultimately we don’t want to miss samples because
+we aren’t letting our thread do work.</p>
+</div>
+</section>
+</section>
+<section id="deliverables">
+<h2><span class="section-number">16.4. </span>Deliverables<a class="headerlink" href="#deliverables" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Demo your working keyword-triggered LED to your instructor! (And your fans at home that helped you collect data 😁)</p></li>
+<li><p>Push your code to GitHub (You will need it for the final project!)</p></li>
+<li><p>Complete the Gradescope assignment.</p></li>
+</ol>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -501,8 +873,46 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">15. Lab 3: Edge Impulse KWS</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-workday">16. Lab Workday</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">15. Lab 3: Edge Impulse KWS</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prelab">15.1. Prelab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading">Reading</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-collection">Data Collection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equipment-setup">Equipment Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#edge-impulse-cli">Edge Impulse CLI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#arduino-cli">Arduino CLI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dialout-group">Dialout Group</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arduino-firmware">Arduino Firmware</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-workday">16. Lab Workday</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-processing">16.1. Data Processing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collect-samples-with-nano">Collect Samples with Nano</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#split-samples">Split Samples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-a-dataset">Download a dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-train-split">Test/Train Split</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-impulse">16.2. Create Impulse</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mfcc-block">MFCC Block</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-block">Classification Block</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-results">Test Results</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment">16.3. Deployment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#library-setup">Library Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#arduino-import-library">Arduino Import Library</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modify-the-example">Modify the Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">16.4. Deliverables</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>
