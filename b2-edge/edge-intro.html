@@ -416,6 +416,17 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">11.1. Pre-reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-a-use-case">11.2. Opening: A Use Case</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-the-edge">11.3. What’s the “Edge”???</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#characteristics-of-edge-devices">Characteristics of Edge Devices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#our-edge-device">Our Edge Device</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-edge-ai-blerp">11.4. When to use Edge AI: BLERP</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blerp-analysis">BLERP Analysis</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -429,6 +440,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="edge-inference-intro">
 <h1><span class="section-number">11. </span>Edge Inference Intro<a class="headerlink" href="#edge-inference-intro" title="Link to this heading">#</a></h1>
+<p><img alt="Melville's Predictive Text" src="../_images/melvilles-predictive-text.jpg" /></p>
 <section id="pre-reading">
 <h2><span class="section-number">11.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <p>Situnayake and Plunkett’s <a class="reference external" href="https://learning.oreilly.com/library/view/ai-at-the/9781098120191/ch01.html">AI at the Edge*, Chapter 1</a>,
@@ -438,6 +450,123 @@ in particular, the text surrounding:</p>
 <li><p>Figure 1-7</p></li>
 <li><p>BLERP (Bandwidth, Latency, Economics, Reliability, Privacy)</p></li>
 </ul>
+</section>
+<section id="opening-a-use-case">
+<h2><span class="section-number">11.2. </span>Opening: A Use Case<a class="headerlink" href="#opening-a-use-case" title="Link to this heading">#</a></h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ehY2zxDILwQ?si=Qii6IpfL_uA1w_bZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<p>From the <a class="reference external" href="https://www.apsensing.com/fileadmin/landingpages/dtsn45series/downloads/Flyer_DTS_N45-Series.pdf">DTS N45 Flyer</a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>longest range of up to 70km.</p></li>
+<li><p>Designed to operate everywhere - from the desert to the arctic… allows deployment in hazardous areas (EX-Zones).</p></li>
+<li><p>Cyber Security: VxWorks – the Real-Time Operating System used in mission critical applications, e.g. the aerospace industry.</p></li>
+<li><p>Modern, easy to use web interface to set up and configure the system.</p></li>
+<li><p>A lifetime MTBF. All instruments are “designed &amp; made in Germany.”</p></li>
+</ul>
+</div></blockquote>
+<p><a class="reference external" href="https://www.apsensing.com/application/rail-monitoring/">AP Sensing: Railway Monitoring</a></p>
+<blockquote>
+<div><p>In conjunction with a track-side fiber optic cable infrastructure, AP Sensing’s <strong>Distributed Acoustic Sensing (DAS</strong>) system can detect and supply information about the exact position, speed and direction of moving trains in the network in real time.</p>
+<p>It enables preventive and predictive maintenance, minimizing unscheduled service disruptions. Our DAS system also increases safety by assuring train integrity and detecting people or falling objects on the tracks. Intrusion, vandalism and cable theft are detected and precisely located with the AP Sensing DAS.</p>
+<p>Our <strong>Distributed Temperature Sensing (DTS</strong>) offers continuous temperature monitoring along the entire fiber optic cable, e.g. along cable ducts. This enables heat/fire detection and location within cable ducts and cable trays, and inside train and metro stations. Systems are completely certified for fire detection (VdS, UL, FM, IECEx, SIL).</p>
+</div></blockquote>
+<p><img alt="Berlin Track Acoustic Sensing" src="../_images/berlin-track-monitor.gif" /></p>
+<ul class="simple">
+<li><p>Why are these devices distributed?</p></li>
+<li><p>How many of these devices do you need to monitor the ~1100km between Berlin and Paris?</p></li>
+<li><p>How much processing is done on each device vs. on the cloud?</p></li>
+</ul>
+</section>
+<section id="what-s-the-edge">
+<h2><span class="section-number">11.3. </span>What’s the “Edge”???<a class="headerlink" href="#what-s-the-edge" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>Edge devices are our link between the internet and the physical world ~ <em>AI at the Edge</em></p>
+</div></blockquote>
+<figure class="align-default" id="id1">
+<img alt="../_images/cloud_to_edge-ai-at-edge.png" src="../_images/cloud_to_edge-ai-at-edge.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11.1 </span><span class="caption-text">Figure 1-3. Devices at the edge of the network can communicate with the cloud, with edge infrastructure, and with each other; edge applications generally span multiple locations within this map (for example, data might be sent from a sensor-equipped IoT device to a local edge server for processing) ~ <em>AI at the Edge</em></span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Cloud vs. Edge is part of the tradeoff between <strong>throughput</strong> and <strong>latency</strong>.</p>
+<p>Cloud-based servers can throughput massive amounts of computation, but this can take time!.
+Meanwhile, edge devices can have extremely low latency, but they cannot perform very many calculations!</p>
+<figure class="align-default" id="id2">
+<img alt="../_images/robot-shower.jpg" src="../_images/robot-shower.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 11.2 </span><span class="caption-text"><strong>Throughput</strong> is how much water the shower can put out;
+<strong>Latency</strong> is how long it takes the water to change temperature after adjusting the handle.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<div class="legend">
+<p>Image generation requires lots of throughput and is not particularly sensitive to latency, so should be done in the cloud.</p>
+</div>
+</figcaption>
+</figure>
+<p>Because of the constraints of - and challenges of working with - edge devices, we may do <strong>inference at the edge</strong> but will almost always <strong>train in the cloud.</strong></p>
+<section id="characteristics-of-edge-devices">
+<h3>Characteristics of Edge Devices<a class="headerlink" href="#characteristics-of-edge-devices" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Embedded within a system; often application specific</p></li>
+<li><p>Coupled with sensors</p></li>
+<li><p>Tightly constrained</p>
+<ul class="simple">
+<li><p>Power</p></li>
+<li><p>Size</p></li>
+<li><p>Compute</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="our-edge-device">
+<h3>Our Edge Device<a class="headerlink" href="#our-edge-device" title="Link to this heading">#</a></h3>
+<p>For this class we will use the Arduino <a class="reference external" href="https://docs.arduino.cc/tutorials/nano-33-ble-sense-rev2/cheat-sheet/">Nano 33 BLE Sense Rev2 (User Manual)</a></p>
+<p><img alt="Nano 33 BLE Sense Rev2" src="https://docs.arduino.cc/static/25d1b6070b7093809a2fce75febb5031/4ef49/Nano33_ble_sense_rev2.png" /></p>
+<p>Nano 33 uses the <strong>nRF52840</strong> chip, which has 1MB of flash ROM and a whopping 256 KB SRAM!</p>
+</section>
+</section>
+<section id="when-to-use-edge-ai-blerp">
+<h2><span class="section-number">11.4. </span>When to use Edge AI: BLERP<a class="headerlink" href="#when-to-use-edge-ai-blerp" title="Link to this heading">#</a></h2>
+<p>Introduced by Jeff Bier in <a class="reference external" href="https://www.eetasia.com/whats-driving-ai-and-vision-to-the-edge/">What’s Driving AI and Vision to the Edge</a>,
+reformatted in <a class="reference external" href="https://learning.oreilly.com/library/view/ai-at-the/9781098120191/ch01.html#:-:text=To%20Understand%20the%20Benefits%20of%20Edge%20AI%2C%20Just%20BLERP"><em>AI at the Edge</em>, Chapter 1</a>
+it is <em>a filter to decide whether edge AI is well-suited for a particular application.</em></p>
+<ul class="simple">
+<li><p><strong>Bandwidth</strong> limitations (speed and power) prevent uploading the data.</p></li>
+<li><p><strong>Latency</strong> requirements are too tight to transmit and process data and process elsewhere.</p></li>
+<li><p><strong>Economics</strong> expect that it will be too expensive to connect to a central server.</p></li>
+<li><p><strong>Reliability</strong> of safety-critical applications demands function without connectivity.</p></li>
+<li><p><strong>Privacy</strong> benefits of keeping data local are worth it.</p></li>
+</ul>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<p>Firefighter wearable sensor</p>
+<p><img alt="Firefighter wearable sensor" src="https://spectrum.ieee.org/media-library/inferno-intelligence-globe-manufacturing-co-is-training-firefighters-to-use-its-wearable-advanced-sensor-platform-which-tracks-the-firefighters-vital-signs-and-location.jpg?id=25576215" /></p>
+<p>Mars Rover</p>
+<p><img alt="Mars Rover" src="https://upload.wikimedia.org/wikipedia/commons/d/d8/NASA_Mars_Rover.jpg" /></p>
+</section>
+<section id="blerp-analysis">
+<h3>BLERP Analysis<a class="headerlink" href="#blerp-analysis" title="Link to this heading">#</a></h3>
+<p>From <a class="reference external" href="https://learning.oreilly.com/library/view/ai-at-the/9781098120191/ch06.html#:-:text=Describing%20a%20Problem"><em>AI at the Edge</em>, Chapter 6: Understanding and Framing Problems</a></p>
+<blockquote>
+<div><p>Summary: Wildlife researchers sometimes need to estimate animal population and activity in remote areas.
+One way of doing this is to install trail cameras in remote locations to monitor specific animal species.
+The devices typically use a passive infrared (PIR) motion sensor to detect motion, triggering a camera to take a photograph.
+Photographs are saved to a memory card. The memory card is collected periodically to obtain the photos, which are then analyzed by researchers.</p>
+<p><strong>Problems:</strong></p>
+<ul class="simple">
+<li><p>The PIR can be triggered by nontarget species or moving vegetation, filling up the memory card with useless photos and reducing battery life.</p></li>
+<li><p>No animal activity data is available until the memory card has been collected and analyzed.</p></li>
+<li><p>It’s time consuming and expensive to send somebody to collect a memory card from a remote location.</p></li>
+<li><p>If the memory card is collected too infrequently, it will fill up and important data will be missed.</p></li>
+<li><p>If the memory card is collected too frequently, then money is being wasted on travel expenses.</p></li>
+</ul>
+<p><strong>Constraints:</strong></p>
+<ul class="simple">
+<li><p>Trail cameras run on battery power and must be energy efficient.</p></li>
+<li><p>High-bandwidth data connections are expensive in the field.</p></li>
+<li><p>Research budgets are typically low.</p></li>
+</ul>
+</div></blockquote>
+<p><em>Should we deploy to the edge? Use BLERP!</em></p>
+</section>
 </section>
 </section>
 
@@ -507,6 +636,17 @@ in particular, the text surrounding:</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">11.1. Pre-reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-a-use-case">11.2. Opening: A Use Case</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-the-edge">11.3. What’s the “Edge”???</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#characteristics-of-edge-devices">Characteristics of Edge Devices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#our-edge-device">Our Edge Device</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-edge-ai-blerp">11.4. When to use Edge AI: BLERP</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blerp-analysis">BLERP Analysis</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
