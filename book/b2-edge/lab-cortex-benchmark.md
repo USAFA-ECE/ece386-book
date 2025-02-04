@@ -1,8 +1,10 @@
 # Lab 2: Cortex DSP Benchmark
 
-## Pre-reading
+## Pre-Lab
 
-Skim *The Designer's Guide to the Cortex-M Processor, 3rd Edition*, by Trevor Martin, [Chapter 9: Practical DSP for Cortex-M Microcontrollers](https://learning.oreilly.com/library/view/the-designers-guide/9780323854955/xhtml/Ch009_313-353_B9780323854948000103.xhtml). Pay special attention to the conceptual pieces of each subsection, but don't worry about the exercises.
+Make a 1:45 to 2:00 minute video of yourself explaining how a basic CPU works.
+
+See teams and Gradescope for more information.
 
 ## Lab
 
@@ -17,6 +19,18 @@ Submit the report on Gradescope.
 If you click on [`dot_prod_dsp_bench.ino`](https://gist.github.com/byarbrough/9cda569df945c8817142c2d6b77d503) in the gist above you can clone the repository or access the raw file.
 ```
 
+### Uno Comparison
+
+*Optionally,* you may discuss the differences between the Nano's benchmarks and the same float and int benchmarks on the [Arduino Uno](https://docs.arduino.cc/hardware/uno-rev3/) shown in {numref}`uno-benchmark`:
+
+```{table} Arduino Uno Dot Product Benchmark
+:name: uno-benchmark
+| Datatype | Time (microseconds) |
+|----------|---------------------|
+| int      | 5,600               |
+| float    | 21,128              |
+```
+
 ### Further guidance
 
 - Your report should be well-written and highly technical, but take the tone of an executive summary.
@@ -28,6 +42,12 @@ If you click on [`dot_prod_dsp_bench.ino`](https://gist.github.com/byarbrough/9c
 - Conclude with a discussion of why this matters and how it may impact edge inference deployments.
 - Do not exceed 3 pages.
 - Ensure you include a Documentation statement.
+
+```{hint}
+This is primarily a **research** lab.
+
+*The Designer's Guide to the Cortex-M Processor, 3rd Edition*, by Trevor Martin, [Chapter 9: Practical DSP for Cortex-M Microcontrollers](https://learning.oreilly.com/library/view/the-designers-guide/9780323854955/xhtml/Ch009_313-353_B9780323854948000103.xhtml) has some good info, but you will need several more resources.
+```
 
 #### Authorized resources
 
