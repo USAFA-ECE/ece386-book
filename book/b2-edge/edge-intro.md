@@ -4,7 +4,7 @@
 
 ## Pre-reading
 
-Situnayake and Plunkett's [AI at the Edge*, Chapter 1](https://learning.oreilly.com/library/view/ai-at-the/9781098120191/ch01.html),
+Situnayake and Plunkett's [*AI at the Edge*, Chapter 1](https://learning.oreilly.com/library/view/ai-at-the/9781098120191/ch01.html),
 in particular, the text surrounding:
 
 - Figure 1-3
@@ -17,7 +17,7 @@ in particular, the text surrounding:
 
 From the [DTS N45 Flyer](https://www.apsensing.com/fileadmin/landingpages/dtsn45series/downloads/Flyer_DTS_N45-Series.pdf)
 
-> - longest range of up to 70km.
+> - Range of up to 70km.
 > - Designed to operate everywhere - from the desert to the arctic... allows deployment in hazardous areas (EX-Zones).
 > - Cyber Security: VxWorks – the Real-Time Operating System used in mission critical applications, e.g. the aerospace industry.
 > - Modern, easy to use web interface to set up and configure the system.
@@ -76,7 +76,9 @@ For this class we will use the Arduino [Nano 33 BLE Sense Rev2 (User Manual)](ht
 
 Nano 33 uses the **nRF52840** chip, which has 1MB of flash ROM and a whopping 256 KB SRAM!
 
-## When to use Edge AI: BLERP
+## When to use Edge AI
+
+### BLERP
 
 Introduced by Jeff Bier in [What's Driving AI and Vision to the Edge](https://www.eetasia.com/whats-driving-ai-and-vision-to-the-edge/),
 reformatted in [*AI at the Edge*, Chapter 1](https://learning.oreilly.com/library/view/ai-at-the/9781098120191/ch01.html#:-:text=To%20Understand%20the%20Benefits%20of%20Edge%20AI%2C%20Just%20BLERP)
@@ -87,6 +89,19 @@ it is *a filter to decide whether edge AI is well-suited for a particular applic
 - **Economics** expect that it will be too expensive to connect to a central server.
 - **Reliability** of safety-critical applications demands function without connectivity.
 - **Privacy** benefits of keeping data local are worth it.
+
+### Other Criteria
+
+> The decision of whether to use ML is a question of both “Is it good enough?” and “Can we handle the types of errors it is likely to make?” ~ *AI at the Edge*
+
+Here is Situnayake's suggested checklist:
+
+- There is no existing rule-based solution, and you don’t have the resources to discover one.
+- You have access to a high quality dataset or collecting one is within your budget.
+- Your system can be designed to make use of fuzzy, probabilistic predictions.
+- You do not need to explain the exact logic behind your system’s decisions.
+- Your system will not be exposed to inputs beyond those reflected in its training data.
+- Your application can tolerate a degree of uncertainty.
 
 ### Examples
 
