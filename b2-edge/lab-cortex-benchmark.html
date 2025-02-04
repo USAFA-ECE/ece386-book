@@ -415,8 +415,9 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">12.1. Pre-reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-lab">12.1. Pre-Lab</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">12.2. Lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uno-comparison">Uno Comparison</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#further-guidance">Further guidance</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#authorized-resources">Authorized resources</a></li>
 </ul>
@@ -436,9 +437,10 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lab-2-cortex-dsp-benchmark">
 <h1><span class="section-number">12. </span>Lab 2: Cortex DSP Benchmark<a class="headerlink" href="#lab-2-cortex-dsp-benchmark" title="Link to this heading">#</a></h1>
-<section id="pre-reading">
-<h2><span class="section-number">12.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
-<p>Skim <em>The Designer’s Guide to the Cortex-M Processor, 3rd Edition</em>, by Trevor Martin, <a class="reference external" href="https://learning.oreilly.com/library/view/the-designers-guide/9780323854955/xhtml/Ch009_313-353_B9780323854948000103.xhtml">Chapter 9: Practical DSP for Cortex-M Microcontrollers</a>. Pay special attention to the conceptual pieces of each subsection, but don’t worry about the exercises.</p>
+<section id="pre-lab">
+<h2><span class="section-number">12.1. </span>Pre-Lab<a class="headerlink" href="#pre-lab" title="Link to this heading">#</a></h2>
+<p>Make a 1:45 to 2:00 minute video of yourself explaining how a basic CPU works.</p>
+<p>See teams and Gradescope for more information.</p>
 </section>
 <section id="lab">
 <h2><span class="section-number">12.2. </span>Lab<a class="headerlink" href="#lab" title="Link to this heading">#</a></h2>
@@ -450,6 +452,27 @@ Submit the report on Gradescope.</p>
 <p class="admonition-title">Tip</p>
 <p>If you click on <a class="reference external" href="https://gist.github.com/byarbrough/9cda569df945c8817142c2d6b77d503"><code class="docutils literal notranslate"><span class="pre">dot_prod_dsp_bench.ino</span></code></a> in the gist above you can clone the repository or access the raw file.</p>
 </div>
+<section id="uno-comparison">
+<h3>Uno Comparison<a class="headerlink" href="#uno-comparison" title="Link to this heading">#</a></h3>
+<p><em>Optionally,</em> you may discuss the differences between the Nano’s benchmarks and the same float and int benchmarks on the <a class="reference external" href="https://docs.arduino.cc/hardware/uno-rev3/">Arduino Uno</a> shown in <a class="reference internal" href="#uno-benchmark"><span class="std std-numref">Table 12.1</span></a>:</p>
+<div class="pst-scrollable-table-container"><table class="table" id="uno-benchmark">
+<caption><span class="caption-number">Table 12.1 </span><span class="caption-text">Arduino Uno Dot Product Benchmark</span><a class="headerlink" href="#uno-benchmark" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Datatype</p></th>
+<th class="head"><p>Time (microseconds)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>int</p></td>
+<td><p>5,600</p></td>
+</tr>
+<tr class="row-odd"><td><p>float</p></td>
+<td><p>21,128</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 <section id="further-guidance">
 <h3>Further guidance<a class="headerlink" href="#further-guidance" title="Link to this heading">#</a></h3>
 <ul class="simple">
@@ -463,6 +486,11 @@ Submit the report on Gradescope.</p>
 <li><p>Do not exceed 3 pages.</p></li>
 <li><p>Ensure you include a Documentation statement.</p></li>
 </ul>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>This is primarily a <strong>research</strong> lab.</p>
+<p><em>The Designer’s Guide to the Cortex-M Processor, 3rd Edition</em>, by Trevor Martin, <a class="reference external" href="https://learning.oreilly.com/library/view/the-designers-guide/9780323854955/xhtml/Ch009_313-353_B9780323854948000103.xhtml">Chapter 9: Practical DSP for Cortex-M Microcontrollers</a> has some good info, but you will need several more resources.</p>
+</div>
 <section id="authorized-resources">
 <h4>Authorized resources<a class="headerlink" href="#authorized-resources" title="Link to this heading">#</a></h4>
 <ul class="simple">
@@ -541,8 +569,9 @@ Submit the report on Gradescope.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">12.1. Pre-reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-lab">12.1. Pre-Lab</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">12.2. Lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uno-comparison">Uno Comparison</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#further-guidance">Further guidance</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#authorized-resources">Authorized resources</a></li>
 </ul>
