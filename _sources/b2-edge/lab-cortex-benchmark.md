@@ -1,5 +1,7 @@
 # Lab 2: Cortex DSP Benchmark
 
+![Are you stealing those LCDs? Yeah but I'm doing it while my code compiles](https://imgs.xkcd.com/comics/compiling.png)
+
 ## Pre-Lab
 
 Make a 1:45 to 2:00 minute video of yourself explaining how a basic CPU works.
