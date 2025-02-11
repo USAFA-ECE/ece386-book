@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>19. Lab 4: Cats vs. Dogs &#8212; ECE 386</title>
+    <title>19. Lab 3: Transfer Learning with Cats vs. Dogs &#8212; ECE 386</title>
   
   
   
@@ -195,7 +195,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Development Boards</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">19. Lab 4: Cats vs. Dogs</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">19. Lab 3: Transfer Learning with Cats vs. Dogs</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="containerization.html">22. Containerization</a></li>
@@ -436,7 +436,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lab 4: Cats vs. Dogs</h1>
+    <h1>Lab 3: Transfer Learning with Cats vs. Dogs</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -446,38 +446,48 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">19. Lab 4: Cats vs. Dogs</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">19.1. Pre-reading</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">19.2. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing">19.3. Data preprocessing</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-download">Data download</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-the-dataset-for-performance">Configure the dataset for performance</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-data-augmentation">Use data augmentation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rescale-pixel-values">Rescale pixel values</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">19. Lab 3: Transfer Learning with Cats vs. Dogs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">19.1. Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#freezing-layers-understanding-the-trainable-attribute">Freezing layers: understanding the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-setting-of-the-trainable-attribute">Recursive setting of the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-typical-transfer-learning-workflow">The typical transfer-learning workflow</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning">Fine-tuning</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-base-model-from-the-pre-trained-convnets">19.4. Create the base model from the pre-trained convnets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-extraction">19.5. Feature extraction</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#freeze-the-convolutional-base">Freeze the convolutional base</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-note-about-batchnormalization-layers">Important note about BatchNormalization layers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-classification-head">Add a classification head</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-the-model">Compile the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">Train the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-curves">Learning curves</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning">19.6. Fine tuning</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-freeze-the-top-layers-of-the-model">Un-freeze the top layers of the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Compile the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue-training-the-model">Continue training the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-and-prediction">Evaluation and prediction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-lab">19.2. Pre-lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-data">Getting the data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#standardizing-the-data">Standardizing the data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-random-data-augmentation">Using random data augmentation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-model">19.7. Save the model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">19.8. Summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-a-model">Build a model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-top-layer">Train the top layer</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-curves">Learning Curves</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-workday">20. Lab Workday</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning-the-entire-model">Fine-tuning the entire model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#test">Test</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-model">Save the Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensorflow-lite-conversion">TensorFlow Lite Conversion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">20. Lab</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#litert">20.1. LiteRT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signatures">Signatures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invoking">Invoking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#litert-summary">LiteRT Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#live-inference">21. 🐱 🐶 Live Inference</a></li>
 </ul>
 
@@ -491,348 +501,581 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="lab-4-cats-vs-dogs">
-<h1><span class="section-number">19. </span>Lab 4: Cats vs. Dogs<a class="headerlink" href="#lab-4-cats-vs-dogs" title="Link to this heading">#</a></h1>
-<section id="pre-reading">
-<h2><span class="section-number">19.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-3-transfer-learning-with-cats-vs-dogs">
+<h1><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">19. </span>Lab 3: Transfer Learning with Cats vs. Dogs</a><a class="headerlink" href="#lab-3-transfer-learning-with-cats-vs-dogs" title="Link to this heading">#</a></h1>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p>Video <em>only first 5 minutes</em> <a class="reference external" href="https://youtu.be/mPFq5KMxKVw">Kaggle: Transfer Learning</a></p></li>
-</ul>
-</section>
-<section id="overview">
-<h2><span class="section-number">19.2. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
-<p><em>Copyright 2019 The TensorFlow Authors. Licensed under Apache License 2.0 and MIT License. Extracted and modified from <a class="reference external" href="https://www.tensorflow.org/tutorials/images/transfer_learning">TensorFlow Core: Transfer learning and fine-tuning</a>.</em></p>
-<p>In this tutorial, you will learn how to classify images of cats and dogs by using transfer learning from a pre-trained network.</p>
-<p>A pre-trained model is a saved network that was previously trained on a large dataset, typically on a large-scale image-classification task. You either use the pretrained model as is or use transfer learning to customize this model to a given task.</p>
-<p>The intuition behind transfer learning for image classification is that if a model is trained on a large and general enough dataset, this model will effectively serve as a generic model of the visual world. You can then take advantage of these learned feature maps without having to start from scratch by training a large model on a large dataset.</p>
-<p>In this notebook, you will try two ways to customize a pretrained model:</p>
-<ol class="arabic simple">
-<li><p>Feature Extraction: Use the representations learned by a previous network to extract meaningful features from new samples. You simply add a new classifier, which will be trained from scratch, on top of the pretrained model so that you can repurpose the feature maps learned previously for the dataset.</p></li>
-</ol>
-<p>You do not need to (re)train the entire model. The base convolutional network already contains features that are generically useful for classifying pictures. However, the final, classification part of the pretrained model is specific to the original classification task, and subsequently specific to the set of classes on which the model was trained.</p>
-<ol class="arabic simple">
-<li><p>Fine-Tuning: Unfreeze a few of the top layers of a frozen model base and jointly train both the newly-added classifier layers and the last layers of the base model. This allows us to “fine-tune” the higher-order feature representations in the base model in order to make them more relevant for the specific task.</p></li>
-</ol>
-<p>You will follow the general machine learning workflow.</p>
-<ol class="arabic simple">
-<li><p>Examine and understand the data</p></li>
-<li><p>Build an input pipeline, in this case using Keras ImageDataGenerator</p></li>
-<li><p>Compose the model</p>
-<ul class="simple">
-<li><p>Load in the pretrained base model (and pretrained weights)</p></li>
-<li><p>Stack the classification layers on top</p></li>
+<li><p><a class="reference internal" href="#lab-3-transfer-learning-with-cats-vs-dogs" id="id3">Lab 3: Transfer Learning with Cats vs. Dogs</a></p>
+<ul>
+<li><p><a class="reference internal" href="#overview" id="id4">Overview</a></p></li>
+<li><p><a class="reference internal" href="#pre-lab" id="id5">Pre-lab</a></p></li>
 </ul>
 </li>
-<li><p>Train the model</p></li>
-<li><p>Evaluate model</p></li>
+<li><p><a class="reference internal" href="#lab" id="id6">Lab</a></p>
+<ul>
+<li><p><a class="reference internal" href="#litert" id="id7">LiteRT</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#live-inference" id="id8">🐱 🐶 Live Inference</a></p></li>
+</ul>
+</nav>
+<blockquote>
+<div><p>Original, from <a class="reference external" href="https://keras.io/guides/transfer_learning/">Keras Developer Guides: Transfer learning &amp; fine-tuning</a></p>
+<p>Which is itself adapted from <a class="reference external" href="https://www.manning.com/books/deep-learning-with-python">Deep Learning with Python</a>
+and the 2016 blog post <a class="reference external" href="https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html">“building powerful image classification models using very little data”</a>.</p>
+<p><em>Author: <a class="reference external" href="https://twitter.com/fchollet">fchollet</a> Date created: 2020/04/15 Last modified: 2023/06/25</em></p>
+<p>Adapted for ECE 386 by <a class="reference external" href="https://github.com/byarbrough">byarbrough</a> with additions from <a class="reference external" href="https://www.tensorflow.org/tutorials/images/transfer_learning">TensorFlow Tutorials: Transfer learning and fine-tuning</a>, cao Jan 2025.</p>
+</div></blockquote>
+<p>Check out this <strong>Overview</strong> and the complete the <strong>Prelab</strong> below.</p>
+<section id="overview">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">19.1. </span>Overview</a><a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p><strong>Pre-reading video:</strong> <a class="reference external" href="https://youtu.be/mPFq5KMxKVw">Kaggle: Transfer Learning</a> (only first 5 minutes)</p>
+<p>For this lab you will use <em>transfer learning</em> to make a general purpose image classification model exceptional at telling the difference between cats vs. dogs!</p>
+<p>You will ultimately use this model for live inference with visitors to the classroom!</p>
+<section id="background">
+<h3>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h3>
+<nav class="contents local" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction" id="id9">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#freezing-layers-understanding-the-trainable-attribute" id="id10">Freezing layers: understanding the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a></p></li>
+<li><p><a class="reference internal" href="#recursive-setting-of-the-trainable-attribute" id="id11">Recursive setting of the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a></p></li>
+<li><p><a class="reference internal" href="#the-typical-transfer-learning-workflow" id="id12">The typical transfer-learning workflow</a></p></li>
+<li><p><a class="reference internal" href="#fine-tuning" id="id13">Fine-tuning</a></p></li>
+</ul>
+</nav>
+<section id="introduction">
+<h4><a class="toc-backref" href="#id9" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h4>
+<p><strong>Transfer learning</strong> consists of taking features learned on one problem, and
+leveraging them on a new, similar problem. For instance, features from a model that has
+learned to identify racoons may be useful to kick-start a model meant to identify tanukis.</p>
+<p>Transfer learning is usually done for tasks where your dataset has too little data to train a full-scale model from scratch.</p>
+<p>The most common incarnation of transfer learning in the context of deep learning is the following workflow:</p>
+<ol class="arabic simple">
+<li><p>Take layers from a previously trained model.</p></li>
+<li><p>Freeze them, so as to avoid destroying any of the information they contain during future training rounds.</p></li>
+<li><p>Add some new, trainable layers on top of the frozen layers.
+They will learn to turn the old features into predictions on a  new dataset.</p></li>
+<li><p>Train the new layers on your dataset.</p></li>
+</ol>
+<p>A last, optional step, is <strong>fine-tuning</strong>, which consists of unfreezing the entire
+model you obtained above (or part of it), and re-training it on the new data with a
+very low learning rate. This can potentially achieve meaningful improvements, by
+incrementally adapting the pretrained features to the new data.</p>
+<p>First, we will go over the Keras <code class="docutils literal notranslate"><span class="pre">trainable</span></code> API in detail, which underlies most
+transfer learning &amp; fine-tuning workflows.</p>
+</section>
+<section id="freezing-layers-understanding-the-trainable-attribute">
+<h4><a class="toc-backref" href="#id10" role="doc-backlink">Freezing layers: understanding the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a><a class="headerlink" href="#freezing-layers-understanding-the-trainable-attribute" title="Link to this heading">#</a></h4>
+<p>Layers &amp; models have three weight attributes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">weights</span></code> is the list of all weights variables of the layer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trainable_weights</span></code> is the list of those that are meant to be updated (via gradient
+descent) to minimize the loss during training.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">non_trainable_weights</span></code> is the list of those that aren’t meant to be trained.
+Typically they are updated by the model during the forward pass.</p></li>
+</ul>
+<p><strong>Example: the <code class="docutils literal notranslate"><span class="pre">Dense</span></code> layer has 2 trainable weights (kernel &amp; bias)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">layer</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">build</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c1"># Create the weights</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weights:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">weights</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;trainable_weights:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">trainable_weights</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;non_trainable_weights:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">non_trainable_weights</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>weights: 2
+trainable_weights: 2
+non_trainable_weights: 0
+</pre></div>
+</div>
+<p>In general, all weights are trainable weights. The only built-in layer that has
+non-trainable weights is the <code class="docutils literal notranslate"><span class="pre">BatchNormalization</span></code> layer.
+It uses non-trainable weights to keep track of the mean and variance of its inputs during training.
+To learn how to use non-trainable weights in your own custom layers, see the
+<a class="reference internal" href="#/guides/making_new_layers_and_models_via_subclassing/"><span class="xref myst">guide to writing new layers from scratch</span></a>.</p>
+<p><strong>Example: the <code class="docutils literal notranslate"><span class="pre">BatchNormalization</span></code> layer has 2 trainable weights and 2 non-trainable weights</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">layer</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">BatchNormalization</span><span class="p">()</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">build</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c1"># Create the weights</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weights:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">weights</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;trainable_weights:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">trainable_weights</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;non_trainable_weights:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">non_trainable_weights</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>weights: 4
+trainable_weights: 2
+non_trainable_weights: 2
+</pre></div>
+</div>
+<p>Layers &amp; models also feature a boolean attribute <code class="docutils literal notranslate"><span class="pre">trainable</span></code>. Its value can be changed.
+Setting <code class="docutils literal notranslate"><span class="pre">layer.trainable</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code> moves all the layer’s weights from trainable to
+non-trainable.  This is called “freezing” the layer: the state of a frozen layer won’t
+be updated during training (either when training with <code class="docutils literal notranslate"><span class="pre">fit()</span></code> or when training with
+any custom loop that relies on <code class="docutils literal notranslate"><span class="pre">trainable_weights</span></code> to apply gradient updates).</p>
+<p><strong>Example: setting <code class="docutils literal notranslate"><span class="pre">trainable</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code></strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">layer</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">build</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c1"># Create the weights</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Freeze the layer</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weights:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">weights</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;trainable_weights:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">trainable_weights</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;non_trainable_weights:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">non_trainable_weights</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>weights: 2
+trainable_weights: 0
+non_trainable_weights: 2
+</pre></div>
+</div>
+<p>When a trainable weight becomes non-trainable, its value is no longer updated during training.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make a model with 2 layers</span>
+<span class="n">layer1</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">)</span>
+<span class="n">layer2</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;sigmoid&quot;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span><span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,)),</span> <span class="n">layer1</span><span class="p">,</span> <span class="n">layer2</span><span class="p">])</span>
+
+<span class="c1"># Freeze the first layer</span>
+<span class="n">layer1</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># Keep a copy of the weights of layer1 for later reference</span>
+<span class="n">initial_layer1_weights_values</span> <span class="o">=</span> <span class="n">layer1</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()</span>
+
+<span class="c1"># Train the model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;adam&quot;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s2">&quot;mse&quot;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+
+<span class="c1"># Check that the weights of layer1 have not changed during training</span>
+<span class="n">final_layer1_weights_values</span> <span class="o">=</span> <span class="n">layer1</span><span class="o">.</span><span class="n">get_weights</span><span class="p">()</span>
+<span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_allclose</span><span class="p">(</span>
+    <span class="n">initial_layer1_weights_values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">final_layer1_weights_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_allclose</span><span class="p">(</span>
+    <span class="n">initial_layer1_weights_values</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">final_layer1_weights_values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>1/1 ━━━━━━━━━━━━━━━━━━━━ 1s 1s/step - loss: 0.1309
+</pre></div>
+</div>
+<p>Do not confuse the <code class="docutils literal notranslate"><span class="pre">layer.trainable</span></code> attribute with the argument <code class="docutils literal notranslate"><span class="pre">training</span></code> in <code class="docutils literal notranslate"><span class="pre">layer.__call__()</span></code> (which controls whether the layer should run its forward pass in  inference mode or training mode).
+For more information, see the <a class="reference external" href="https://keras.io/getting_started/faq/#whats-the-difference-between-the-training-argument-in-call-and-the-trainable-attribute">Keras FAQ</a>.</p>
+</section>
+<section id="recursive-setting-of-the-trainable-attribute">
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">Recursive setting of the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a><a class="headerlink" href="#recursive-setting-of-the-trainable-attribute" title="Link to this heading">#</a></h4>
+<p>If you set <code class="docutils literal notranslate"><span class="pre">trainable</span> <span class="pre">=</span> <span class="pre">False</span></code> on a model or on any layer that has sublayers,
+all children layers become non-trainable as well.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">inner_model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,)),</span>
+        <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">),</span>
+        <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,)),</span>
+        <span class="n">inner_model</span><span class="p">,</span>
+        <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;sigmoid&quot;</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Freeze the outer model</span>
+
+<span class="k">assert</span> <span class="n">inner_model</span><span class="o">.</span><span class="n">trainable</span> <span class="o">==</span> <span class="kc">False</span>  <span class="c1"># All layers in `model` are now frozen</span>
+<span class="k">assert</span> <span class="n">inner_model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">trainable</span> <span class="o">==</span> <span class="kc">False</span>  <span class="c1"># `trainable` is propagated recursively</span>
+</pre></div>
+</div>
+</section>
+<section id="the-typical-transfer-learning-workflow">
+<h4><a class="toc-backref" href="#id12" role="doc-backlink">The typical transfer-learning workflow</a><a class="headerlink" href="#the-typical-transfer-learning-workflow" title="Link to this heading">#</a></h4>
+<p>This leads us to how a typical transfer learning workflow can be implemented in Keras:</p>
+<ol class="arabic simple">
+<li><p>Instantiate a base model and load pre-trained weights into it.</p></li>
+<li><p>Freeze all layers in the base model by setting <code class="docutils literal notranslate"><span class="pre">trainable</span> <span class="pre">=</span> <span class="pre">False</span></code>.</p></li>
+<li><p>Create a new model on top of the output of one (or several) layers from the base
+model.</p></li>
+<li><p>Train your new model on your new dataset.</p></li>
+</ol>
+<p>Note that an alternative, more lightweight workflow could also be:</p>
+<ol class="arabic simple">
+<li><p>Instantiate a base model and load pre-trained weights into it.</p></li>
+<li><p>Run your new dataset through it and record the output of one (or several) layers
+from the base model. This is called <strong>feature extraction</strong>.</p></li>
+<li><p>Use that output as input data for a new, smaller model.</p></li>
+</ol>
+<p>A key advantage of that second workflow is that you only run the base model once on
+your data, rather than once per epoch of training. So it’s a lot faster &amp; cheaper.</p>
+<p>An issue with that second workflow, though, is that it doesn’t allow you to dynamically
+modify the input data of your new model during training, which is required when doing
+data augmentation, for instance. Transfer learning is typically used for tasks when
+your new dataset has too little data to train a full-scale model from scratch, and in
+such scenarios data augmentation is very important. So in what follows, we will focus
+on the first workflow.</p>
+<p>Here’s what the first workflow looks like in Keras:</p>
+<p>First, instantiate a base model with pre-trained weights.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">base_model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">applications</span><span class="o">.</span><span class="n">Xception</span><span class="p">(</span>
+    <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;imagenet&#39;</span><span class="p">,</span>  <span class="c1"># Load weights pre-trained on ImageNet.</span>
+    <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+    <span class="n">include_top</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># Do not include the ImageNet classifier at the top.</span>
+</pre></div>
+</div>
+<p>Then, freeze the base model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">base_model</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>Create a new model on top.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="c1"># We make sure that the base_model is running in inference mode here,</span>
+<span class="c1"># by passing `training=False`. This is important for fine-tuning, as you will</span>
+<span class="c1"># learn in a few paragraphs.</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">base_model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># Convert features of shape `base_model.output_shape[1:]` to vectors</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">GlobalAveragePooling2D</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># A Dense classifier with a single unit (binary classification)</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Train the model on new data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(),</span>
+              <span class="n">loss</span><span class="o">=</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">BinaryCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">BinaryAccuracy</span><span class="p">()])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">new_dataset</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=...</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=...</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="fine-tuning">
+<h4><a class="toc-backref" href="#id13" role="doc-backlink">Fine-tuning</a><a class="headerlink" href="#fine-tuning" title="Link to this heading">#</a></h4>
+<p>Once your model has converged on the new data, you can try to unfreeze all or part of
+the base model and retrain the whole model end-to-end with a very low learning rate.</p>
+<p>This is an optional last step that can potentially give you incremental improvements.
+It could also potentially lead to quick overfitting – keep that in mind.</p>
+<p>It is critical to only do this step <em>after</em> the model with frozen layers has been
+trained to convergence. If you mix randomly-initialized trainable layers with
+trainable layers that hold pre-trained features, the randomly-initialized layers will
+cause very large gradient updates during training, which will destroy your pre-trained
+features.</p>
+<p>It’s also critical to use a very low learning rate at this stage, because
+you are training a much larger model than in the first round of training, on a dataset
+that is typically very small.
+As a result, you are at risk of overfitting very quickly if you apply large weight
+updates. Here, you only want to readapt the pretrained weights in an incremental way.</p>
+<p>This is how to implement fine-tuning of the whole base model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unfreeze the base model</span>
+<span class="n">base_model</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># It&#39;s important to recompile your model after you make any changes</span>
+<span class="c1"># to the `trainable` attribute of any inner layer, so that your changes</span>
+<span class="c1"># are take into account</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="mf">1e-5</span><span class="p">),</span>  <span class="c1"># Very low learning rate</span>
+              <span class="n">loss</span><span class="o">=</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">BinaryCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">BinaryAccuracy</span><span class="p">()])</span>
+
+<span class="c1"># Train end-to-end. Be careful to stop before you overfit!</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">new_dataset</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=...</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Important note about <code class="docutils literal notranslate"><span class="pre">compile()</span></code> and <code class="docutils literal notranslate"><span class="pre">trainable</span></code></strong></p>
+<p>Calling <code class="docutils literal notranslate"><span class="pre">compile()</span></code> on a model is meant to “freeze” the behavior of that model. This
+implies that the <code class="docutils literal notranslate"><span class="pre">trainable</span></code>
+attribute values at the time the model is compiled should be preserved throughout the
+lifetime of that model,
+until <code class="docutils literal notranslate"><span class="pre">compile</span></code> is called again. Hence, if you change any <code class="docutils literal notranslate"><span class="pre">trainable</span></code> value, make sure
+to call <code class="docutils literal notranslate"><span class="pre">compile()</span></code> again on your
+model for your changes to be taken into account.</p>
+<p><strong>Important notes about <code class="docutils literal notranslate"><span class="pre">BatchNormalization</span></code> layer</strong></p>
+<p>Many image models contain <code class="docutils literal notranslate"><span class="pre">BatchNormalization</span></code> layers. That layer is a special case on
+every imaginable count. Here are a few things to keep in mind.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BatchNormalization</span></code> contains 2 non-trainable weights that get updated during
+training. These are the variables tracking the mean and variance of the inputs.</p></li>
+<li><p>When you set <code class="docutils literal notranslate"><span class="pre">bn_layer.trainable</span> <span class="pre">=</span> <span class="pre">False</span></code>, the <code class="docutils literal notranslate"><span class="pre">BatchNormalization</span></code> layer will run in inference mode, and will not update its mean &amp; variance statistics. This is not the case for other layers in general, as <a class="reference external" href="https://keras.io/getting_started/faq/#whats-the-difference-between-the-training-argument-in-call-and-the-trainable-attribute">weight trainability &amp; inference/training modes are two orthogonal concepts</a>. But the two are tied in the case of the <code class="docutils literal notranslate"><span class="pre">BatchNormalization</span></code> layer.</p></li>
+<li><p>When you unfreeze a model that contains <code class="docutils literal notranslate"><span class="pre">BatchNormalization</span></code> layers in order to do fine-tuning, you should keep the <code class="docutils literal notranslate"><span class="pre">BatchNormalization</span></code> layers in inference mode by passing <code class="docutils literal notranslate"><span class="pre">training=False</span></code> when calling the base model. Otherwise the updates applied to the non-trainable weights will suddenly destroy what the model has learned.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="pre-lab">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">19.2. </span>Pre-lab</a><a class="headerlink" href="#pre-lab" title="Link to this heading">#</a></h2>
+<nav class="contents local" id="id2">
+<ul class="simple">
+<li><p><a class="reference internal" href="#getting-the-data" id="id14">Getting the data</a></p>
+<ul>
+<li><p><a class="reference internal" href="#standardizing-the-data" id="id15">Standardizing the data</a></p></li>
+<li><p><a class="reference internal" href="#using-random-data-augmentation" id="id16">Using random data augmentation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#build-a-model" id="id17">Build a model</a></p></li>
+<li><p><a class="reference internal" href="#train-the-top-layer" id="id18">Train the top layer</a></p>
+<ul>
+<li><p><a class="reference internal" href="#learning-curves" id="id19">Learning Curves</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#fine-tuning-the-entire-model" id="id20">Fine-tuning the entire model</a></p>
+<ul>
+<li><p><a class="reference internal" href="#test" id="id21">Test</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#save-the-model" id="id22">Save the Model</a></p></li>
+<li><p><a class="reference internal" href="#tensorflow-lite-conversion" id="id23">TensorFlow Lite Conversion</a></p></li>
+</ul>
+</nav>
+<p>For the pre-lab, follow this end-to-end example: fine-tuning an image classification model on a cats vs. dogs dataset</p>
+<ol class="arabic simple">
+<li><p>Watch the pre-reading video.</p></li>
+<li><p>Load and explore the dataset.</p></li>
+<li><p>Load the MobileNet model.</p></li>
+<li><p>Perform transfer learning on the model.</p></li>
+<li><p>Save a copy of the model for use in the lab.</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">keras</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">keras</span><span class="w"> </span><span class="kn">import</span> <span class="n">layers</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow_datasets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tfds</span>
+
+<span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">2016</span><span class="p">)</span>  <span class="c1"># For reproducability</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running Tensorflow version&quot;</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+
+<span class="n">device_name</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">gpu_device_name</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">device_name</span> <span class="o">!=</span> <span class="s2">&quot;/device:GPU:0&quot;</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">SystemError</span><span class="p">(</span><span class="s2">&quot;GPU device not found&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found GPU at: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">device_name</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="getting-the-data">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Getting the data</a><a class="headerlink" href="#getting-the-data" title="Link to this heading">#</a></h3>
+<p>First, let’s fetch the cats vs. dogs dataset using TFDS. If you have your own dataset,
+you’ll probably want to use the utility
+<code class="docutils literal notranslate"><span class="pre">keras.utils.image_dataset_from_directory</span></code> to generate similar labeled
+dataset objects from a set of images on disk filed into class-specific folders.</p>
+<p>Transfer learning is most useful when working with very small datasets. To keep our
+dataset small, we will use 40% of the original training data (25,000 images) for
+training, 10% for validation, and 10% for testing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfds</span><span class="o">.</span><span class="n">disable_progress_bar</span><span class="p">()</span>
+
+<span class="n">train_ds</span><span class="p">,</span> <span class="n">validation_ds</span><span class="p">,</span> <span class="n">test_ds</span> <span class="o">=</span> <span class="n">tfds</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+    <span class="s2">&quot;cats_vs_dogs&quot;</span><span class="p">,</span>
+    <span class="c1"># Reserve 10% for validation and 10% for test</span>
+    <span class="n">split</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;train[:40%]&quot;</span><span class="p">,</span> <span class="s2">&quot;train[40%:50%]&quot;</span><span class="p">,</span> <span class="s2">&quot;train[50%:60%]&quot;</span><span class="p">],</span>
+    <span class="n">as_supervised</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Include labels</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of training samples: </span><span class="si">{</span><span class="n">train_ds</span><span class="o">.</span><span class="n">cardinality</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of validation samples: </span><span class="si">{</span><span class="n">validation_ds</span><span class="o">.</span><span class="n">cardinality</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of test samples: </span><span class="si">{</span><span class="n">test_ds</span><span class="o">.</span><span class="n">cardinality</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>These are the first 9 images in the training dataset – as you can see, they’re all
+different sizes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_ds</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">9</span><span class="p">)):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">label</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also see that label 1 is “dog” and label 0 is “cat”.</p>
+<section id="standardizing-the-data">
+<h4><a class="toc-backref" href="#id15" role="doc-backlink">Standardizing the data</a><a class="headerlink" href="#standardizing-the-data" title="Link to this heading">#</a></h4>
+<p>Our raw images have a variety of sizes. In addition, each pixel consists of 3 integer
+values between 0 and 255 (RGB level values). This isn’t a great fit for feeding a
+neural network. We need to do 2 things:</p>
+<ul class="simple">
+<li><p>Standardize to a fixed image size. We pick 150x150.</p></li>
+<li><p>Normalize pixel values to what the model expects. We’ll do this using a layer within the model itself.</p></li>
+</ul>
+<p>In general, it’s a good practice to develop models that take raw data as input, as
+opposed to models that take already-preprocessed data. The reason being that, if your
+model expects preprocessed data, any time you export your model to use it elsewhere
+(in a web browser, in a mobile app), you’ll need to reimplement the exact same
+preprocessing pipeline. This gets very tricky very quickly. So we should do the least
+possible amount of preprocessing before hitting the model.</p>
+<p>Here, we’ll do image resizing in the data pipeline (because a deep neural network can
+only process contiguous batches of data), and we’ll do the input value scaling as part
+of the model, when we create it.</p>
+<p>Let’s resize images to 150x150:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resize_fn</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Resizing</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+
+<span class="n">train_ds</span> <span class="o">=</span> <span class="n">train_ds</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="p">(</span><span class="n">resize_fn</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">))</span>
+<span class="n">validation_ds</span> <span class="o">=</span> <span class="n">validation_ds</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="p">(</span><span class="n">resize_fn</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">))</span>
+<span class="n">test_ds</span> <span class="o">=</span> <span class="n">test_ds</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="p">(</span><span class="n">resize_fn</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training set </span><span class="si">{</span><span class="n">train_ds</span><span class="o">.</span><span class="n">element_spec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="data-preprocessing">
-<h2><span class="section-number">19.3. </span>Data preprocessing<a class="headerlink" href="#data-preprocessing" title="Link to this heading">#</a></h2>
-<section id="data-download">
-<h3>Data download<a class="headerlink" href="#data-download" title="Link to this heading">#</a></h3>
-<p>In this tutorial, you will use a dataset containing several thousand images of cats and dogs. Download and extract a zip file containing the images, then create a <code class="docutils literal notranslate"><span class="pre">tf.data.Dataset</span></code> for training and validation using the <code class="docutils literal notranslate"><span class="pre">tf.keras.utils.image_dataset_from_directory</span></code> utility. You can learn more about loading images in this <a class="reference external" href="https://www.tensorflow.org/tutorials/load_data/images">tutorial</a>.</p>
+<section id="using-random-data-augmentation">
+<h4><a class="toc-backref" href="#id16" role="doc-backlink">Using random data augmentation</a><a class="headerlink" href="#using-random-data-augmentation" title="Link to this heading">#</a></h4>
+<p>When you don’t have a large image dataset, it’s a good practice to artificially
+introduce sample diversity by applying random yet realistic transformations to
+the training images, such as random horizontal flipping or small random rotations. This
+helps expose the model to different aspects of the training data while slowing down
+overfitting.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_URL</span> <span class="o">=</span> <span class="s2">&quot;https://storage.googleapis.com/mledu-datasets/cats_and_dogs_filtered.zip&quot;</span>
-<span class="n">path_to_zip</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span><span class="s2">&quot;cats_and_dogs.zip&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">_URL</span><span class="p">,</span> <span class="n">extract</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path_to_zip</span><span class="p">),</span> <span class="s2">&quot;cats_and_dogs_filtered&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cache loads the dataset into memory</span>
+<span class="n">train_ds</span> <span class="o">=</span> <span class="n">train_ds</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
 
-<span class="n">train_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="s2">&quot;train&quot;</span><span class="p">)</span>
-<span class="n">validation_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PATH</span><span class="p">,</span> <span class="s2">&quot;validation&quot;</span><span class="p">)</span>
+<span class="n">augmentation_layers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">layers</span><span class="o">.</span><span class="n">RandomFlip</span><span class="p">(</span><span class="s2">&quot;horizontal&quot;</span><span class="p">),</span>
+    <span class="n">layers</span><span class="o">.</span><span class="n">RandomRotation</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span>
+<span class="p">]</span>
 
-<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">32</span>
-<span class="n">IMG_SIZE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">160</span><span class="p">)</span>
 
-<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">image_dataset_from_directory</span><span class="p">(</span>
-    <span class="n">train_dir</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">image_size</span><span class="o">=</span><span class="n">IMG_SIZE</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">validation_dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">image_dataset_from_directory</span><span class="p">(</span>
-    <span class="n">validation_dir</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">image_size</span><span class="o">=</span><span class="n">IMG_SIZE</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Show the first nine images and labels from the training set:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">class_names</span> <span class="o">=</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">class_names</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">data_augmentation</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">augmentation_layers</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
-        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">))</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">class_names</span><span class="p">[</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>As the original dataset doesn’t contain a test set, you will create one. To do so, determine how many batches of data are available in the validation set using <code class="docutils literal notranslate"><span class="pre">tf.data.experimental.cardinality</span></code>, then move 20% of them to a test set.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">val_batches</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">cardinality</span><span class="p">(</span><span class="n">validation_dataset</span><span class="p">)</span>
-<span class="n">test_dataset</span> <span class="o">=</span> <span class="n">validation_dataset</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">val_batches</span> <span class="o">//</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">validation_dataset</span> <span class="o">=</span> <span class="n">validation_dataset</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="n">val_batches</span> <span class="o">//</span> <span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span>
-    <span class="s2">&quot;Number of validation batches: </span><span class="si">%d</span><span class="s2">&quot;</span>
-    <span class="o">%</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">cardinality</span><span class="p">(</span><span class="n">validation_dataset</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of test batches: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">cardinality</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="configure-the-dataset-for-performance">
-<h3>Configure the dataset for performance<a class="headerlink" href="#configure-the-dataset-for-performance" title="Link to this heading">#</a></h3>
-<p>Use buffered prefetching to load images from disk without having I/O become blocking. To learn more about this method see the <a class="reference external" href="https://www.tensorflow.org/guide/data_performance">data performance</a> guide.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AUTOTUNE</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">AUTOTUNE</span>
 
-<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">prefetch</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="n">AUTOTUNE</span><span class="p">)</span>
-<span class="n">validation_dataset</span> <span class="o">=</span> <span class="n">validation_dataset</span><span class="o">.</span><span class="n">prefetch</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="n">AUTOTUNE</span><span class="p">)</span>
-<span class="n">test_dataset</span> <span class="o">=</span> <span class="n">test_dataset</span><span class="o">.</span><span class="n">prefetch</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+<span class="c1"># This map means data_augmentation will be called when the dataset is iterated</span>
+<span class="n">train_ds</span> <span class="o">=</span> <span class="n">train_ds</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="p">(</span><span class="n">data_augmentation</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="use-data-augmentation">
-<h3>Use data augmentation<a class="headerlink" href="#use-data-augmentation" title="Link to this heading">#</a></h3>
-<p>When you don’t have a large image dataset, it’s a good practice to artificially introduce sample diversity by applying random, yet realistic, transformations to the training images, such as rotation and horizontal flipping. This helps expose the model to different aspects of the training data and reduce <a class="reference external" href="https://www.tensorflow.org/tutorials/keras/overfit_and_underfit">overfitting</a>. You can learn more about data augmentation in this <a class="reference external" href="https://www.tensorflow.org/tutorials/images/data_augmentation">tutorial</a>.</p>
+<p>Let’s batch the data and use prefetching to optimize loading speed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_augmentation</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
-    <span class="p">[</span>
-        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">RandomFlip</span><span class="p">(</span><span class="s2">&quot;horizontal&quot;</span><span class="p">),</span>
-        <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">RandomRotation</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
-    <span class="p">]</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">data</span> <span class="k">as</span> <span class="n">tf_data</span>
+
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">64</span>
+
+<span class="n">train_ds</span> <span class="o">=</span> <span class="n">train_ds</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span><span class="o">.</span><span class="n">prefetch</span><span class="p">(</span><span class="n">tf_data</span><span class="o">.</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+<span class="n">validation_ds</span> <span class="o">=</span> <span class="n">validation_ds</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span><span class="o">.</span><span class="n">prefetch</span><span class="p">(</span><span class="n">tf_data</span><span class="o">.</span><span class="n">AUTOTUNE</span><span class="p">)</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
+<span class="n">test_ds</span> <span class="o">=</span> <span class="n">test_ds</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span><span class="o">.</span><span class="n">prefetch</span><span class="p">(</span><span class="n">tf_data</span><span class="o">.</span><span class="n">AUTOTUNE</span><span class="p">)</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Note: These layers are active only during training, when you call <code class="docutils literal notranslate"><span class="pre">Model.fit</span></code>. They are inactive when the model is used in inference mode in <code class="docutils literal notranslate"><span class="pre">Model.evaluate</span></code> or <code class="docutils literal notranslate"><span class="pre">Model.fit</span></code>.</p>
-<p>Let’s repeatedly apply these layers to the same image and see the result.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">image</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">train_dataset</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of training batches: </span><span class="si">{</span><span class="n">train_ds</span><span class="o">.</span><span class="n">cardinality</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of validation batches: </span><span class="si">{</span><span class="n">validation_ds</span><span class="o">.</span><span class="n">cardinality</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of test batches: </span><span class="si">{</span><span class="n">test_ds</span><span class="o">.</span><span class="n">cardinality</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s visualize what the first image of the first batch looks like after various random
+transformations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">train_ds</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-    <span class="n">first_image</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">first_image</span> <span class="o">=</span> <span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">augmented_image</span> <span class="o">=</span> <span class="n">data_augmentation</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">first_image</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">augmented_image</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mi">255</span><span class="p">)</span>
+        <span class="n">augmented_image</span> <span class="o">=</span> <span class="n">data_augmentation</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">first_image</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">augmented_image</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int32&quot;</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="rescale-pixel-values">
-<h3>Rescale pixel values<a class="headerlink" href="#rescale-pixel-values" title="Link to this heading">#</a></h3>
-<p>In a moment, you will download <code class="docutils literal notranslate"><span class="pre">tf.keras.applications.MobileNetV2</span></code> for use as your base model. This model expects pixel values in <code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">1]</span></code>, but at this point, the pixel values in your images are in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">255]</span></code>. To rescale them, use the preprocessing method included with the model.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocess_input</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">applications</span><span class="o">.</span><span class="n">mobilenet_v2</span><span class="o">.</span><span class="n">preprocess_input</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Note: Alternatively, you could rescale pixel values from <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">255]</span></code> to <code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">1]</span></code> using <code class="docutils literal notranslate"><span class="pre">tf.keras.layers.Rescaling</span></code>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rescale</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Rescaling</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">127.5</span><span class="p">,</span> <span class="n">offset</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Note: If using other <code class="docutils literal notranslate"><span class="pre">tf.keras.applications</span></code>, be sure to check the API doc to determine if they expect pixels in <code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">1]</span></code> or <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>, or use the included <code class="docutils literal notranslate"><span class="pre">preprocess_input</span></code> function.</p>
 </section>
-</section>
-<section id="create-the-base-model-from-the-pre-trained-convnets">
-<h2><span class="section-number">19.4. </span>Create the base model from the pre-trained convnets<a class="headerlink" href="#create-the-base-model-from-the-pre-trained-convnets" title="Link to this heading">#</a></h2>
-<p>You will create the base model from the <strong>MobileNet V2</strong> model developed at Google. This is pre-trained on the ImageNet dataset, a large dataset consisting of 1.4M images and 1000 classes. ImageNet is a research training dataset with a wide variety of categories like <code class="docutils literal notranslate"><span class="pre">jackfruit</span></code> and <code class="docutils literal notranslate"><span class="pre">syringe</span></code>. This base of knowledge will help us classify cats and dogs from our specific dataset.</p>
-<p>First, you need to pick which layer of MobileNet V2 you will use for feature extraction. The very last classification layer (on “top”, as most diagrams of machine learning models go from bottom to top) is not very useful. Instead, you will follow the common practice to depend on the very last layer before the flatten operation. This layer is called the “bottleneck layer”. The bottleneck layer features retain more generality as compared to the final/top layer.</p>
-<p>First, instantiate a MobileNet V2 model pre-loaded with weights trained on ImageNet. By specifying the <strong>include_top=False</strong> argument, you load a network that doesn’t include the classification layers at the top, which is ideal for feature extraction.</p>
+<section id="build-a-model">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Build a model</a><a class="headerlink" href="#build-a-model" title="Link to this heading">#</a></h3>
+<p>Now let’s built a model that follows the blueprint we’ve explained earlier.</p>
+<p>Note that:</p>
+<ul class="simple">
+<li><p>We add a <code class="docutils literal notranslate"><span class="pre">Rescaling</span></code> layer to scale input values (initially in the <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">255]</span></code>
+range) to the <code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">1]</span></code> range.</p></li>
+<li><p>We add a <code class="docutils literal notranslate"><span class="pre">Dropout</span></code> layer before the classification layer, for regularization.</p></li>
+<li><p>We make sure to pass <code class="docutils literal notranslate"><span class="pre">training=False</span></code> when calling the base model, so that
+it runs in inference mode, so that batchnorm statistics don’t get updated
+even after we unfreeze the base model for fine-tuning.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the base model from the pre-trained model MobileNet V2</span>
-<span class="n">IMG_SHAPE</span> <span class="o">=</span> <span class="n">IMG_SIZE</span> <span class="o">+</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span>
-<span class="n">base_model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">applications</span><span class="o">.</span><span class="n">MobileNetV2</span><span class="p">(</span>
-    <span class="n">input_shape</span><span class="o">=</span><span class="n">IMG_SHAPE</span><span class="p">,</span> <span class="n">include_top</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s2">&quot;imagenet&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">applications</span><span class="o">.</span><span class="n">MobileNetV2</span><span class="p">(</span>
+    <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">include_top</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s2">&quot;imagenet&quot;</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>This feature extractor converts each <code class="docutils literal notranslate"><span class="pre">160x160x3</span></code> image into a <code class="docutils literal notranslate"><span class="pre">5x5x1280</span></code> block of features. Let’s see what it does to an example batch of images:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_batch</span><span class="p">,</span> <span class="n">label_batch</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">))</span>
-<span class="n">feature_batch</span> <span class="o">=</span> <span class="n">base_model</span><span class="p">(</span><span class="n">image_batch</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">feature_batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="feature-extraction">
-<h2><span class="section-number">19.5. </span>Feature extraction<a class="headerlink" href="#feature-extraction" title="Link to this heading">#</a></h2>
-<p>In this step, you will freeze the convolutional base created from the previous step and to use as a feature extractor. Additionally, you add a classifier on top of it and train the top-level classifier.</p>
-<section id="freeze-the-convolutional-base">
-<h3>Freeze the convolutional base<a class="headerlink" href="#freeze-the-convolutional-base" title="Link to this heading">#</a></h3>
-<p>It is important to freeze the convolutional base before you compile and train the model. Freezing (by setting layer.trainable = False) prevents the weights in a given layer from being updated during training. MobileNet V2 has many layers, so setting the entire model’s <code class="docutils literal notranslate"><span class="pre">trainable</span></code> flag to False will freeze all of them.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_model</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">False</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="important-note-about-batchnormalization-layers">
-<h3>Important note about BatchNormalization layers<a class="headerlink" href="#important-note-about-batchnormalization-layers" title="Link to this heading">#</a></h3>
-<p>Many models contain <code class="docutils literal notranslate"><span class="pre">tf.keras.layers.BatchNormalization</span></code> layers. This layer is a special case and precautions should be taken in the context of fine-tuning, as shown later in this tutorial.</p>
-<p>When you set <code class="docutils literal notranslate"><span class="pre">layer.trainable</span> <span class="pre">=</span> <span class="pre">False</span></code>, the <code class="docutils literal notranslate"><span class="pre">BatchNormalization</span></code> layer will run in inference mode, and will not update its mean and variance statistics.</p>
-<p>When you unfreeze a model that contains BatchNormalization layers in order to do fine-tuning, you should keep the BatchNormalization layers in inference mode by passing <code class="docutils literal notranslate"><span class="pre">training</span> <span class="pre">=</span> <span class="pre">False</span></code> when calling the base model. Otherwise, the updates applied to the non-trainable weights will destroy what the model has learned.</p>
-<p>For more details, see the <a class="reference external" href="https://www.tensorflow.org/guide/keras/transfer_learning">Transfer learning guide</a>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s take a look at the base model architecture</span>
-<span class="n">base_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="add-a-classification-head">
-<h3>Add a classification head<a class="headerlink" href="#add-a-classification-head" title="Link to this heading">#</a></h3>
-<p>To generate predictions from the block of features, average over the spatial <code class="docutils literal notranslate"><span class="pre">5x5</span></code> spatial locations, using a <code class="docutils literal notranslate"><span class="pre">tf.keras.layers.GlobalAveragePooling2D</span></code> layer to convert the features to  a single 1280-element vector per image.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">global_average_layer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">GlobalAveragePooling2D</span><span class="p">()</span>
-<span class="n">feature_batch_average</span> <span class="o">=</span> <span class="n">global_average_layer</span><span class="p">(</span><span class="n">feature_batch</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">feature_batch_average</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Apply a <code class="docutils literal notranslate"><span class="pre">tf.keras.layers.Dense</span></code> layer to convert these features into a single prediction per image. You don’t need an activation function here because this prediction will be treated as a <code class="docutils literal notranslate"><span class="pre">logit</span></code>, or a raw prediction value. Positive numbers predict class 1, negative numbers predict class 0.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prediction_layer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">prediction_batch</span> <span class="o">=</span> <span class="n">prediction_layer</span><span class="p">(</span><span class="n">feature_batch_average</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">prediction_batch</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Build a model by chaining together the data augmentation, rescaling, <code class="docutils literal notranslate"><span class="pre">base_model</span></code> and feature extractor layers using the <a class="reference external" href="https://www.tensorflow.org/guide/keras/functional">Keras Functional API</a>. As previously mentioned, use <code class="docutils literal notranslate"><span class="pre">training=False</span></code> as our model contains a <code class="docutils literal notranslate"><span class="pre">BatchNormalization</span></code> layer.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">data_augmentation</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">preprocess_input</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Freeze the base_model</span>
+<span class="n">base_model</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># Create new model on top</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;catdog_input&quot;</span><span class="p">)</span>
+
+<span class="c1"># Pre-trained MobileNetV2 weights requires that input be scaled</span>
+<span class="c1"># from (0, 255) to a range of (-1., +1.), the rescaling layer</span>
+<span class="c1"># outputs: `(inputs * scale) + offset`</span>
+<span class="n">preprocess_input</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">applications</span><span class="o">.</span><span class="n">mobilenet_v2</span><span class="o">.</span><span class="n">preprocess_input</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">preprocess_input</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+
+<span class="c1"># The base model contains batchnorm layers. We want to keep them in inference mode</span>
+<span class="c1"># when we unfreeze the base model for fine-tuning, so we make sure that the</span>
+<span class="c1"># base_model is running in inference mode here.</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">base_model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">global_average_layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">outputs</span> <span class="o">=</span> <span class="n">prediction_layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">GlobalAveragePooling2D</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># Regularize with dropout</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">show_trainable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="compile-the-model">
-<h3>Compile the model<a class="headerlink" href="#compile-the-model" title="Link to this heading">#</a></h3>
-<p>Compile the model before training it. Since there are two classes, use the <code class="docutils literal notranslate"><span class="pre">tf.keras.losses.BinaryCrossentropy</span></code> loss with <code class="docutils literal notranslate"><span class="pre">from_logits=True</span></code> since the model provides a linear output.</p>
+<section id="train-the-top-layer">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Train the top layer</a><a class="headerlink" href="#train-the-top-layer" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_learning_rate</span> <span class="o">=</span> <span class="mf">0.0001</span>
-<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
-    <span class="n">optimizer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">base_learning_rate</span><span class="p">),</span>
-    <span class="n">loss</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">BinaryCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">],</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(),</span>
+    <span class="n">loss</span><span class="o">=</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">BinaryCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">BinaryAccuracy</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span><span class="p">)],</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>The 2.5 million parameters in MobileNet are frozen, but there are 1.2 thousand <em>trainable</em> parameters in the Dense layer. These are divided between two <code class="docutils literal notranslate"><span class="pre">tf.Variable</span></code> objects, the weights and biases.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">trainable_variables</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="train-the-model">
-<h3>Train the model<a class="headerlink" href="#train-the-model" title="Link to this heading">#</a></h3>
-<p>After training for 10 epochs, you should see ~94% accuracy on the validation set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initial_epochs</span> <span class="o">=</span> <span class="mi">10</span>
 
-<span class="n">loss0</span><span class="p">,</span> <span class="n">accuracy0</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">validation_dataset</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitting the top layer of the model&quot;</span><span class="p">)</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_ds</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">initial_epochs</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="n">validation_ds</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;initial loss: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">loss0</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;initial accuracy: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy0</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
-    <span class="n">train_dataset</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">initial_epochs</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="n">validation_dataset</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="learning-curves">
-<h3>Learning curves<a class="headerlink" href="#learning-curves" title="Link to this heading">#</a></h3>
+<h4><a class="toc-backref" href="#id19" role="doc-backlink">Learning Curves</a><a class="headerlink" href="#learning-curves" title="Link to this heading">#</a></h4>
 <p>Let’s take a look at the learning curves of the training and validation accuracy/loss when using the MobileNetV2 base model as a fixed feature extractor.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -864,92 +1107,42 @@
 </div>
 </div>
 </div>
-<p>Note: If you are wondering why the validation metrics are clearly better than the training metrics, the main factor is because layers like <code class="docutils literal notranslate"><span class="pre">tf.keras.layers.BatchNormalization</span></code> and <code class="docutils literal notranslate"><span class="pre">tf.keras.layers.Dropout</span></code> affect accuracy during training. They are turned off when calculating validation loss.</p>
-<p>To a lesser extent, it is also because training metrics report the average for an epoch, while validation metrics are evaluated after the epoch, so validation metrics see a model that has trained slightly longer.</p>
 </section>
 </section>
-<section id="fine-tuning">
-<h2><span class="section-number">19.6. </span>Fine tuning<a class="headerlink" href="#fine-tuning" title="Link to this heading">#</a></h2>
-<p>In the feature extraction experiment, you were only training a few layers on top of an MobileNetV2 base model. The weights of the pre-trained network were <strong>not</strong> updated during training.</p>
-<p>One way to increase performance even further is to train (or “fine-tune”) the weights of the top layers of the pre-trained model alongside the training of the classifier you added. The training process will force the weights to be tuned from generic feature maps to features associated specifically with the dataset.</p>
-<p>Note: This should only be attempted after you have trained the top-level classifier with the pre-trained model set to non-trainable. If you add a randomly initialized classifier on top of a pre-trained model and attempt to train all layers jointly, the magnitude of the gradient updates will be too large (due to the random weights from the classifier) and your pre-trained model will forget what it has learned.</p>
-<p>Also, you should try to fine-tune a small number of top layers rather than the whole MobileNet model. In most convolutional networks, the higher up a layer is, the more specialized it is. The first few layers learn very simple and generic features that generalize to almost all types of images. As you go higher up, the features are increasingly more specific to the dataset on which the model was trained. The goal of fine-tuning is to adapt these specialized features to work with the new dataset, rather than overwrite the generic learning.</p>
-<section id="un-freeze-the-top-layers-of-the-model">
-<h3>Un-freeze the top layers of the model<a class="headerlink" href="#un-freeze-the-top-layers-of-the-model" title="Link to this heading">#</a></h3>
-<p>All you need to do is unfreeze the <code class="docutils literal notranslate"><span class="pre">base_model</span></code> and set the bottom layers to be un-trainable. Then, you should recompile the model (necessary for these changes to take effect), and resume training.</p>
+<section id="fine-tuning-the-entire-model">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Fine-tuning the entire model</a><a class="headerlink" href="#fine-tuning-the-entire-model" title="Link to this heading">#</a></h3>
+<p>Finally, let’s unfreeze the base model and train the entire model end-to-end with a low learning rate.</p>
+<p>Importantly, although the base model becomes trainable, it is still running in
+inference mode since we passed <code class="docutils literal notranslate"><span class="pre">training=False</span></code> when calling it when we built the
+model. This means that the batch normalization layers inside won’t update their batch
+statistics. If they did, they would wreck havoc on the representations learned by the model so far.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_model</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">True</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s take a look to see how many layers are in the base model</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of layers in the base model: &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">base_model</span><span class="o">.</span><span class="n">layers</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unfreeze the base_model. Note that it keeps running in inference mode</span>
+<span class="c1"># since we passed `training=False` when calling it. This means that</span>
+<span class="c1"># the batchnorm layers will not update their batch statistics.</span>
+<span class="c1"># This prevents the batchnorm layers from undoing all the training</span>
+<span class="c1"># we&#39;ve done so far.</span>
+<span class="n">base_model</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">show_trainable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># Fine-tune from this layer onwards</span>
-<span class="n">fine_tune_at</span> <span class="o">=</span> <span class="mi">100</span>
-
-<span class="c1"># Freeze all the layers before the `fine_tune_at` layer</span>
-<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">base_model</span><span class="o">.</span><span class="n">layers</span><span class="p">[:</span><span class="n">fine_tune_at</span><span class="p">]:</span>
-    <span class="n">layer</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="kc">False</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="id1">
-<h3>Compile the model<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<p>As you are training a much larger model and want to readapt the pretrained weights, it is important to use a lower learning rate at this stage. Otherwise, your model could overfit very quickly.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
-    <span class="n">loss</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">BinaryCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-    <span class="n">optimizer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">RMSprop</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">base_learning_rate</span> <span class="o">/</span> <span class="mi">10</span><span class="p">),</span>
-    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">],</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="mf">1e-5</span><span class="p">),</span>  <span class="c1"># Low learning rate</span>
+    <span class="n">loss</span><span class="o">=</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">BinaryCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">BinaryAccuracy</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span><span class="p">)],</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">trainable_variables</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="continue-training-the-model">
-<h3>Continue training the model<a class="headerlink" href="#continue-training-the-model" title="Link to this heading">#</a></h3>
-<p>If you trained to convergence earlier, this step will improve your accuracy by a few percentage points.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fine_tune_epochs</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">total_epochs</span> <span class="o">=</span> <span class="n">initial_epochs</span> <span class="o">+</span> <span class="n">fine_tune_epochs</span>
 
-<span class="n">history_fine</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
-    <span class="n">train_dataset</span><span class="p">,</span>
-    <span class="n">epochs</span><span class="o">=</span><span class="n">total_epochs</span><span class="p">,</span>
-    <span class="n">initial_epoch</span><span class="o">=</span><span class="n">history</span><span class="o">.</span><span class="n">epoch</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
-    <span class="n">validation_data</span><span class="o">=</span><span class="n">validation_dataset</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="n">fine_epochs</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitting the end-to-end model&quot;</span><span class="p">)</span>
+<span class="n">history_fine</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_ds</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">fine_epochs</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="n">validation_ds</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>After a few epochs, fine-tuning gains us a nice improvement here.
+Let’s evaluate the model on the test dataset:</p>
 <p>Let’s take a look at the learning curves of the training and validation accuracy/loss when fine-tuning the last few layers of the MobileNetV2 base model and training the classifier on top of it. The validation loss is much higher than the training loss, so you may get some overfitting.</p>
 <p>You may also get some overfitting as the new training set is relatively small and similar to the original MobileNetV2 datasets.</p>
-<p>After fine tuning the model nearly reaches 98% accuracy on the validation set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">acc</span> <span class="o">+=</span> <span class="n">history_fine</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">]</span>
@@ -989,27 +1182,25 @@
 </div>
 </div>
 </div>
-</section>
-<section id="evaluation-and-prediction">
-<h3>Evaluation and prediction<a class="headerlink" href="#evaluation-and-prediction" title="Link to this heading">#</a></h3>
-<p>Finally you can verify the performance of the model on new data using test set.</p>
+<section id="test">
+<h4><a class="toc-backref" href="#id21" role="doc-backlink">Test</a><a class="headerlink" href="#test" title="Link to this heading">#</a></h4>
+<p>Evaluate the final model against the test set!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loss</span><span class="p">,</span> <span class="n">accuracy</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test accuracy :&quot;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_loss</span><span class="p">,</span> <span class="n">test_accuracy</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_ds</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test loss: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">test_loss</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test accuracy: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">test_accuracy</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>And now you are all set to use this model to predict if your pet is a cat or dog.</p>
+<p>Predict if your pet is a cat or dog!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retrieve a batch of images from the test set</span>
-<span class="n">image_batch</span><span class="p">,</span> <span class="n">label_batch</span> <span class="o">=</span> <span class="n">test_dataset</span><span class="o">.</span><span class="n">as_numpy_iterator</span><span class="p">()</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="n">image_batch</span><span class="p">,</span> <span class="n">label_batch</span> <span class="o">=</span> <span class="n">test_ds</span><span class="o">.</span><span class="n">as_numpy_iterator</span><span class="p">()</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
 <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_on_batch</span><span class="p">(</span><span class="n">image_batch</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-
-<span class="c1"># Apply a sigmoid since our model returns logits</span>
-<span class="n">predictions</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
 <span class="n">predictions</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">predictions</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predictions:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">predictions</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
@@ -1019,7 +1210,7 @@
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image_batch</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">class_names</span><span class="p">[</span><span class="n">predictions</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Predicted: </span><span class="si">{}</span><span class="s2"> | Label: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">label_batch</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1028,42 +1219,205 @@
 </section>
 </section>
 <section id="save-the-model">
-<h2><span class="section-number">19.7. </span>Save the model<a class="headerlink" href="#save-the-model" title="Link to this heading">#</a></h2>
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Save the Model</a><a class="headerlink" href="#save-the-model" title="Link to this heading">#</a></h3>
 <p>We don’t want to lose our work once our Colab instance shuts down! Zip the full Keras model and then download it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the model</span>
-<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;cat-dog-tuned&quot;</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;cat-dog-mnv2.keras&quot;</span>
 <span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p><strong>Download</strong> your model to your local computer!</p>
+<ul class="simple">
+<li><p>You can use <code class="docutils literal notranslate"><span class="pre">scp</span></code> to move it between devices</p></li>
+<li><p>You can use <a class="reference external" href="https://keras.io/api/models/model_saving_apis/model_saving_and_loading/"><code class="docutils literal notranslate"><span class="pre">keras.saving.load_model()</span></code></a> to load the saved model</p></li>
+</ul>
+</section>
+<section id="tensorflow-lite-conversion">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">TensorFlow Lite Conversion</a><a class="headerlink" href="#tensorflow-lite-conversion" title="Link to this heading">#</a></h3>
+<p>We will ultimately be executing this model on the Raspberry Pi 5, which is well-suited to TensorFlow Lite
+(<a class="reference external" href="https://developers.googleblog.com/en/tensorflow-lite-is-now-litert/">which is now LiteRT</a>)</p>
+<p>When we do this we will use the default <a class="reference external" href="https://www.tensorflow.org/model_optimization/guide/quantization/post_training">full integer quantizaiton of weights and activations</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Optional, for downloading</span>
-<span class="o">!</span>zip<span class="w"> </span>-r<span class="w"> </span>cat-dog-tuned.zip<span class="w"> </span>cat-dog-tuned/
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">converter</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">lite</span><span class="o">.</span><span class="n">TFLiteConverter</span><span class="o">.</span><span class="n">from_keras_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="c1"># Default optimization to int8</span>
+<span class="n">converter</span><span class="o">.</span><span class="n">optimizations</span> <span class="o">=</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">lite</span><span class="o">.</span><span class="n">Optimize</span><span class="o">.</span><span class="n">DEFAULT</span><span class="p">]</span>
+<span class="n">tflite_model</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+
+<span class="c1"># Show size of converted model in MB</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model size in MB:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tflite_model</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span><span class="p">)</span>
+
+<span class="n">tflite_model_path</span> <span class="o">=</span> <span class="s2">&quot;cat-dog-mnv2.tflite&quot;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">tflite_model_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tflite_model</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model written to&quot;</span><span class="p">,</span> <span class="n">tflite_model_path</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="summary">
-<h2><span class="section-number">19.8. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>Using a pre-trained model for feature extraction</strong>:  When working with a small dataset, it is a common practice to take advantage of features learned by a model trained on a larger dataset in the same domain. This is done by instantiating the pre-trained model and adding a fully-connected classifier on top. The pre-trained model is “frozen” and only the weights of the classifier get updated during training.
-In this case, the convolutional base extracted all the features associated with each image and you just trained a classifier that determines the image class given that set of extracted features.</p></li>
-<li><p><strong>Fine-tuning a pre-trained model</strong>: To further improve performance, one might want to repurpose the top-level layers of the pre-trained models to the new dataset via fine-tuning.
-In this case, you tuned your weights such that your model learned high-level features specific to the dataset. This technique is usually recommended when the training dataset is large and very similar to the original dataset that the pre-trained model was trained on.</p></li>
-</ul>
-<p>To learn more, visit the <a class="reference external" href="https://www.tensorflow.org/guide/keras/transfer_learning">Transfer learning guide</a>.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="lab-workday">
-<h1><span class="section-number">20. </span>Lab Workday<a class="headerlink" href="#lab-workday" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="lab">
+<h1><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">20. </span>Lab</a><a class="headerlink" href="#lab" title="Link to this heading">#</a></h1>
+<p>Our goals for the lab are to:</p>
+<ol class="arabic simple">
+<li><p>Deploy tflite models to a Raspberry Pi using <a class="reference external" href="https://ai.google.dev/edge/litert">LiteRT</a></p></li>
+<li><p>Benchmark MobilenetV2 vs. MobilenetV3Small</p></li>
+<li><p>Conduct live inference of cats vs. dogs!!!</p></li>
+</ol>
+<section id="litert">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">20.1. </span>LiteRT</a><a class="headerlink" href="#litert" title="Link to this heading">#</a></h2>
+<p>The full TensorFlow package is for <em>training</em> models or conducting inference in a cloud environment.</p>
+<p>For an edge inference deployment we want something lighter weight… meaning compute and memory optimized for constrained devices.</p>
+<p>Google pioneered this with TensorFlow Lite, which has since <a class="reference external" href="https://developers.googleblog.com/en/tensorflow-lite-is-now-litert/">been re-imagined as LiteRT</a>.</p>
+<p>Although it supports PyTorch and JAX, LiteRT is baked into TensorFlow, so we can directly test our model prior to deploying to an edge device!</p>
+<blockquote>
+<div><p>LiteRT inference typically follows the following steps:</p>
+<ol class="arabic simple">
+<li><p><strong>Loading a model:</strong> load the <code class="docutils literal notranslate"><span class="pre">.tflite</span></code> model into memory, which contains the model’s execution graph.</p></li>
+<li><p><strong>Transforming data:</strong> Transform input data into the expected format and dimensions. Raw input data for the model generally does not match the input data format expected by the model. For example, you might need to resize an image or change the image format to be compatible with the model.</p></li>
+<li><p><strong>Running inference:</strong> Execute the LiteRT model to make predictions. This step involves using the LiteRT API to execute the model. It involves a few steps such as building the interpreter, and allocating tensors.</p></li>
+<li><p><strong>Interpreting output:</strong> Interpret the output tensors in a meaningful way that’s useful in your application. For example, a model might return only a list of probabilities. It’s up to you to map the probabilities to relevant categories and format the output.</p></li>
+</ol>
+<p>~ <a class="reference external" href="https://ai.google.dev/edge/litert/inference">Get started with LiteRT</a></p>
+</div></blockquote>
+<section id="signatures">
+<h3>Signatures<a class="headerlink" href="#signatures" title="Link to this heading">#</a></h3>
+<p>If you read <a class="reference external" href="https://ai.google.dev/edge/litert/inference#run-python">LiteRT Python</a> and <a class="reference external" href="https://ai.google.dev/edge/litert/models/signatures">Signatures in LiteRT</a>… it only sort of helps. And because this software is so new, the LLMs of the world only sort of help. So we’ll walk through it.</p>
+<p>To run LiteRT inference we need an <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/lite/Interpreter"><strong>interpreter</strong></a> that will load the model, manage memory, and can be invoked to process a sample through the model’s graph.</p>
+<blockquote>
+<div><p>The LiteRT interpreter uses a static graph ordering and a custom (less-dynamic) memory allocator to ensure minimal load, initialization, and execution latency.</p>
+</div></blockquote>
+<p><em>Signatures</em> are the input and output specifications for a TensorFlow model.</p>
+<p>Signatures must be retained when converting the model from TensorFlow to tflite, but the <a class="reference external" href="https://ai.google.dev/edge/litert/models/signatures#from_keras_model">Keras model converter API uses the default signatures automatically</a>. That’s good for us!</p>
+<p>Before running this cell, upload your <code class="docutils literal notranslate"><span class="pre">cat-dog-mnv2.tflite</span></code> model to wherever your notebook is running, if it’s not already there.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This import is for testing with the TensorFlow only.</span>
+<span class="c1"># On the Pi you will need to use from ai_edge_litert.interpreter import Interpreter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">lite</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="c1"># Open the model</span>
+<span class="n">model_path</span> <span class="o">=</span> <span class="s2">&quot;cat-dog-mnv2.tflite&quot;</span>
+<span class="n">interpreter</span> <span class="o">=</span> <span class="n">lite</span><span class="o">.</span><span class="n">Interpreter</span><span class="p">(</span><span class="n">model_path</span><span class="o">=</span><span class="n">model_path</span><span class="p">)</span>
+<span class="c1"># Allocate the model in memory. Should always be called before doing inference</span>
+<span class="n">interpreter</span><span class="o">.</span><span class="n">allocate_tensors</span><span class="p">()</span>
+
+<span class="c1"># Show the model&#39;s signature dict</span>
+<span class="n">signatures</span> <span class="o">=</span> <span class="n">interpreter</span><span class="o">.</span><span class="n">get_signature_list</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">signatures</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This should print something like this (expanded here to be easier to see).</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="err">&#39;servi</span><span class="kc">n</span><span class="err">g_de</span><span class="kc">fault</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="err">&#39;i</span><span class="kc">n</span><span class="err">pu</span><span class="kc">ts</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&#39;ca</span><span class="kc">t</span><span class="err">dog_i</span><span class="kc">n</span><span class="err">pu</span><span class="kc">t</span><span class="err">&#39;</span><span class="p">],</span>
+<span class="w">        </span><span class="err">&#39;ou</span><span class="kc">t</span><span class="err">pu</span><span class="kc">ts</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&#39;ou</span><span class="kc">t</span><span class="err">pu</span><span class="kc">t</span><span class="err">_</span><span class="mi">0</span><span class="err">&#39;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It is possible to have multiple inputs/outputs to a model, but ours has just one. What we really need are the details for <code class="docutils literal notranslate"><span class="pre">inputs</span></code> and <code class="docutils literal notranslate"><span class="pre">outputs</span></code>, such as the expected <strong>shape</strong>.</p>
+</section>
+<section id="invoking">
+<h3>Invoking<a class="headerlink" href="#invoking" title="Link to this heading">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I’m reasonably sure that <code class="docutils literal notranslate"><span class="pre">serving_default</span></code> is a reliable key, but if your signature key is different make sure you change it below.</p>
+</div>
+<p>We will create a Signature Runner for invoking our model.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The input and output details are extremely helpful for debugging!</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create callable object that runs inference based on signatures</span>
+<span class="n">fn</span> <span class="o">=</span> <span class="n">interpreter</span><span class="o">.</span><span class="n">get_signature_runner</span><span class="p">(</span>
+    <span class="s2">&quot;serving_default&quot;</span>
+<span class="p">)</span>  <span class="c1"># Must match top level key from get_signature_list()</span>
+
+<span class="c1"># Print input and output details</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input details:</span><span class="se">\n</span><span class="si">{</span><span class="n">fn</span><span class="o">.</span><span class="n">get_input_details</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output details:</span><span class="se">\n</span><span class="si">{</span><span class="n">fn</span><span class="o">.</span><span class="n">get_output_details</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As a test, let’s just give the model a random numpy array of the correct shape!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Should match the shape from catdog_input[shape]</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Invoke inference</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">catdog_input</span><span class="o">=</span><span class="n">sample</span><span class="p">)</span>  <span class="c1"># Key matches top key from get_input_details()</span>
+<span class="c1"># Extract the result fom the batch returned</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="s2">&quot;output_0&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Key matches top key from get_output_details()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="litert-summary">
+<h3>LiteRT Summary<a class="headerlink" href="#litert-summary" title="Link to this heading">#</a></h3>
+<p>That was a lot. Let’s break it down again:</p>
+<ol class="arabic simple">
+<li><p>We opened our <code class="docutils literal notranslate"><span class="pre">tflite</span></code> model via a LiteRT <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/lite/Interpreter">Interpreter</a>.</p></li>
+<li><p>We called <code class="docutils literal notranslate"><span class="pre">interpreter.allocate_tensors()</span></code> to reserve space in memory for our model. The input and output layers will be static, while the runtime intelligently manages the hidden layers in the constrained memory.</p></li>
+<li><p>We used <code class="docutils literal notranslate"><span class="pre">get_signature_list()</span></code> to view the labels given to our input and output layers by Keras during model conversion.</p></li>
+<li><p>We provided those signatures to <code class="docutils literal notranslate"><span class="pre">get_signature_runner()</span></code>, which created an object that can use the input and output details of the signature to easily invoke the model.</p></li>
+<li><p>We conducted inference on our model by calling the Signature Runner object and passing a data sample to the input signature.</p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Reminder that this demo was with the full install of TensorFlow. On your edge device you should be
+<a class="reference external" href="https://pypi.org/project/ai-edge-litert/">installing LiteRT</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>ai-edge-litert
+</pre></div>
+</div>
+<p>Then import</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ai_edge_litert.interpreter</span><span class="w"> </span><span class="kn">import</span> <span class="n">Interpreter</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="live-inference">
-<h1><span class="section-number">21. </span>🐱 🐶 Live Inference<a class="headerlink" href="#live-inference" title="Link to this heading">#</a></h1>
+<h1><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">21. </span>🐱 🐶 Live Inference</a><a class="headerlink" href="#live-inference" title="Link to this heading">#</a></h1>
+<p>Deliverables:</p>
+<ul class="simple">
+<li><p>Upload your code to a GitHub repository and submit to Gradescope</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Random numpy array of shape (1, 150, 150, 3)</span>
+<span class="n">input_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1131,38 +1485,48 @@ In this case, you tuned your weights such that your model learned high-level fea
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">19. Lab 4: Cats vs. Dogs</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">19.1. Pre-reading</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">19.2. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing">19.3. Data preprocessing</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-download">Data download</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-the-dataset-for-performance">Configure the dataset for performance</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-data-augmentation">Use data augmentation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rescale-pixel-values">Rescale pixel values</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">19. Lab 3: Transfer Learning with Cats vs. Dogs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">19.1. Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#freezing-layers-understanding-the-trainable-attribute">Freezing layers: understanding the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-setting-of-the-trainable-attribute">Recursive setting of the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-typical-transfer-learning-workflow">The typical transfer-learning workflow</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning">Fine-tuning</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-base-model-from-the-pre-trained-convnets">19.4. Create the base model from the pre-trained convnets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-extraction">19.5. Feature extraction</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#freeze-the-convolutional-base">Freeze the convolutional base</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-note-about-batchnormalization-layers">Important note about BatchNormalization layers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-classification-head">Add a classification head</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compile-the-model">Compile the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">Train the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-curves">Learning curves</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning">19.6. Fine tuning</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-freeze-the-top-layers-of-the-model">Un-freeze the top layers of the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Compile the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continue-training-the-model">Continue training the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-and-prediction">Evaluation and prediction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-lab">19.2. Pre-lab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-data">Getting the data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#standardizing-the-data">Standardizing the data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-random-data-augmentation">Using random data augmentation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-model">19.7. Save the model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">19.8. Summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-a-model">Build a model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-top-layer">Train the top layer</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-curves">Learning Curves</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-workday">20. Lab Workday</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning-the-entire-model">Fine-tuning the entire model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#test">Test</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-the-model">Save the Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensorflow-lite-conversion">TensorFlow Lite Conversion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab">20. Lab</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#litert">20.1. LiteRT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signatures">Signatures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invoking">Invoking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#litert-summary">LiteRT Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#live-inference">21. 🐱 🐶 Live Inference</a></li>
 </ul>
 
