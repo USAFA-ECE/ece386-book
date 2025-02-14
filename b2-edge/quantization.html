@@ -60,6 +60,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'b2-edge/quantization';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -446,7 +448,38 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">14.1. Pre-reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">14.1. Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types-and-sizes">14.2. Data Types and Sizes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integer-types">Integer Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floating-point-types">Floating Point Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bfloat16">bfloat16</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#bfloat16-on-arm-processors">bfloat16 on ARM processors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-point-types">Fixed Point Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#computation-with-q-numbers">Computation with Q Numbers</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#int8-example">int8 Example</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#q7-example">Q7 Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-between-types">14.3. Conversion between types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#downcasting">Downcasting</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#downcast-a-model">Downcast a Model</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-quantization">Linear Quantization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantization-in-litert">14.4. Quantization in LiteRT</a></li>
 </ul>
             </nav>
         </div>
@@ -459,10 +492,576 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="quantization">
-<h1><span class="section-number">14. </span>Quantization<a class="headerlink" href="#quantization" title="Link to this heading">#</a></h1>
+<h1><a class="toc-backref" href="#id2" role="doc-backlink"><span class="section-number">14. </span>Quantization</a><a class="headerlink" href="#quantization" title="Link to this heading">#</a></h1>
 <section id="pre-reading">
-<h2><span class="section-number">14.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">14.1. </span>Pre-reading</a><a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <p>Watch the video <strong>DeepLearningAI-Quantization_Fundamentals-Handling_Big_Models</strong> posted in Teams</p>
+<section id="objectives">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Objectives</a><a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Describe different data types supported by ARM, PyTorch, and TensorFlow Lite.</p></li>
+<li><p>Quantize data into different data types.</p></li>
+<li><p>Assess the impact on memory usage of quantization.</p></li>
+</ol>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#quantization" id="id2">Quantization</a></p>
+<ul>
+<li><p><a class="reference internal" href="#pre-reading" id="id3">Pre-reading</a></p>
+<ul>
+<li><p><a class="reference internal" href="#objectives" id="id4">Objectives</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#data-types-and-sizes" id="id5">Data Types and Sizes</a></p>
+<ul>
+<li><p><a class="reference internal" href="#integer-types" id="id6">Integer Types</a></p></li>
+<li><p><a class="reference internal" href="#floating-point-types" id="id7">Floating Point Types</a></p>
+<ul>
+<li><p><a class="reference internal" href="#bfloat16" id="id8">bfloat16</a></p>
+<ul>
+<li><p><a class="reference internal" href="#bfloat16-on-arm-processors" id="id9">bfloat16 on ARM processors</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#fixed-point-types" id="id10">Fixed Point Types</a></p>
+<ul>
+<li><p><a class="reference internal" href="#computation-with-q-numbers" id="id11">Computation with Q Numbers</a></p>
+<ul>
+<li><p><a class="reference internal" href="#int8-example" id="id12">int8 Example</a></p></li>
+<li><p><a class="reference internal" href="#q7-example" id="id13">Q7 Example</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#conversion-between-types" id="id14">Conversion between types</a></p>
+<ul>
+<li><p><a class="reference internal" href="#downcasting" id="id15">Downcasting</a></p>
+<ul>
+<li><p><a class="reference internal" href="#downcast-a-model" id="id16">Downcast a Model</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#linear-quantization" id="id17">Linear Quantization</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#quantization-in-litert" id="id18">Quantization in LiteRT</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install -q torch
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="data-types-and-sizes">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">14.2. </span>Data Types and Sizes</a><a class="headerlink" href="#data-types-and-sizes" title="Link to this heading">#</a></h2>
+<p>*Some of this content is from <a class="reference external" href="https://learn.deeplearning.ai/courses/quantization-fundamentals/lesson/dig9h/data-types-and-sizes">DeepLearning AI “Quantization Fundamentals”</a></p>
+<p>PyTorch and TensorFlow both support various data types. Many - but not all - of these are familiar to you from your experience with C programming.</p>
+<p>This course has thusfar focussed on TensorFlow, but PyTorch has better support for this sort of stuff, particularly as HuggingFace and the rest of the community continues to favor PyTorch over TensorFlow.</p>
+<section id="integer-types">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Integer Types</a><a class="headerlink" href="#integer-types" title="Link to this heading">#</a></h3>
+<p>Unsigned go from <span class="math notranslate nohighlight">\([0, 2^N -1]\)</span></p>
+<p>Signed are two’s complement and go from <span class="math notranslate nohighlight">\([-2^{N-1}, 2^{N-1}-1]\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Information of `8-bit unsigned integer`</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">iinfo</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Information of `8-bit (signed) integer`</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">iinfo</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Information of `16-bit (signed) integer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Information of `32-bit (signed) integer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Information of `64-bit (signed) integer</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="floating-point-types">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Floating Point Types</a><a class="headerlink" href="#floating-point-types" title="Link to this heading">#</a></h3>
+<p>The decimal “floats”, and the number is expressed as a base and exponent.</p>
+<p>IEEE 754 single-precision <strong>FP32</strong> has:</p>
+<ul class="simple">
+<li><p>1 sign bit</p></li>
+<li><p>8 exponent bits</p></li>
+<li><p>23 fraction bits</p></li>
+</ul>
+<p>But there are other formats!</p>
+<p><img alt="floating point formats" src="https://frankdenneman.nl/wp-content/uploads/2022/07/FP16-FP32-BFfloat16-50dpi.png" /></p>
+<p>Python defaults to FP64 for float data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Information of `64-bit floating point`</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Information of `32-bit floating point`</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Information of `16-bit floating point`</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># by default, python stores float data in fp64</span>
+<span class="n">value</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">format</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;.60f&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tensor_fp64</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">tensor_fp32</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">tensor_fp16</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">)</span>
+<span class="n">tensor_bf16</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fp64 tensor: </span><span class="si">{</span><span class="nb">format</span><span class="p">(</span><span class="n">tensor_fp64</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span><span class="w"> </span><span class="s1">&#39;.60f&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fp32 tensor: </span><span class="si">{</span><span class="nb">format</span><span class="p">(</span><span class="n">tensor_fp32</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span><span class="w"> </span><span class="s1">&#39;.60f&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fp16 tensor: </span><span class="si">{</span><span class="nb">format</span><span class="p">(</span><span class="n">tensor_fp16</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span><span class="w"> </span><span class="s1">&#39;.60f&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bf16 tensor: </span><span class="si">{</span><span class="nb">format</span><span class="p">(</span><span class="n">tensor_bf16</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span><span class="w"> </span><span class="s1">&#39;.60f&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># More on this below</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="bfloat16">
+<h4><a class="toc-backref" href="#id8" role="doc-backlink">bfloat16</a><a class="headerlink" href="#bfloat16" title="Link to this heading">#</a></h4>
+<p>Developed by Google Brian, <strong>bfloat16</strong> has approximately the same dynamic range as 32-bit float, but only has 8-bit precision instead of float32’s 24-bits of precision.</p>
+<p>Most machine learning applications do not require single-precision, but simply casting to FP16 sacrifices dynamic range.
+The smaller size of bfloat16 numbers allow for more efficient memory usage and calculation speed compared to float32.</p>
+<p>See <a class="reference external" href="https://en.wikipedia.org/wiki/Bfloat16_floating-point_format">bfloat16 Wikipedia</a> for more!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Information of `16-bit brain floating point (bfloat16)`</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="bfloat16-on-arm-processors">
+<h5><a class="toc-backref" href="#id9" role="doc-backlink">bfloat16 on ARM processors</a><a class="headerlink" href="#bfloat16-on-arm-processors" title="Link to this heading">#</a></h5>
+<blockquote>
+<div><p>Recent Arm processors support the BFloat16 (BF16) number format in PyTorch. BFloat16 provides improved performance and smaller memory footprint with the same dynamic range. You might experience a drop in model inference accuracy with BFloat16, but the impact is acceptable for the majority of applications. ~ <a class="reference external" href="https://learn.arm.com/install-guides/pytorch/">ARM Learn: PyTorch</a></p>
+</div></blockquote>
+<p>To check if your system includes BFloat16, use the <code class="docutils literal notranslate"><span class="pre">lscpu</span></code> command:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Will print flags if your processor supports BFloat16</span>
+<span class="c1"># If result is blank you do not have a processor with BFloat16.</span>
+<span class="o">!</span>lscpu<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>bf16
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="fixed-point-types">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Fixed Point Types</a><a class="headerlink" href="#fixed-point-types" title="Link to this heading">#</a></h3>
+<p>We previously discussed the CMSIS support in ARM processors and how they operate on the Q number format.</p>
+<ul class="simple">
+<li><p>A Q number has a sign bit followed by a fixed number of bits to represent the integer value.</p></li>
+<li><p>The remaining bits represent the fractional part of the number.</p></li>
+<li><p>Signed Q numbers are stored as two’s complement values.</p></li>
+<li><p>A Q number is typically referred to by the number of fractional bits it uses so Q7 has 7 fractional places.</p></li>
+</ul>
+<p>The fractional bits are represented as negative powers of two.</p>
+<p><img alt="Fixed Point Representation" src="https://media.geeksforgeeks.org/wp-content/uploads/20220728220542/geeksforgeeksbinarypointrepresentation.png" /></p>
+<p>The CMSIS DSP library functions are designed to take input values in the range <code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">1)</span></code>, so the fractional section takes all the bits of the data type minus one bit that is used as a sign bit.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>CMSIS DSP Type Def</p></th>
+<th class="head"><p>Q number</p></th>
+<th class="head"><p>C Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Q31_t</p></td>
+<td><p>Q31</p></td>
+<td><p>Int 32</p></td>
+</tr>
+<tr class="row-odd"><td><p>Q15_t</p></td>
+<td><p>Q15</p></td>
+<td><p>Int 16</p></td>
+</tr>
+<tr class="row-even"><td><p>Q7_t</p></td>
+<td><p>Q7</p></td>
+<td><p>Int 8</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Many neural networks expect inputs in the normalized range <code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">1)</span></code>!</p>
+</div>
+<ul class="simple">
+<li><p>Neither TensorFlow or PyTorch directly support fixed-point numbers</p></li>
+<li><p>LiteRT uses floating-point numbers because they are more widely supported and almost as fast.</p></li>
+<li><p>Ultra-optimized libraries, such as some of those from EdgeImpulse <em>do</em> use these functions.</p></li>
+</ul>
+<section id="computation-with-q-numbers">
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">Computation with Q Numbers</a><a class="headerlink" href="#computation-with-q-numbers" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>Like all binary number representations, fixed-point numbers are just a collection of bits. There is no way of knowing the existence of the binary point except through agreement of those people interpreting the number. ~ <em>Digital Design and Computer Architecture, ARM Edition</em></p>
+</div></blockquote>
+<p>Because the placement of the decimal is just an agreement, <strong><code class="docutils literal notranslate"><span class="pre">int8</span></code> and <code class="docutils literal notranslate"><span class="pre">Q7</span></code> can use much of the same hardware!</strong></p>
+<p>The biggest difference is how overflows are handled for integers versus handling saturations for Q numbers.</p>
+<p>Let’s ask <a class="reference external" href="https://chatgpt.com/share/67aee249-bab8-8003-b6ef-f9e3456aef08">ChatGPT for an example</a> of multiply-accumulate with the two data types! And then have me adjust it…</p>
+<section id="int8-example">
+<h5><a class="toc-backref" href="#id12" role="doc-backlink">int8 Example</a><a class="headerlink" href="#int8-example" title="Link to this heading">#</a></h5>
+<p>Input:</p>
+<ul class="simple">
+<li><p>A = -50 (int8) → <code class="docutils literal notranslate"><span class="pre">11001110</span></code></p></li>
+<li><p>B = 30 (int8) → <code class="docutils literal notranslate"><span class="pre">00011110</span></code></p></li>
+<li><p>Accumulator (int16) = 500 → <code class="docutils literal notranslate"><span class="pre">00000001</span> <span class="pre">11110100</span></code></p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Multiply: <span class="math notranslate nohighlight">\(-50 * 30 = -1500\)</span> → <code class="docutils literal notranslate"><span class="pre">11111010</span> <span class="pre">00100100</span></code> (16-bit two’s complement)</p></li>
+<li><p>Accumulate: <span class="math notranslate nohighlight">\(500 + -1500 = -1000\)</span> → <code class="docutils literal notranslate"><span class="pre">11111100</span> <span class="pre">00001000</span></code></p></li>
+</ol>
+</section>
+<section id="q7-example">
+<h5><a class="toc-backref" href="#id13" role="doc-backlink">Q7 Example</a><a class="headerlink" href="#q7-example" title="Link to this heading">#</a></h5>
+<p>Input:</p>
+<ul class="simple">
+<li><p>A = -0.390625 (Q7) → <code class="docutils literal notranslate"><span class="pre">11001110</span></code> (same binary as int8)</p></li>
+<li><p>B = 0.234375 (Q7) → <code class="docutils literal notranslate"><span class="pre">00011110</span></code> (same binary as int8)</p></li>
+<li><p>Accumulator = 3.90625 (Q7 but with more integer bits) → <code class="docutils literal notranslate"><span class="pre">00000001</span> <span class="pre">11110100</span></code> (same binary as int16)</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Multiply: <span class="math notranslate nohighlight">\(-0.390625 * 0.234375 = -0.091552734375\)</span> → <code class="docutils literal notranslate"><span class="pre">11111010</span> <span class="pre">00100100</span></code> (still the same binary, but is -11.71875 in Q7!)</p></li>
+<li><p>Q7 format shift adjustment: <span class="math notranslate nohighlight">\(&gt;&gt;7\)</span> → <code class="docutils literal notranslate"><span class="pre">11110100</span></code> = -0.09375 (<em>close</em> to -0.09155)</p></li>
+<li><p>Accumulate: <span class="math notranslate nohighlight">\(3.90625 + -0.09375 = 3.8125\)</span> → <code class="docutils literal notranslate"><span class="pre">00000011</span> <span class="pre">11101000</span></code> (why is this so different than the int8?)</p></li>
+</ol>
+<p><strong>Conclusion:</strong> The final results are very different, but the thing to keep in mind is the <em>scaling</em> of Q7.
+The range of int8 is <span class="math notranslate nohighlight">\(2^7=128\)</span> times that of Q7, so we can compare the two by multiplying Q7 by 128.</p>
+<p>In this case, the int8 accumulator changed by a factor of <span class="math notranslate nohighlight">\(\frac{-1000-500}{500} = -3.0)\)</span></p>
+<p>Meanwhile, the Q7 accumulator changed by a factor of <span class="math notranslate nohighlight">\(\frac{488-500}{500} = -0.024)\)</span>, which if you scale by 128 is <span class="math notranslate nohighlight">\(3.072\)</span>, very close to the int8 relative change!</p>
+<p>You can play around with this using <a class="reference external" href="https://chummersone.github.io/qformat.html#converter">chummersone Q-format converter</a></p>
+</section>
+</section>
+</section>
+</section>
+<section id="conversion-between-types">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink"><span class="section-number">14.3. </span>Conversion between types</a><a class="headerlink" href="#conversion-between-types" title="Link to this heading">#</a></h2>
+<section id="downcasting">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Downcasting</a><a class="headerlink" href="#downcasting" title="Link to this heading">#</a></h3>
+<p><em>Downcasting</em> converts a type of higher precision to lower precision. It results in a loss of data.</p>
+<p>The <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.Tensor.to.html#torch.Tensor.to"><code class="docutils literal notranslate"><span class="pre">torch.Tensor.to()</span></code></a> method:</p>
+<ul class="simple">
+<li><p>Allows you to convert a tensor to a specified <a class="reference external" href="https://pytorch.org/docs/stable/tensor_attributes.html#torch.dtype"><code class="docutils literal notranslate"><span class="pre">dtype</span></code></a> (such as <code class="docutils literal notranslate"><span class="pre">uint8</span></code> or <code class="docutils literal notranslate"><span class="pre">bfloat16</span></code>)</p></li>
+<li><p>Allows you to send a tensor to a specified <a class="reference external" href="https://pytorch.org/docs/stable/tensor_attributes.html#torch.device"><code class="docutils literal notranslate"><span class="pre">device</span></code></a> (such as <code class="docutils literal notranslate"><span class="pre">cpu</span></code> or <code class="docutils literal notranslate"><span class="pre">cuda</span></code>)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># random pytorch tensor: float32, size=1000</span>
+<span class="n">tensor_fp32</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># downcast the tensor to bfloat16 using the &quot;to&quot; method</span>
+<span class="n">tensor_fp32_to_bf16</span> <span class="o">=</span> <span class="n">tensor_fp32</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;First five elements torch.float32  </span><span class="si">{</span><span class="n">tensor_fp32</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;First five elements torch.bfloat16 </span><span class="si">{</span><span class="n">tensor_fp32_to_bf16</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tensor_fp32 x tensor_fp32</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">tensor_fp32</span><span class="p">,</span> <span class="n">tensor_fp32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tensor_fp32_to_bf16 x tensor_fp32_to_bf16</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">tensor_fp32_to_bf16</span><span class="p">,</span> <span class="n">tensor_fp32_to_bf16</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="downcast-a-model">
+<h4><a class="toc-backref" href="#id16" role="doc-backlink">Downcast a Model</a><a class="headerlink" href="#downcast-a-model" title="Link to this heading">#</a></h4>
+<p>We will follow <a class="reference external" href="https://learn.deeplearning.ai/courses/quantization-fundamentals/lesson/rq9jf/loading-models-by-data-type">an example</a> to load <a class="reference external" href="https://huggingface.co/Salesforce/blip-image-captioning-base">Salesforce/blip-image-captioning-base</a> from HuggingFace. It is a model that captions images</p>
+<p>We will then inspect the model’s <strong>memory footprint</strong> in both its default float32 datatype and downcast to bfloat16.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install -q transformers requests pillow
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BlipForConditionalGeneration</span>
+
+<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;Salesforce/blip-image-captioning-base&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download model with default dtype (float32)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">BlipForConditionalGeneration</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fp32_mem_footprint</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_memory_footprint</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Footprint of the fp32 model in MBs: &quot;</span><span class="p">,</span> <span class="n">fp32_mem_footprint</span> <span class="o">/</span> <span class="mf">1e6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download model in bfloat16 format</span>
+<span class="n">model_bf16</span> <span class="o">=</span> <span class="n">BlipForConditionalGeneration</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">model_name</span><span class="p">,</span> <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bf16_mem_footprint</span> <span class="o">=</span> <span class="n">model_bf16</span><span class="o">.</span><span class="n">get_memory_footprint</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Footprint of the bf16 model in MBs: &quot;</span><span class="p">,</span> <span class="n">bf16_mem_footprint</span> <span class="o">/</span> <span class="mf">1e6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now compare the relative size of the two formats.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the relative difference of the two formats</span>
+<span class="n">relative_diff</span> <span class="o">=</span> <span class="n">bf16_mem_footprint</span> <span class="o">/</span> <span class="n">fp32_mem_footprint</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Relative diff: </span><span class="si">{</span><span class="n">relative_diff</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s compare their performance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Don&#39;t worry about understanding this code</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BlipProcessor</span>
+
+<span class="n">processor</span> <span class="o">=</span> <span class="n">BlipProcessor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_generation</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">processor</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">processor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">processor</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_image</span><span class="p">(</span><span class="n">img_url</span><span class="p">):</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">img_url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">raw</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">image</span>
+
+
+<span class="n">img_url</span> <span class="o">=</span> <span class="s2">&quot;https://storage.googleapis.com/</span><span class="se">\</span>
+<span class="s2">sfr-vision-language-research/BLIP/demo.jpg&quot;</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="n">img_url</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">500</span><span class="p">,</span> <span class="mi">350</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Result from original model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_fp32</span> <span class="o">=</span> <span class="n">get_generation</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">processor</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;fp32 Model Results:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">results_fp32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Result from downcast model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_bf16</span> <span class="o">=</span> <span class="n">get_generation</span><span class="p">(</span><span class="n">model_bf16</span><span class="p">,</span> <span class="n">processor</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bf16 Model Results:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">results_bf16</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that the original model says “a woman sitting on the beach with <strong>her</strong> dog” vs. “a woman sitting on the beach with <strong>a</strong> dog.” That tiny difference in inference is the result of accumulated errors through the large number of downcast parameters throughout the model. Nothing is free!</p>
+</section>
+</section>
+<section id="linear-quantization">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Linear Quantization</a><a class="headerlink" href="#linear-quantization" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p>Quantization is the process of mapping a large set to a small set of values.</p>
+</div></blockquote>
+<p><img alt="FP32 -&gt; INT8" src="https://developer-blogs.nvidia.com/wp-content/uploads/2021/07/qat-training-precision.png" /></p>
+<ul class="simple">
+<li><p>Most commonly converts float32 to int8.</p></li>
+<li><p>Quantization can improve performance and reduce power consumption, but it may reduce accuracy.</p></li>
+<li><p>Post-training quantization (PTQ) is performed after a model has been trained, while quantization-aware training (QAT) is performed during training.</p></li>
+<li><p>QAT typically produces better accuracy than PTQ, but it is computationally more expensive.</p></li>
+</ul>
+<p>Linear quantization is straightforward and effective.</p>
+<div class="math notranslate nohighlight">
+\[
+r = s(q-z)
+\]</div>
+<p>Where <span class="math notranslate nohighlight">\(r\)</span> is the original FP32 value; <span class="math notranslate nohighlight">\(s\)</span> is the scale; <span class="math notranslate nohighlight">\(q\)</span> is the quantized INT8 value; <span class="math notranslate nohighlight">\(z\)</span> is the zero point.</p>
+<figure class="align-default" id="id1">
+<img alt="../_images/linear_quantization_deeplearningai.png" src="../_images/linear_quantization_deeplearningai.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 14.1 </span><span class="caption-text">Linear mapping from FP32 to INT8 with <strong>scale</strong> and <strong>zero point</strong>.
+From <a class="reference external" href="https://learn.deeplearning.ai/courses/quantization-fundamentals/lesson/ugesv/quantization-theory">Quantization Fundamentals with Hugging Face</a></span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Scale and zero are found by analyzing the extreme values.</p>
+<div class="math notranslate nohighlight">
+\[
+r_{min} = s(q_{min}-z)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+r_{max} = s(q_{max}-z)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+s = (r_{max} - r_{min})/(q_{max} - q_{min})
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+z = \text{int}(\text{round}(q_{min}-r_{min}/s))
+\]</div>
+<p>As a result, the <em>larger</em> the dynamic range you are trying to quantize, the <em>poorer</em> the precision will be!</p>
+<p><img alt="symmetric dynamic range" src="https://developer-blogs.nvidia.com/wp-content/uploads/2021/07/8-bit-signed-integer-quantization.png" /></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="quantization-in-litert">
+<h2><a class="toc-backref" href="#id18" role="doc-backlink"><span class="section-number">14.4. </span>Quantization in LiteRT</a><a class="headerlink" href="#quantization-in-litert" title="Link to this heading">#</a></h2>
+<p>The <a class="reference external" href="https://ai.google.dev/edge/litert/models/quantization_spec">LiteRT 8-bit quantization specification</a> contains more detail than what we really need. But two good things to know:</p>
+<ol class="arabic simple">
+<li><p>LiteRT uses <em>signed</em> 8-bit integer quantization according to the same formula as the one given above.</p></li>
+<li><p>Activation functions are <em>asymmetric</em>, meaning the zero-point can be anywhere within the <code class="docutils literal notranslate"><span class="pre">int8</span></code> range of <code class="docutils literal notranslate"><span class="pre">[-128,</span> <span class="pre">127]</span></code>. However, model weights are <em>symmetric</em>, which forces the zero point equal to 0, which reduces the computational cost by eliminating a multiply.</p></li>
+</ol>
+<p><a class="reference external" href="https://ai.google.dev/edge/litert/models/post_training_quantization">Post-training quantization</a> comes in several varieties.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Technique</p></th>
+<th class="head text-center"><p>Benefits</p></th>
+<th class="head text-center"><p>Hardware</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>Dynamic range quantization</p></td>
+<td class="text-center"><p>4x smaller, 2x-3x speedup</p></td>
+<td class="text-center"><p>CPU</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Full integer quantization</p></td>
+<td class="text-center"><p>4x smaller, 3x+ speedup</p></td>
+<td class="text-center"><p>CPU, Edge TPU, Microcontrollers</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>Float16 quantization</p></td>
+<td class="text-center"><p>2x smaller, GPU acceleration</p></td>
+<td class="text-center"><p>CPU, GPU</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img alt="LiteRT quantization flow" src="https://ai.google.dev/edge/litert/images/models/optimization.jpg" /></p>
+<p>In this course we will focus on  <strong>Dynamic range quantization</strong>, which is the default method when converting a TF Lite model.</p>
+<blockquote>
+<div><p>Dynamic range quantization provides reduced memory usage and faster computation without you having to provide a representative dataset for calibration. This type of quantization, statically <strong>quantizes only the weights</strong> from floating point to integer at conversion time, which provides 8-bits of precision:</p>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+<span class="n">converter</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">lite</span><span class="o">.</span><span class="n">TFLiteConverter</span><span class="o">.</span><span class="n">from_saved_model</span><span class="p">(</span><span class="n">saved_model_dir</span><span class="p">)</span>
+<span class="n">converter</span><span class="o">.</span><span class="n">optimizations</span> <span class="o">=</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">lite</span><span class="o">.</span><span class="n">Optimize</span><span class="o">.</span><span class="n">DEFAULT</span><span class="p">]</span> <span class="c1"># Dynamic range quantization to int8</span>
+<span class="n">tflite_quant_model</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>To further reduce latency during inference, <strong>“dynamic-range” operators dynamically quantize activations</strong> based on their range to 8-bits and perform computations with 8-bit weights and activations. This optimization provides latencies close to fully fixed-point inferences. <strong>However, the outputs are still stored using floating point so the increased speed of dynamic-range ops is less than a full fixed-point computation.</strong></p>
+</div></blockquote>
+<p>When we run <em>inference</em> on a Raspberry Pi, for example, we should strongly consider doing this! <a class="reference internal" href="../b3-devboard/lab-cat-dog.html"><span class="std std-doc">foreshadowing 🐱🐶</span></a></p>
 </section>
 </section>
 
@@ -531,7 +1130,38 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">14.1. Pre-reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">14.1. Pre-reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types-and-sizes">14.2. Data Types and Sizes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integer-types">Integer Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#floating-point-types">Floating Point Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bfloat16">bfloat16</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#bfloat16-on-arm-processors">bfloat16 on ARM processors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-point-types">Fixed Point Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#computation-with-q-numbers">Computation with Q Numbers</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#int8-example">int8 Example</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#q7-example">Q7 Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-between-types">14.3. Conversion between types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#downcasting">Downcasting</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#downcast-a-model">Downcast a Model</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-quantization">Linear Quantization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantization-in-litert">14.4. Quantization in LiteRT</a></li>
 </ul>
   </nav></div>
 
