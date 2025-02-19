@@ -51,3 +51,7 @@ parts:
       - file: b5-final/alternative-architectures
       - file: b5-final/supercomputers
       - file: b5-final/wrapup
+  - caption: Appendix
+    numbered: false
+    chapters:
+      - file: appendix/flash-edge-impulse
