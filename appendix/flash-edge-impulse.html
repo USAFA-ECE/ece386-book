@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>18. C&amp;C: Edge Inference &#8212; ECE 386</title>
+    <title>Flash Edge Impulse Firmware to Arduino &#8212; ECE 386</title>
   
   
   
@@ -60,12 +60,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'b2-edge/cc-edge';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'appendix/flash-edge-impulse';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="19. Lab 3: Transfer Learning with Cats vs. Dogs" href="../b3-devboard/lab-cat-dog.html" />
-    <link rel="prev" title="17. Memory Management" href="memory-management.html" />
+    <link rel="prev" title="40. Wrap and Critique" href="../b5-final/wrapup.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -183,15 +182,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../b1-prediction/cc-prediction.html">10. C&amp;C: Prediction and Dimensionality</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Edge Inference</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="edge-intro.html">11. Edge Inference Intro</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab-cortex-benchmark.html">12. Lab 2: Cortex DSP Benchmark</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cortex-architecture.html">13. ARM Cortex Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quantization.html">14. Quantization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab-impulse-kws.html">15. Lab 3: Edge Impulse KWS</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/edge-intro.html">11. Edge Inference Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-cortex-benchmark.html">12. Lab 2: Cortex DSP Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/cortex-architecture.html">13. ARM Cortex Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/quantization.html">14. Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/lab-impulse-kws.html">15. Lab 3: Edge Impulse KWS</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="memory-management.html">17. Memory Management</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">18. C&amp;C: Edge Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/memory-management.html">17. Memory Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../b2-edge/cc-edge.html">18. C&amp;C: Edge Inference</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Development Boards</span></p>
 <ul class="nav bd-sidenav">
@@ -225,8 +224,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../b5-final/wrapup.html">40. Wrap and Critique</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../appendix/flash-edge-impulse.html">Flash Edge Impulse Firmware to Arduino</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Flash Edge Impulse Firmware to Arduino</a></li>
 </ul>
 
     </div>
@@ -303,7 +302,7 @@
       
       
       
-      <li><a href="https://github.com/usafa-ece/ece386-book/issues/new?title=Issue%20on%20page%20%2Fb2-edge/cc-edge.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ece386-book/issues/new?title=Issue%20on%20page%20%2Fappendix/flash-edge-impulse.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -333,7 +332,7 @@
       
       
       
-      <li><a href="../_sources/b2-edge/cc-edge.md" target="_blank"
+      <li><a href="../_sources/appendix/flash-edge-impulse.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -409,7 +408,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>C&C: Edge Inference</h1>
+    <h1>Flash Edge Impulse Firmware to Arduino</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -419,17 +418,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-study">18.1. What to Study</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-content">New content</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning Outcomes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#discuss-the-usage-of-machine-prediction-to-aid-in-making-risk-based-decisions-in-an-uncertain-or-adversarial-environment">1: Discuss the usage of machine prediction to aid in making risk-based decisions in an uncertain or adversarial environment</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#design-and-construct-a-machine-learning-training-pipeline-using-contemporary-frameworks-and-tools">2: Design and construct a machine learning training pipeline using contemporary frameworks and tools</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-the-engineering-tradeoffs-between-devices-when-deploying-models-for-inference">3: Evaluate the engineering tradeoffs between devices when deploying models for inference</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstrate-the-impact-of-computer-architecture-on-ai-computation">4: Demonstrate the impact of computer architecture on AI computation</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#edge-impulse-cli">Edge Impulse CLI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arduino-cli">Arduino CLI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dialout-group">Dialout Group</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arduino-firmware">Arduino Firmware</a></li>
 </ul>
             </nav>
         </div>
@@ -441,78 +433,92 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="c-c-edge-inference">
-<h1><span class="section-number">18. </span>C&amp;C: Edge Inference<a class="headerlink" href="#c-c-edge-inference" title="Link to this heading">#</a></h1>
-<p>This is a <strong>Clarify and Communicate</strong> lesson.
-The objective of a C&amp;C is to:</p>
-<ol class="arabic simple">
-<li><p><em>Clarify</em> any questions, perceptions, or misconceptions about the preceding lessons</p></li>
-<li><p><em>Communicate</em> what you have learned.</p></li>
-</ol>
-<p>These classes are motivated by the harsh reality that because you’ve had a smidgen of AI experience,
-people will now regard you as something of an expert and ask you all sorts of wild questions.</p>
-<p>The lesson is broken into two parts:</p>
-<p>First, an open forum for asking any question at all about the block.</p>
-<p>Second, a closed-note written quiz. This quiz will typically have a question that requires a
-written response, as well as a few multiple choice questions.
-The written response is not formatted like a normal GR; rather, it may involve more role-play,
-such as an email from your commander.</p>
-<p>The C&amp;C is graded based on your clarity of communication and your knowledge of the material.
-In some cases, the answer may be “I need to go do some research and find that out” - if so,
-specify where you’d look for the answer and approximately how long you think it would take.</p>
-<section id="what-to-study">
-<h2><span class="section-number">18.1. </span>What to Study<a class="headerlink" href="#what-to-study" title="Link to this heading">#</a></h2>
-<p>This course is cumulative, but specifically this C&amp;C will focus on…</p>
-<section id="new-content">
-<h3>New content<a class="headerlink" href="#new-content" title="Link to this heading">#</a></h3>
+  <section class="tex2jax_ignore mathjax_ignore" id="flash-edge-impulse-firmware-to-arduino">
+<h1>Flash Edge Impulse Firmware to Arduino<a class="headerlink" href="#flash-edge-impulse-firmware-to-arduino" title="Link to this heading">#</a></h1>
+<p>On your <strong>Raspberry Pi</strong> we will install edge-impulse-cli and arduino-cli.</p>
+<p>Before doing anything, let’s update the installed software.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>upgrade<span class="w"> </span>-y
+</pre></div>
+</div>
+<section id="edge-impulse-cli">
+<h2>Edge Impulse CLI<a class="headerlink" href="#edge-impulse-cli" title="Link to this heading">#</a></h2>
+<p>Now do the relevant portions from the <a class="reference external" href="https://docs.edgeimpulse.com/docs/tools/edge-impulse-cli/cli-installation#installation-linux-ubuntu-macos-and-raspbian-os">Linux installation docs</a>.</p>
+<p>Specifically,</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://dropbox.tech/machine-learning/using-machine-learning-to-index-text-from-billions-of-images">Using machine learning to index text from billions of images</a>.
-This is one of my all-time favorite blog posts.</p></li>
+<li><p>Install node</p></li>
+<li><p>Verify node version and path</p></li>
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">edge-impulse-cli</span></code></p></li>
 </ul>
+<p>After installing you need to <code class="docutils literal notranslate"><span class="pre">exit</span></code> that terminal and open a new one.</p>
+<p>Then verify it installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>edge-impulse-daemon<span class="w"> </span>--version
+</pre></div>
+</div>
 </section>
-<section id="learning-outcomes">
-<h3>Learning Outcomes<a class="headerlink" href="#learning-outcomes" title="Link to this heading">#</a></h3>
-<p>The specific outcomes in <strong>bold</strong> below will be emphasized for this C&amp;C.</p>
-<section id="discuss-the-usage-of-machine-prediction-to-aid-in-making-risk-based-decisions-in-an-uncertain-or-adversarial-environment">
-<h4>1: Discuss the usage of machine prediction to aid in making risk-based decisions in an uncertain or adversarial environment<a class="headerlink" href="#discuss-the-usage-of-machine-prediction-to-aid-in-making-risk-based-decisions-in-an-uncertain-or-adversarial-environment" title="Link to this heading">#</a></h4>
-<p>I can discuss Artificial Intelligence like a technical officer.</p>
+<section id="arduino-cli">
+<h2>Arduino CLI<a class="headerlink" href="#arduino-cli" title="Link to this heading">#</a></h2>
+<p>Install <code class="docutils literal notranslate"><span class="pre">arduino-cli</span></code> according to <a class="reference external" href="https://arduino.github.io/arduino-cli/1.1/installation/">the docs</a></p>
+<p>First, ensure <code class="docutils literal notranslate"><span class="pre">~/.local/bin</span></code> is on your PATH.</p>
+<p>The environment variable <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> is a list of directories that the OS will search for executables, <em>in order.</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This shows your home directory, which uses the ~ symbol for short</span>
+<span class="c1"># We expect it to be /home/pi/ by default, but it can be whatever!</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$HOME</span>
+
+<span class="c1"># This will print your current path.</span>
+<span class="c1"># We expect to see ~/.local/bin/ towards the end,</span>
+<span class="c1"># but instead of ~ it will be the result from the previous command</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span>
+</pre></div>
+</div>
+<p>We want to install the Arduino CLI to somewhere on our path. If we do <code class="docutils literal notranslate"><span class="pre">~/.local/bin</span></code> we don’t need <code class="docutils literal notranslate"><span class="pre">sudo</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">BINDIR</span><span class="o">=</span>~/.local/bin<span class="w"> </span>sh
+</pre></div>
+</div>
+<p>Verify installation</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>arduino-cli<span class="w"> </span>version
+</pre></div>
+</div>
+</section>
+<section id="dialout-group">
+<h2>Dialout Group<a class="headerlink" href="#dialout-group" title="Link to this heading">#</a></h2>
+<p>Lastly, we need to add your user to the Linux dialout group.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It took Capt Yarbrough two entire afternoons to figure out that this needs to be done 🫠</p>
+</div>
+<p>The dialout group grants users permissions to access serial ports and modems.
+Our Arduino board and daemon will connect to the serial port in such a way that we’ll need this.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>dialout<span class="w"> </span><span class="nv">$USER</span>
+</pre></div>
+</div>
+<p>Then reboot.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>reboot
+</pre></div>
+</div>
+<p>Once logged back in, user <code class="docutils literal notranslate"><span class="pre">pi</span></code> (or whoever you are) should be in dialout group.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span>dialout<span class="w"> </span>/etc/group
+</pre></div>
+</div>
+</section>
+<section id="arduino-firmware">
+<h2>Arduino Firmware<a class="headerlink" href="#arduino-firmware" title="Link to this heading">#</a></h2>
+<p>Follow the instructions to <a class="reference external" href="https://docs.edgeimpulse.com/docs/edge-ai-hardware/mcu/arduino-nano-33-ble-sense#id-1.-connect-the-development-board-to-your-computer">connect edge impulse to the Arduino Nano 33 BLE Sense</a>.</p>
+<p>Specifically, you need to <strong>connect the board</strong> and <strong>update firmware.</strong>
+You don’t strictly need to do the “setting keys” part, but it might be helpful.</p>
+<p><img alt="RESET to launch bootloader" src="https://docs.edgeimpulse.com/~gitbook/image?url=https%3A%2F%2F3586622393-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FGEgcCk4PkS5Pa6uBabld%252Fuploads%252Fgit-blob-c47c9b3fde5e9a23528f23e997f35a51c1e3be3e%252Fb302301-out.gif%3Falt%3Dmedia&amp;width=768&amp;dpr=2&amp;quality=100&amp;sign=347037cf&amp;sv=2" /></p>
+<p>If successful you should see a message like</p>
+<blockquote>
+<div><p>Flashed your Arduino Nano 33 BLE development board.</p>
+</div></blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You <em>can</em> do all of this on Raspberry Pi or you <em>can</em> do all of this on Windows.
+But I’ve found that:</p>
 <ol class="arabic simple">
-<li><p>I can frame a problem in terms of Prediction, Judgement, Decision, Action, Feedback and effectively communicate it to senior leaders as a way of reducing risk.</p></li>
-<li><p><strong>I can analyze the impact of trade-offs between latency and throughput during inference on the system’s ability to solve the original problem.</strong></p></li>
-<li><p>I can identify hidden factors in a dataset that may cause unintended discrimination or false confidence and make ethical recommendations on how to proceed.</p></li>
+<li><p>Installing node and these things on Windows is a bad idea.</p></li>
+<li><p>Folks like to be able to take their board and laptop out of the lab and still do work.</p></li>
 </ol>
-</section>
-<section id="design-and-construct-a-machine-learning-training-pipeline-using-contemporary-frameworks-and-tools">
-<h4>2: Design and construct a machine learning training pipeline using contemporary frameworks and tools<a class="headerlink" href="#design-and-construct-a-machine-learning-training-pipeline-using-contemporary-frameworks-and-tools" title="Link to this heading">#</a></h4>
-<p>I can use the engineering method to go from an ill-defined problem to a working training pipeline in Jupyter Notebook.</p>
-<ol class="arabic simple">
-<li><p><strong>I can wrangle a dataset so that it can be used for training.</strong></p></li>
-<li><p>I can identify an appropriate base model and loss function for a particular problem</p></li>
-<li><p>I can perform transfer learning on open-source models using PyTorch and TensorFlow Keras.</p></li>
-<li><p>I can assess model performance against test and validation datasets.</p></li>
-</ol>
-</section>
-<section id="evaluate-the-engineering-tradeoffs-between-devices-when-deploying-models-for-inference">
-<h4>3: Evaluate the engineering tradeoffs between devices when deploying models for inference<a class="headerlink" href="#evaluate-the-engineering-tradeoffs-between-devices-when-deploying-models-for-inference" title="Link to this heading">#</a></h4>
-<p>I can deploy a trained model to the right device and determine if it solves my problem.</p>
-<ol class="arabic simple">
-<li><p><strong>I can identify and apply the appropriate quantization techniques (e.g., linear quantization) and datatypes for specific hardware using PyTorch and TensorFlow Lite.</strong></p></li>
-<li><p>I can evaluate the impact of quantization on model performance relative to the base model.</p></li>
-<li><p>I can use Docker to build and publish container images for running AI inference.</p></li>
-<li><p><strong>I can deploy a model to the appropriate hardware, considering throughput, latency, power, and bandwidth constraints, and determine if it effectively solves the problem.</strong></p></li>
-</ol>
-</section>
-<section id="demonstrate-the-impact-of-computer-architecture-on-ai-computation">
-<h4>4: Demonstrate the impact of computer architecture on AI computation<a class="headerlink" href="#demonstrate-the-impact-of-computer-architecture-on-ai-computation" title="Link to this heading">#</a></h4>
-<p>I can apply ECE 281 and 485 to AI.</p>
-<ol class="arabic simple">
-<li><p><strong>I can describe the common mathematical operations within a DNN and how they are executed on computer hardware.</strong></p></li>
-<li><p>I can illustrate why GPU architecture enables higher throughput for certain operations, compared to a CPU.</p></li>
-<li><p><strong>I can illustrate why the Cortex-M4 processor can provide better inference performance with quantized models, compared to float32 models.</strong></p></li>
-<li><p>I can outline the geopolitical and defense consequences of chip manufacturing scarcity.</p></li>
-</ol>
-</section>
-</section>
+</div>
 </section>
 </section>
 
@@ -529,7 +535,7 @@ This is one of my all-time favorite blog posts.</p></li>
         },
         kernelOptions: {
             name: "python3",
-            path: "./b2-edge"
+            path: "./appendix"
         },
         predefinedOutput: true
     }
@@ -547,22 +553,13 @@ This is one of my all-time favorite blog posts.</p></li>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="memory-management.html"
+       href="../b5-final/wrapup.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">17. </span>Memory Management</p>
+        <p class="prev-next-title"><span class="section-number">40. </span>Wrap and Critique</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="../b3-devboard/lab-cat-dog.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">19. </span>Lab 3: Transfer Learning with Cats vs. Dogs</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -581,17 +578,10 @@ This is one of my all-time favorite blog posts.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-study">18.1. What to Study</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-content">New content</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning Outcomes</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#discuss-the-usage-of-machine-prediction-to-aid-in-making-risk-based-decisions-in-an-uncertain-or-adversarial-environment">1: Discuss the usage of machine prediction to aid in making risk-based decisions in an uncertain or adversarial environment</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#design-and-construct-a-machine-learning-training-pipeline-using-contemporary-frameworks-and-tools">2: Design and construct a machine learning training pipeline using contemporary frameworks and tools</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-the-engineering-tradeoffs-between-devices-when-deploying-models-for-inference">3: Evaluate the engineering tradeoffs between devices when deploying models for inference</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstrate-the-impact-of-computer-architecture-on-ai-computation">4: Demonstrate the impact of computer architecture on AI computation</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#edge-impulse-cli">Edge Impulse CLI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arduino-cli">Arduino CLI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dialout-group">Dialout Group</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arduino-firmware">Arduino Firmware</a></li>
 </ul>
   </nav></div>
 

@@ -224,6 +224,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../b5-final/supercomputers.html">39. Super Computers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../b5-final/wrapup.html">40. Wrap and Critique</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../appendix/flash-edge-impulse.html">Flash Edge Impulse Firmware to Arduino</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -419,13 +423,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prelab">15.1. Prelab</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading">Reading</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-collection">Data Collection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equipment-setup">Equipment Setup</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#edge-impulse-cli">Edge Impulse CLI</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#arduino-cli">Arduino CLI</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dialout-group">Dialout Group</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arduino-firmware">Arduino Firmware</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equipment-setup">Equipment Setup</a></li>
 </ul>
 </li>
 </ul>
@@ -526,93 +524,8 @@ Your goal is to get lots of different people saying your keyword so that you hav
 </section>
 <section id="equipment-setup">
 <h3>Equipment Setup<a class="headerlink" href="#equipment-setup" title="Link to this heading">#</a></h3>
-<p>Strictly speaking, you can wait to do equipment setup until during the lab…
-up to you to decide which type of risk you want to accept, commander!</p>
-<p>On your <strong>Raspberry Pi</strong> we will install edge-impulse-cli and arduino-cli.</p>
-<p>Before doing anything, let’s update the installed software.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>upgrade<span class="w"> </span>-y
-</pre></div>
-</div>
-<section id="edge-impulse-cli">
-<h4>Edge Impulse CLI<a class="headerlink" href="#edge-impulse-cli" title="Link to this heading">#</a></h4>
-<p>Now do the relevant portions from the <a class="reference external" href="https://docs.edgeimpulse.com/docs/tools/edge-impulse-cli/cli-installation#installation-linux-ubuntu-macos-and-raspbian-os">Linux installation docs</a>.</p>
-<p>Specifically,</p>
-<ul class="simple">
-<li><p>Install node</p></li>
-<li><p>Verify node version and path</p></li>
-<li><p>Install <code class="docutils literal notranslate"><span class="pre">edge-impulse-cli</span></code></p></li>
-</ul>
-<p>After installing you need to <code class="docutils literal notranslate"><span class="pre">exit</span></code> that terminal and open a new one.</p>
-<p>Then verify it installed:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>edge-impulse-daemon<span class="w"> </span>--version
-</pre></div>
-</div>
-</section>
-<section id="arduino-cli">
-<h4>Arduino CLI<a class="headerlink" href="#arduino-cli" title="Link to this heading">#</a></h4>
-<p>Install <code class="docutils literal notranslate"><span class="pre">arduino-cli</span></code> according to <a class="reference external" href="https://arduino.github.io/arduino-cli/1.1/installation/">the docs</a></p>
-<p>First, ensure <code class="docutils literal notranslate"><span class="pre">~/.local/bin</span></code> is on your PATH.</p>
-<p>The environment variable <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> is a list of directories that the OS will search for executables, <em>in order.</em></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This shows your home directory, which uses the ~ symbol for short</span>
-<span class="c1"># We expect it to be /home/pi/ by default, but it can be whatever!</span>
-<span class="nb">echo</span><span class="w"> </span><span class="nv">$HOME</span>
-
-<span class="c1"># This will print your current path.</span>
-<span class="c1"># We expect to see ~/.local/bin/ towards the end,</span>
-<span class="c1"># but instead of ~ it will be the result from the previous command</span>
-<span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span>
-</pre></div>
-</div>
-<p>We want to install the Arduino CLI to somewhere on our path. If we do <code class="docutils literal notranslate"><span class="pre">~/.local/bin</span></code> we don’t need <code class="docutils literal notranslate"><span class="pre">sudo</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">BINDIR</span><span class="o">=</span>~/.local/bin<span class="w"> </span>sh
-</pre></div>
-</div>
-<p>Verify installation</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>arduino-cli<span class="w"> </span>version
-</pre></div>
-</div>
-</section>
-<section id="dialout-group">
-<h4>Dialout Group<a class="headerlink" href="#dialout-group" title="Link to this heading">#</a></h4>
-<p>Lastly, we need to add your user to the Linux dialout group.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>It took Capt Yarbrough two entire afternoons to figure out that this needs to be done 🫠</p>
-</div>
-<p>The dialout group grants users permissions to access serial ports and modems.
-Our Arduino board and daemon will connect to the serial port in such a way that we’ll need this.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>dialout<span class="w"> </span><span class="nv">$USER</span>
-</pre></div>
-</div>
-<p>Then reboot.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>reboot
-</pre></div>
-</div>
-<p>Once logged back in, user <code class="docutils literal notranslate"><span class="pre">pi</span></code> (or whoever you are) should be in dialout group.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span>dialout<span class="w"> </span>/etc/group
-</pre></div>
-</div>
-</section>
-</section>
-<section id="arduino-firmware">
-<h3>Arduino Firmware<a class="headerlink" href="#arduino-firmware" title="Link to this heading">#</a></h3>
-<p>Follow the instructions to <a class="reference external" href="https://docs.edgeimpulse.com/docs/edge-ai-hardware/mcu/arduino-nano-33-ble-sense#id-1.-connect-the-development-board-to-your-computer">connect edge impulse to the Arduino Nano 33 BLE Sense</a>.</p>
-<p>Specifically, you need to <strong>connect the board</strong> and <strong>update firmware.</strong>
-You don’t strictly need to do the “setting keys” part, but it might be helpful.</p>
-<p><img alt="RESET to launch bootloader" src="https://docs.edgeimpulse.com/~gitbook/image?url=https%3A%2F%2F3586622393-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FGEgcCk4PkS5Pa6uBabld%252Fuploads%252Fgit-blob-c47c9b3fde5e9a23528f23e997f35a51c1e3be3e%252Fb302301-out.gif%3Falt%3Dmedia&amp;width=768&amp;dpr=2&amp;quality=100&amp;sign=347037cf&amp;sv=2" /></p>
-<p>If successful you should see a message like</p>
-<blockquote>
-<div><p>Flashed your Arduino Nano 33 BLE development board.</p>
-</div></blockquote>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>You <em>can</em> do all of this on Raspberry Pi or you <em>can</em> do all of this on Windows.
-But I’ve found that:</p>
-<ol class="arabic simple">
-<li><p>Installing node and these things on Windows is a bad idea.</p></li>
-<li><p>Folks like to be able to take their board and laptop out of the lab and still do work.</p></li>
-</ol>
-</div>
+<p>The instructor or lab technician should help you flash the Edge Impulse firmware to your Arduino.
+Otherwise, see <a class="reference internal" href="../appendix/flash-edge-impulse.html"><span class="std std-doc">Appendix: Flash Edge Impulse Firmware to Arduino</span></a></p>
 </section>
 </section>
 </section>
@@ -877,13 +790,7 @@ we aren’t letting our thread do work.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prelab">15.1. Prelab</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading">Reading</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-collection">Data Collection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equipment-setup">Equipment Setup</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#edge-impulse-cli">Edge Impulse CLI</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#arduino-cli">Arduino CLI</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dialout-group">Dialout Group</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arduino-firmware">Arduino Firmware</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equipment-setup">Equipment Setup</a></li>
 </ul>
 </li>
 </ul>
