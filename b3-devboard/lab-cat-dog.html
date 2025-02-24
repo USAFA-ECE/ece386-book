@@ -506,7 +506,10 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#live-inference">21. 🐱 🐶 Live Inference</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#live-inference">21. 🐱 🐶 Live Inference</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-webcam">21.1. Using Webcam</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -535,7 +538,11 @@ document.write(`
 <li><p><a class="reference internal" href="#litert" id="id7">LiteRT</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#live-inference" id="id8">🐱 🐶 Live Inference</a></p></li>
+<li><p><a class="reference internal" href="#live-inference" id="id8">🐱 🐶 Live Inference</a></p>
+<ul>
+<li><p><a class="reference internal" href="#using-webcam" id="id9">Using Webcam</a></p></li>
+</ul>
+</li>
 </ul>
 </nav>
 <blockquote>
@@ -555,15 +562,15 @@ and the 2016 blog post <a class="reference external" href="https://blog.keras.io
 <h3>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h3>
 <nav class="contents local" id="id1">
 <ul class="simple">
-<li><p><a class="reference internal" href="#introduction" id="id9">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#freezing-layers-understanding-the-trainable-attribute" id="id10">Freezing layers: understanding the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a></p></li>
-<li><p><a class="reference internal" href="#recursive-setting-of-the-trainable-attribute" id="id11">Recursive setting of the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a></p></li>
-<li><p><a class="reference internal" href="#the-typical-transfer-learning-workflow" id="id12">The typical transfer-learning workflow</a></p></li>
-<li><p><a class="reference internal" href="#fine-tuning" id="id13">Fine-tuning</a></p></li>
+<li><p><a class="reference internal" href="#introduction" id="id10">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#freezing-layers-understanding-the-trainable-attribute" id="id11">Freezing layers: understanding the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a></p></li>
+<li><p><a class="reference internal" href="#recursive-setting-of-the-trainable-attribute" id="id12">Recursive setting of the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a></p></li>
+<li><p><a class="reference internal" href="#the-typical-transfer-learning-workflow" id="id13">The typical transfer-learning workflow</a></p></li>
+<li><p><a class="reference internal" href="#fine-tuning" id="id14">Fine-tuning</a></p></li>
 </ul>
 </nav>
 <section id="introduction">
-<h4><a class="toc-backref" href="#id9" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id10" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h4>
 <p><strong>Transfer learning</strong> consists of taking features learned on one problem, and
 leveraging them on a new, similar problem. For instance, features from a model that has
 learned to identify racoons may be useful to kick-start a model meant to identify tanukis.</p>
@@ -584,7 +591,7 @@ incrementally adapting the pretrained features to the new data.</p>
 transfer learning &amp; fine-tuning workflows.</p>
 </section>
 <section id="freezing-layers-understanding-the-trainable-attribute">
-<h4><a class="toc-backref" href="#id10" role="doc-backlink">Freezing layers: understanding the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a><a class="headerlink" href="#freezing-layers-understanding-the-trainable-attribute" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">Freezing layers: understanding the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a><a class="headerlink" href="#freezing-layers-understanding-the-trainable-attribute" title="Link to this heading">#</a></h4>
 <p>Layers &amp; models have three weight attributes:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">weights</span></code> is the list of all weights variables of the layer.</p></li>
@@ -679,7 +686,7 @@ non_trainable_weights: 2
 For more information, see the <a class="reference external" href="https://keras.io/getting_started/faq/#whats-the-difference-between-the-training-argument-in-call-and-the-trainable-attribute">Keras FAQ</a>.</p>
 </section>
 <section id="recursive-setting-of-the-trainable-attribute">
-<h4><a class="toc-backref" href="#id11" role="doc-backlink">Recursive setting of the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a><a class="headerlink" href="#recursive-setting-of-the-trainable-attribute" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id12" role="doc-backlink">Recursive setting of the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a><a class="headerlink" href="#recursive-setting-of-the-trainable-attribute" title="Link to this heading">#</a></h4>
 <p>If you set <code class="docutils literal notranslate"><span class="pre">trainable</span> <span class="pre">=</span> <span class="pre">False</span></code> on a model or on any layer that has sublayers,
 all children layers become non-trainable as well.</p>
 <p><strong>Example:</strong></p>
@@ -707,7 +714,7 @@ all children layers become non-trainable as well.</p>
 </div>
 </section>
 <section id="the-typical-transfer-learning-workflow">
-<h4><a class="toc-backref" href="#id12" role="doc-backlink">The typical transfer-learning workflow</a><a class="headerlink" href="#the-typical-transfer-learning-workflow" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id13" role="doc-backlink">The typical transfer-learning workflow</a><a class="headerlink" href="#the-typical-transfer-learning-workflow" title="Link to this heading">#</a></h4>
 <p>This leads us to how a typical transfer learning workflow can be implemented in Keras:</p>
 <ol class="arabic simple">
 <li><p>Instantiate a base model and load pre-trained weights into it.</p></li>
@@ -765,7 +772,7 @@ on the first workflow.</p>
 </div>
 </section>
 <section id="fine-tuning">
-<h4><a class="toc-backref" href="#id13" role="doc-backlink">Fine-tuning</a><a class="headerlink" href="#fine-tuning" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id14" role="doc-backlink">Fine-tuning</a><a class="headerlink" href="#fine-tuning" title="Link to this heading">#</a></h4>
 <p>Once your model has converged on the new data, you can try to unfreeze all or part of
 the base model and retrain the whole model end-to-end with a very low learning rate.</p>
 <p>This is an optional last step that can potentially give you incremental improvements.
@@ -820,25 +827,25 @@ training. These are the variables tracking the mean and variance of the inputs.<
 <h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">19.2. </span>Pre-lab</a><a class="headerlink" href="#pre-lab" title="Link to this heading">#</a></h2>
 <nav class="contents local" id="id2">
 <ul class="simple">
-<li><p><a class="reference internal" href="#getting-the-data" id="id14">Getting the data</a></p>
+<li><p><a class="reference internal" href="#getting-the-data" id="id15">Getting the data</a></p>
 <ul>
-<li><p><a class="reference internal" href="#standardizing-the-data" id="id15">Standardizing the data</a></p></li>
-<li><p><a class="reference internal" href="#using-random-data-augmentation" id="id16">Using random data augmentation</a></p></li>
+<li><p><a class="reference internal" href="#standardizing-the-data" id="id16">Standardizing the data</a></p></li>
+<li><p><a class="reference internal" href="#using-random-data-augmentation" id="id17">Using random data augmentation</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#build-a-model" id="id17">Build a model</a></p></li>
-<li><p><a class="reference internal" href="#train-the-top-layer" id="id18">Train the top layer</a></p>
+<li><p><a class="reference internal" href="#build-a-model" id="id18">Build a model</a></p></li>
+<li><p><a class="reference internal" href="#train-the-top-layer" id="id19">Train the top layer</a></p>
 <ul>
-<li><p><a class="reference internal" href="#learning-curves" id="id19">Learning Curves</a></p></li>
+<li><p><a class="reference internal" href="#learning-curves" id="id20">Learning Curves</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#fine-tuning-the-entire-model" id="id20">Fine-tuning the entire model</a></p>
+<li><p><a class="reference internal" href="#fine-tuning-the-entire-model" id="id21">Fine-tuning the entire model</a></p>
 <ul>
-<li><p><a class="reference internal" href="#test" id="id21">Test</a></p></li>
+<li><p><a class="reference internal" href="#test" id="id22">Test</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#save-the-model" id="id22">Save the Model</a></p></li>
-<li><p><a class="reference internal" href="#tensorflow-lite-conversion" id="id23">TensorFlow Lite Conversion</a></p></li>
+<li><p><a class="reference internal" href="#save-the-model" id="id23">Save the Model</a></p></li>
+<li><p><a class="reference internal" href="#tensorflow-lite-conversion" id="id24">TensorFlow Lite Conversion</a></p></li>
 </ul>
 </nav>
 <p>For the pre-lab, follow this end-to-end example: fine-tuning an image classification model on a cats vs. dogs dataset</p>
@@ -872,7 +879,7 @@ training. These are the variables tracking the mean and variance of the inputs.<
 </div>
 </div>
 <section id="getting-the-data">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Getting the data</a><a class="headerlink" href="#getting-the-data" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Getting the data</a><a class="headerlink" href="#getting-the-data" title="Link to this heading">#</a></h3>
 <p>First, let’s fetch the cats vs. dogs dataset using TFDS. If you have your own dataset,
 you’ll probably want to use the utility
 <code class="docutils literal notranslate"><span class="pre">keras.utils.image_dataset_from_directory</span></code> to generate similar labeled
@@ -914,7 +921,7 @@ different sizes.</p>
 </div>
 <p>We can also see that label 1 is “dog” and label 0 is “cat”.</p>
 <section id="standardizing-the-data">
-<h4><a class="toc-backref" href="#id15" role="doc-backlink">Standardizing the data</a><a class="headerlink" href="#standardizing-the-data" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id16" role="doc-backlink">Standardizing the data</a><a class="headerlink" href="#standardizing-the-data" title="Link to this heading">#</a></h4>
 <p>Our raw images have a variety of sizes. In addition, each pixel consists of 3 integer
 values between 0 and 255 (RGB level values). This isn’t a great fit for feeding a
 neural network. We need to do 2 things:</p>
@@ -952,7 +959,7 @@ of the model, when we create it.</p>
 </div>
 </section>
 <section id="using-random-data-augmentation">
-<h4><a class="toc-backref" href="#id16" role="doc-backlink">Using random data augmentation</a><a class="headerlink" href="#using-random-data-augmentation" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id17" role="doc-backlink">Using random data augmentation</a><a class="headerlink" href="#using-random-data-augmentation" title="Link to this heading">#</a></h4>
 <p>When you don’t have a large image dataset, it’s a good practice to artificially
 introduce sample diversity by applying random yet realistic transformations to
 the training images, such as random horizontal flipping or small random rotations. This
@@ -1024,7 +1031,7 @@ transformations:</p>
 </section>
 </section>
 <section id="build-a-model">
-<h3><a class="toc-backref" href="#id17" role="doc-backlink">Build a model</a><a class="headerlink" href="#build-a-model" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Build a model</a><a class="headerlink" href="#build-a-model" title="Link to this heading">#</a></h3>
 <p>Now let’s built a model that follows the blueprint we’ve explained earlier.</p>
 <p>Note that:</p>
 <ul class="simple">
@@ -1070,7 +1077,7 @@ even after we unfreeze the base model for fine-tuning.</p></li>
 </div>
 </section>
 <section id="train-the-top-layer">
-<h3><a class="toc-backref" href="#id18" role="doc-backlink">Train the top layer</a><a class="headerlink" href="#train-the-top-layer" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">Train the top layer</a><a class="headerlink" href="#train-the-top-layer" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
@@ -1093,7 +1100,7 @@ even after we unfreeze the base model for fine-tuning.</p></li>
 </div>
 </div>
 <section id="learning-curves">
-<h4><a class="toc-backref" href="#id19" role="doc-backlink">Learning Curves</a><a class="headerlink" href="#learning-curves" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id20" role="doc-backlink">Learning Curves</a><a class="headerlink" href="#learning-curves" title="Link to this heading">#</a></h4>
 <p>Let’s take a look at the learning curves of the training and validation accuracy/loss when using the MobileNetV2 base model as a fixed feature extractor.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1128,7 +1135,7 @@ even after we unfreeze the base model for fine-tuning.</p></li>
 </section>
 </section>
 <section id="fine-tuning-the-entire-model">
-<h3><a class="toc-backref" href="#id20" role="doc-backlink">Fine-tuning the entire model</a><a class="headerlink" href="#fine-tuning-the-entire-model" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Fine-tuning the entire model</a><a class="headerlink" href="#fine-tuning-the-entire-model" title="Link to this heading">#</a></h3>
 <p>Finally, let’s unfreeze the base model and train the entire model end-to-end with a low learning rate.</p>
 <p>Importantly, although the base model becomes trainable, it is still running in
 inference mode since we passed <code class="docutils literal notranslate"><span class="pre">training=False</span></code> when calling it when we built the
@@ -1201,7 +1208,7 @@ Let’s evaluate the model on the test dataset:</p>
 </div>
 </div>
 <section id="test">
-<h4><a class="toc-backref" href="#id21" role="doc-backlink">Test</a><a class="headerlink" href="#test" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id22" role="doc-backlink">Test</a><a class="headerlink" href="#test" title="Link to this heading">#</a></h4>
 <p>Evaluate the final model against the test set!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1237,7 +1244,7 @@ Let’s evaluate the model on the test dataset:</p>
 </section>
 </section>
 <section id="save-the-model">
-<h3><a class="toc-backref" href="#id22" role="doc-backlink">Save the Model</a><a class="headerlink" href="#save-the-model" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">Save the Model</a><a class="headerlink" href="#save-the-model" title="Link to this heading">#</a></h3>
 <p>We don’t want to lose our work once our Colab instance shuts down! Zip the full Keras model and then download it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1255,7 +1262,7 @@ Let’s evaluate the model on the test dataset:</p>
 </ul>
 </section>
 <section id="tensorflow-lite-conversion">
-<h3><a class="toc-backref" href="#id23" role="doc-backlink">TensorFlow Lite Conversion</a><a class="headerlink" href="#tensorflow-lite-conversion" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">TensorFlow Lite Conversion</a><a class="headerlink" href="#tensorflow-lite-conversion" title="Link to this heading">#</a></h3>
 <p>We will ultimately be executing this model on the Raspberry Pi 5, which is well-suited to TensorFlow Lite
 (<a class="reference external" href="https://developers.googleblog.com/en/tensorflow-lite-is-now-litert/">which is now LiteRT</a>)</p>
 <p>When we do this we will use the default <a class="reference external" href="https://www.tensorflow.org/model_optimization/guide/quantization/post_training">full integer quantizaiton of weights and activations</a></p>
@@ -1428,14 +1435,57 @@ Let’s evaluate the model on the test dataset:</p>
 <ul class="simple">
 <li><p>Upload your code to a GitHub repository and submit to Gradescope</p></li>
 </ul>
+<section id="using-webcam">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">21.1. </span>Using Webcam</a><a class="headerlink" href="#using-webcam" title="Link to this heading">#</a></h2>
+<p>We will use the popular OpenCV library to take a picture with the webcam and convert it to numpy.</p>
+<p>Be aware that opencv takes pictures in blue-green-red (BGR) format, which needs to be converted to RGB for… anybody that’s sane.</p>
+<p>Here is a demo that should work on your Pi if you have a webcam connected via USB.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Random numpy array of shape (1, 150, 150, 3)</span>
-<span class="n">input_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install -q opencv-python
 </pre></div>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Initialize the camera</span>
+<span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># 0 is the default camera index</span>
+
+<span class="c1"># Capture a frame</span>
+<span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="c1"># Release the camera</span>
+<span class="n">cap</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+
+<span class="c1"># Only process of ret is True</span>
+<span class="k">if</span> <span class="n">ret</span><span class="p">:</span>
+    <span class="c1"># Convert BGR (OpenCV default) to RGB for TFLite</span>
+    <span class="n">frame_rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+
+    <span class="c1"># Convert to a NumPy array</span>
+    <span class="n">img_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">frame_rgb</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Image shape:&quot;</span><span class="p">,</span> <span class="n">img_array</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># Ensure shape matches model input</span>
+
+    <span class="c1"># Preview the image</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Captured Image&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Press any key to exit.&quot;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Window stays open until key press</span>
+        <span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span>
+            <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+            <span class="k">break</span>
+
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to capture image.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1544,7 +1594,10 @@ Let’s evaluate the model on the test dataset:</p>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#live-inference">21. 🐱 🐶 Live Inference</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#live-inference">21. 🐱 🐶 Live Inference</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-webcam">21.1. Using Webcam</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>
