@@ -21,8 +21,8 @@ All assignments are submitted via Gradescope.
 | 11             | C&C      | Block 1: Machine Prediction                                                                      |
 | 12             | Prelab   | ECE 281 instruction set architecture review, Your questions about DSP reading, Arduino IDE setup |
 | 15             | Prelab   | Key word spotting (KWS)                                                                          |
-| 17             | Lab      | ARM Cortex Benchmark Report                                                                      |
-| 18             | Lab      | KWS                                                                                              |
+| 18             | Lab      | ARM Cortex Benchmark Report                                                                      |
+| 19*            | Lab      | KWS                                                                                              |
 | 19             | C&C      | Block 2: Edge Inference                                                                          |
 | 19             | Prelab   | Cats vs. Dogs                                                                                    |
 
