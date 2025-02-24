@@ -8,7 +8,6 @@
 
 # Things for training notebooks
 *.zip
-**/data/
 
 # TensorFlow models
 *.tflite
