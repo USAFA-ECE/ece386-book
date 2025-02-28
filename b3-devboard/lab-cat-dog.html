@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>19. Lab 3: Transfer Learning with Cats vs. Dogs &#8212; ECE 386</title>
+    <title>19. Lab 4: Transfer Learning with Cats vs. Dogs &#8212; ECE 386</title>
   
   
   
@@ -206,7 +206,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Development Boards</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">19. Lab 3: Transfer Learning with Cats vs. Dogs</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">19. Lab 4: Transfer Learning with Cats vs. Dogs</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="containerization.html">22. Containerization</a></li>
@@ -454,7 +454,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lab 3: Transfer Learning with Cats vs. Dogs</h1>
+    <h1>Lab 4: Transfer Learning with Cats vs. Dogs</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -464,7 +464,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">19. Lab 3: Transfer Learning with Cats vs. Dogs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">19. Lab 4: Transfer Learning with Cats vs. Dogs</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">19.1. Overview</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
@@ -504,10 +504,23 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#litert-summary">LiteRT Summary</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-webcam">20.2. Using Webcam</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmarking">20.3. Benchmarking</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measuring-cache-performance-with-perf-tool">Measuring cache performance with perf tool</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#live-inference">21. 🐱 🐶 Live Inference</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-webcam">21.1. Using Webcam</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#template">21.1. Template</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-configuration">Optional Configuration</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-code">The code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">21.2. Deliverables</a></li>
 </ul>
 </li>
 </ul>
@@ -522,12 +535,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="lab-3-transfer-learning-with-cats-vs-dogs">
-<h1><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">19. </span>Lab 3: Transfer Learning with Cats vs. Dogs</a><a class="headerlink" href="#lab-3-transfer-learning-with-cats-vs-dogs" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-4-transfer-learning-with-cats-vs-dogs">
+<h1><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">19. </span>Lab 4: Transfer Learning with Cats vs. Dogs</a><a class="headerlink" href="#lab-4-transfer-learning-with-cats-vs-dogs" title="Link to this heading">#</a></h1>
 <nav class="contents" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#lab-3-transfer-learning-with-cats-vs-dogs" id="id3">Lab 3: Transfer Learning with Cats vs. Dogs</a></p>
+<li><p><a class="reference internal" href="#lab-4-transfer-learning-with-cats-vs-dogs" id="id3">Lab 4: Transfer Learning with Cats vs. Dogs</a></p>
 <ul>
 <li><p><a class="reference internal" href="#overview" id="id4">Overview</a></p></li>
 <li><p><a class="reference internal" href="#pre-lab" id="id5">Pre-lab</a></p></li>
@@ -536,11 +549,14 @@ document.write(`
 <li><p><a class="reference internal" href="#lab" id="id6">Lab</a></p>
 <ul>
 <li><p><a class="reference internal" href="#litert" id="id7">LiteRT</a></p></li>
+<li><p><a class="reference internal" href="#using-webcam" id="id8">Using Webcam</a></p></li>
+<li><p><a class="reference internal" href="#benchmarking" id="id9">Benchmarking</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#live-inference" id="id8">🐱 🐶 Live Inference</a></p>
+<li><p><a class="reference internal" href="#live-inference" id="id10">🐱 🐶 Live Inference</a></p>
 <ul>
-<li><p><a class="reference internal" href="#using-webcam" id="id9">Using Webcam</a></p></li>
+<li><p><a class="reference internal" href="#template" id="id11">Template</a></p></li>
+<li><p><a class="reference internal" href="#deliverables" id="id12">Deliverables</a></p></li>
 </ul>
 </li>
 </ul>
@@ -562,15 +578,15 @@ and the 2016 blog post <a class="reference external" href="https://blog.keras.io
 <h3>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h3>
 <nav class="contents local" id="id1">
 <ul class="simple">
-<li><p><a class="reference internal" href="#introduction" id="id10">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#freezing-layers-understanding-the-trainable-attribute" id="id11">Freezing layers: understanding the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a></p></li>
-<li><p><a class="reference internal" href="#recursive-setting-of-the-trainable-attribute" id="id12">Recursive setting of the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a></p></li>
-<li><p><a class="reference internal" href="#the-typical-transfer-learning-workflow" id="id13">The typical transfer-learning workflow</a></p></li>
-<li><p><a class="reference internal" href="#fine-tuning" id="id14">Fine-tuning</a></p></li>
+<li><p><a class="reference internal" href="#introduction" id="id13">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#freezing-layers-understanding-the-trainable-attribute" id="id14">Freezing layers: understanding the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a></p></li>
+<li><p><a class="reference internal" href="#recursive-setting-of-the-trainable-attribute" id="id15">Recursive setting of the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a></p></li>
+<li><p><a class="reference internal" href="#the-typical-transfer-learning-workflow" id="id16">The typical transfer-learning workflow</a></p></li>
+<li><p><a class="reference internal" href="#fine-tuning" id="id17">Fine-tuning</a></p></li>
 </ul>
 </nav>
 <section id="introduction">
-<h4><a class="toc-backref" href="#id10" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id13" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h4>
 <p><strong>Transfer learning</strong> consists of taking features learned on one problem, and
 leveraging them on a new, similar problem. For instance, features from a model that has
 learned to identify racoons may be useful to kick-start a model meant to identify tanukis.</p>
@@ -591,7 +607,7 @@ incrementally adapting the pretrained features to the new data.</p>
 transfer learning &amp; fine-tuning workflows.</p>
 </section>
 <section id="freezing-layers-understanding-the-trainable-attribute">
-<h4><a class="toc-backref" href="#id11" role="doc-backlink">Freezing layers: understanding the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a><a class="headerlink" href="#freezing-layers-understanding-the-trainable-attribute" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id14" role="doc-backlink">Freezing layers: understanding the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a><a class="headerlink" href="#freezing-layers-understanding-the-trainable-attribute" title="Link to this heading">#</a></h4>
 <p>Layers &amp; models have three weight attributes:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">weights</span></code> is the list of all weights variables of the layer.</p></li>
@@ -686,7 +702,7 @@ non_trainable_weights: 2
 For more information, see the <a class="reference external" href="https://keras.io/getting_started/faq/#whats-the-difference-between-the-training-argument-in-call-and-the-trainable-attribute">Keras FAQ</a>.</p>
 </section>
 <section id="recursive-setting-of-the-trainable-attribute">
-<h4><a class="toc-backref" href="#id12" role="doc-backlink">Recursive setting of the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a><a class="headerlink" href="#recursive-setting-of-the-trainable-attribute" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id15" role="doc-backlink">Recursive setting of the <code class="docutils literal notranslate"><span class="pre">trainable</span></code> attribute</a><a class="headerlink" href="#recursive-setting-of-the-trainable-attribute" title="Link to this heading">#</a></h4>
 <p>If you set <code class="docutils literal notranslate"><span class="pre">trainable</span> <span class="pre">=</span> <span class="pre">False</span></code> on a model or on any layer that has sublayers,
 all children layers become non-trainable as well.</p>
 <p><strong>Example:</strong></p>
@@ -714,7 +730,7 @@ all children layers become non-trainable as well.</p>
 </div>
 </section>
 <section id="the-typical-transfer-learning-workflow">
-<h4><a class="toc-backref" href="#id13" role="doc-backlink">The typical transfer-learning workflow</a><a class="headerlink" href="#the-typical-transfer-learning-workflow" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id16" role="doc-backlink">The typical transfer-learning workflow</a><a class="headerlink" href="#the-typical-transfer-learning-workflow" title="Link to this heading">#</a></h4>
 <p>This leads us to how a typical transfer learning workflow can be implemented in Keras:</p>
 <ol class="arabic simple">
 <li><p>Instantiate a base model and load pre-trained weights into it.</p></li>
@@ -772,7 +788,7 @@ on the first workflow.</p>
 </div>
 </section>
 <section id="fine-tuning">
-<h4><a class="toc-backref" href="#id14" role="doc-backlink">Fine-tuning</a><a class="headerlink" href="#fine-tuning" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id17" role="doc-backlink">Fine-tuning</a><a class="headerlink" href="#fine-tuning" title="Link to this heading">#</a></h4>
 <p>Once your model has converged on the new data, you can try to unfreeze all or part of
 the base model and retrain the whole model end-to-end with a very low learning rate.</p>
 <p>This is an optional last step that can potentially give you incremental improvements.
@@ -827,25 +843,25 @@ training. These are the variables tracking the mean and variance of the inputs.<
 <h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">19.2. </span>Pre-lab</a><a class="headerlink" href="#pre-lab" title="Link to this heading">#</a></h2>
 <nav class="contents local" id="id2">
 <ul class="simple">
-<li><p><a class="reference internal" href="#getting-the-data" id="id15">Getting the data</a></p>
+<li><p><a class="reference internal" href="#getting-the-data" id="id18">Getting the data</a></p>
 <ul>
-<li><p><a class="reference internal" href="#standardizing-the-data" id="id16">Standardizing the data</a></p></li>
-<li><p><a class="reference internal" href="#using-random-data-augmentation" id="id17">Using random data augmentation</a></p></li>
+<li><p><a class="reference internal" href="#standardizing-the-data" id="id19">Standardizing the data</a></p></li>
+<li><p><a class="reference internal" href="#using-random-data-augmentation" id="id20">Using random data augmentation</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#build-a-model" id="id18">Build a model</a></p></li>
-<li><p><a class="reference internal" href="#train-the-top-layer" id="id19">Train the top layer</a></p>
+<li><p><a class="reference internal" href="#build-a-model" id="id21">Build a model</a></p></li>
+<li><p><a class="reference internal" href="#train-the-top-layer" id="id22">Train the top layer</a></p>
 <ul>
-<li><p><a class="reference internal" href="#learning-curves" id="id20">Learning Curves</a></p></li>
+<li><p><a class="reference internal" href="#learning-curves" id="id23">Learning Curves</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#fine-tuning-the-entire-model" id="id21">Fine-tuning the entire model</a></p>
+<li><p><a class="reference internal" href="#fine-tuning-the-entire-model" id="id24">Fine-tuning the entire model</a></p>
 <ul>
-<li><p><a class="reference internal" href="#test" id="id22">Test</a></p></li>
+<li><p><a class="reference internal" href="#test" id="id25">Test</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#save-the-model" id="id23">Save the Model</a></p></li>
-<li><p><a class="reference internal" href="#tensorflow-lite-conversion" id="id24">TensorFlow Lite Conversion</a></p></li>
+<li><p><a class="reference internal" href="#save-the-model" id="id26">Save the Model</a></p></li>
+<li><p><a class="reference internal" href="#tensorflow-lite-conversion" id="id27">TensorFlow Lite Conversion</a></p></li>
 </ul>
 </nav>
 <p>For the pre-lab, follow this end-to-end example: fine-tuning an image classification model on a cats vs. dogs dataset</p>
@@ -879,7 +895,7 @@ training. These are the variables tracking the mean and variance of the inputs.<
 </div>
 </div>
 <section id="getting-the-data">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">Getting the data</a><a class="headerlink" href="#getting-the-data" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Getting the data</a><a class="headerlink" href="#getting-the-data" title="Link to this heading">#</a></h3>
 <p>First, let’s fetch the cats vs. dogs dataset using TFDS. If you have your own dataset,
 you’ll probably want to use the utility
 <code class="docutils literal notranslate"><span class="pre">keras.utils.image_dataset_from_directory</span></code> to generate similar labeled
@@ -923,7 +939,7 @@ different sizes.</p>
 </div>
 <p>We can also see that label 1 is “dog” and label 0 is “cat”.</p>
 <section id="standardizing-the-data">
-<h4><a class="toc-backref" href="#id16" role="doc-backlink">Standardizing the data</a><a class="headerlink" href="#standardizing-the-data" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id19" role="doc-backlink">Standardizing the data</a><a class="headerlink" href="#standardizing-the-data" title="Link to this heading">#</a></h4>
 <p>Our raw images have a variety of sizes. In addition, each pixel consists of 3 integer
 values between 0 and 255 (RGB level values). This isn’t a great fit for feeding a
 neural network. We need to do 2 things:</p>
@@ -961,7 +977,7 @@ of the model, when we create it.</p>
 </div>
 </section>
 <section id="using-random-data-augmentation">
-<h4><a class="toc-backref" href="#id17" role="doc-backlink">Using random data augmentation</a><a class="headerlink" href="#using-random-data-augmentation" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id20" role="doc-backlink">Using random data augmentation</a><a class="headerlink" href="#using-random-data-augmentation" title="Link to this heading">#</a></h4>
 <p>When you don’t have a large image dataset, it’s a good practice to artificially
 introduce sample diversity by applying random yet realistic transformations to
 the training images, such as random horizontal flipping or small random rotations. This
@@ -1033,7 +1049,7 @@ transformations:</p>
 </section>
 </section>
 <section id="build-a-model">
-<h3><a class="toc-backref" href="#id18" role="doc-backlink">Build a model</a><a class="headerlink" href="#build-a-model" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Build a model</a><a class="headerlink" href="#build-a-model" title="Link to this heading">#</a></h3>
 <p>Now let’s built a model that follows the blueprint we’ve explained earlier.</p>
 <p>Note that:</p>
 <ul class="simple">
@@ -1080,7 +1096,7 @@ even after we unfreeze the base model for fine-tuning.</p></li>
 </div>
 </section>
 <section id="train-the-top-layer">
-<h3><a class="toc-backref" href="#id19" role="doc-backlink">Train the top layer</a><a class="headerlink" href="#train-the-top-layer" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Train the top layer</a><a class="headerlink" href="#train-the-top-layer" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
@@ -1103,7 +1119,7 @@ even after we unfreeze the base model for fine-tuning.</p></li>
 </div>
 </div>
 <section id="learning-curves">
-<h4><a class="toc-backref" href="#id20" role="doc-backlink">Learning Curves</a><a class="headerlink" href="#learning-curves" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id23" role="doc-backlink">Learning Curves</a><a class="headerlink" href="#learning-curves" title="Link to this heading">#</a></h4>
 <p>Let’s take a look at the learning curves of the training and validation accuracy/loss when using the MobileNetV2 base model as a fixed feature extractor.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1138,7 +1154,7 @@ even after we unfreeze the base model for fine-tuning.</p></li>
 </section>
 </section>
 <section id="fine-tuning-the-entire-model">
-<h3><a class="toc-backref" href="#id21" role="doc-backlink">Fine-tuning the entire model</a><a class="headerlink" href="#fine-tuning-the-entire-model" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">Fine-tuning the entire model</a><a class="headerlink" href="#fine-tuning-the-entire-model" title="Link to this heading">#</a></h3>
 <p>Finally, let’s unfreeze the base model and train the entire model end-to-end with a low learning rate.</p>
 <p>Importantly, although the base model becomes trainable, it is still running in
 inference mode since we passed <code class="docutils literal notranslate"><span class="pre">training=False</span></code> when calling it when we built the
@@ -1211,7 +1227,7 @@ Let’s evaluate the model on the test dataset:</p>
 </div>
 </div>
 <section id="test">
-<h4><a class="toc-backref" href="#id22" role="doc-backlink">Test</a><a class="headerlink" href="#test" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id25" role="doc-backlink">Test</a><a class="headerlink" href="#test" title="Link to this heading">#</a></h4>
 <p>Evaluate the final model against the test set!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1247,7 +1263,7 @@ Let’s evaluate the model on the test dataset:</p>
 </section>
 </section>
 <section id="save-the-model">
-<h3><a class="toc-backref" href="#id23" role="doc-backlink">Save the Model</a><a class="headerlink" href="#save-the-model" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">Save the Model</a><a class="headerlink" href="#save-the-model" title="Link to this heading">#</a></h3>
 <p>We don’t want to lose our work once our Colab instance shuts down! Zip the full Keras model and then download it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1265,7 +1281,7 @@ Let’s evaluate the model on the test dataset:</p>
 </ul>
 </section>
 <section id="tensorflow-lite-conversion">
-<h3><a class="toc-backref" href="#id24" role="doc-backlink">TensorFlow Lite Conversion</a><a class="headerlink" href="#tensorflow-lite-conversion" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">TensorFlow Lite Conversion</a><a class="headerlink" href="#tensorflow-lite-conversion" title="Link to this heading">#</a></h3>
 <p>We will ultimately be executing this model on the Raspberry Pi 5, which is well-suited to TensorFlow Lite
 (<a class="reference external" href="https://developers.googleblog.com/en/tensorflow-lite-is-now-litert/">which is now LiteRT</a>)</p>
 <p>When we do this we will use the default <a class="reference external" href="https://www.tensorflow.org/model_optimization/guide/quantization/post_training">full integer quantizaiton of weights and activations</a></p>
@@ -1294,12 +1310,17 @@ Let’s evaluate the model on the test dataset:</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="lab">
 <h1><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">20. </span>Lab</a><a class="headerlink" href="#lab" title="Link to this heading">#</a></h1>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>At the end of this discussion there is some template code to get you started.</p>
+</div>
 <p>Our goals for the lab are to:</p>
 <ol class="arabic simple">
 <li><p>Deploy tflite models to a Raspberry Pi using <a class="reference external" href="https://ai.google.dev/edge/litert">LiteRT</a></p></li>
-<li><p>Benchmark MobilenetV2 vs. MobilenetV3Small</p></li>
+<li><p>Benchmark our original Keras model vs. the TFLite model.</p></li>
 <li><p>Conduct live inference of cats vs. dogs!!!</p></li>
 </ol>
+<p>At the end of the lab you will submit your code to Gradescope.</p>
 <section id="litert">
 <h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">20.1. </span>LiteRT</a><a class="headerlink" href="#litert" title="Link to this heading">#</a></h2>
 <p>The full TensorFlow package is for <em>training</em> models or conducting inference in a cloud environment.</p>
@@ -1414,7 +1435,7 @@ Let’s evaluate the model on the test dataset:</p>
 <li><p>We opened our <code class="docutils literal notranslate"><span class="pre">tflite</span></code> model via a LiteRT <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/lite/Interpreter">Interpreter</a>.</p></li>
 <li><p>We called <code class="docutils literal notranslate"><span class="pre">interpreter.allocate_tensors()</span></code> to reserve space in memory for our model. The input and output layers will be static, while the runtime intelligently manages the hidden layers in the constrained memory.</p></li>
 <li><p>We used <code class="docutils literal notranslate"><span class="pre">get_signature_list()</span></code> to view the labels given to our input and output layers by Keras during model conversion.</p></li>
-<li><p>We provided those signatures to <code class="docutils literal notranslate"><span class="pre">get_signature_runner()</span></code>, which created an object that can use the input and output details of the signature to easily invoke the model.</p></li>
+<li><p>We provided those signatures to <code class="docutils literal notranslate"><span class="pre">get_signature_runner()</span></code>, which created a <code class="docutils literal notranslate"><span class="pre">SignatureRunner</span></code> that invokes the model via the the input and output signatures.</p></li>
 <li><p>We conducted inference on our model by calling the Signature Runner object and passing a data sample to the input signature.</p></li>
 </ol>
 <div class="admonition important">
@@ -1431,15 +1452,8 @@ Let’s evaluate the model on the test dataset:</p>
 </div>
 </section>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="live-inference">
-<h1><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">21. </span>🐱 🐶 Live Inference</a><a class="headerlink" href="#live-inference" title="Link to this heading">#</a></h1>
-<p>Deliverables:</p>
-<ul class="simple">
-<li><p>Upload your code to a GitHub repository and submit to Gradescope</p></li>
-</ul>
 <section id="using-webcam">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">21.1. </span>Using Webcam</a><a class="headerlink" href="#using-webcam" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">20.2. </span>Using Webcam</a><a class="headerlink" href="#using-webcam" title="Link to this heading">#</a></h2>
 <p>We will use the popular OpenCV library to take a picture with the webcam and convert it to numpy.</p>
 <p>Be aware that opencv takes pictures in blue-green-red (BGR) format, which needs to be converted to RGB for… anybody that’s sane.</p>
 <p>Here is a demo that should work on your Pi if you have a webcam connected via USB.</p>
@@ -1488,6 +1502,125 @@ Let’s evaluate the model on the test dataset:</p>
 </div>
 </div>
 </div>
+</section>
+<section id="benchmarking">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">20.3. </span>Benchmarking</a><a class="headerlink" href="#benchmarking" title="Link to this heading">#</a></h2>
+<p>To conduct the benchmarks for this lab you need to compare how long it takes to run inference on multiple images with the Keras model vs. the TFLite model.
+Additionally, you will compare the cache miss rates for each of these models.</p>
+<section id="measuring-cache-performance-with-perf-tool">
+<h3>Measuring cache performance with perf tool<a class="headerlink" href="#measuring-cache-performance-with-perf-tool" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://perfwiki.github.io/main/">perf</a> is a tool for measuring CPU performance on Linux computers.
+It works by querying hardware counters built in to the chips.</p>
+<p>Install perf on your Pi with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>linux-tools-common<span class="w"> </span>linux-tools-generic<span class="w"> </span>linux-tools-<span class="sb">`</span>uname<span class="w"> </span>-r
+</pre></div>
+</div>
+<p>Then list what options are available.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>perf<span class="w"> </span>list
+</pre></div>
+</div>
+<p>There are a lot! Some are generic and others are ARM specific.</p>
+<p>We will use the following <code class="docutils literal notranslate"><span class="pre">stat</span></code> events:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">duration_time</span></code> how long entire program took</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">user_time</span></code> how long CPU spent running our code</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">system_time</span></code> how long CPU spent doing I/O and calls to the OS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cpu_cycles</span></code> number of core clock cycles (sort of)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cache-misses</span></code> number of cache misses</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cache-references</span></code> number of cache references</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stalled-cycles-backend</span></code> CPU pipeline stalls because waiting for memory access</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">L1-dcache-loads</span></code> L1 data read</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">L1-dcache-load-misses</span></code> L2 data miss</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">l2d_cache_rd</span></code> L2 data read</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">l2d_cache_inval</span></code> L2 data invalidated (because of cache collision)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LLC-loads</span></code> Last Level (L3) data read</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LLC-load-misses</span></code> Last Level (L3) data miss</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mem_access_rd</span></code> Read memory</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">5</span></code> option runs the test 5 times and averages the results.
+The <code class="docutils literal notranslate"><span class="pre">-e</span></code> options allows you to list the events you want to record.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example command to run perf stats</span>
+sudo<span class="w"> </span>perf<span class="w"> </span>stat<span class="w"> </span>-r<span class="w"> </span><span class="m">5</span><span class="w"> </span>-e<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>duration_time,user_time,system_time,cpu_cycles,cache-misses,cache-references,stalled-cycles-backend,L1-dcache-loads,L1-dcache-load-misses,l2d_cache_rd,l2d_cache_inval,l3d_cache_rd,LLC-loads,LLC-load-misses,mem_access_rd<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>/home/opso/code/catdog/.venv/bin/python<span class="w"> </span>lite_webcam.py<span class="w"> </span>cat-dog-mnv2.tflite
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="live-inference">
+<h1><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">21. </span>🐱 🐶 Live Inference</a><a class="headerlink" href="#live-inference" title="Link to this heading">#</a></h1>
+<section id="template">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">21.1. </span>Template</a><a class="headerlink" href="#template" title="Link to this heading">#</a></h2>
+<section id="setup">
+<h3>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Plug in the USB webcam to your Raspberry Pi</p></li>
+<li><p>Open VS Code. You can either do this on your Pi or as a remote SSH connection to your Pi from your laptop.</p></li>
+<li><p>Create and source your virtual environment <code class="docutils literal notranslate"><span class="pre">.venv/</span></code></p></li>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file and copy in GitHub’s <a class="reference external" href="https://github.com/github/gitignore/blob/main/Python.gitignore">Python .gitignore</a> template</p></li>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>. This is where you will place all your dependencies.</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">ai-edge-litert</span></code> and <code class="docutils literal notranslate"><span class="pre">opencv-python</span></code> (for cv2) to your requirements file.</p></li>
+<li><p>After double checking you are in your virtual environment, run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code> to install those libraries.</p></li>
+<li><p>Copy in the gist below, but give it a better filename.</p></li>
+<li><p>Copy in your <code class="docutils literal notranslate"><span class="pre">cat-dog-mnv2.tflite</span></code> model.</p></li>
+<li><p>Execute the script and verify it prints your model’s signatures.</p></li>
+</ol>
+<section id="optional-configuration">
+<h4>Optional Configuration<a class="headerlink" href="#optional-configuration" title="Link to this heading">#</a></h4>
+<p>I <em>highly</em> recommend you…</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install pyright</span>
+pip<span class="w"> </span>install<span class="w"> </span>pyright
+</pre></div>
+</div>
+<p>and then run pyright frequently.</p>
+<p>Also, make Black run on save by installing
+<a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter">Microsoft’s Black Formatter</a>
+in VS Code. Then go to <strong>View &gt; Command Palette… and run Preferences: Open User Settings (JSON)</strong> and add the following between the <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">}</span></code>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&quot;[python]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;editor.defaultFormatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ms-python.black-formatter&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;editor.formatOnSave&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="the-code">
+<h3>The code<a class="headerlink" href="#the-code" title="Link to this heading">#</a></h3>
+<script src="https://gist.github.com/byarbrough/f2248523b726a5a93ff1234d6fe1fd24.js"></script>
+</section>
+</section>
+<section id="deliverables">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">21.2. </span>Deliverables</a><a class="headerlink" href="#deliverables" title="Link to this heading">#</a></h2>
+<p>Here is what’s actually graded.</p>
+<ol class="arabic simple">
+<li><p>In class you are able to get a picture of both furry friends and run inference on that picture with LiteRT. The prediction of the model doesn’t have to be correct, but it’s cooler if it is!</p></li>
+<li><p>Benchmark using <code class="docutils literal notranslate"><span class="pre">perf</span></code> and the events listed above. You will need to convert your loop that waits for interrupts to be a for loop that counts. Compare…</p>
+<ul class="simple">
+<li><p>Running your <code class="docutils literal notranslate"><span class="pre">.tflite</span></code> model with 10 images per run vs 40 images per run</p></li>
+<li><p>Running your <code class="docutils literal notranslate"><span class="pre">.tflite</span></code> model with LiteRT vs your <code class="docutils literal notranslate"><span class="pre">.keras</span></code> model with Keras (10 images per run)</p></li>
+</ul>
+</li>
+<li><p>Discuss the results in your <code class="docutils literal notranslate"><span class="pre">README.md</span></code>. Make sure you emphasize</p>
+<ul class="simple">
+<li><p>Relative model sizes</p></li>
+<li><p>Relative performance for more vs. fewer images per run, and why</p></li>
+<li><p>Pipeline stalls waiting for memory</p></li>
+<li><p>L2 invalidations (meaning something in the L2 cache had to be overwritten)</p></li>
+<li><p>LLC loads and misses</p></li>
+</ul>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>After you get your LiteRT file working, you can copy it to a new file and make very few changes to get Keras working.
+Refer to your Lab 1 code for how to load the model from a file.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ai-edge-litert</span></code> and <code class="docutils literal notranslate"><span class="pre">tensorflow</span></code> have different dependencies, so you <strong>cannot install them in the same virtual environment!</strong>
+Instead, make a second venv, such as <code class="docutils literal notranslate"><span class="pre">.venv_tf</span></code> and install it there.</p>
+</div>
+<blockquote>
+<div><p>Upload your code to a GitHub repository and submit to Gradescope</p>
+</div></blockquote>
 </section>
 </section>
 
@@ -1555,7 +1688,7 @@ Let’s evaluate the model on the test dataset:</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">19. Lab 3: Transfer Learning with Cats vs. Dogs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">19. Lab 4: Transfer Learning with Cats vs. Dogs</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">19.1. Overview</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
@@ -1595,10 +1728,23 @@ Let’s evaluate the model on the test dataset:</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#litert-summary">LiteRT Summary</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-webcam">20.2. Using Webcam</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmarking">20.3. Benchmarking</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measuring-cache-performance-with-perf-tool">Measuring cache performance with perf tool</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#live-inference">21. 🐱 🐶 Live Inference</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-webcam">21.1. Using Webcam</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#template">21.1. Template</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-configuration">Optional Configuration</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-code">The code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">21.2. Deliverables</a></li>
 </ul>
 </li>
 </ul>
