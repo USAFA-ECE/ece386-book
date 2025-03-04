@@ -520,7 +520,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-code">The code</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">21.2. Deliverables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">21.2. Deliverables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perf-discussion">Perf discussion</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1542,7 +1545,7 @@ The <code class="docutils literal notranslate"><span class="pre">-e</span></code
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example command to run perf stats</span>
 sudo<span class="w"> </span>perf<span class="w"> </span>stat<span class="w"> </span>-r<span class="w"> </span><span class="m">5</span><span class="w"> </span>-e<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>duration_time,user_time,system_time,cpu_cycles,cache-misses,cache-references,stalled-cycles-backend,L1-dcache-loads,L1-dcache-load-misses,l2d_cache_rd,l2d_cache_inval,l3d_cache_rd,LLC-loads,LLC-load-misses,mem_access_rd<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>/home/opso/code/catdog/.venv/bin/python<span class="w"> </span>lite_webcam.py<span class="w"> </span>cat-dog-mnv2.tflite
+<span class="w">    </span>.venv/bin/python<span class="w"> </span>litert_continuous.py<span class="w"> </span>cat-dog-mnv2.tflite
 </pre></div>
 </div>
 </section>
@@ -1593,24 +1596,42 @@ in VS Code. Then go to <strong>View &gt; Command Palette… and run Preferences:
 <section id="deliverables">
 <h2><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">21.2. </span>Deliverables</a><a class="headerlink" href="#deliverables" title="Link to this heading">#</a></h2>
 <p>Here is what’s actually graded.</p>
+<blockquote>
+<div><p>Upload your code to a GitHub repository and submit to Gradescope</p>
+</div></blockquote>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Task</p></th>
+<th class="head"><p>Percent</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Inference on photo with <code class="docutils literal notranslate"><span class="pre">.tflite</span></code> model</p></td>
+<td><p>30</p></td>
+</tr>
+<tr class="row-odd"><td><p>Inference on photo with <code class="docutils literal notranslate"><span class="pre">.keras</span></code> model</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-even"><td><p>Take picture of cat and dog</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>Benchmark with <code class="docutils literal notranslate"><span class="pre">perf</span></code></p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-even"><td><p>Discussion in README</p></td>
+<td><p>20</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>I recommend you have three files:</p>
 <ol class="arabic simple">
-<li><p>In class you are able to get a picture of both furry friends and run inference on that picture with LiteRT. The prediction of the model doesn’t have to be correct, but it’s cooler if it is!</p></li>
-<li><p>Benchmark using <code class="docutils literal notranslate"><span class="pre">perf</span></code> and the events listed above. You will need to convert your loop that waits for interrupts to be a for loop that counts. Compare…</p>
-<ul class="simple">
-<li><p>Running your <code class="docutils literal notranslate"><span class="pre">.tflite</span></code> model with 10 images per run vs 40 images per run</p></li>
-<li><p>Running your <code class="docutils literal notranslate"><span class="pre">.tflite</span></code> model with LiteRT vs your <code class="docutils literal notranslate"><span class="pre">.keras</span></code> model with Keras (10 images per run)</p></li>
-</ul>
-</li>
-<li><p>Discuss the results in your <code class="docutils literal notranslate"><span class="pre">README.md</span></code>. Make sure you emphasize</p>
-<ul class="simple">
-<li><p>Relative model sizes</p></li>
-<li><p>Relative performance for more vs. fewer images per run, and why</p></li>
-<li><p>Pipeline stalls waiting for memory</p></li>
-<li><p>L2 invalidations (meaning something in the L2 cache had to be overwritten)</p></li>
-<li><p>LLC loads and misses</p></li>
-</ul>
-</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">litert_continuous.py</span></code> that you loops until keyboard interrupt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">litert_bench.py</span></code> that loops until the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop expires.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">keras_bench.py</span></code> that loops until the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop expires.</p></li>
 </ol>
+<section id="perf-discussion">
+<h3>Perf discussion<a class="headerlink" href="#perf-discussion" title="Link to this heading">#</a></h3>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>After you get your LiteRT file working, you can copy it to a new file and make very few changes to get Keras working.
@@ -1618,9 +1639,20 @@ Refer to your Lab 1 code for how to load the model from a file.</p>
 <p><code class="docutils literal notranslate"><span class="pre">ai-edge-litert</span></code> and <code class="docutils literal notranslate"><span class="pre">tensorflow</span></code> have different dependencies, so you <strong>cannot install them in the same virtual environment!</strong>
 Instead, make a second venv, such as <code class="docutils literal notranslate"><span class="pre">.venv_tf</span></code> and install it there.</p>
 </div>
-<blockquote>
-<div><p>Upload your code to a GitHub repository and submit to Gradescope</p>
-</div></blockquote>
+<p>Compare</p>
+<ul class="simple">
+<li><p>Running your <code class="docutils literal notranslate"><span class="pre">.tflite</span></code> model with 10 images per run vs 40 images per run</p></li>
+<li><p>Running your <code class="docutils literal notranslate"><span class="pre">.tflite</span></code> model with LiteRT vs your <code class="docutils literal notranslate"><span class="pre">.keras</span></code> model with Keras</p></li>
+</ul>
+<p>Discuss the results in your <code class="docutils literal notranslate"><span class="pre">README.md</span></code>. Make sure you emphasize</p>
+<ul class="simple">
+<li><p>Relative model sizes</p></li>
+<li><p>Relative performance for more vs. fewer images per run, and why</p></li>
+<li><p>Pipeline stalls waiting for memory</p></li>
+<li><p>L2 invalidations (meaning something in the L2 cache had to be overwritten)</p></li>
+<li><p>LLC loads and misses</p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -1744,7 +1776,10 @@ Instead, make a second venv, such as <code class="docutils literal notranslate">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-code">The code</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">21.2. Deliverables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">21.2. Deliverables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perf-discussion">Perf discussion</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
