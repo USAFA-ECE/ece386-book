@@ -51,12 +51,17 @@ code Dockerfile
 We want to use the [NVIDIA PyTorch Container](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch)
 as our base image. You want the newest container that matches the version of CUDA installed on your Jetson.
 
-As of December 2024, we are using JetPack 6.1, which includes CUDA 12.6.
+As of March 2025, we are using JetPack 6.2, which includes CUDA 12.6.
+
+```{tip}
+You can check your CUDA version on the Jetson by running `nvidia-smi` in the terminal.
+```
 
 Add this line to the start of your Dockerfile
 
 ```Dockerfile
-FROM nvcr.io/nvidia/pytorch:24.11-py3-igpu
+# Compatible with Jetpack 6.2
+FROM nvcr.io/nvidia/pytorch:25.02-py3-igpu
 ```
 
 Next, set a working directory for the application.
@@ -91,6 +96,13 @@ We can just copy the local file to the current working directory (that we set ab
 COPY speech_recognition.py .
 ```
 
+Next, we will change the [HuggingFace Cache Directory](https://huggingface.co/docs/datasets/cache#cache-directory)
+by setting an environment variable. This will allow us to not have to re-download the models each time we run the container.
+
+```Dockerfile
+ENV HF_HOME="/huggingface/"
+```
+
 Finally, we tell our image where it should start to execute.
 We can always override this; for example to get a shell use `--entrypoint=/bin/bash` as an option to `docker run`.
 
@@ -122,7 +134,8 @@ an example of how to tell if CUDA is available. Find that and add these two line
 
 ```python
 import torch
-# TODO: check if CUDA is available
+
+print(f"CUDA available? {torch.cuda.is_available()}")
 ```
 
 Now, build the container again! (*Hint: use the up-arrow in your terminal*).
@@ -383,17 +396,8 @@ You can see your current volumes with `docker volume ls`.
 We can tell a container to mount this volume by passing the `-v` flag to `docker run`.
 The syntax is `named_volume:path_in_container` (you can also pass read/write permissions, which we aren't going to).
 
-According to the Internet, Hugging Face transformers store things at `$HOME/.cache/huggingface/hub`.
-Since we are running our container as root, our home directory (`$HOME` is an environment variable that holds this) is just `/root`.
-
-```{warning}
-In production you should not run containers as a root user because it is a security vulnerability.
-
-The proper way to do it is to [manage the Hugging Face cache](https://huggingface.co/docs/huggingface_hub/guides/manage-cache)
-with `ENV HF_HUB_CACHE=/app/.cache/` in the Dockerfile; also, employ `USER` or `--user` to not run the container as root.
-
-But! That's beyond the scope of this ICE.
-```
+Recall that we used `ENV HF_HOME="/huggingface/"` inside our Dockerfile above to tell
+HuggingFace transformers to use `/huggingface/` for the cache.
 
 ### The real deal
 
@@ -403,7 +407,7 @@ Our final run command will have a few more tweaks:
 - `-v` for the volume mount, as discussed above
 
 ```bash
-docker run -it --rm --device=/dev/snd --runtime=nvidia --ipc=host -v huggingface:/root/.cache/huggingface/hub whisper
+docker run -it --rm --device=/dev/snd --runtime=nvidia --ipc=host -v huggingface:/huggingface/ whisper
 ```
 
 Be sure to recite from your Contrails while recording, and then see it printed to the screen!
