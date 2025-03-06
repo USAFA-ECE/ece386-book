@@ -57,6 +57,14 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'b3-devboard/containerization';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -437,18 +445,16 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">22.2. Background</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependency-management">Dependency Management</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Containerization?</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">22.3. Docker</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem">22.2. The Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#containers">22.3. Containers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">Docker</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-engine">Docker Engine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#container-lifecycle">Container Lifecycle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#container-registry">Container Registry</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#container-lifecycle">22.4. Container Lifecycle</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#container-repositories">Container Repositories</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile-exercise">Dockerfile Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile">22.4. Dockerfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile-example">Dockerfile Example</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ultralytics-yolo">22.5. Ultralytics YOLO</a></li>
@@ -465,6 +471,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="containerization">
 <h1><span class="section-number">22. </span>Containerization<a class="headerlink" href="#containerization" title="Link to this heading">#</a></h1>
+<p><img alt="ship your machine" src="https://pbs.twimg.com/media/FPKqqiFX0AMRBu4?format=png" /></p>
 <section id="pre-reading">
 <h2><span class="section-number">22.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -479,60 +486,72 @@ document.write(`
 </ul>
 </section>
 </section>
-<section id="background">
-<h2><span class="section-number">22.2. </span>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h2>
-<section id="dependency-management">
-<h3>Dependency Management<a class="headerlink" href="#dependency-management" title="Link to this heading">#</a></h3>
-<p>Managing dependencies is extremely challenging for complex projects.</p>
-<p>The challenge is even greater when you have specific builds
-trying to take advantage of hardware.</p>
-<p>In Python a common approach is to use a <a class="reference external" href="https://docs.python.org/3/library/venv.html">Virtual Environment</a>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This will show system python</span>
-which<span class="w"> </span>python3
-
-<span class="c1"># Run the python venv module to create virtual environment</span>
-<span class="c1"># Common names are env or .venv, but you can use anything</span>
-python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>env
-
-<span class="c1"># Tell terminal to use the venv. Should see a preceding (env) in terminal.</span>
-<span class="nb">source</span><span class="w"> </span>env/bin/activate
-
-<span class="c1"># This will show venv python</span>
-which<span class="w"> </span>python3
-</pre></div>
-</div>
-<p>We can then install python requirements specifically to this environment,
-keeping them separate from other projects or from the system!</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>A <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file makes installing python libraries much easier.</p>
-<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p>
-</div>
-<p>But what if you have to build binaries?</p>
-<p>And what about starting multiple processes?</p>
-<p>And what about the the 15 things you had to do to get it working?</p>
-<p><img alt="ship your machine" src="https://pbs.twimg.com/media/FPKqqiFX0AMRBu4?format=png" /></p>
+<section id="the-problem">
+<h2><span class="section-number">22.2. </span>The Problem<a class="headerlink" href="#the-problem" title="Link to this heading">#</a></h2>
+<p>Managing dependencies is extremely challenging for complex projects.
+Different languages have various approaches for managing dependencies (with varying degrees of success.)
+For example:</p>
+<ul class="simple">
+<li><p>Python uses <a class="reference external" href="https://python-poetry.org/">Poetry</a> or virtual environments (like <code class="docutils literal notranslate"><span class="pre">.venv/</span></code>)</p></li>
+<li><p>Go has a builtin <a class="reference external" href="https://go.dev/doc/tutorial/create-module">go.mod</a> file</p></li>
+<li><p><a class="reference external" href="https://www.gnu.org/software/make/">Make</a> has been a longstanding, general-purpose GNU solution</p></li>
+</ul>
+<p>But the challenge is even greater when you have specific builds trying to take advantage of hardware
+or packaging multiple dependencies together… and that’s just for one app!</p>
+<p>The problem is even worse when trying to deploy an entire stack, with a web frontend, a database, a proxy, and more and more!</p>
 </section>
-<section id="id1">
-<h3>Containerization?<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<p>Virtual machines run <strong>a complete operating system–including its own kernel–</strong> on top of a hypervisor.</p>
+<section id="containers">
+<h2><span class="section-number">22.3. </span>Containers<a class="headerlink" href="#containers" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>A container is an isolated, lightweight silo for running an application on the host operating system.
+~ <a class="reference external" href="https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/containers-vs-vm#container-architecture">Microsoft Learn</a></p>
+</div></blockquote>
+<p><strong>Virtual machines</strong> run a complete operating system – including its own kernel – on top of a <em>hypervisor</em>, such as VMware or Hyper-V.</p>
 <p><img alt="Virtual machine architecture" src="https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/media/virtual-machine-diagram.svg" /></p>
-<p>In contrast, <strong>containers build on top of the host operating system’s kernel.</strong></p>
+<p><strong>Containers</strong> build on top of the host operating system’s kernel and are managed by a <em>container runtime</em>, such as Docker or Podman.</p>
 <p><img alt="Container architecture" src="https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/media/container-diagram.svg" /></p>
-<p>Both offer benefits with isolation and portability, however there are <a class="reference external" href="https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/containers-vs-vm#containers-vs-virtual-machines-1">some key differences</a>.</p>
-</section>
-</section>
+<p>Both virtual machines and containers offer benefits with isolation and portability,however there are
+<a class="reference external" href="https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/containers-vs-vm#containers-vs-virtual-machines-1">some key differences</a>.</p>
+<p>Most relevant here:</p>
+<ol class="arabic simple">
+<li><p>Images are <strong>immutable</strong>, so if you run an image it will create a container but any changes to that container will not impact the image.</p></li>
+<li><p>Containers are <strong>ephemeral</strong>, so after you kill a container none of the changes you made will be saved.</p></li>
+<li><p>Images are <strong>intended to serve a single function;</strong> typically, that means running a single process and</p></li>
+<li><p>You <strong>orchestrate</strong> multiple containers to deploy a multi-tiered and scalable application.</p></li>
+</ol>
 <section id="docker">
-<h2><span class="section-number">22.3. </span>Docker<a class="headerlink" href="#docker" title="Link to this heading">#</a></h2>
+<h3>Docker<a class="headerlink" href="#docker" title="Link to this heading">#</a></h3>
 <p>Docker has <em>completely revolutionized</em> the way the world operates software applications.</p>
 <ul class="simple">
 <li><p><strong>Docker Inc.</strong> is an American company that offers products such as Docker Hub and Docker Desktop.</p></li>
 <li><p><a class="reference external" href="https://hub.docker.com/"><strong>Docker Hub</strong></a> is a <em>container registry</em> (<code class="docutils literal notranslate"><span class="pre">docker.io</span></code>). There are thousands of community and officially sponsored images; you can also upload your own images.</p></li>
-<li><p><a class="reference external" href="https://catalog.ngc.nvidia.com"><strong>NVIDIA NGC Catalog</strong></a> is a container registry (<code class="docutils literal notranslate"><span class="pre">nvcr.io</span></code>) for GPU accelerated containers.</p></li>
+<li><p><a class="reference external" href="https://catalog.ngc.nvidia.com"><strong>NVIDIA NGC Catalog</strong></a> is a container registry (<code class="docutils literal notranslate"><span class="pre">nvcr.io</span></code>) for CUDA GPU accelerated containers.</p></li>
 <li><p><a class="reference external" href="https://docs.docker.com/engine/"><strong>Docker Engine</strong></a>** is an open source project for running containers. It is part of the <a class="reference external" href="https://github.com/moby/moby">Moby Project</a>, which is an open source upstream of Docker Enterprise Edition.</p></li>
 <li><p><a class="reference external" href="https://podman.io/"><strong>Podman</strong></a> is an Open Container Runtime that is a great alternative to Docker and is easily installed with apt, <em>but</em> doesn’t have as good of GPU support.</p></li>
 </ul>
-<p><img alt="docker future" src="https://thinkr.fr/wp-content/uploads/2019/07/back-to-the-future-docker.jpg" /></p>
+<p>Here is how you might adapt <a class="reference internal" href="../b1-prediction/lab-digits-api.html"><span class="std std-doc">Lab 1: Recognizing Handwritten Digits via TensorFlow and FastAPI</span></a>
+to be deployed with containers.</p>
+<pre  class="mermaid">
+        flowchart LR
+    subgraph Client
+        C[Client]
+    end
+
+    subgraph Docker Environment
+        subgraph Fc[FastAPI Container]
+            Fa[FastAPI Application]
+        end
+
+        subgraph Tc[TensorFlow Container]
+            Tm[TensorFlow Model]
+        end
+    end
+
+    C --&gt;|HTTP Requests| Fa
+    Fa --&gt;|REST API Calls| Tm
+    Tm --&gt;|Predictions| Fa
+    Fa --&gt;|HTTP Response| C
+    </pre></section>
 <section id="docker-engine">
 <h3>Docker Engine<a class="headerlink" href="#docker-engine" title="Link to this heading">#</a></h3>
 <blockquote>
@@ -574,20 +593,22 @@ keeping them separate from other projects or from the system!</p>
 <p>Type <code class="docutils literal notranslate"><span class="pre">exit</span></code> back in your alpine terminal and run <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code> again.
 Now try <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span></code>.</p>
 </section>
-</section>
 <section id="container-lifecycle">
-<h2><span class="section-number">22.4. </span>Container Lifecycle<a class="headerlink" href="#container-lifecycle" title="Link to this heading">#</a></h2>
+<h3>Container Lifecycle<a class="headerlink" href="#container-lifecycle" title="Link to this heading">#</a></h3>
 <p>A core benefit of containerization is that immutable images can be pre-built and then
 distributed via container repositories. This means that complex installations just work!</p>
-<figure class="align-default" id="id2">
+<figure class="align-default" id="id1">
 <img alt="https://www.markbuckler.com/img/docker_high_level.png" src="https://www.markbuckler.com/img/docker_high_level.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 22.1 </span><span class="caption-text">The container lifecycle includes being built, pulled, pushed, run, and more.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 22.1 </span><span class="caption-text">The container lifecycle includes being built, pulled, pushed, run, and more.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<section id="container-repositories">
-<h3>Container Repositories<a class="headerlink" href="#container-repositories" title="Link to this heading">#</a></h3>
-<p>A container repository just hosts built containers. The two we will use for this course are <a class="reference external" href="https://hub.docker.com/">DockerHub</a> and <a class="reference external" href="https://catalog.ngc.nvidia.com/containers">NVIDIA NCG Catalog</a>.</p>
+</section>
+<section id="container-registry">
+<h3>Container Registry<a class="headerlink" href="#container-registry" title="Link to this heading">#</a></h3>
+<p>A container registry just hosts built containers. The two we will use for this course are
+<a class="reference external" href="https://hub.docker.com/">DockerHub</a> and <a class="reference external" href="https://catalog.ngc.nvidia.com/containers">NVIDIA NCG Catalog</a>.
+These are a little bit like Git repositories except <em>instead of hosting code, they host images ready to run code.</em></p>
 <p>You can <strong>pull</strong> an image:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>docker.io/python:latest
 </pre></div>
@@ -601,16 +622,24 @@ distributed via container repositories. This means that complex installations ju
 </pre></div>
 </div>
 </section>
-<section id="dockerfile-exercise">
-<h3>Dockerfile Exercise<a class="headerlink" href="#dockerfile-exercise" title="Link to this heading">#</a></h3>
+</section>
+<section id="dockerfile">
+<h2><span class="section-number">22.4. </span>Dockerfile<a class="headerlink" href="#dockerfile" title="Link to this heading">#</a></h2>
 <p>What if you want to customize your container?</p>
-<p>Remember <strong>containers are immutable and ephemeral</strong>, so you generally don’t modify them while running.</p>
-<p>Instead, you can build your own custom container!</p>
+<p>Remember <strong>images are immutable and containers ephemeral</strong>, so you generally you don’t modify them while running.
+Instead, you build your own custom image! This is accomplished through a file named <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>.</p>
+<p>General flow:</p>
 <ol class="arabic simple">
-<li><p>Make a new directory</p></li>
-<li><p>In that directory create a file named <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>\</p></li>
-<li><p>Put this into the Dockerfile</p></li>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code></p></li>
+<li><p>Edit <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code></p></li>
+<li><p>Build image based on <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> with <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">buildx</span></code></p></li>
+<li><p>(Optionally) push your newly created image to a container registry</p></li>
+<li><p>Run the image as a container</p></li>
 </ol>
+<section id="dockerfile-example">
+<h3>Dockerfile Example<a class="headerlink" href="#dockerfile-example" title="Link to this heading">#</a></h3>
+<p>Make a new directory and in that directory create a file named <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code></p>
+<p>Put this into the Dockerfile</p>
 <div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Example to print your public IP address</span>
 <span class="k">FROM</span><span class="w"> </span><span class="s">alpine:3</span>
 
@@ -619,9 +648,7 @@ distributed via container repositories. This means that complex installations ju
 <span class="k">ENTRYPOINT</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/usr/bin/curl&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-s&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ifconfig.me&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
-<ol class="arabic simple" start="4">
-<li><p>Build the image</p></li>
-</ol>
+<p>Build the image</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># -t specifies the name we want to give the tag</span>
 sudo<span class="w"> </span>docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>mypub-ip<span class="w"> </span>.
 </pre></div>
@@ -632,27 +659,19 @@ sudo<span class="w"> </span>docker<span class="w"> </span>buildx<span class="w">
 (that’s why the <code class="docutils literal notranslate"><span class="pre">.</span></code> is important!)
 To minimize file size, put your Dockerfile in a directory that only has what you need.</p>
 </div>
-<ol class="arabic simple" start="5">
-<li><p>See that your image is now available</p></li>
-</ol>
+<p>See that your image is now available</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker<span class="w"> </span>image<span class="w"> </span>ls
 </pre></div>
 </div>
-<ol class="arabic simple" start="6">
-<li><p>Run the container</p></li>
-</ol>
+<p>Run the container</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>mypub-ip
 </pre></div>
 </div>
-<ol class="arabic simple" start="7">
-<li><p>(Optional/hypothetical) Push your new image to Dockerhub</p></li>
-</ol>
+<p>(Optional/hypothetical) Push your new image to Dockerhub</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>docker<span class="w"> </span>push<span class="w"> </span>docker.io/your-username/mypub-ip:latest
 </pre></div>
 </div>
-<ol class="arabic simple" start="8">
-<li><p>(Optional/hypothetical) Pull your image to run as a container on a different computer!</p></li>
-</ol>
+<p>(Optional/hypothetical) Pull your image to run as a container on a different computer!</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Notice that you don&#39;t need the Dockerfile anymore!</span>
 sudo<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>docker.io/your-username/alpine-publicip:latest
 </pre></div>
@@ -746,18 +765,16 @@ It’s easy, but the image is large and takes time to pull.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">22.2. Background</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependency-management">Dependency Management</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Containerization?</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">22.3. Docker</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem">22.2. The Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#containers">22.3. Containers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">Docker</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-engine">Docker Engine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#container-lifecycle">Container Lifecycle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#container-registry">Container Registry</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#container-lifecycle">22.4. Container Lifecycle</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#container-repositories">Container Repositories</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile-exercise">Dockerfile Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile">22.4. Dockerfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile-example">Dockerfile Example</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ultralytics-yolo">22.5. Ultralytics YOLO</a></li>

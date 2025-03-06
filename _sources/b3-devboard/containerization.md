@@ -1,5 +1,7 @@
 # Containerization
 
+![ship your machine](https://pbs.twimg.com/media/FPKqqiFX0AMRBu4?format=png)
+
 ## Pre-reading
 
 - [Docker overview](https://docs.docker.com/get-started/overview/)
@@ -10,72 +12,78 @@
 - Explain what a container is and how it is different from a virtual machine
 - Demonstrate how to build an image from `Dockerfile` and run the image as a container.
 
-## Background
-
-### Dependency Management
+## The Problem
 
 Managing dependencies is extremely challenging for complex projects.
+Different languages have various approaches for managing dependencies (with varying degrees of success.)
+For example:
 
-The challenge is even greater when you have specific builds
-trying to take advantage of hardware.
+- Python uses [Poetry](https://python-poetry.org/) or virtual environments (like `.venv/`)
+- Go has a builtin [go.mod](https://go.dev/doc/tutorial/create-module) file
+- [Make](https://www.gnu.org/software/make/) has been a longstanding, general-purpose GNU solution
 
-In Python a common approach is to use a [Virtual Environment](https://docs.python.org/3/library/venv.html).
+But the challenge is even greater when you have specific builds trying to take advantage of hardware
+or packaging multiple dependencies together... and that's just for one app!
 
-```bash
-# This will show system python
-which python3
+The problem is even worse when trying to deploy an entire stack, with a web frontend, a database, a proxy, and more and more!
 
-# Run the python venv module to create virtual environment
-# Common names are env or .venv, but you can use anything
-python3 -m venv env
+## Containers
 
-# Tell terminal to use the venv. Should see a preceding (env) in terminal.
-source env/bin/activate
+> A container is an isolated, lightweight silo for running an application on the host operating system.
+> ~ [Microsoft Learn](https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/containers-vs-vm#container-architecture)
 
-# This will show venv python
-which python3
-```
-
-We can then install python requirements specifically to this environment,
-keeping them separate from other projects or from the system!
-
-```{tip}
-A `requirements.txt` file makes installing python libraries much easier.
-
-`pip install -r requirements.txt`
-```
-
-But what if you have to build binaries?
-
-And what about starting multiple processes?
-
-And what about the the 15 things you had to do to get it working?
-
-![ship your machine](https://pbs.twimg.com/media/FPKqqiFX0AMRBu4?format=png)
-
-### Containerization?
-
-Virtual machines run **a complete operating system–including its own kernel–** on top of a hypervisor.
+**Virtual machines** run a complete operating system – including its own kernel – on top of a *hypervisor*, such as VMware or Hyper-V.
 
 ![Virtual machine architecture](https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/media/virtual-machine-diagram.svg)
 
-In contrast, **containers build on top of the host operating system's kernel.**
+**Containers** build on top of the host operating system's kernel and are managed by a *container runtime*, such as Docker or Podman.
 
 ![Container architecture](https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/media/container-diagram.svg)
 
-Both offer benefits with isolation and portability, however there are [some key differences](https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/containers-vs-vm#containers-vs-virtual-machines-1).
+Both virtual machines and containers offer benefits with isolation and portability,however there are
+[some key differences](https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/containers-vs-vm#containers-vs-virtual-machines-1).
 
-## Docker
+Most relevant here:
+
+1. Images are **immutable**, so if you run an image it will create a container but any changes to that container will not impact the image.
+2. Containers are **ephemeral**, so after you kill a container none of the changes you made will be saved.
+3. Images are **intended to serve a single function;** typically, that means running a single process and
+4. You **orchestrate** multiple containers to deploy a multi-tiered and scalable application.
+
+### Docker
 
 Docker has *completely revolutionized* the way the world operates software applications.
 
 - **Docker Inc.** is an American company that offers products such as Docker Hub and Docker Desktop.
 - [**Docker Hub**](https://hub.docker.com/) is a *container registry* (`docker.io`). There are thousands of community and officially sponsored images; you can also upload your own images.
-- [**NVIDIA NGC Catalog**](https://catalog.ngc.nvidia.com) is a container registry (`nvcr.io`) for GPU accelerated containers.
+- [**NVIDIA NGC Catalog**](https://catalog.ngc.nvidia.com) is a container registry (`nvcr.io`) for CUDA GPU accelerated containers.
 - [**Docker Engine**](https://docs.docker.com/engine/)** is an open source project for running containers. It is part of the [Moby Project](https://github.com/moby/moby), which is an open source upstream of Docker Enterprise Edition.
 - [**Podman**](https://podman.io/) is an Open Container Runtime that is a great alternative to Docker and is easily installed with apt, *but* doesn't have as good of GPU support.
 
-![docker future](https://thinkr.fr/wp-content/uploads/2019/07/back-to-the-future-docker.jpg)
+Here is how you might adapt [Lab 1: Recognizing Handwritten Digits via TensorFlow and FastAPI](../b1-prediction/lab-digits-api.ipynb)
+to be deployed with containers.
+
+```{mermaid}
+flowchart LR
+    subgraph Client
+        C[Client]
+    end
+
+    subgraph Docker Environment
+        subgraph Fc[FastAPI Container]
+            Fa[FastAPI Application]
+        end
+
+        subgraph Tc[TensorFlow Container]
+            Tm[TensorFlow Model]
+        end
+    end
+
+    C -->|HTTP Requests| Fa
+    Fa -->|REST API Calls| Tm
+    Tm -->|Predictions| Fa
+    Fa -->|HTTP Response| C
+```
 
 ### Docker Engine
 
@@ -122,7 +130,7 @@ sudo docker ps
 Type `exit` back in your alpine terminal and run `docker ps` again.
 Now try `docker ps -a`.
 
-## Container Lifecycle
+### Container Lifecycle
 
 A core benefit of containerization is that immutable images can be pre-built and then
 distributed via container repositories. This means that complex installations just work!
@@ -131,9 +139,11 @@ distributed via container repositories. This means that complex installations ju
 The container lifecycle includes being built, pulled, pushed, run, and more.
 ```
 
-### Container Repositories
+### Container Registry
 
-A container repository just hosts built containers. The two we will use for this course are [DockerHub](https://hub.docker.com/) and [NVIDIA NCG Catalog](https://catalog.ngc.nvidia.com/containers).
+A container registry just hosts built containers. The two we will use for this course are
+[DockerHub](https://hub.docker.com/) and [NVIDIA NCG Catalog](https://catalog.ngc.nvidia.com/containers).
+These are a little bit like Git repositories except *instead of hosting code, they host images ready to run code.*
 
 You can **pull** an image:
 
@@ -153,17 +163,26 @@ You can **push** an image as well:
 docker image push docker.io/example/my-cool-container:latest
 ```
 
-### Dockerfile Exercise
+## Dockerfile
 
 What if you want to customize your container?
 
-Remember **containers are immutable and ephemeral**, so you generally don't modify them while running.
+Remember **images are immutable and containers ephemeral**, so you generally you don't modify them while running.
+Instead, you build your own custom image! This is accomplished through a file named `Dockerfile`.
 
-Instead, you can build your own custom container!
+General flow:
 
-1. Make a new directory
-2. In that directory create a file named `Dockerfile`\
-3. Put this into the Dockerfile
+1. Create a `Dockerfile`
+2. Edit `Dockerfile`
+3. Build image based on `Dockerfile` with `docker buildx`
+4. (Optionally) push your newly created image to a container registry
+5. Run the image as a container
+
+### Dockerfile Example
+
+Make a new directory and in that directory create a file named `Dockerfile`
+
+Put this into the Dockerfile
 
 ```dockerfile
 # Example to print your public IP address
@@ -174,7 +193,7 @@ RUN apk add curl
 ENTRYPOINT ["/usr/bin/curl", "-s", "ifconfig.me"]
 ```
 
-4. Build the image
+Build the image
 
 ```bash
 # -t specifies the name we want to give the tag
@@ -187,25 +206,25 @@ By default, `build` looks at all the files in a directory
 To minimize file size, put your Dockerfile in a directory that only has what you need.
 ```
 
-5. See that your image is now available
+See that your image is now available
 
 ```bash
 sudo docker image ls
 ```
 
-6. Run the container
+Run the container
 
 ```bash
 sudo docker run --rm mypub-ip
 ```
 
-7. (Optional/hypothetical) Push your new image to Dockerhub
+(Optional/hypothetical) Push your new image to Dockerhub
 
 ```bash
 sudo docker push docker.io/your-username/mypub-ip:latest
 ```
 
-8. (Optional/hypothetical) Pull your image to run as a container on a different computer!
+(Optional/hypothetical) Pull your image to run as a container on a different computer!
 
 ```bash
 # Notice that you don't need the Dockerfile anymore!
