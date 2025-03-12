@@ -25,6 +25,18 @@ All assignments are submitted via Gradescope.
 | 19*            | Lab      | KWS                                                                                              |
 | 19             | C&C      | Block 2: Edge Inference                                                                          |
 | 19             | Prelab   | Cats vs. Dogs                                                                                    |
+| Prog           | *****    | *****                                                                                            |
+| 22             | Lab      | Lab 4 Live Inference                                                                             |
+| 24             | Lab      | Lab 4 Cache Benchmark                                                                            |
+| 25             | ICE      | ICE 3: Whisper Transcription                                                                     |
+| 26             | ICE      | ICE 4: GPU Acceleration                                                                          |
+| 28             | Prelab   | Prelab 5: Prompt Engineering                                                                     |
+| 30             | Lab      | Lab 5: Prompt Engineering                                                                        |
+| 31             | C&C      | C&C: LLMs and GPUs                                                                               |
+| 32             | Final    | Final project milestone 1                                                                        |
+| 34             | Final    | Final project milestone 2                                                                        |
+| 37             | Final    | Final project complete                                                                           |
+| 40             | C&C      | Wrap and critique                                                                                |
 
 ## Schedule
 
