@@ -571,7 +571,10 @@ and the 2016 blog post <a class="reference external" href="https://blog.keras.io
 <p><em>Author: <a class="reference external" href="https://twitter.com/fchollet">fchollet</a> Date created: 2020/04/15 Last modified: 2023/06/25</em></p>
 <p>Adapted for ECE 386 by <a class="reference external" href="https://github.com/byarbrough">byarbrough</a> with additions from <a class="reference external" href="https://www.tensorflow.org/tutorials/images/transfer_learning">TensorFlow Tutorials: Transfer learning and fine-tuning</a>, cao Jan 2025.</p>
 </div></blockquote>
-<p>Check out this <strong>Overview</strong> and the complete the <strong>Prelab</strong> below.</p>
+<p>The <strong>Overview</strong> and <strong>Prelab</strong> are meant to be read and run in Colab or on the department AI server.
+The prelab will produce two models (<code class="docutils literal notranslate"><span class="pre">.tflite</span></code> and <code class="docutils literal notranslate"><span class="pre">.keras</span></code>) <strong>which you need to download and save!</strong></p>
+<p>The Lab has lots of hints, but you don’t need to run them in Colab!
+Rather, you should clone <a class="github reference external" href="https://github.com/USAFA-ECE/ece386-lab4.git">USAFA-ECE/ece386-lab4.git</a> and ultimately get it working on your Raspberry Pi.</p>
 <section id="overview">
 <h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">19.1. </span>Overview</a><a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p><strong>Pre-reading video:</strong> <a class="reference external" href="https://youtu.be/mPFq5KMxKVw">Kaggle: Transfer Learning</a> (only first 5 minutes)</p>
@@ -1590,7 +1593,7 @@ in VS Code. Then go to <strong>View &gt; Command Palette… and run Preferences:
 </section>
 <section id="the-code">
 <h3>The code<a class="headerlink" href="#the-code" title="Link to this heading">#</a></h3>
-<script src="https://gist.github.com/byarbrough/f2248523b726a5a93ff1234d6fe1fd24.js"></script>
+<p>Clone <a class="github reference external" href="https://github.com/USAFA-ECE/ece386-lab4.git">USAFA-ECE/ece386-lab4.git</a></p>
 </section>
 </section>
 <section id="deliverables">
@@ -1609,27 +1612,22 @@ in VS Code. Then go to <strong>View &gt; Command Palette… and run Preferences:
 <tr class="row-even"><td><p>Inference on photo with <code class="docutils literal notranslate"><span class="pre">.tflite</span></code> model</p></td>
 <td><p>30</p></td>
 </tr>
-<tr class="row-odd"><td><p>Inference on photo with <code class="docutils literal notranslate"><span class="pre">.keras</span></code> model</p></td>
+<tr class="row-odd"><td><p>Take picture of 🐈 &amp; 🐕</p></td>
 <td><p>20</p></td>
 </tr>
-<tr class="row-even"><td><p>Take picture of cat and dog</p></td>
-<td><p>10</p></td>
-</tr>
-<tr class="row-odd"><td><p>Benchmark with <code class="docutils literal notranslate"><span class="pre">perf</span></code></p></td>
+<tr class="row-even"><td><p>Benchmark with <code class="docutils literal notranslate"><span class="pre">perf</span></code></p></td>
 <td><p>20</p></td>
 </tr>
-<tr class="row-even"><td><p>Discussion in README</p></td>
-<td><p>20</p></td>
+<tr class="row-odd"><td><p>Discussion in README</p></td>
+<td><p>25</p></td>
+</tr>
+<tr class="row-even"><td><p>(Bonus) Autograder <code class="docutils literal notranslate"><span class="pre">black</span></code> check</p></td>
+<td><p>(5)</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <p>I recommend you have three files:</p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">litert_continuous.py</span></code> that you loops until keyboard interrupt.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">litert_bench.py</span></code> that loops until the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop expires.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">keras_bench.py</span></code> that loops until the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop expires.</p></li>
-</ol>
 <section id="perf-discussion">
 <h3>Perf discussion<a class="headerlink" href="#perf-discussion" title="Link to this heading">#</a></h3>
 <div class="admonition tip">

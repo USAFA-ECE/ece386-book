@@ -471,8 +471,14 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product-results">Dot Product Results</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-tensor-operation">25.2. Another Tensor Operation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-tensor-operation">25.2. Another Tensor Operation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverable">25.3. Deliverable</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection">Reflection 📈</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-the-cpu-outperform-the-gpu-dot-product-with-smaller-vectors"><em>Why</em> does the CPU outperform the GPU dot product with smaller vectors?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-did-the-cpu-vs-gpu-perform-for-min"><em>How</em> did the CPU vs. GPU perform for <code class="docutils literal notranslate"><span class="pre">min()</span></code>?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-did-it-perform-that-way"><em>Why</em> did it perform that way?</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -619,7 +625,7 @@ You can change <code class="docutils literal notranslate"><span class="pre">SIZE
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">timeit</span><span class="w"> </span><span class="kn">import</span> <span class="n">timeit</span>
 
-<span class="n">SIZE_LIMIT</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c1"># where to stop at</span>
+<span class="n">SIZE_LIMIT</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c1"># where to stop at</span>
 </pre></div>
 </div>
 </div>
@@ -659,8 +665,9 @@ You can change <code class="docutils literal notranslate"><span class="pre">SIZE
         <span class="p">}</span>
     <span class="p">)</span>
 
-    <span class="c1"># Double tensor_size</span>
-    <span class="n">tensor_size</span> <span class="o">=</span> <span class="n">tensor_size</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="c1"># Increase tensor_size by 100. For larger SIZE_LIMITS, change to double tensor_size</span>
+    <span class="c1"># tensor_size = tensor_size * 2</span>
+    <span class="n">tensor_size</span> <span class="o">=</span> <span class="n">tensor_size</span> <span class="o">+</span> <span class="mi">100</span>
 
 <span class="c1"># Done! Cast the results to a DataFrame and print</span>
 <span class="n">torch_results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">torch_results</span><span class="p">)</span>
@@ -708,8 +715,9 @@ You can change <code class="docutils literal notranslate"><span class="pre">SIZE
         <span class="p">}</span>
     <span class="p">)</span>
 
-    <span class="c1"># Double tensor_size</span>
-    <span class="n">tensor_size</span> <span class="o">=</span> <span class="n">tensor_size</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="c1"># Increase tensor_size by 100. For larger SIZE_LIMITS, change to double tensor_size</span>
+    <span class="c1"># tensor_size = tensor_size * 2</span>
+    <span class="n">tensor_size</span> <span class="o">=</span> <span class="n">tensor_size</span> <span class="o">+</span> <span class="mi">100</span>
 
 <span class="c1"># Done! Cast the results to a DataFrame and print</span>
 <span class="n">tf_results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tf_results</span><span class="p">)</span>
@@ -751,10 +759,23 @@ You only need to do it with <strong>one</strong> framework.</p>
 </div>
 </div>
 </div>
-<section id="results">
-<h3>Results<a class="headerlink" href="#results" title="Link to this heading">#</a></h3>
-<p>Jot down some thoughts to yourself here about what you saw 📈</p>
-<p>Commit this notebook to your fork, then <strong>complete the ICE on Gradescope.</strong></p>
+</section>
+<section id="deliverable">
+<h2><span class="section-number">25.3. </span>Deliverable<a class="headerlink" href="#deliverable" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p><strong>After</strong> answering these questions, download this completed notebook and <strong>upload to Gradescope.</strong></p>
+</div></blockquote>
+<section id="reflection">
+<h3>Reflection 📈<a class="headerlink" href="#reflection" title="Link to this heading">#</a></h3>
+</section>
+<section id="why-does-the-cpu-outperform-the-gpu-dot-product-with-smaller-vectors">
+<h3><em>Why</em> does the CPU outperform the GPU dot product with smaller vectors?<a class="headerlink" href="#why-does-the-cpu-outperform-the-gpu-dot-product-with-smaller-vectors" title="Link to this heading">#</a></h3>
+</section>
+<section id="how-did-the-cpu-vs-gpu-perform-for-min">
+<h3><em>How</em> did the CPU vs. GPU perform for <code class="docutils literal notranslate"><span class="pre">min()</span></code>?<a class="headerlink" href="#how-did-the-cpu-vs-gpu-perform-for-min" title="Link to this heading">#</a></h3>
+<section id="why-did-it-perform-that-way">
+<h4><em>Why</em> did it perform that way?<a class="headerlink" href="#why-did-it-perform-that-way" title="Link to this heading">#</a></h4>
+</section>
 </section>
 </section>
 </section>
@@ -830,8 +851,14 @@ You only need to do it with <strong>one</strong> framework.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product-results">Dot Product Results</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-tensor-operation">25.2. Another Tensor Operation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-tensor-operation">25.2. Another Tensor Operation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverable">25.3. Deliverable</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reflection">Reflection 📈</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-the-cpu-outperform-the-gpu-dot-product-with-smaller-vectors"><em>Why</em> does the CPU outperform the GPU dot product with smaller vectors?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-did-the-cpu-vs-gpu-perform-for-min"><em>How</em> did the CPU vs. GPU perform for <code class="docutils literal notranslate"><span class="pre">min()</span></code>?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-did-it-perform-that-way"><em>Why</em> did it perform that way?</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
