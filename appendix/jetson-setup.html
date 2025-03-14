@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Diffusion Image Generation &#8212; ECE 386</title>
+    <title>Jetson Setup &#8212; ECE 386</title>
   
   
   
@@ -57,10 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'jetson/diffusion';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'appendix/jetson-setup';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Flash Edge Impulse Firmware to Arduino" href="flash-edge-impulse.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +123,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -236,9 +235,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../b5-final/wrapup.html">40. Wrap and Critique</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../appendix/flash-edge-impulse.html">Flash Edge Impulse Firmware to Arduino</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../appendix/jetson-setup.html">Jetson Setup</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="flash-edge-impulse.html">Flash Edge Impulse Firmware to Arduino</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Jetson Setup</a></li>
 </ul>
 
     </div>
@@ -310,7 +309,7 @@
       
       
       
-      <li><a href="https://github.com/usafa-ece/ece386-book/issues/new?title=Issue%20on%20page%20%2Fjetson/diffusion.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/usafa-ece/ece386-book/issues/new?title=Issue%20on%20page%20%2Fappendix/jetson-setup.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -340,7 +339,7 @@
       
       
       
-      <li><a href="../_sources/jetson/diffusion.md" target="_blank"
+      <li><a href="../_sources/appendix/jetson-setup.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -424,7 +423,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Diffusion Image Generation</h1>
+    <h1>Jetson Setup</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -434,21 +433,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-generation">Image generation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tutorial">The tutorial</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-documentation">The documentation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it-on-the-nuc">Try it on the NUC</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-api">Add the API</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-1">Prompt 1</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#containerize-the-app">Containerize the app</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flash-the-board">Flash the Board</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#software-update-install-configure">Software Update, Install, Configure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-started-with-gpu">Get Started with GPU</a></li>
 </ul>
             </nav>
         </div>
@@ -460,184 +447,46 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="diffusion-image-generation">
-<h1>Diffusion Image Generation<a class="headerlink" href="#diffusion-image-generation" title="Link to this heading">#</a></h1>
-<section id="pre-reading">
-<h2>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://huggingface.co/runwayml/stable-diffusion-v1-5">Stable Diffusion v1-5 Model Card</a></p></li>
-</ul>
-<section id="objectives">
-<h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Apply lessons-learned from containerization.</p></li>
-<li><p>Get a diffusion text to image model working on Jetson.</p></li>
-<li><p>Use ChatGPT to serve working model as API.</p></li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="jetson-setup">
+<h1>Jetson Setup<a class="headerlink" href="#jetson-setup" title="Link to this heading">#</a></h1>
+<p>Instructions to setup the <a class="reference external" href="https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/nano-super-developer-kit/"><strong>Jetson Orin Nano Super Developer Kit</strong></a> 8GB DeveloperKit.</p>
+<section id="flash-the-board">
+<h2>Flash the Board<a class="headerlink" href="#flash-the-board" title="Link to this heading">#</a></h2>
+<p>Flash the board using the SDK Manager on Ubuntu by following <a class="reference external" href="https://www.jetson-ai-lab.com/initial_setup_jon_sdkm.html">these instructions</a></p>
+<p>Make sure to pay special attention to where the wire goes to launch into recovery mode
+and to <em>uncheck</em> Jetson Runtime Components.</p>
+<p>I also recommend changing OEM Configuration from Runtime to <em>Pre-Config</em> and setting a username and password.</p>
 </section>
-</section>
-<section id="image-generation">
-<h2>Image generation<a class="headerlink" href="#image-generation" title="Link to this heading">#</a></h2>
-<p><strong>My goal</strong> is to serve a text-to-image model on the Jetson Orin Nano.</p>
-<section id="the-tutorial">
-<h3>The tutorial<a class="headerlink" href="#the-tutorial" title="Link to this heading">#</a></h3>
-<p>I first read <a class="reference external" href="https://iomz.github.io/how-to/docker-diffusers-jetson/">Does Stable Diffusion run on NVIDIA Jetson AGX Xavier Developer Kit with CUDA?</a> and thought this might be possible!</p>
-<p>Following the tutorial under <strong>Run Diffusers on Docker</strong>,
-I quickly came to this command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://huggingface.co/runwayml/stable-diffusion-v1-5
-</pre></div>
-</div>
-<p>Even with <code class="docutils literal notranslate"><span class="pre">git-lfs</span></code> installed, this was taking <em>forever</em>…
-I pulled the plug after 25 GB came down with dozens more promised.</p>
-<p>Going to take a different approach, but noting the
-<a class="reference external" href="https://github.com/iomz/docker-diffusers-jetson/blob/main/Dockerfile">Dockerfile</a>
-for later reference, even though I can tell this person is <em>not</em> a docker expert.</p>
-</section>
-<section id="the-documentation">
-<h3>The documentation<a class="headerlink" href="#the-documentation" title="Link to this heading">#</a></h3>
-<p>The Hugging Face Diffusers Documentation has the suggestion:
-<a class="reference external" href="https://huggingface.co/docs/diffusers/tutorials/autopipeline#choose-an-autopipeline-for-your-task">Choose an AutoPipeline for your task</a> 🙏🏼</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">diffusers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoPipelineForText2Image</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
-
-<span class="n">pipeline</span> <span class="o">=</span> <span class="n">AutoPipelineForText2Image</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
-    <span class="s2">&quot;runwayml/stable-diffusion-v1-5&quot;</span><span class="p">,</span> <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">,</span> <span class="n">use_safetensors</span><span class="o">=</span><span class="kc">True</span>
-<span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
-<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;peasant and dragon combat, wood cutting style, viking era, bevel with rune&quot;</span>
-
-<span class="n">image</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">num_inference_steps</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-<blockquote>
-<div><p>Under the hood, AutoPipelineForText2Image:</p>
+<section id="software-update-install-configure">
+<h2>Software Update, Install, Configure<a class="headerlink" href="#software-update-install-configure" title="Link to this heading">#</a></h2>
+<p>Once the board is flashed and you’ve disconnected the recovery mode jumper, run the following to:</p>
 <ol class="arabic simple">
-<li><p>automatically detects a “stable-diffusion” class from the model_index.json file</p></li>
-<li><p>loads the corresponding text-to-image StableDiffusionPipline based on the “stable-diffusion” class name.</p></li>
+<li><p>Upgrade all installed apt packages</p></li>
+<li><p>Install Docker with the <a class="reference external" href="https://github.com/docker/docker-install">get docker convenience script</a></p></li>
+<li><p>Install and configure <a class="reference external" href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#configuring-docker">NVIDIA Container Toolkit</a></p></li>
+<li><p>Reboot</p></li>
 </ol>
-</div></blockquote>
-<p><strong>Let’s run that!</strong>… on my Intel NUC.</p>
-</section>
-<section id="try-it-on-the-nuc">
-<h3>Try it on the NUC<a class="headerlink" href="#try-it-on-the-nuc" title="Link to this heading">#</a></h3>
-<p>I do not have an NVIDIA GPU on this device.
-So, a quick DuckDuckGo search (ChatGPT actually got this one wrong)
-tells me about <code class="docutils literal notranslate"><span class="pre">torch.cuda.is_available()</span></code>. So I write:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">cuda</span>
-
-<span class="c1"># Use GPU if available; otherwise, cpu</span>
-<span class="k">if</span> <span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
-    <span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;cuda&quot;</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;cpu&quot;</span>
-
-</pre></div>
-</div>
-<p>Then I just replace <code class="docutils literal notranslate"><span class="pre">to.(&quot;cuda&quot;)</span></code> with <code class="docutils literal notranslate"><span class="pre">to.(device)</span></code>.</p>
-<p>Install dependencies:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>torch<span class="w">  </span>diffusers<span class="o">[</span>torch<span class="o">]</span><span class="w"> </span>transformers
-</pre></div>
-</div>
-<p>Then run it: great success! (After about <strong>3:20</strong>, yikes!)</p>
-<p>Here’s how to display your image:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Explore what this image even is</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-<span class="c1"># Oh, it&#39;s a PIL! We can just</span>
-<span class="n">image</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Warning, this will execute a script from the Internet as sudo</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>upgrade<span class="w"> </span>-y<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+wget<span class="w"> </span>-qO-<span class="w"> </span>https://get.docker.com<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>sh<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>nvidia-container-toolkit<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+sudo<span class="w"> </span>nvidia-ctk<span class="w"> </span>runtime<span class="w"> </span>configure<span class="w"> </span>--runtime<span class="o">=</span>docker<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>reboot
 </pre></div>
 </div>
 </section>
-<section id="add-the-api">
-<h3>Add the API<a class="headerlink" href="#add-the-api" title="Link to this heading">#</a></h3>
-<p>I want this thing to be served. Let’s try ChatGPT.</p>
-<p>Time for some <strong>prompt engineering.</strong></p>
-<p>First, I know I need to be specific about what I want
-as well as the steps I want the LLM to take.</p>
-<p>I’ve heard FastAPI is a good choice, but have never used it before.</p>
-<section id="prompt-1">
-<h4>Prompt 1<a class="headerlink" href="#prompt-1" title="Link to this heading">#</a></h4>
-<p>Here is what I try first</p>
-<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>I want to adapt the following code to serve a REST API where the user
-passes a prompt with <span class="sb">`prompt`</span> and a JPEG is returned.
-
-~~~python
-from diffusers import AutoPipelineForText2Image
-from torch import cuda
-
-<span class="gh"># https://huggingface.co/runwayml/stable-diffusion-v1-5</span>
-diffusion_model: str = &quot;runwayml/stable-diffusion-v1-5&quot;
-
-<span class="gh"># Use GPU if available; otherwise, cpu</span>
-if cuda.is_available():
-    device = &quot;cuda&quot;
-else:
-    device = &quot;cpu&quot;
-
-<span class="gh"># The auto pipeline automatically detects and loads the model</span>
-<span class="gh"># https://huggingface.co/docs/diffusers/tutorials/autopipeline#choose-an-autopipeline-for-your-task</span>
-<span class="gh"># Use_safetensors enables a NSFW filter.</span>
-pipeline = AutoPipelineForText2Image.from_pretrained(
-    diffusion_model, use_safetensors=True
-).to(device)
-
-<span class="gh"># Generate the image based on the prompt</span>
-prompt = &quot;A falcon flying over mountains&quot;
-image = pipeline(prompt, num_inference_steps=25).images[0]
-~~~
-
-<span class="k">1.</span> Create the FastAPI function <span class="sb">`generate_img`</span>
-<span class="k">2.</span> Use the <span class="sb">`prompt`</span> and <span class="sb">`pipeline`</span> to make the image
-<span class="k">3.</span> Convert the image to JPEG in memory
-<span class="k">4.</span> Return the image
-
-I also want you to talk about how to serve this API and how to call it
-using <span class="sb">`curl -o`</span>.
+<section id="get-started-with-gpu">
+<h2>Get Started with GPU<a class="headerlink" href="#get-started-with-gpu" title="Link to this heading">#</a></h2>
+<p>To make sure your GPU is online and available on your Jetson, <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code>
+will tell you about your GPU and CUDA version.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nvidia-smi
 </pre></div>
 </div>
-<p>Ok, tbh this is totally not how I did it.
-I walked the dog with individual prompts, starting from a basic example.
-I would run those, search some things or ask for clarification, and iterate.</p>
-<p>This prompt will <em>probably</em> give you working code, but it also will
-almost certainly be way too complex.</p>
-<p>For example, I ended up with a GET method doing it bit-by-bit but
-the prompt above gave me a POST method. Maybe that’s better, in truth.</p>
-<p>At minimum, you should</p>
-<ol class="arabic simple">
-<li><p>Have <code class="docutils literal notranslate"><span class="pre">&#64;app.post</span></code> or <code class="docutils literal notranslate"><span class="pre">&#64;app.get</span></code> macro</p></li>
-<li><p>Run the app with <a class="reference external" href="https://www.uvicorn.org/">uvicorn</a></p></li>
-<li><p>Be able to <code class="docutils literal notranslate"><span class="pre">curl</span></code> the port and save the image. At this point, single word prompts with no whitespace are fine.</p></li>
-</ol>
-</section>
-</section>
-</section>
-<section id="containerize-the-app">
-<h2>Containerize the app<a class="headerlink" href="#containerize-the-app" title="Link to this heading">#</a></h2>
-<p>Here is a Dockerfile to get you started:</p>
-<div class="highlight-Dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">nvcr.io/nvidia/pytorch:23.09-py3</span>
-
-<span class="k">EXPOSE</span><span class="w"> </span><span class="s">5858</span>
-
-<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
-<span class="k">COPY</span><span class="w"> </span>./generate_img.py<span class="w"> </span>/app
-
-<span class="c"># Ideally, pin to versions you know work.</span>
-<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span><span class="err">\</span>
-
-<span class="c"># TODO</span>
+<p>A good test of docker is to run a <a class="reference external" href="https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch">PyTorch container</a>;
+if the GPU is available to the container’s Python environment it will output <code class="docutils literal notranslate"><span class="pre">True</span></code>; otherwise, <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Version compatible with Jetpack 6.2</span>
+sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-rm<span class="w"> </span>--runtime<span class="o">=</span>nvidia<span class="w"> </span>--ipc<span class="o">=</span>host<span class="w"> </span>nvcr.io/nvidia/pytorch:25.02-py3-igpu<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import torch; print(torch.cuda.is_available())&quot;</span>
 </pre></div>
 </div>
-<ol class="arabic simple">
-<li><p>Switch from the generic <strong>nvidia/pytorch</strong> base to the one designed for the Jetson.</p></li>
-<li><p>Finish writing <code class="docutils literal notranslate"><span class="pre">generate_img.py</span></code> and make sure it is in the same directory as your Dockerfile.</p></li>
-<li><p>Finish installing dependencies with pip.</p></li>
-<li><p>Write the <code class="docutils literal notranslate"><span class="pre">CMD</span></code> layer.</p></li>
-<li><p>Figure out the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> command.</p>
-<ul class="simple">
-<li><p>You should use a <code class="docutils literal notranslate"><span class="pre">-v</span></code> <a class="reference external" href="https://docs.docker.com/storage/volumes/">volume</a> to reuse the model cache</p></li>
-<li><p>You need to bind the correct port</p></li>
-</ul>
-</li>
-</ol>
-<p>After all that, you should be able to curl your container and get a generated image!</p>
 </section>
 </section>
 
@@ -654,7 +503,7 @@ the prompt above gave me a POST method. Maybe that’s better, in truth.</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./jetson"
+            path: "./appendix"
         },
         predefinedOutput: true
     }
@@ -671,6 +520,15 @@ the prompt above gave me a POST method. Maybe that’s better, in truth.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="flash-edge-impulse.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Flash Edge Impulse Firmware to Arduino</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -687,21 +545,9 @@ the prompt above gave me a POST method. Maybe that’s better, in truth.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-reading">Pre-reading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-generation">Image generation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tutorial">The tutorial</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-documentation">The documentation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-it-on-the-nuc">Try it on the NUC</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-api">Add the API</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-1">Prompt 1</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#containerize-the-app">Containerize the app</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flash-the-board">Flash the Board</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#software-update-install-configure">Software Update, Install, Configure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-started-with-gpu">Get Started with GPU</a></li>
 </ul>
   </nav></div>
 
