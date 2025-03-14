@@ -55,3 +55,4 @@ parts:
     numbered: false
     chapters:
       - file: appendix/flash-edge-impulse
+      - file: appendix/jetson-setup
