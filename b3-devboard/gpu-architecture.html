@@ -440,16 +440,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">24.2. Linear Algebra</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-matrices">Vectors and Matrices</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-products">Dot Products</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication">Matrix Multiplication</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-networks">Neural Networks</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tensorflow">TensorFlow</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accumulating-your-multiply-accumulates">24.2. Accumulating your Multiply Accumulates</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensors-in-neural-networks">Tensors in Neural Networks</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphics-processing-units">24.3. Graphics Processing Units</a><ul class="nav section-nav flex-column">
@@ -462,14 +454,14 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tensor-cores">Tensor Cores</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#math-vs-memory-bandwidth">Math vs. Memory Bandwidth</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dnn-operation-performance">DNN Operation Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pcie">PCIe</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-performance">24.4. GPU Performance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dnn-performance">DNN Performance</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">24.4. Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">24.5. Conclusion</a></li>
 </ul>
             </nav>
         </div>
@@ -486,81 +478,67 @@ document.write(`
 <section id="pre-reading">
 <h2><span class="section-number">24.1. </span>Pre-Reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.techspot.com/article/2049-what-are-tensor-cores/">Explainer: What Are Tensor Cores? | TechSpot</a></p></li>
-<li><p>Peruse a little <a class="reference external" href="https://www.nvidia.com/en-us/data-center/tensor-cores/">NVIDIA Tensor Core marketing</a></p></li>
+<li><p><a class="reference external" href="https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/index.html">GPU Performance Background User’s Guide</a></p></li>
 </ul>
-<p>Note, if you are taking ECE 485 and plan to do something on GPUs then the <a class="reference external" href="https://resources.nvidia.com/en-us-tensor-core">Tensor Core White Paper</a> could be useful for your research!</p>
+<p><img alt="Spiderman with and without Ray Tracing" src="https://i.ytimg.com/vi/yBDJvYgIRRs/maxresdefault.jpg" /></p>
 <section id="objectives">
 <h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Discuss why linear algebra and GPUs are the bedrock of machine learning.</p></li>
 <li><p>Explain how GPU hardware accelerates mathematic computations.</p></li>
 <li><p>Describe the difference between memory- and math-limited algorithms.</p></li>
 </ul>
 </section>
 </section>
-<section id="linear-algebra">
-<h2><span class="section-number">24.2. </span>Linear Algebra<a class="headerlink" href="#linear-algebra" title="Link to this heading">#</a></h2>
-<p>With NVIDIA recently becoming the <a class="reference external" href="https://www.marketwatch.com/story/nvidia-officially-closes-in-1-trillion-territory-becoming-seventh-u-s-company-to-hit-market-cap-milestone-88ead8f9">seventh company ever to hit $1 trillion market-cap</a> and the boom of AI, it is clear that GPUs are a critical hardware. But what are they and what do they actually do for AI computation?</p>
-<p><strong>Answer:</strong> The vast majority of modern machine learning is handled with linear algebra and a little bit of calculus.</p>
-<section id="vectors-and-matrices">
-<h3>Vectors and Matrices<a class="headerlink" href="#vectors-and-matrices" title="Link to this heading">#</a></h3>
+<section id="accumulating-your-multiply-accumulates">
+<h2><span class="section-number">24.2. </span>Accumulating your Multiply Accumulates<a class="headerlink" href="#accumulating-your-multiply-accumulates" title="Link to this heading">#</a></h2>
 <blockquote>
-<div><p><a class="reference external" href="https://www.3blue1brown.com/lessons/vectors">3Blue1Brown - Vectors, what even are they?</a></p>
+<div><p>Multiply-add is the most frequent operation in modern neural networks, acting as a building block for fully-connected and convolutional layers, both of which can be viewed as a collection of vector dot-products.
+~ <a class="reference external" href="https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/index.html">GPU Performance Background User’s Guide</a></p>
 </div></blockquote>
-<ul class="simple">
-<li><p>In physics, and related engineering, a vector is thought of as an arrow pointing in space; it has magnitude and direction.</p></li>
-<li><p>In computer science, a vector - or array - is an ordered list, where each element corresponds with an attribute.</p></li>
-<li><p>Mathematicians generalize this to say that vectors can be multiplied by each other and added to a scalar.</p></li>
-</ul>
-<p>A matrix is similar to a vector, but has two dimensions always expressed as <strong>rows</strong> then <strong>columns</strong>. A 2x3 matrix has two rows and three columns.</p>
-<section id="dot-products">
-<h4>Dot Products<a class="headerlink" href="#dot-products" title="Link to this heading">#</a></h4>
-<p>A dot product is essentially how well two sets of numbers align with each other. A dot product with a small magnitude means little alignment, while a large magnitude means more alignment.</p>
-<p>When you open a door you push near the knob because that gives you good alignment between the force on the door and the motion of the door. Mathematically, this is a large dot product.
-If you try to open a door by pushing near the hinge then there is poor alignment between the force and motion. This is a small dot product, and it is very difficult to get the door to swing!</p>
-<p>The dot product can be calculated as either the product of the magnitudes (lengths) of each vector and the cosine of the angel between them. Visually, this is the transformation of two arrows in space.</p>
+<p>Recall that a dot product can be calculated as the product of the magnitudes (lengths) of each vector and the cosine of the angel between them.
+Visually, this is the transformation of two arrows in space.</p>
 <div class="math notranslate nohighlight">
-\[a \cdot b = |a|\cdot|b|\cdot\cos(\theta)\]</div>
-<p>Alternatively, the dot product can be calculated as the multiplication and summation of each element of two matrices. This formation will be more helpful for understanding the application to machine learning.</p>
+\[
+c = \mathbf{a} \cdot \mathbf{b} = |\mathbf{a}|\cdot|\mathbf{b}|\cdot\cos(\theta)
+\]</div>
+<p>Alternatively, the dot product can be calculated as the multiplication and summation of each element of two matrices.
+This formation will be more helpful for understanding the application to machine learning.</p>
 <div class="math notranslate nohighlight">
-\[\mathbf{a} \cdot \mathbf{b} = \sum_{i=1}^{n} a_i b_i\]</div>
-</section>
-<section id="matrix-multiplication">
-<h4>Matrix Multiplication<a class="headerlink" href="#matrix-multiplication" title="Link to this heading">#</a></h4>
-<p>Two matrices can be multiplied together. The multiplication of an <span class="math notranslate nohighlight">\(m\times n\)</span> matrix with an <span class="math notranslate nohighlight">\(n \times p\)</span> matrix will be an <span class="math notranslate nohighlight">\(m \times p\)</span> matrix. Notice that the inner, <span class="math notranslate nohighlight">\(n\)</span>, dimensions must match in order for a dot product to be possible.</p>
-</section>
-</section>
-<section id="neural-networks">
-<h3>Neural Networks<a class="headerlink" href="#neural-networks" title="Link to this heading">#</a></h3>
-<p>A neural network is a system of interconnected neurons inspired by the function of the human brain. The neurons exist in three types of layers:</p>
+\[
+c= \bf{a} \cdot \mathbf{b} = \sum_{i=1}^{n} a_i b_i
+\]</div>
+<p>As we’ve seen in previous exercises, a for loop that iterates element-wise over the vectors is <em>extremely</em> slow.
+<strong>But</strong> these operations can happen in parallel, via <em>matrix multiplication</em>.</p>
+<p>The multiplication of an <span class="math notranslate nohighlight">\(m\times n\)</span> matrix with an <span class="math notranslate nohighlight">\(n \times p\)</span> matrix will be an <span class="math notranslate nohighlight">\(m \times p\)</span> matrix.
+Notice that the inner, <span class="math notranslate nohighlight">\(n\)</span>, dimensions must match in order for a dot product to be possible.</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{C} = \mathbf{A} \mathbf{B}, \quad \text{where} \quad C_{ij} = \sum_{k=1}^{n} A_{ik} B_{kj}\]</div>
+<section id="tensors-in-neural-networks">
+<h3>Tensors in Neural Networks<a class="headerlink" href="#tensors-in-neural-networks" title="Link to this heading">#</a></h3>
+<p>Recall that tensors are multi-dimensional matricies and that DNNs operate on tensors via three types of layers:</p>
 <ol class="arabic simple">
-<li><p><strong>Input layer</strong> takes the sample as a vector</p></li>
-<li><p><strong>Hidden layers</strong> handle the work of extracting features from the sample</p></li>
-<li><p><strong>Output layer</strong> provides probabilities that a sample belongs to a particular class</p></li>
+<li><p><strong>Input layer</strong> accepts a batch of samples, where each sample is an N-dimension tensor of data.</p></li>
+<li><p><strong>Hidden layers</strong> handle the work of extracting features from each sample.</p></li>
+<li><p><strong>Output layer</strong> provides probabilities that a sample belongs to a particular class.</p></li>
 </ol>
 <p>The neurons in each layer are linked through a series of connections, each of which is assigned a specific weight. The weight of a link from one neuron to the next signifies the importance of the first neuron to the neuron in the next layer.</p>
-<p>When conducting inference, the input layer will take in values. To determine the value of each neuron in the next layer, the network multiplies each input value by the corresponding weight and then adds up these products. This is known as the <em>weighted sum</em>. If the incoming values are represented as a vector <span class="math notranslate nohighlight">\(V\)</span> and the connection weights are represented as a vector <span class="math notranslate nohighlight">\(W\)</span> then the weighted sum at a neuron <span class="math notranslate nohighlight">\(N\)</span> is the dot product of the two vectors. In addition to the weights associated with the connections, each neuron in the network possesses an additional parameter known as a <em>bias</em>, <span class="math notranslate nohighlight">\(B\)</span>. The bias allows for adjusting the output of the neuron along with the weighted sum. Thus, the final value of a neuron is:
-$<span class="math notranslate nohighlight">\(N = (\vec{V} \cdot \vec{W}) + B\)</span>$
-Once the total of the weighted sum and the bias crosses a particular threshold, the neuron becomes <em>activated</em>. There are numerous activation functions; two common ones are rectified linear unit (<a class="reference external" href="https://builtin.com/machine-learning/relu-activation-function">ReLU</a>) and sigmoid.</p>
+<p>When conducting inference, the input layer will take in values. To determine the value of each neuron in the next layer, the network multiplies each input value by the corresponding weight and then adds up these products. This is known as the <em>weighted sum</em>. If the incoming values are represented as a vector <span class="math notranslate nohighlight">\(V\)</span> and the connection weights are represented as a vector <span class="math notranslate nohighlight">\(W\)</span> then the weighted sum at a neuron <span class="math notranslate nohighlight">\(N\)</span> is the dot product of the two vectors. In addition to the weights associated with the connections, each neuron in the network possesses an additional parameter known as a <em>bias</em>, <span class="math notranslate nohighlight">\(B\)</span>. The bias allows for adjusting the output of the neuron along with the weighted sum. Thus, the final value of a neuron is:</p>
+<div class="math notranslate nohighlight">
+\[
+N = (\mathbf{V} \cdot \mathbf{W}) + B
+\]</div>
+<p>Once the total of the weighted sum and the bias crosses a particular threshold, the neuron becomes <em>activated</em>. There are numerous activation functions; two common ones are rectified linear unit (<a class="reference external" href="https://builtin.com/machine-learning/relu-activation-function">ReLU</a>) and sigmoid.</p>
 <p>Overall, the interaction between weights, biases, and activation functions allows neural networks to learn complex patterns and make informed predictions.</p>
-<section id="tensorflow">
-<h4>TensorFlow<a class="headerlink" href="#tensorflow" title="Link to this heading">#</a></h4>
-<p>In mathematics, a <em>tensor</em> is an algebraic object that describes multilinear relationships between sets of other algebraic objects related to a vector space.</p>
-<p><a class="reference external" href="https://www.tensorflow.org/about">TensorFlow</a> is an open source end-to-end machine learning platform developed by Google. It constrains the definition of tensors in <a class="reference external" href="https://www.tensorflow.org/guide/tensor">Introduction to Tensors</a>: <strong>tensors are multi-dimensional arrays with a uniform type.</strong></p>
-<p>TensorFlow uses tensors to construct neural networks.</p>
-<p>Matricies and vectors are subsets of tensors, so matrix multiplication and dot products are common operations on tensors as well. TensorFlow makes extensive use of elementwise multiplication and summation during both training and inference.</p>
-</section>
 </section>
 </section>
 <section id="graphics-processing-units">
 <h2><span class="section-number">24.3. </span>Graphics Processing Units<a class="headerlink" href="#graphics-processing-units" title="Link to this heading">#</a></h2>
 <blockquote>
-<div><p><a class="reference external" href="https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/index.html">GPU Performance Background User’s Guide - NVIDIA Docs</a></p>
+<div><p>The GPU is a highly parallel processor architecture, composed of processing elements and a memory hierarchy. At a high level, NVIDIA® GPUs consist of a number of Streaming Multiprocessors (SMs), on-chip L2 cache, and high-bandwidth DRAM. Arithmetic and other instructions are executed by the SMs; data and code are accessed from DRAM via the L2 cache.
+~ <a class="reference external" href="https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/index.html">GPU Performance Background User’s Guide</a></p>
 </div></blockquote>
-<p>NVIDIA GPUs consist of a number of Streaming Multiprocessors (SM), on-chip L2 cache, and high-bandwidth DRAM. Arithmetic and other instructions are executed by the SMs; data and code are accessed from DRAM via the L2 cache. Each SM has its own instruction schedulers and various instruction execution pipelines.</p>
 <p><img alt="Simplified view of the GPU architecture" src="https://docscontent.nvidia.com/dita/00000186-1a08-d34f-a596-3f291b140000/deeplearning/performance/dl-performance-gpu-background/graphics/simple-gpu-arch.svg" /></p>
-<p><strong>Multiply-add is the most frequent operation in modern neural networks</strong>, acting as a building block for fully-connected and convolutional layers, both of which <strong>can be viewed as a collection of vector dot-products</strong>.</p>
 <section id="gpu-execution">
 <h3>GPU Execution<a class="headerlink" href="#gpu-execution" title="Link to this heading">#</a></h3>
 <ul class="simple">
@@ -579,13 +557,15 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 </section>
 <section id="nvidia-gpus">
 <h3>NVIDIA GPUs<a class="headerlink" href="#nvidia-gpus" title="Link to this heading">#</a></h3>
-<p>US based <a class="reference external" href="https://www.nvidia.com/en-us/about-nvidia/">NVIDIA</a> is the world leader in GPU design. They are fabless, meaning they design chips but do not make them themselves. Currently Taiwan Semiconductor Manufacturing Co. (TSMC) <a class="reference external" href="https://www.reuters.com/business/nvidia-ceo-says-interested-exploring-chip-manufacturing-with-intel-2022-03-23/">makes the bulk of NVIDIA chips</a>.</p>
+<p>US based <a class="reference external" href="https://www.nvidia.com/en-us/about-nvidia/">NVIDIA</a> is the world leader in GPU design.
+They are fabless, meaning they design chips but do not make them themselves.
+Taiwan Semiconductor Manufacturing Co. (TSMC) makes the bulk of NVIDIA chips.</p>
 <p>Two critical NVIDIA technologies are CUDA Cores and Tensor Cores</p>
 <section id="cuda-cores">
 <h4>CUDA Cores<a class="headerlink" href="#cuda-cores" title="Link to this heading">#</a></h4>
-<p><a class="reference external" href="https://developer.nvidia.com/blog/even-easier-introduction-cuda/">An Even Easier Introduction to CUDA | NVIDIA Technical Blog</a></p>
-<p><strong>CUDA</strong> is an API that allows softare to directly access NVIDIA GPU instruction set. The CUDA Toolkit allows developers to use C++ to interact with the cores, but many libraries - such as TensorFlow - have implmented CUDA under the hood.</p>
-<p>CUDA is used in numerous applications, from scientific computing to gaming.</p>
+<p><strong>CUDA</strong> is an API that allows software to directly access NVIDIA GPU instruction set.
+The CUDA Toolkit allows developers to use C++ to interact with the cores, but many libraries - such as TensorFlow and PyTorch - have implemented CUDA under the hood.</p>
+<p>See <a class="reference external" href="https://developer.nvidia.com/blog/even-easier-introduction-cuda/">An Even Easier Introduction to CUDA | NVIDIA Technical Blog</a> if you really want to explore using C++ to crate a massively parallel application.</p>
 </section>
 <section id="tensor-cores">
 <h4>Tensor Cores<a class="headerlink" href="#tensor-cores" title="Link to this heading">#</a></h4>
@@ -595,30 +575,41 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 <li><p>These smaller matrix blocks are then aggregated.</p></li>
 <li><p>Tensor Cores can compute and accumulate products in higher precision than the inputs. For example, during training with FP16 inputs, Tensor Cores can compute products without loss of precision and accumulate in FP32.</p></li>
 <li><p>When math operations cannot be formulated in terms of matrix blocks - for example, element-wise addition - they are executed in CUDA cores.</p></li>
-<li><p>Effeciency is best when matrix dimensions are multiples of 16 bytes.</p></li>
+<li><p>Efficiency is best when matrix dimensions are multiples of 16 bytes.</p></li>
 </ul>
-<p>Tenosr Cores continue to be improved with additional supported data types in the Turing Architecture.</p>
+<p>Tenosr Cores continue to be improved with additional supported data types in the Turing Architecture and now Ada Architecture.</p>
 </section>
 </section>
-<section id="performance">
-<h3>Performance<a class="headerlink" href="#performance" title="Link to this heading">#</a></h3>
+<section id="pcie">
+<h3>PCIe<a class="headerlink" href="#pcie" title="Link to this heading">#</a></h3>
+<p>Peripheral Component Interconnect Express (PCIe) is the connection GPUs use to connect to your computer.</p>
+<p>The <a class="reference external" href="https://www.nvidia.com/en-us/design-visualization/rtx-5000/">NVIDIA RTX 5000 Ada GPU</a> has PCIe Gen4 x16,
+meaning there are 16 lanes of parallel data transfer according to the fourth generation protocol…
+this gets bandwidth of about 64 GB/s, assuming your CPU can keep up!</p>
+<figure class="align-default" id="id1">
+<img alt="https://docscontent.nvidia.com/dims4/default/0987ede/2147483647/strip/true/crop/1099x727+0+0/resize/2198x1454!/format/webp/quality/90/?url=https%3A%2F%2Fk3-prod-nvidia-docs.s3.us-west-2.amazonaws.com%2Fbrightspot%2Fconfluence%2F00000195-8599-dbb9-a9bf-b5fbe68d0000%2Fimages%2Fdownload%2Fattachments%2F2487214394%2Fimage2020-10-19_19-41-1-version-1-modificationdate-1669944867740-api-v2.png" src="https://docscontent.nvidia.com/dims4/default/0987ede/2147483647/strip/true/crop/1099x727+0+0/resize/2198x1454!/format/webp/quality/90/?url=https%3A%2F%2Fk3-prod-nvidia-docs.s3.us-west-2.amazonaws.com%2Fbrightspot%2Fconfluence%2F00000195-8599-dbb9-a9bf-b5fbe68d0000%2Fimages%2Fdownload%2Fattachments%2F2487214394%2Fimage2020-10-19_19-41-1-version-1-modificationdate-1669944867740-api-v2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 24.1 </span><span class="caption-text">NVIDIA PCIe Interface shown by circle <strong>3</strong></span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="gpu-performance">
+<h2><span class="section-number">24.4. </span>GPU Performance<a class="headerlink" href="#gpu-performance" title="Link to this heading">#</a></h2>
 <p>Performance of a function on a given processor is limited by one of the following three factors; <strong>memory bandwidth, math bandwidth and latency</strong>.</p>
 <ul class="simple">
-<li><p>In cases of insuffecient parallelism, latency will be the greatest limiting factor.</p></li>
-<li><p>If there is suffecient parallelism, math or memory will be the greatest limiting factor, based on specific arithmetic intensity of the algorithm and the math vs. memory bandwidth of the processor.</p></li>
+<li><p>In cases of insufficient parallelism, latency will be the greatest limiting factor.</p></li>
+<li><p>If there is sufficient parallelism, math or memory will be the greatest limiting factor, based on specific arithmetic intensity of the algorithm and the math vs. memory bandwidth of the processor.</p></li>
 </ul>
-<section id="math-vs-memory-bandwidth">
-<h4>Math vs. Memory Bandwidth<a class="headerlink" href="#math-vs-memory-bandwidth" title="Link to this heading">#</a></h4>
 <p>How much time is spent in memory or math operations depends on both the algorithm and its implementation, as well as the processor’s bandwidths.</p>
 <ul class="simple">
 <li><p><strong>arithmetic intensity</strong> is the ratio of the number of mathematical operations vs. the number of bytes accessed.</p></li>
 <li><p>the <strong>ops:byte ratio</strong> is the ratio of math bandwidth vs. memory bandwidth for a given processor.</p></li>
-<li><p>an algorithim is <strong>math limited</strong> on a given processor if the arithmetic intesity is higher than  the processor’s ops:byte ratio.</p></li>
-<li><p>an algorithim is <strong>memory limited</strong> on  a given processor if the arithmetic intensity is lower than the processor’s ops:byte ratio.</p></li>
+<li><p>an algorithm is <strong>math limited</strong> on a given processor if the arithmetic intesity is higher than  the processor’s ops:byte ratio.</p></li>
+<li><p>an algorithm is <strong>memory limited</strong> on  a given processor if the arithmetic intensity is lower than the processor’s ops:byte ratio.</p></li>
 </ul>
-</section>
-<section id="dnn-operation-performance">
-<h4>DNN Operation Performance<a class="headerlink" href="#dnn-operation-performance" title="Link to this heading">#</a></h4>
+<section id="dnn-performance">
+<h3>DNN Performance<a class="headerlink" href="#dnn-performance" title="Link to this heading">#</a></h3>
 <p>Modern deep neural networks are built from a variety of layers, who’s operations fall into three categories.</p>
 <ol class="arabic simple">
 <li><p><strong>Elementwise operations</strong> are independent of all other elements within the tensor. Examples include summation or ReLU. These tend to be <em>memory-limited.</em></p></li>
@@ -627,9 +618,8 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 </ol>
 </section>
 </section>
-</section>
 <section id="conclusion">
-<h2><span class="section-number">24.4. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">24.5. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
 <p>The execution of linear algebra on GPUs is foundational to modern machine learning. Linear algebra provides the mathematical framework that underpins many machine learning algorithms. Neural networks, in particular, are heavily reliant on using weighted sums dot products to propagate information and adjust weights through the network layers.</p>
 <p>Graphics Processing Units (GPUs) with their highly parallelized structures have revolutionized the computational efficiency of these operations. Technologies like NVIDIA’s CUDA and Tensor Cores allow for the optimized execution of the matrix and vector operations that are so common in machine learning, significantly accelerating the training and inference processes of deep learning models.</p>
 <p>Understanding the performance dynamics of these GPUs—such as memory bandwidth, math bandwidth, and latency—allows for the optimized implementation of algorithms. Deep neural networks often need to be carefully designed and tuned to effectively leverage the computational capabilities of GPUs.</p>
@@ -705,16 +695,8 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">24.2. Linear Algebra</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-matrices">Vectors and Matrices</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-products">Dot Products</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication">Matrix Multiplication</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-networks">Neural Networks</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tensorflow">TensorFlow</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accumulating-your-multiply-accumulates">24.2. Accumulating your Multiply Accumulates</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensors-in-neural-networks">Tensors in Neural Networks</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphics-processing-units">24.3. Graphics Processing Units</a><ul class="nav section-nav flex-column">
@@ -727,14 +709,14 @@ Once the total of the weighted sum and the bias crosses a particular threshold, 
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tensor-cores">Tensor Cores</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#math-vs-memory-bandwidth">Math vs. Memory Bandwidth</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dnn-operation-performance">DNN Operation Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pcie">PCIe</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-performance">24.4. GPU Performance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dnn-performance">DNN Performance</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">24.4. Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">24.5. Conclusion</a></li>
 </ul>
   </nav></div>
 
