@@ -2,87 +2,71 @@
 
 ## Pre-Reading
 
-- [Explainer: What Are Tensor Cores? | TechSpot](https://www.techspot.com/article/2049-what-are-tensor-cores/)
-- Peruse a little [NVIDIA Tensor Core marketing](https://www.nvidia.com/en-us/data-center/tensor-cores/)
+- [GPU Performance Background User's Guide](https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/index.html)
 
-Note, if you are taking ECE 485 and plan to do something on GPUs then the [Tensor Core White Paper](https://resources.nvidia.com/en-us-tensor-core) could be useful for your research!
+![Spiderman with and without Ray Tracing](https://i.ytimg.com/vi/yBDJvYgIRRs/maxresdefault.jpg)
 
 ### Objectives
 
-- Discuss why linear algebra and GPUs are the bedrock of machine learning.
 - Explain how GPU hardware accelerates mathematic computations.
 - Describe the difference between memory- and math-limited algorithms.
 
-## Linear Algebra
+## Accumulating your Multiply Accumulates
 
-With NVIDIA recently becoming the [seventh company ever to hit $1 trillion market-cap](https://www.marketwatch.com/story/nvidia-officially-closes-in-1-trillion-territory-becoming-seventh-u-s-company-to-hit-market-cap-milestone-88ead8f9) and the boom of AI, it is clear that GPUs are a critical hardware. But what are they and what do they actually do for AI computation?
+> Multiply-add is the most frequent operation in modern neural networks, acting as a building block for fully-connected and convolutional layers, both of which can be viewed as a collection of vector dot-products.
+> ~ [GPU Performance Background User's Guide](https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/index.html)
 
-**Answer:** The vast majority of modern machine learning is handled with linear algebra and a little bit of calculus.
+Recall that a dot product can be calculated as the product of the magnitudes (lengths) of each vector and the cosine of the angel between them.
+Visually, this is the transformation of two arrows in space.
 
-### Vectors and Matrices
+$$
+c = \mathbf{a} \cdot \mathbf{b} = |\mathbf{a}|\cdot|\mathbf{b}|\cdot\cos(\theta)
+$$
 
-> [3Blue1Brown - Vectors, what even are they?](https://www.3blue1brown.com/lessons/vectors)
+Alternatively, the dot product can be calculated as the multiplication and summation of each element of two matrices.
+This formation will be more helpful for understanding the application to machine learning.
 
-- In physics, and related engineering, a vector is thought of as an arrow pointing in space; it has magnitude and direction.
-- In computer science, a vector - or array - is an ordered list, where each element corresponds with an attribute.
-- Mathematicians generalize this to say that vectors can be multiplied by each other and added to a scalar.
+$$
+c= \bf{a} \cdot \mathbf{b} = \sum_{i=1}^{n} a_i b_i
+$$
 
-A matrix is similar to a vector, but has two dimensions always expressed as **rows** then **columns**. A 2x3 matrix has two rows and three columns.
+As we've seen in previous exercises, a for loop that iterates element-wise over the vectors is *extremely* slow.
+**But** these operations can happen in parallel, via *matrix multiplication*.
 
-#### Dot Products
+The multiplication of an $m\times n$ matrix with an $n \times p$ matrix will be an $m \times p$ matrix.
+Notice that the inner, $n$, dimensions must match in order for a dot product to be possible.
 
-A dot product is essentially how well two sets of numbers align with each other. A dot product with a small magnitude means little alignment, while a large magnitude means more alignment.
+$$
+\mathbf{C} = \mathbf{A} \mathbf{B}, \quad \text{where} \quad C_{ij} = \sum_{k=1}^{n} A_{ik} B_{kj}
 
-When you open a door you push near the knob because that gives you good alignment between the force on the door and the motion of the door. Mathematically, this is a large dot product.
-If you try to open a door by pushing near the hinge then there is poor alignment between the force and motion. This is a small dot product, and it is very difficult to get the door to swing!
+$$
 
-The dot product can be calculated as either the product of the magnitudes (lengths) of each vector and the cosine of the angel between them. Visually, this is the transformation of two arrows in space.
+### Tensors in Neural Networks
 
-$$a \cdot b = |a|\cdot|b|\cdot\cos(\theta)$$
+Recall that tensors are multi-dimensional matricies and that DNNs operate on tensors via three types of layers:
 
-Alternatively, the dot product can be calculated as the multiplication and summation of each element of two matrices. This formation will be more helpful for understanding the application to machine learning.
-
-$$\mathbf{a} \cdot \mathbf{b} = \sum_{i=1}^{n} a_i b_i$$
-
-#### Matrix Multiplication
-
-Two matrices can be multiplied together. The multiplication of an $m\times n$ matrix with an $n \times p$ matrix will be an $m \times p$ matrix. Notice that the inner, $n$, dimensions must match in order for a dot product to be possible.
-
-### Neural Networks
-
-A neural network is a system of interconnected neurons inspired by the function of the human brain. The neurons exist in three types of layers:
-
-1. **Input layer** takes the sample as a vector
-2. **Hidden layers** handle the work of extracting features from the sample
-3. **Output layer** provides probabilities that a sample belongs to a particular class
+1. **Input layer** accepts a batch of samples, where each sample is an N-dimension tensor of data.
+2. **Hidden layers** handle the work of extracting features from each sample.
+3. **Output layer** provides probabilities that a sample belongs to a particular class.
 
 The neurons in each layer are linked through a series of connections, each of which is assigned a specific weight. The weight of a link from one neuron to the next signifies the importance of the first neuron to the neuron in the next layer.
 
 When conducting inference, the input layer will take in values. To determine the value of each neuron in the next layer, the network multiplies each input value by the corresponding weight and then adds up these products. This is known as the *weighted sum*. If the incoming values are represented as a vector $V$ and the connection weights are represented as a vector $W$ then the weighted sum at a neuron $N$ is the dot product of the two vectors. In addition to the weights associated with the connections, each neuron in the network possesses an additional parameter known as a *bias*, $B$. The bias allows for adjusting the output of the neuron along with the weighted sum. Thus, the final value of a neuron is:
-$$N = (\vec{V} \cdot \vec{W}) + B$$
+
+$$
+N = (\mathbf{V} \cdot \mathbf{W}) + B
+$$
+
 Once the total of the weighted sum and the bias crosses a particular threshold, the neuron becomes *activated*. There are numerous activation functions; two common ones are rectified linear unit ([ReLU](https://builtin.com/machine-learning/relu-activation-function)) and sigmoid.
 
 Overall, the interaction between weights, biases, and activation functions allows neural networks to learn complex patterns and make informed predictions.
 
-#### TensorFlow
-
-In mathematics, a *tensor* is an algebraic object that describes multilinear relationships between sets of other algebraic objects related to a vector space.
-
-[TensorFlow](https://www.tensorflow.org/about) is an open source end-to-end machine learning platform developed by Google. It constrains the definition of tensors in [Introduction to Tensors](https://www.tensorflow.org/guide/tensor): **tensors are multi-dimensional arrays with a uniform type.**
-
-TensorFlow uses tensors to construct neural networks.
-
-Matricies and vectors are subsets of tensors, so matrix multiplication and dot products are common operations on tensors as well. TensorFlow makes extensive use of elementwise multiplication and summation during both training and inference.
-
 ## Graphics Processing Units
 
-> [GPU Performance Background User's Guide - NVIDIA Docs](https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/index.html)
-
-NVIDIA GPUs consist of a number of Streaming Multiprocessors (SM), on-chip L2 cache, and high-bandwidth DRAM. Arithmetic and other instructions are executed by the SMs; data and code are accessed from DRAM via the L2 cache. Each SM has its own instruction schedulers and various instruction execution pipelines.
+> The GPU is a highly parallel processor architecture, composed of processing elements and a memory hierarchy. At a high level, NVIDIA® GPUs consist of a number of Streaming Multiprocessors (SMs), on-chip L2 cache, and high-bandwidth DRAM. Arithmetic and other instructions are executed by the SMs; data and code are accessed from DRAM via the L2 cache.
+> ~ [GPU Performance Background User's Guide](https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/index.html)
 
 ![Simplified view of the GPU architecture](https://docscontent.nvidia.com/dita/00000186-1a08-d34f-a596-3f291b140000/deeplearning/performance/dl-performance-gpu-background/graphics/simple-gpu-arch.svg)
-
-**Multiply-add is the most frequent operation in modern neural networks**, acting as a building block for fully-connected and convolutional layers, both of which **can be viewed as a collection of vector dot-products**.
 
 ### GPU Execution
 
@@ -102,17 +86,18 @@ Each thread block computes its output tile by stepping through the K dimension i
 
 ### NVIDIA GPUs
 
-US based [NVIDIA](https://www.nvidia.com/en-us/about-nvidia/) is the world leader in GPU design. They are fabless, meaning they design chips but do not make them themselves. Currently Taiwan Semiconductor Manufacturing Co. (TSMC) [makes the bulk of NVIDIA chips](https://www.reuters.com/business/nvidia-ceo-says-interested-exploring-chip-manufacturing-with-intel-2022-03-23/).
+US based [NVIDIA](https://www.nvidia.com/en-us/about-nvidia/) is the world leader in GPU design.
+They are fabless, meaning they design chips but do not make them themselves.
+Taiwan Semiconductor Manufacturing Co. (TSMC) makes the bulk of NVIDIA chips.
 
 Two critical NVIDIA technologies are CUDA Cores and Tensor Cores
 
 #### CUDA Cores
 
-[An Even Easier Introduction to CUDA | NVIDIA Technical Blog](https://developer.nvidia.com/blog/even-easier-introduction-cuda/)
+**CUDA** is an API that allows software to directly access NVIDIA GPU instruction set.
+The CUDA Toolkit allows developers to use C++ to interact with the cores, but many libraries - such as TensorFlow and PyTorch - have implemented CUDA under the hood.
 
-**CUDA** is an API that allows softare to directly access NVIDIA GPU instruction set. The CUDA Toolkit allows developers to use C++ to interact with the cores, but many libraries - such as TensorFlow - have implmented CUDA under the hood.
-
-CUDA is used in numerous applications, from scientific computing to gaming.
+See [An Even Easier Introduction to CUDA | NVIDIA Technical Blog](https://developer.nvidia.com/blog/even-easier-introduction-cuda/) if you really want to explore using C++ to crate a massively parallel application.
 
 #### Tensor Cores
 
@@ -122,27 +107,39 @@ Tensor Cores were introduced in the NVIDIA Volta™ GPU architecture to accelera
 - These smaller matrix blocks are then aggregated.
 - Tensor Cores can compute and accumulate products in higher precision than the inputs. For example, during training with FP16 inputs, Tensor Cores can compute products without loss of precision and accumulate in FP32.
 - When math operations cannot be formulated in terms of matrix blocks - for example, element-wise addition - they are executed in CUDA cores.
-- Effeciency is best when matrix dimensions are multiples of 16 bytes.
+- Efficiency is best when matrix dimensions are multiples of 16 bytes.
 
-Tenosr Cores continue to be improved with additional supported data types in the Turing Architecture.
+Tenosr Cores continue to be improved with additional supported data types in the Turing Architecture and now Ada Architecture.
 
-### Performance
+### PCIe
+
+Peripheral Component Interconnect Express (PCIe) is the connection GPUs use to connect to your computer.
+
+The [NVIDIA RTX 5000 Ada GPU](https://www.nvidia.com/en-us/design-visualization/rtx-5000/) has PCIe Gen4 x16,
+meaning there are 16 lanes of parallel data transfer according to the fourth generation protocol...
+this gets bandwidth of about 64 GB/s, assuming your CPU can keep up!
+
+```{figure} https://docscontent.nvidia.com/dims4/default/0987ede/2147483647/strip/true/crop/1099x727+0+0/resize/2198x1454!/format/webp/quality/90/?url=https%3A%2F%2Fk3-prod-nvidia-docs.s3.us-west-2.amazonaws.com%2Fbrightspot%2Fconfluence%2F00000195-8599-dbb9-a9bf-b5fbe68d0000%2Fimages%2Fdownload%2Fattachments%2F2487214394%2Fimage2020-10-19_19-41-1-version-1-modificationdate-1669944867740-api-v2.png
+
+
+NVIDIA PCIe Interface shown by circle **3**
+```
+
+## GPU Performance
 
 Performance of a function on a given processor is limited by one of the following three factors; **memory bandwidth, math bandwidth and latency**.
 
-- In cases of insuffecient parallelism, latency will be the greatest limiting factor.
-- If there is suffecient parallelism, math or memory will be the greatest limiting factor, based on specific arithmetic intensity of the algorithm and the math vs. memory bandwidth of the processor.
-
-#### Math vs. Memory Bandwidth
+- In cases of insufficient parallelism, latency will be the greatest limiting factor.
+- If there is sufficient parallelism, math or memory will be the greatest limiting factor, based on specific arithmetic intensity of the algorithm and the math vs. memory bandwidth of the processor.
 
 How much time is spent in memory or math operations depends on both the algorithm and its implementation, as well as the processor’s bandwidths.
 
 - **arithmetic intensity** is the ratio of the number of mathematical operations vs. the number of bytes accessed.
 - the **ops:byte ratio** is the ratio of math bandwidth vs. memory bandwidth for a given processor.
-- an algorithim is **math limited** on a given processor if the arithmetic intesity is higher than  the processor's ops:byte ratio.
-- an algorithim is **memory limited** on  a given processor if the arithmetic intensity is lower than the processor's ops:byte ratio.
+- an algorithm is **math limited** on a given processor if the arithmetic intesity is higher than  the processor's ops:byte ratio.
+- an algorithm is **memory limited** on  a given processor if the arithmetic intensity is lower than the processor's ops:byte ratio.
 
-#### DNN Operation Performance
+### DNN Performance
 
 Modern deep neural networks are built from a variety of layers, who's operations fall into three categories.
 
