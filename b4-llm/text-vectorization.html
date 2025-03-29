@@ -57,14 +57,6 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
-    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
-    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
-    <script type="module">
-import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
-window.addEventListener("load", () => mermaid.run());
-</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'b4-llm/text-vectorization';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -489,10 +481,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">26.3. Exercise</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explore">Explore</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#word-clouds">Word Clouds</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word-clouds">Word Clouds</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardize">26.4. Standardize</a><ul class="nav section-nav flex-column">
@@ -526,15 +515,16 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="text-vectorization">
 <h1><span class="section-number">26. </span>Text Vectorization<a class="headerlink" href="#text-vectorization" title="Link to this heading">#</a></h1>
 <p>The first step in Natural Language Processing (NLP) is to get the words into a format that we can do math on them.</p>
+<figure class="align-default" id="id1">
+<img alt="https://microsoft.github.io/generative-ai-for-beginners/04-prompt-engineering-fundamentals/images/04-tokenizer-example.png" src="https://microsoft.github.io/generative-ai-for-beginners/04-prompt-engineering-fundamentals/images/04-tokenizer-example.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 26.1 </span><span class="caption-text">Tokenization of text.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <section id="pre-reading">
 <h2><span class="section-number">26.1. </span>Pre-reading<a class="headerlink" href="#pre-reading" title="Link to this heading">#</a></h2>
-<p>Lightly read this:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.deeplearning.ai/resources/natural-language-processing/">DeepLearning AI: A Complete Guide to Natural Language Processing</a></p></li>
-</ul>
-<p>Be prepared to reference this:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://learning.oreilly.com/library/view/deep-learning-with/9781617296864/Text/11.htm"><em>Deep Learning with Python</em>, 11.0 - 11.3</a></p></li>
 </ul>
 <section id="objectives">
 <h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
@@ -543,6 +533,8 @@ document.write(`
 <li><p>Prepare text data for computer processing.</p></li>
 <li><p>Vectorize text.</p></li>
 </ul>
+<p>See <a class="reference external" href="https://learning.oreilly.com/library/view/deep-learning-with/9781617296864/Text/11.htm#heading_id_3"><em>Deep Learning with Python</em>, 11.0 - 11.3</a>
+for lots more information.</p>
 </section>
 </section>
 <section id="overview">
@@ -550,15 +542,17 @@ document.write(`
 <section id="natural-language-processing">
 <h3>Natural Language Processing<a class="headerlink" href="#natural-language-processing" title="Link to this heading">#</a></h3>
 <blockquote>
-<div><p>Natural language processing (NLP) is a field of computer science and a subfield of artificial intelligence that aims to make computers understand human language. NLP uses computational linguistics, which is the study of how language works, and various models based on statistics, machine learning, and deep learning. ~ Geeks for Geeks</p>
+<div><p>Natural language processing (NLP) is a field of computer science and a subfield of artificial intelligence that aims to make computers understand human language. NLP uses computational linguistics, which is the study of how language works, and various models based on statistics, machine learning, and deep learning.
+~ <a class="reference external" href="https://www.geeksforgeeks.org/natural-language-processing-overview/">Geeks for Geeks: NLP Overview</a></p>
 </div></blockquote>
 <p><em>See the DeepLearning AI post for more <strong>why</strong>, what, and how</em>.</p>
 </section>
 <section id="math-with-words">
 <h3>Math with Words<a class="headerlink" href="#math-with-words" title="Link to this heading">#</a></h3>
 <blockquote>
-<div><p>Deep learning models, being differentiable functions, can only process numeric tensors: they can’t take raw text as input. <em>Vectorizing</em> text is the process of transforming text into numeric tensors.
-~ <em>Deep Learning with Python</em></p>
+<div><p>Deep learning models, being differentiable functions, can only process numeric tensors: they can’t take raw text as input.
+<em>Vectorizing</em> text is the process of transforming text into numeric tensors.
+~ <a class="reference external" href="https://learning.oreilly.com/library/view/deep-learning-with/9781617296864/Text/11.htm#:-:text=Deep%20learning%20models,into%20numeric%20tensors."><em>Deep Learning with Python, 2nd Ed</em></a></p>
 </div></blockquote>
 <ol class="arabic simple" start="0">
 <li><p><strong>Explore</strong> the dataset to see understand what it contains.</p></li>
@@ -566,7 +560,12 @@ document.write(`
 <li><p><strong>Tokenize</strong> the text by splitting it into units.</p></li>
 <li><p><strong>Index</strong> the tokens into a numerical vector.</p></li>
 </ol>
-<p><img alt="From raw text to vectors, Deep Learning with Python, 2nd Ed, fig. 11.1" src="../_images/deep_learning_with_python-fig-11-01.png" /></p>
+<figure class="align-default" id="id2">
+<img alt="../_images/deep_learning_with_python-fig-11-01.png" src="../_images/deep_learning_with_python-fig-11-01.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 26.2 </span><span class="caption-text">From raw text to vectors, <em>Deep Learning with Python, 2nd Ed</em>, fig. 11.1</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <section id="exploration">
 <h4>Exploration<a class="headerlink" href="#exploration" title="Link to this heading">#</a></h4>
 <p>Although not listed in the text book, but you should always begin with exploring the dataset to understand what it contains: data format and potential bias!</p>
@@ -574,29 +573,42 @@ document.write(`
 </section>
 <section id="standardization">
 <h3>Standardization<a class="headerlink" href="#standardization" title="Link to this heading">#</a></h3>
-<p>Examples of standardization include converting to lowercase, standardizing punctuation and special characters, and stemming.</p>
-<pre  class="mermaid">
-        graph LR
-   A[&quot;My altitude is 7258&quot; above sea-level, far, far above that of West Point or Annapolis!&quot;] --&gt; norm((&quot;Normalize Text&quot;))
-   B[&quot;My altitude is 7258 ft. above sea level, FAR FAR above that of west point or Annapolis!&quot;] --&gt; norm
-   norm --&gt; result[&quot;my altitude is 7258 feet above sea level far far above that of west point or annapolis !&quot;]
-    </pre></section>
+<p>An example of standardization include converting to lowercase, standardizing punctuation and special characters, and stemming.</p>
+<ol class="arabic simple">
+<li><p>“My altitude is 7258’ above sea-level, far, far above that of West Point or Annapolis!”</p></li>
+<li><p>“My altitude is 7258 ft. above sea level, FAR FAR above that of West point or Annapolis!”</p></li>
+</ol>
+<p>Both should result in:</p>
+<ul class="simple">
+<li><p>“my altitude is 7258 feet above sea level far far above that of west point or annapolis !”</p></li>
+</ul>
+</section>
 <section id="tokenization">
 <h3>Tokenization<a class="headerlink" href="#tokenization" title="Link to this heading">#</a></h3>
 <p>You can tokenize in different ways.</p>
 <p>Here is an example of <strong>word-level</strong> tokenization.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;my&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;altitude&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;is&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;7258&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;feet&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;above&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sea&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;level&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;far&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;far&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;above&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;that&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;of&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;west&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;or&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;annapolis&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;!&quot;</span><span class="p">}</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">   </span><span class="s2">&quot;my&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;altitude&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;is&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;7258&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;feet&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;above&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sea&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;level&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;far&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;far&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="s2">&quot;above&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;that&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;of&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;west&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;point&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;or&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;annapolis&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;!&quot;</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 <p>Here is an example of <strong>bag-of-3-grams</strong> tokenization.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;my altitude is&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;altitude is 7258&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;is 7258 feet&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;7258 feet above&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;feet above sea&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;above sea level&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sea level far&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;level far far&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;far far above&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;far above that&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;above that of&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;that of west&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;of west point&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;west point or&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;point or annapolis&quot;</span><span class="p">}</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">   </span><span class="s2">&quot;my altitude is&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;altitude is 7258&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;is 7258 feet&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;7258 feet above&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;feet above sea&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="s2">&quot;above sea level&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sea level far&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;level far far&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;far far above&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;far above that&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="s2">&quot;above that of&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;that of west&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;of west point&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;west point or&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;point or annapolis&quot;</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 </section>
 <section id="indexing">
 <h3>Indexing<a class="headerlink" href="#indexing" title="Link to this heading">#</a></h3>
 <p>The simplest way to represent tokens in a vector is with the <strong>bag-of-words</strong> approach, which just counts how many times each token appears in the text.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;my&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;altitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;is&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;7258&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;feet&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;above&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;sea&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;far&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;that&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;of&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;west&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;point&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;or&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;annapolis&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;!&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;my&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;altitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;is&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;7258&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;feet&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;above&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;sea&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">   </span><span class="nt">&quot;far&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;that&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;of&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;west&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;point&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;or&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;annapolis&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;!&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>As simple as this is, it can be highly effective! However, you lose sequence information, which can be critical. Moving to N-grams can help!</p>
@@ -608,12 +620,6 @@ document.write(`
 <p>For this exercise we will use <a class="reference external" href="https://www.presidency.ucsb.edu/documents/app-categories/spoken-addresses-and-remarks/presidential/inaugural-addresses">Inaugural Addresses from American Presidents</a>.</p>
 <p>Go to the website now and think how you might put all of these into an easy-to-ingest document.</p>
 <p>Fortunately, I”ve already extracted some of these and placed them in <a class="reference download internal" download="" href="../_downloads/87beeb0ef3dbf9c0885c085903f931e5/inaugural_addresses.csv"><span class="xref download myst">book/data/inagural_addresses.csv</span></a></p>
-<section id="explore">
-<h3>Explore<a class="headerlink" href="#explore" title="Link to this heading">#</a></h3>
-<p>As always, we should preview some stats about what we are diving in to.</p>
-<blockquote>
-<div><p><strong>Prompt GPT4-Advanced Data Analytics</strong>: Use pandas to provide a quick summary of this CSV</p>
-</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the dataset, if not running in VSCode</span>
@@ -622,6 +628,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>As always, we should preview some stats about what we are diving in to.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -640,14 +647,89 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 6 entries, 0 to 5
+Data columns (total 3 columns):
+ #   Column     Non-Null Count  Dtype 
+---  ------     --------------  ----- 
+ 0   President  6 non-null      object
+ 1   Year       6 non-null      int64 
+ 2   Text       6 non-null      object
+dtypes: int64(1), object(2)
+memory usage: 272.0+ bytes
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>President</th>
+      <th>Year</th>
+      <th>Text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Biden</td>
+      <td>2021</td>
+      <td>Chief Justice Roberts, Vice President Harris, ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Trump</td>
+      <td>2017</td>
+      <td>Chief Justice Roberts, President Carter, Presi...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Obama</td>
+      <td>2013</td>
+      <td>Thank you. Thank you so much.  Vice President ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Obama</td>
+      <td>2009</td>
+      <td>My fellow citizens, I stand here today humbled...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Bush</td>
+      <td>2005</td>
+      <td>Vice President Cheney, Mr. Chief Justice, Pres...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <section id="word-clouds">
-<h4>Word Clouds<a class="headerlink" href="#word-clouds" title="Link to this heading">#</a></h4>
+<h3>Word Clouds<a class="headerlink" href="#word-clouds" title="Link to this heading">#</a></h3>
 <p>Unlike numerical data, we cannot easily do things like mean, median, or standard deviation with text data.</p>
-<p>Let”s try a word cloud, just for fun.</p>
+<p>Let’s try a word cloud, just for fun.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install -q wordcloud
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
 </pre></div>
 </div>
 </div>
@@ -680,7 +762,7 @@ document.write(`
         <span class="c1"># Display the word cloud on the subplot</span>
         <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wc</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;bilinear&quot;</span><span class="p">)</span>
         <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
-        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;President&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;President&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -691,8 +773,10 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/6e897b8d592e09e7c7d45bee28cb2f1b73d76d3d08274f7b3528bcd2a6a7a083.png" src="../_images/6e897b8d592e09e7c7d45bee28cb2f1b73d76d3d08274f7b3528bcd2a6a7a083.png" />
 </div>
-</section>
+</div>
 </section>
 </section>
 <section id="standardize">
@@ -718,6 +802,11 @@ The code above deliberately prevented this by passing the argument <code class="
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -726,6 +815,15 @@ The code above deliberately prevented this by passing the argument <code class="
 
 <span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;stopwords&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;a&#39;, &#39;about&#39;, &#39;above&#39;, &#39;after&#39;, &#39;again&#39;, &#39;against&#39;, &#39;ain&#39;, &#39;all&#39;, &#39;am&#39;, &#39;an&#39;, &#39;and&#39;, &#39;any&#39;, &#39;are&#39;, &#39;aren&#39;, &quot;aren&#39;t&quot;, &#39;as&#39;, &#39;at&#39;, &#39;be&#39;, &#39;because&#39;, &#39;been&#39;, &#39;before&#39;, &#39;being&#39;, &#39;below&#39;, &#39;between&#39;, &#39;both&#39;, &#39;but&#39;, &#39;by&#39;, &#39;can&#39;, &#39;couldn&#39;, &quot;couldn&#39;t&quot;, &#39;d&#39;, &#39;did&#39;, &#39;didn&#39;, &quot;didn&#39;t&quot;, &#39;do&#39;, &#39;does&#39;, &#39;doesn&#39;, &quot;doesn&#39;t&quot;, &#39;doing&#39;, &#39;don&#39;, &quot;don&#39;t&quot;, &#39;down&#39;, &#39;during&#39;, &#39;each&#39;, &#39;few&#39;, &#39;for&#39;, &#39;from&#39;, &#39;further&#39;, &#39;had&#39;, &#39;hadn&#39;, &quot;hadn&#39;t&quot;, &#39;has&#39;, &#39;hasn&#39;, &quot;hasn&#39;t&quot;, &#39;have&#39;, &#39;haven&#39;, &quot;haven&#39;t&quot;, &#39;having&#39;, &#39;he&#39;, &quot;he&#39;d&quot;, &quot;he&#39;ll&quot;, &#39;her&#39;, &#39;here&#39;, &#39;hers&#39;, &#39;herself&#39;, &quot;he&#39;s&quot;, &#39;him&#39;, &#39;himself&#39;, &#39;his&#39;, &#39;how&#39;, &#39;i&#39;, &quot;i&#39;d&quot;, &#39;if&#39;, &quot;i&#39;ll&quot;, &quot;i&#39;m&quot;, &#39;in&#39;, &#39;into&#39;, &#39;is&#39;, &#39;isn&#39;, &quot;isn&#39;t&quot;, &#39;it&#39;, &quot;it&#39;d&quot;, &quot;it&#39;ll&quot;, &quot;it&#39;s&quot;, &#39;its&#39;, &#39;itself&#39;, &quot;i&#39;ve&quot;, &#39;just&#39;, &#39;ll&#39;, &#39;m&#39;, &#39;ma&#39;, &#39;me&#39;, &#39;mightn&#39;, &quot;mightn&#39;t&quot;, &#39;more&#39;, &#39;most&#39;, &#39;mustn&#39;, &quot;mustn&#39;t&quot;, &#39;my&#39;, &#39;myself&#39;, &#39;needn&#39;, &quot;needn&#39;t&quot;, &#39;no&#39;, &#39;nor&#39;, &#39;not&#39;, &#39;now&#39;, &#39;o&#39;, &#39;of&#39;, &#39;off&#39;, &#39;on&#39;, &#39;once&#39;, &#39;only&#39;, &#39;or&#39;, &#39;other&#39;, &#39;our&#39;, &#39;ours&#39;, &#39;ourselves&#39;, &#39;out&#39;, &#39;over&#39;, &#39;own&#39;, &#39;re&#39;, &#39;s&#39;, &#39;same&#39;, &#39;shan&#39;, &quot;shan&#39;t&quot;, &#39;she&#39;, &quot;she&#39;d&quot;, &quot;she&#39;ll&quot;, &quot;she&#39;s&quot;, &#39;should&#39;, &#39;shouldn&#39;, &quot;shouldn&#39;t&quot;, &quot;should&#39;ve&quot;, &#39;so&#39;, &#39;some&#39;, &#39;such&#39;, &#39;t&#39;, &#39;than&#39;, &#39;that&#39;, &quot;that&#39;ll&quot;, &#39;the&#39;, &#39;their&#39;, &#39;theirs&#39;, &#39;them&#39;, &#39;themselves&#39;, &#39;then&#39;, &#39;there&#39;, &#39;these&#39;, &#39;they&#39;, &quot;they&#39;d&quot;, &quot;they&#39;ll&quot;, &quot;they&#39;re&quot;, &quot;they&#39;ve&quot;, &#39;this&#39;, &#39;those&#39;, &#39;through&#39;, &#39;to&#39;, &#39;too&#39;, &#39;under&#39;, &#39;until&#39;, &#39;up&#39;, &#39;ve&#39;, &#39;very&#39;, &#39;was&#39;, &#39;wasn&#39;, &quot;wasn&#39;t&quot;, &#39;we&#39;, &quot;we&#39;d&quot;, &quot;we&#39;ll&quot;, &quot;we&#39;re&quot;, &#39;were&#39;, &#39;weren&#39;, &quot;weren&#39;t&quot;, &quot;we&#39;ve&quot;, &#39;what&#39;, &#39;when&#39;, &#39;where&#39;, &#39;which&#39;, &#39;while&#39;, &#39;who&#39;, &#39;whom&#39;, &#39;why&#39;, &#39;will&#39;, &#39;with&#39;, &#39;won&#39;, &quot;won&#39;t&quot;, &#39;wouldn&#39;, &quot;wouldn&#39;t&quot;, &#39;y&#39;, &#39;you&#39;, &quot;you&#39;d&quot;, &quot;you&#39;ll&quot;, &#39;your&#39;, &quot;you&#39;re&quot;, &#39;yours&#39;, &#39;yourself&#39;, &#39;yourselves&#39;, &quot;you&#39;ve&quot;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package stopwords to /home/bcy/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
 </pre></div>
 </div>
 </div>
@@ -744,6 +842,14 @@ The code above deliberately prevented this by passing the argument <code class="
 <span class="nb">print</span><span class="p">(</span><span class="n">porter</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;playing&quot;</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">porter</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;plays&quot;</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">porter</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="s2">&quot;played&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>play
+play
+play
+play
 </pre></div>
 </div>
 </div>
@@ -773,7 +879,17 @@ The code above deliberately prevented this by passing the argument <code class="
 <span class="kn">from</span><span class="w"> </span><span class="nn">nltk.corpus</span><span class="w"> </span><span class="kn">import</span> <span class="n">stopwords</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">nltk.stem</span><span class="w"> </span><span class="kn">import</span> <span class="n">PorterStemmer</span>
 
-<span class="c1"># Assume we previously loaded inaugural_addresses.csv into df</span>
+<span class="c1"># Download a pre-trained tokenizer</span>
+<span class="c1"># https://www.nltk.org/api/nltk.tokenize.punkt.html</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;punkt_tab&quot;</span><span class="p">)</span>
+
+<span class="c1"># Reload df so it&#39;s fresh</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_path</span><span class="p">)</span>
+
+
+<span class="c1"># Presidents say America a lot, so add that to the stopwords</span>
+<span class="n">stopword_list</span> <span class="o">=</span> <span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">)</span>
+<span class="n">stopword_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;america&quot;</span><span class="p">)</span>
 
 <span class="c1"># Initialize the stemmer</span>
 <span class="n">stemmer</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span>
@@ -786,9 +902,7 @@ The code above deliberately prevented this by passing the argument <code class="
 
     <span class="c1"># Convert to lowercase, remove stopwords, and apply stemming</span>
     <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">tokens</span>
-        <span class="k">if</span> <span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">)</span>
+        <span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopword_list</span>
     <span class="p">]</span>
 
     <span class="k">return</span> <span class="n">tokens</span>
@@ -798,8 +912,30 @@ The code above deliberately prevented this by passing the argument <code class="
 <span class="n">df</span><span class="p">[</span><span class="s2">&quot;tokens&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Text&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">preprocess</span><span class="p">)</span>
 
 <span class="c1"># Preview the result</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original text: </span><span class="se">\n</span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Text&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tokens: </span><span class="se">\n</span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;tokens&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original text: </span><span class="se">\n</span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tokens: </span><span class="se">\n</span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;tokens&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package punkt_tab to /home/bcy/nltk_data...
+[nltk_data]   Package punkt_tab is already up-to-date!
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original text: 
+0    Chief Justice Roberts, Vice President Harris, ...
+1    Chief Justice Roberts, President Carter, Presi...
+2    Thank you. Thank you so much.  Vice President ...
+3    My fellow citizens, I stand here today humbled...
+4    Vice President Cheney, Mr. Chief Justice, Pres...
+Name: Text, dtype: object
+Tokens: 
+0    [chief, justic, robert, ,, vice, presid, harri...
+1    [chief, justic, robert, ,, presid, carter, ,, ...
+2    [thank, ., thank, much, ., vice, presid, biden...
+3    [fellow, citizen, ,, stand, today, humbl, task...
+4    [vice, presid, cheney, ,, mr., chief, justic, ...
+Name: tokens, dtype: object
 </pre></div>
 </div>
 </div>
@@ -811,6 +947,9 @@ The code above deliberately prevented this by passing the argument <code class="
 <span class="n">plot_wordcloud</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;standardized_text&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b84f854104685eec371312f23c98bc1ca5e83658289f946599ef1e6cb8770d1e.png" src="../_images/b84f854104685eec371312f23c98bc1ca5e83658289f946599ef1e6cb8770d1e.png" />
 </div>
 </div>
 </section>
@@ -854,6 +993,18 @@ As a pro, such matrices can be highly compressed. However, they also present uni
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vocabulary:  {&#39;chief&#39;: 232, &#39;justic&#39;: 820, &#39;robert&#39;: 1280, &#39;vice&#39;: 1631, &#39;presid&#39;: 1136, &#39;harri&#39;: 693, &#39;speaker&#39;: 1415, &#39;pelosi&#39;: 1077, &#39;leader&#39;: 848, &#39;schumer&#39;: 1315, &#39;mcconnel&#39;: 918, &#39;penc&#39;: 1079, &#39;distinguish&#39;: 425, &#39;guest&#39;: 675, &#39;fellow&#39;: 564, &#39;american&#39;: 61, &#39;day&#39;: 349, &#39;democraci&#39;: 380, &#39;histori&#39;: 720, &#39;hope&#39;: 728, &#39;renew&#39;: 1236, &#39;resolv&#39;: 1249, &#39;crucibl&#39;: 335, &#39;age&#39;: 36, &#39;test&#39;: 1520, &#39;anew&#39;: 70, &#39;risen&#39;: 1275, &#39;challeng&#39;: 221, &#39;today&#39;: 1543, &#39;celebr&#39;: 212, &#39;triumph&#39;: 1571, &#39;candid&#39;: 195, &#39;caus&#39;: 209, &#39;people&#39;: 1081, &#39;th&#39;: 1521, &#39;peopl&#39;: 1080, &#39;heard&#39;: 701, &#39;heed&#39;: 704, &#39;ve&#39;: 1628, &#39;learn&#39;: 850, &#39;preciou&#39;: 1124, &#39;fragil&#39;: 613, &#39;hour&#39;: 732, &#39;friend&#39;: 617, &#39;prevail&#39;: 1141, &#39;hallow&#39;: 680, &#39;ground&#39;: 666, &#39;ago&#39;: 39, &#39;violenc&#39;: 1638, &#39;sought&#39;: 1406, &#39;shake&#39;: 1347, &#39;capitol&#39;: 199, &#39;foundat&#39;: 610, &#39;come&#39;: 266, &#39;togeth&#39;: 1544, &#39;one&#39;: 1023, &#39;nation&#39;: 981, &#39;god&#39;: 646, &#39;indivis&#39;: 772, &#39;carri&#39;: 204, &#39;peac&#39;: 1073, &#39;transfer&#39;: 1559, &#39;power&#39;: 1121, &#39;two&#39;: 1581, &#39;centuri&#39;: 216, &#39;look&#39;: 886, &#39;ahead&#39;: 41, &#39;uniqu&#39;: 1600, &#39;way&#39;: 1661, &#39;restless&#39;: 1256, &#39;bold&#39;: 162, &#39;optimistic&#39;: 1031, &#39;and&#39;: 69, &#39;set&#39;: 1343, &#39;sight&#39;: 1367, &#39;know&#39;: 829, &#39;must&#39;: 974, &#39;thank&#39;: 1522, &#39;predecessor&#39;: 1126, &#39;parti&#39;: 1058, &#39;presenc&#39;: 1133, &#39;bottom&#39;: 166, &#39;heart&#39;: 702, &#39;resili&#39;: 1247, &#39;constitut&#39;: 304, &#39;strength&#39;: 1457, &#39;carter&#39;: 205, &#39;spoke&#39;: 1425, &#39;last&#39;: 843, &#39;night&#39;: 998, &#39;us&#39;: 1623, &#39;salut&#39;: 1303, &#39;lifetim&#39;: 869, &#39;servic&#39;: 1341, &#39;taken&#39;: 1502, &#39;sacr&#39;: 1294, &#39;oath&#39;: 1009, &#39;patriot&#39;: 1070, &#39;first&#39;: 577, &#39;sworn&#39;: 1496, &#39;georg&#39;: 632, &#39;washington&#39;: 1655, &#39;stori&#39;: 1452, &#39;depend&#39;: 384, &#39;seek&#39;: 1325, &#39;perfect&#39;: 1083, &#39;union&#39;: 1599, &#39;great&#39;: 659, &#39;good&#39;: 648, &#39;storm&#39;: 1453, &#39;strife&#39;: 1459, &#39;war&#39;: 1653, &#39;far&#39;: 554, &#39;still&#39;: 1445, &#39;go&#39;: 644, &#39;ll&#39;: 882, &#39;press&#39;: 1138, &#39;forward&#39;: 607, &#39;speed&#39;: 1420, &#39;urgenc&#39;: 1621, &#39;much&#39;: 968, &#39;winter&#39;: 1693, &#39;peril&#39;: 1085, &#39;signific&#39;: 1369, &#39;possibl&#39;: 1116, &#39;repair&#39;: 1237, &#39;restor&#39;: 1257, &#39;heal&#39;: 698, &#39;build&#39;: 182, &#39;gain&#39;: 625, &#39;found&#39;: 609, &#39;time&#39;: 1538, &#39;difficult&#39;: 403, &#39;re&#39;: 1192, &#39;once&#39;: 1022, &#39;in&#39;: 762, &#39;viru&#39;: 1641, &#39;silent&#39;: 1371, &#39;stalk&#39;: 1432, &#39;countri&#39;: 319, &#39;mani&#39;: 903, &#39;live&#39;: 881, &#39;year&#39;: 1720, &#39;lost&#39;: 889, &#39;world&#39;: 1707, &#39;ii&#39;: 751, &#39;million&#39;: 941, &#39;job&#39;: 811, &#39;hundr&#39;: 740, &#39;thousand&#39;: 1531, &#39;busi&#39;: 187, &#39;close&#39;: 258, &#39;cri&#39;: 327, &#39;racial&#39;: 1180, &#39;400&#39;: 10, &#39;make&#39;: 898, &#39;move&#39;: 965, &#39;dream&#39;: 442, &#39;defer&#39;: 373, &#39;longer&#39;: 885, &#39;surviv&#39;: 1486, &#39;planet&#39;: 1102, &#39;ca&#39;: 189, &#39;desper&#39;: 392, &#39;clear&#39;: 252, &#39;rise&#39;: 1274, &#39;polit&#39;: 1112, &#39;extrem&#39;: 535, &#39;white&#39;: 1683, &#39;supremaci&#39;: 1481, &#39;domest&#39;: 436, &#39;terror&#39;: 1519, &#39;confront&#39;: 293, &#39;defeat&#39;: 370, &#39;overcom&#39;: 1045, &#39;challenges&#39;: 222, &#39;to&#39;: 1542, &#39;soul&#39;: 1407, &#39;secur&#39;: 1322, &#39;futur&#39;: 624, &#39;america&#39;: 60, &#39;requir&#39;: 1243, &#39;word&#39;: 1703, &#39;elus&#39;: 469, &#39;thing&#39;: 1526, &#39;uniti&#39;: 1602, &#39;anoth&#39;: 73, &#39;januari&#39;: 807, &#39;new&#39;: 994, &#39;1863&#39;: 4, &#39;abraham&#39;: 14, &#39;lincoln&#39;: 875, &#39;sign&#39;: 1368, &#39;emancip&#39;: 471, &#39;proclam&#39;: 1154, &#39;put&#39;: 1174, &#39;pen&#39;: 1078, &#39;paper&#39;: 1055, &#39;said&#39;: 1300, &#39;quot&#39;: 1178, &#39;name&#39;: 979, &#39;ever&#39;: 510, &#39;goe&#39;: 647, &#39;act&#39;: 24, &#39;whole&#39;: 1684, &#39;bring&#39;: 174, &#39;unit&#39;: 1601, &#39;ask&#39;: 97, &#39;everi&#39;: 511, &#39;join&#39;: 814, &#39;fight&#39;: 569, &#39;foe&#39;: 587, &#39;face&#39;: 537, &#39;anger&#39;: 72, &#39;resent&#39;: 1245, &#39;hatr&#39;: 695, &#39;lawless&#39;: 845, &#39;diseas&#39;: 417, &#39;jobless&#39;: 812, &#39;hopeless&#39;: 729, &#39;import&#39;: 759, &#39;right&#39;: 1270, &#39;wrong&#39;: 1717, &#39;work&#39;: 1704, &#39;teach&#39;: 1510, &#39;children&#39;: 235, &#39;safe&#39;: 1298, &#39;school&#39;: 1314, &#39;deadli&#39;: 351, &#39;reward&#39;: 1267, &#39;rebuild&#39;: 1202, &#39;middl&#39;: 935, &#39;class&#39;: 250, &#39;health&#39;: 699, &#39;care&#39;: 202, &#39;deliv&#39;: 378, &#39;lead&#39;: 847, &#39;forc&#39;: 593, &#39;speak&#39;: 1414, &#39;sound&#39;: 1408, &#39;like&#39;: 872, &#39;foolish&#39;: 590, &#39;fantasi&#39;: 553, &#39;divid&#39;: 429, &#39;deep&#39;: 367, &#39;real&#39;: 1197, &#39;also&#39;: 56, &#39;constant&#39;: 302, &#39;struggl&#39;: 1463, &#39;ideal&#39;: 747, &#39;creat&#39;: 323, &#39;equal&#39;: 499, &#39;harsh&#39;: 694, &#39;ugli&#39;: 1584, &#39;realiti&#39;: 1198, &#39;racism&#39;: 1181, &#39;nativ&#39;: 982, &#39;fear&#39;: 561, &#39;demon&#39;: 382, &#39;long&#39;: 884, &#39;torn&#39;: 1551, &#39;apart&#39;: 79, &#39;battl&#39;: 119, &#39;perenni&#39;: 1082, &#39;victori&#39;: 1633, &#39;never&#39;: 993, &#39;assur&#39;: 100, &#39;civil&#39;: 247, &#39;depress&#39;: 386, &#39;11&#39;: 2, &#39;sacrific&#39;: 1296, &#39;setback&#39;: 1344, &#39;better&#39;: 141, &#39;angel&#39;: 71, &#39;alway&#39;: 57, &#39;moment&#39;: 953, &#39;enough&#39;: 492, &#39;hav&#39;: 696, &#39;faith&#39;: 545, &#39;reason&#39;: 1201, &#39;show&#39;: 1361, &#39;see&#39;: 1323, &#39;adversari&#39;: 29, &#39;neighbor&#39;: 990, &#39;treat&#39;: 1565, &#39;digniti&#39;: 407, &#39;respect&#39;: 1251, &#39;stop&#39;: 1451, &#39;shout&#39;: 1360, &#39;lower&#39;: 892, &#39;temperatur&#39;: 1515, &#39;without&#39;: 1698, &#39;bitter&#39;: 152, &#39;furi&#39;: 623, &#39;progress&#39;: 1159, &#39;exhaust&#39;: 524, &#39;outrag&#39;: 1042, &#39;state&#39;: 1439, &#39;chao&#39;: 225, &#39;histor&#39;: 719, &#39;crisi&#39;: 331, &#39;path&#39;: 1068, &#39;meet&#39;: 924, &#39;guarante&#39;: 672, &#39;fail&#39;: 541, &#39;place&#39;: 1099, &#39;let&#39;: 862, &#39;start&#39;: 1437, &#39;afresh&#39;: 34, &#39;begin&#39;: 128, &#39;listen&#39;: 877, &#39;hear&#39;: 700, &#39;rage&#39;: 1183, &#39;fire&#39;: 574, &#39;destroy&#39;: 394, &#39;everyth&#39;: 513, &#39;disagr&#39;: 412, &#39;total&#39;: 1552, &#39;reject&#39;: 1226, &#39;cultur&#39;: 336, &#39;fact&#39;: 538, &#39;manipul&#39;: 904, &#39;even&#39;: 507, &#39;manufactur&#39;: 906, &#39;differ&#39;: 402, &#39;believ&#39;: 133, &#39;around&#39;: 91, &#39;stand&#39;: 1433, &#39;shadow&#39;: 1346, &#39;dome&#39;: 435, &#39;mention&#39;: 928, &#39;earlier&#39;: 452, &#39;complet&#39;: 281, &#39;amid&#39;: 63, &#39;liter&#39;: 879, &#39;hang&#39;: 683, &#39;balanc&#39;: 113, &#39;yet&#39;: 1722, &#39;endur&#39;: 483, &#39;mall&#39;: 900, &#39;dr&#39;: 439, &#39;king&#39;: 827, &#39;108&#39;: 1, &#39;inaugur&#39;: 764, &#39;protest&#39;: 1166, &#39;tri&#39;: 1568, &#39;block&#39;: 158, &#39;brave&#39;: 169, &#39;women&#39;: 1701, &#39;march&#39;: 907, &#39;vote&#39;: 1646, &#39;mark&#39;: 909, &#39;swearing&#39;: 1489, &#39;woman&#39;: 1700, &#39;elect&#39;: 466, &#39;offic&#39;: 1019, &#39;kamala&#39;: 821, &#39;tell&#39;: 1513, &#39;chang&#39;: 224, &#39;across&#39;: 23, &#39;potomac&#39;: 1119, &#39;arlington&#39;: 88, &#39;cemeteri&#39;: 213, &#39;hero&#39;: 710, &#39;gave&#39;: 628, &#39;full&#39;: 622, &#39;measur&#39;: 921, &#39;devot&#39;: 399, &#39;rest&#39;: 1254, &#39;etern&#39;: 506, &#39;riotou&#39;: 1272, &#39;mob&#39;: 950, &#39;thought&#39;: 1530, &#39;could&#39;: 317, &#39;use&#39;: 1624, &#39;silenc&#39;: 1370, &#39;drive&#39;: 444, &#39;happen&#39;: 684, &#39;tomorrow&#39;: 1550, &#39;not&#39;: 1003, &#39;support&#39;: 1480, &#39;campaign&#39;: 193, &#39;humbl&#39;: 737, &#39;say&#39;: 1309, &#39;take&#39;: 1501, &#39;disagre&#39;: 413, &#39;dissent&#39;: 420, &#39;peaceabl&#39;: 1074, &#39;within&#39;: 1697, &#39;guardrail&#39;: 674, &#39;republ&#39;: 1242, &#39;perhap&#39;: 1084, &#39;greatest&#39;: 661, &#39;clearli&#39;: 253, &#39;disunion&#39;: 427, &#39;pledg&#39;: 1107, &#39;americans&#39;: 62, &#39;al&#39;: 45, &#39;promis&#39;: 1161, &#39;hard&#39;: 687, &#39;saint&#39;: 1301, &#39;augustin&#39;: 103, &#39;church&#39;: 240, &#39;wrote&#39;: 1718, &#39;multitud&#39;: 970, &#39;defin&#39;: 375, &#39;common&#39;: 272, &#39;object&#39;: 1011, &#39;love&#39;: 891, &#39;think&#39;: 1527, &#39;opportun&#39;: 1027, &#39;liberti&#39;: 866, &#39;honor&#39;: 727, &#39;ye&#39;: 1719, &#39;truth&#39;: 1576, &#39;recent&#39;: 1204, &#39;week&#39;: 1668, &#39;month&#39;: 955, &#39;taught&#39;: 1508, &#39;pain&#39;: 1053, &#39;lesson&#39;: 860, &#39;lie&#39;: 867, &#39;told&#39;: 1547, &#39;profit&#39;: 1156, &#39;duti&#39;: 451, &#39;respons&#39;: 1253, &#39;citizen&#39;: 243, &#39;especi&#39;: 503, &#39;leaders&#39;: 849, &#39;protect&#39;: 1165, &#39;defend&#39;: 371, &#39;understand&#39;: 1592, &#39;view&#39;: 1634, &#39;trepid&#39;: 1567, &#39;worri&#39;: 1710, &#39;dad&#39;: 343, &#39;lay&#39;: 846, &#39;bed&#39;: 125, &#39;stare&#39;: 1436, &#39;ceil&#39;: 211, &#39;wonder&#39;: 1702, &#39;keep&#39;: 822, &#39;pay&#39;: 1072, &#39;mortgag&#39;: 959, &#39;famili&#39;: 552, &#39;next&#39;: 997, &#39;get&#39;: 633, &#39;answer&#39;: 74, &#39;turn&#39;: 1579, &#39;inward&#39;: 800, &#39;retreat&#39;: 1261, &#39;compet&#39;: 278, &#39;faction&#39;: 539, &#39;distrust&#39;: 426, &#39;worship&#39;: 1711, &#39;news&#39;: 995, &#39;sourc&#39;: 1409, &#39;end&#39;: 480, &#39;uncivil&#39;: 1588, &#39;pit&#39;: 1098, &#39;red&#39;: 1212, &#39;blue&#39;: 160, &#39;rural&#39;: 1291, &#39;versu&#39;: 1630, &#39;urban&#39;: 1620, &#39;conserv&#39;: 299, &#39;liber&#39;: 865, &#39;open&#39;: 1025, &#39;instead&#39;: 789, &#39;harden&#39;: 688, &#39;littl&#39;: 880, &#39;toler&#39;: 1548, &#39;humil&#39;: 738, &#39;will&#39;: 1688, &#39;person&#39;: 1092, &#39;shoe&#39;: 1355, &#39;mom&#39;: 952, &#39;would&#39;: 1714, &#39;life&#39;: 868, &#39;account&#39;: 20, &#39;fate&#39;: 557, &#39;deal&#39;: 353, &#39;need&#39;: 989, &#39;hand&#39;: 682, &#39;call&#39;: 191, &#39;lend&#39;: 857, &#39;stronger&#39;: 1462, &#39;prosper&#39;: 1164, &#39;readi&#39;: 1195, &#39;persever&#39;: 1090, &#39;dark&#39;: 345, &#39;enter&#39;: 495, &#39;may&#39;: 917, &#39;toughest&#39;: 1554, &#39;deadliest&#39;: 352, &#39;period&#39;: 1086, &#39;asid&#39;: 96, &#39;final&#39;: 571, &#39;pandem&#39;: 1054, &#39;bibl&#39;: 143, &#39;weep&#39;: 1669, &#39;joy&#39;: 816, &#39;cometh&#39;: 267, &#39;morn&#39;: 957, &#39;together&#39;: 1545, &#39;folk&#39;: 588, &#39;colleagu&#39;: 262, &#39;serv&#39;: 1339, &#39;hous&#39;: 733, &#39;senat&#39;: 1333, &#39;watch&#39;: 1656, &#39;messag&#39;: 932, &#39;beyond&#39;: 142, &#39;border&#39;: 164, &#39;allianc&#39;: 49, &#39;engag&#39;: 487, &#39;yesterday&#39;: 1721, &#39;mere&#39;: 931, &#39;exampl&#39;: 518, &#39;strong&#39;: 1461, &#39;trust&#39;: 1575, &#39;partner&#39;: 1061, &#39;prayer&#39;: 1122, &#39;rememb&#39;: 1233, &#39;past&#39;: 1064, &#39;000&#39;: 0, &#39;husband&#39;: 744, &#39;wive&#39;: 1699, &#39;son&#39;: 1403, &#39;daughter&#39;: 348, &#39;cowork&#39;: 322, &#39;becom&#39;: 124, &#39;left&#39;: 854, &#39;behind&#39;: 131, &#39;point&#39;: 1110, &#39;observ&#39;: 1014, &#39;amen&#39;: 59, &#39;attack&#39;: 101, &#39;grow&#39;: 668, &#39;inequ&#39;: 775, &#39;sting&#39;: 1446, &#39;system&#39;: 1498, &#39;climat&#39;: 255, &#39;role&#39;: 1282, &#39;profound&#39;: 1157, &#39;present&#39;: 1134, &#39;gravest&#39;: 658, &#39;step&#39;: 1444, &#39;certain&#39;: 219, &#39;judg&#39;: 817, &#39;cascad&#39;: 206, &#39;crise&#39;: 330, &#39;era&#39;: 501, &#39;occas&#39;: 1015, &#39;question&#39;: 1176, &#39;master&#39;: 912, &#39;rare&#39;: 1188, &#39;oblig&#39;: 1012, &#39;pass&#39;: 1062, &#39;along&#39;: 53, &#39;sure&#39;: 1482, &#39;well&#39;: 1672, &#39;write&#39;: 1716, &#39;chapter&#39;: 226, &#39;might&#39;: 937, &#39;someth&#39;: 1401, &#39;song&#39;: 1404, &#39;mean&#39;: 919, &#39;lot&#39;: 890, &#39;anthem&#39;: 75, &#39;vers&#39;: 1629, &#39;least&#39;: 851, &#39;brought&#39;: 180, &#39;shall&#39;: 1348, &#39;legaci&#39;: 855, &#39;best&#39;: 138, &#39;add&#39;: 26, &#39;unfold&#39;: 1596, &#39;broken&#39;: 178, &#39;land&#39;: 836, &#39;began&#39;: 127, &#39;give&#39;: 638, &#39;level&#39;: 864, &#39;you&#39;: 1724, &#39;interest&#39;: 796, &#39;public&#39;: 1170, &#39;divis&#39;: 430, &#39;light&#39;: 871, &#39;decenc&#39;: 359, &#39;guid&#39;: 676, &#39;inspir&#39;: 788, &#39;met&#39;: 933, &#39;die&#39;: 401, &#39;thrive&#39;: 1534, &#39;home&#39;: 722, &#39;stood&#39;: 1450, &#39;beacon&#39;: 120, &#39;owe&#39;: 1048, &#39;forebear&#39;: 594, &#39;gener&#39;: 630, &#39;follow&#39;: 589, &#39;purpos&#39;: 1171, &#39;task&#39;: 1506, &#39;sustain&#39;: 1488, &#39;driven&#39;: 445, &#39;convict&#39;: 311, &#39;bless&#39;: 157, &#39;troop&#39;: 1572, &#39;clinton&#39;: 257, &#39;bush&#39;: 186, &#39;obama&#39;: 1010, &#39;effort&#39;: 465, &#39;determin&#39;: 396, &#39;cours&#39;: 321, &#39;hardship&#39;: 691, &#39;done&#39;: 437, &#39;gather&#39;: 627, &#39;orderli&#39;: 1034, &#39;grate&#39;: 656, &#39;ladi&#39;: 835, &#39;michel&#39;: 934, &#39;graciou&#39;: 652, &#39;aid&#39;: 42, &#39;throughout&#39;: 1535, &#39;transit&#39;: 1561, &#39;magnific&#39;: 896, &#39;ceremoni&#39;: 218, &#39;howev&#39;: 734, &#39;special&#39;: 1416, &#39;administr&#39;: 27, &#39;dc&#39;: 350, &#39;back&#39;: 108, &#39;small&#39;: 1389, &#39;group&#39;: 667, &#39;capit&#39;: 198, &#39;reap&#39;: 1200, &#39;govern&#39;: 650, &#39;born&#39;: 165, &#39;cost&#39;: 315, &#39;flourish&#39;: 584, &#39;share&#39;: 1350, &#39;wealth&#39;: 1664, &#39;politician&#39;: 1113, &#39;factori&#39;: 540, &#39;establish&#39;: 505, &#39;belong&#39;: 135, &#39;everyon&#39;: 512, &#39;truli&#39;: 1574, &#39;matter&#39;: 916, &#39;control&#39;: 310, &#39;whether&#39;: 1679, &#39;20&#39;: 5, &#39;2017&#39;: 7, &#39;becam&#39;: 123, &#39;ruler&#39;: 1289, &#39;forgotten&#39;: 601, &#39;men&#39;: 927, &#39;came&#39;: 192, &#39;ten&#39;: 1516, &#39;part&#39;: 1057, &#39;movement&#39;: 966, &#39;seen&#39;: 1327, &#39;center&#39;: 214, &#39;crucial&#39;: 334, &#39;exist&#39;: 526, &#39;want&#39;: 1652, &#39;neighborhood&#39;: 991, &#39;demand&#39;: 379, &#39;righteou&#39;: 1271, &#39;mother&#39;: 961, &#39;trap&#39;: 1562, &#39;poverti&#39;: 1120, &#39;inner&#39;: 784, &#39;citi&#39;: 242, &#39;rusted&#39;: 1292, &#39;out&#39;: 1038, &#39;scatter&#39;: 1313, &#39;tombston&#39;: 1549, &#39;landscap&#39;: 837, &#39;educ&#39;: 463, &#39;flush&#39;: 586, &#39;cash&#39;: 207, &#39;leav&#39;: 852, &#39;young&#39;: 1725, &#39;beauti&#39;: 122, &#39;student&#39;: 1464, &#39;depriv&#39;: 387, &#39;knowledg&#39;: 830, &#39;crime&#39;: 328, &#39;gang&#39;: 626, &#39;drug&#39;: 447, &#39;stolen&#39;: 1448, &#39;rob&#39;: 1279, &#39;unreal&#39;: 1609, &#39;potenti&#39;: 1118, &#39;carnag&#39;: 203, &#39;success&#39;: 1472, &#39;gloriou&#39;: 643, &#39;destini&#39;: 393, &#39;allegi&#39;: 47, &#39;decad&#39;: 356, &#39;enrich&#39;: 493, &#39;foreign&#39;: 595, &#39;industri&#39;: 774, &#39;expens&#39;: 532, &#39;subsid&#39;: 1468, &#39;armi&#39;: 90, &#39;allow&#39;: 50, &#39;sad&#39;: 1297, &#39;deplet&#39;: 385, &#39;militari&#39;: 938, &#39;refus&#39;: 1218, &#39;spent&#39;: 1422, &#39;trillion&#39;: 1570, &#39;dollar&#39;: 434, &#39;oversea&#39;: 1046, &#39;infrastructur&#39;: 780, &#39;fallen&#39;: 547, &#39;disrepair&#39;: 419, &#39;decay&#39;: 357, &#39;made&#39;: 895, &#39;rich&#39;: 1268, &#39;confid&#39;: 291, &#39;dissip&#39;: 422, &#39;horizon&#39;: 730, &#39;shutter&#39;: 1364, &#39;shore&#39;: 1356, &#39;worker&#39;: 1705, &#39;rip&#39;: 1273, &#39;redistribut&#39;: 1214, &#39;assembl&#39;: 99, &#39;issu&#39;: 804, &#39;decre&#39;: 365, &#39;hall&#39;: 679, &#39;vision&#39;: 1643, &#39;decis&#39;: 362, &#39;trade&#39;: 1556, &#39;tax&#39;: 1509, &#39;immigr&#39;: 755, &#39;affair&#39;: 30, &#39;benefit&#39;: 137, &#39;ravag&#39;: 1190, &#39;product&#39;: 1155, &#39;steal&#39;: 1442, &#39;compani&#39;: 274, &#39;breath&#39;: 171, &#39;bodi&#39;: 161, &#39;win&#39;: 1690, &#39;road&#39;: 1278, &#39;highway&#39;: 715, &#39;bridg&#39;: 172, &#39;airport&#39;: 44, &#39;tunnel&#39;: 1578, &#39;railway&#39;: 1185, &#39;welfar&#39;: 1671, &#39;labor&#39;: 834, &#39;simpl&#39;: 1373, &#39;rule&#39;: 1288, &#39;buy&#39;: 188, &#39;hire&#39;: 718, &#39;friendship&#39;: 619, &#39;impos&#39;: 761, &#39;anyon&#39;: 77, &#39;rather&#39;: 1189, &#39;shine&#39;: 1353, &#39;example&#39;: 519, &#39;for&#39;: 592, &#39;reinforc&#39;: 1224, &#39;old&#39;: 1021, &#39;form&#39;: 602, &#39;radic&#39;: 1182, &#39;islam&#39;: 803, &#39;erad&#39;: 502, &#39;earth&#39;: 454, &#39;bedrock&#39;: 126, &#39;loyalti&#39;: 893, &#39;rediscov&#39;: 1213, &#39;room&#39;: 1284, &#39;prejudic&#39;: 1128, &#39;pleasant&#39;: 1105, &#39;mind&#39;: 942, &#39;openli&#39;: 1026, &#39;debat&#39;: 355, &#39;honestli&#39;: 726, &#39;pursu&#39;: 1172, &#39;solidar&#39;: 1399, &#39;unstopp&#39;: 1610, &#39;law&#39;: 844, &#39;enforc&#39;: 486, &#39;importantli&#39;: 760, &#39;big&#39;: 145, &#39;bigger&#39;: 146, &#39;strive&#39;: 1460, &#39;accept&#39;: 18, &#39;talk&#39;: 1504, &#39;action&#39;: 25, &#39;constantli&#39;: 303, &#39;complain&#39;: 280, &#39;anyth&#39;: 78, &#39;empti&#39;: 476, &#39;arriv&#39;: 92, &#39;match&#39;: 913, &#39;spirit&#39;: 1424, &#39;birth&#39;: 150, &#39;millennium&#39;: 940, &#39;unlock&#39;: 1606, &#39;mysteri&#39;: 976, &#39;space&#39;: 1411, &#39;free&#39;: 615, &#39;miseri&#39;: 944, &#39;har&#39;: 686, &#39;energi&#39;: 485, &#39;technolog&#39;: 1512, &#39;pride&#39;: 1144, &#39;stir&#39;: 1447, &#39;lift&#39;: 870, &#39;wisdom&#39;: 1694, &#39;soldier&#39;: 1397, &#39;forget&#39;: 599, &#39;black&#39;: 153, &#39;brown&#39;: 181, &#39;bleed&#39;: 156, &#39;blood&#39;: 159, &#39;enjoy&#39;: 489, &#39;freedom&#39;: 616, &#39;flag&#39;: 581, &#39;child&#39;: 233, &#39;sprawl&#39;: 1427, &#39;detroit&#39;: 397, &#39;windswept&#39;: 1692, &#39;plain&#39;: 1100, &#39;nebraska&#39;: 986, &#39;sky&#39;: 1383, &#39;fill&#39;: 570, &#39;infus&#39;: 781, &#39;almighti&#39;: 51, &#39;creator&#39;: 324, &#39;near&#39;: 984, &#39;larg&#39;: 840, &#39;mountain&#39;: 964, &#39;ocean&#39;: 1016, &#39;ignor&#39;: 750, &#39;voic&#39;: 1645, &#39;courag&#39;: 320, &#39;forev&#39;: 597, &#39;wealthi&#39;: 1665, &#39;proud&#39;: 1167, &#39;biden&#39;: 144, &#39;mr&#39;: 967, &#39;member&#39;: 925, &#39;congress&#39;: 294, &#39;bear&#39;: 121, &#39;wit&#39;: 1696, &#39;affirm&#39;: 31, &#39;recal&#39;: 1203, &#39;bind&#39;: 149, &#39;color&#39;: 265, &#39;skin&#39;: 1382, &#39;tenet&#39;: 1517, &#39;origin&#39;: 1035, &#39;exceptional&#39;: 520, &#39;what&#39;: 1675, &#39;idea&#39;: 746, &#39;articul&#39;: 94, &#39;declar&#39;: 363, &#39;hold&#39;: 721, &#39;self&#39;: 1330, &#39;evid&#39;: 515, &#39;endow&#39;: 482, &#39;unalien&#39;: 1586, &#39;among&#39;: 65, &#39;pursuit&#39;: 1173, &#39;happi&#39;: 685, &#39;continu&#39;: 308, &#39;journey&#39;: 815, &#39;execut&#39;: 522, &#39;gift&#39;: 636, &#39;1776&#39;: 3, &#39;replac&#39;: 1238, &#39;tyranni&#39;: 1582, &#39;privileg&#39;: 1151, &#39;entrust&#39;: 498, &#39;creed&#39;: 326, &#39;200&#39;: 6, &#39;drawn&#39;: 441, &#39;lash&#39;: 842, &#39;sword&#39;: 1495, &#39;principl&#39;: 1147, &#39;half&#39;: 678, &#39;slav&#39;: 1385, &#39;fre&#39;: 614, &#39;vow&#39;: 1647, &#39;modern&#39;: 951, &#39;economi&#39;: 460, &#39;railroad&#39;: 1184, &#39;travel&#39;: 1563, &#39;commerc&#39;: 270, &#39;colleg&#39;: 264, &#39;train&#39;: 1558, &#39;discov&#39;: 416, &#39;market&#39;: 910, &#39;ensur&#39;: 494, &#39;competit&#39;: 279, &#39;fair&#39;: 544, &#39;play&#39;: 1103, &#39;vulner&#39;: 1648, &#39;worst&#39;: 1712, &#39;hazard&#39;: 697, &#39;misfortun&#39;: 945, &#39;relinquish&#39;: 1230, &#39;skeptic&#39;: 1380, &#39;central&#39;: 215, &#39;author&#39;: 104, &#39;succumb&#39;: 1473, &#39;fiction&#39;: 567, &#39;societi&#39;: 1395, &#39;ill&#39;: 752, &#39;cure&#39;: 337, &#39;alon&#39;: 52, &#39;initi&#39;: 783, &#39;enterpris&#39;: 496, &#39;insist&#39;: 787, &#39;charact&#39;: 227, &#39;understood&#39;: 1593, &#39;fidel&#39;: 568, &#39;preserv&#39;: 1135, &#39;individu&#39;: 771, &#39;ultim&#39;: 1585, &#39;collect&#39;: 263, &#39;fascism&#39;: 556, &#39;commun&#39;: 273, &#39;musket&#39;: 972, &#39;militia&#39;: 939, &#39;singl&#39;: 1377, &#39;math&#39;: 915, &#39;scienc&#39;: 1316, &#39;teacher&#39;: 1511, &#39;equip&#39;: 500, &#39;network&#39;: 992, &#39;research&#39;: 1244, &#39;lab&#39;: 833, &#39;steel&#39;: 1443, &#39;prove&#39;: 1168, &#39;econom&#39;: 459, &#39;recoveri&#39;: 1210, &#39;begun&#39;: 129, &#39;limitless&#39;: 874, &#39;possess&#39;: 1115, &#39;qualiti&#39;: 1175, &#39;boundari&#39;: 168, &#39;youth&#39;: 1727, &#39;divers&#39;: 428, &#39;endless&#39;: 481, &#39;capac&#39;: 197, &#39;risk&#39;: 1276, &#39;reinvent&#39;: 1225, &#39;seiz&#39;: 1329, &#39;it&#39;: 805, &#39;so&#39;: 1393, &#39;succeed&#39;: 1471, &#39;shrink&#39;: 1363, &#39;bare&#39;: 116, &#39;upon&#39;: 1619, &#39;broad&#39;: 176, &#39;shoulder&#39;: 1359, &#39;find&#39;: 572, &#39;independ&#39;: 768, &#39;wage&#39;: 1649, &#39;honest&#39;: 724, &#39;brink&#39;: 175, &#39;true&#39;: 1573, &#39;girl&#39;: 637, &#39;bleakest&#39;: 155, &#39;chanc&#39;: 223, &#39;anybodi&#39;: 76, &#39;els&#39;: 468, &#39;eye&#39;: 536, &#39;outworn&#39;: 1044, &#39;program&#39;: 1158, &#39;inadequ&#39;: 763, &#39;remak&#39;: 1232, &#39;revamp&#39;: 1263, &#39;code&#39;: 260, &#39;reform&#39;: 1217, &#39;empow&#39;: 475, &#39;skill&#39;: 1381, &#39;harder&#39;: 689, &#39;reach&#39;: 1193, &#39;higher&#39;: 713, &#39;deserv&#39;: 391, &#39;basic&#39;: 118, &#39;choic&#39;: 236, &#39;reduc&#39;: 1215, &#39;size&#39;: 1379, &#39;deficit&#39;: 374, &#39;belief&#39;: 132, &#39;choos&#39;: 237, &#39;built&#39;: 183, &#39;invest&#39;: 798, &#39;twilight&#39;: 1580, &#39;parent&#39;: 1056, &#39;disabl&#39;: 411, &#39;nowher&#39;: 1006, &#39;reserv&#39;: 1246, &#39;lucki&#39;: 894, &#39;recogn&#39;: 1207, &#39;loss&#39;: 888, &#39;sudden&#39;: 1474, &#39;swept&#39;: 1491, &#39;away&#39;: 106, &#39;terribl&#39;: 1518, &#39;commit&#39;: 271, &#39;medicar&#39;: 923, &#39;medicaid&#39;: 922, &#39;social&#39;: 1394, &#39;sap&#39;: 1305, &#39;strengthen&#39;: 1458, &#39;taker&#39;: 1503, &#39;poster&#39;: 1117, &#39;respond&#39;: 1252, &#39;threat&#39;: 1532, &#39;failur&#39;: 542, &#39;betray&#39;: 140, &#39;deni&#39;: 383, &#39;overwhelm&#39;: 1047, &#39;judgment&#39;: 818, &#39;none&#39;: 1001, &#39;avoid&#39;: 105, &#39;devast&#39;: 398, &#39;impact&#39;: 756, &#39;crippl&#39;: 329, &#39;drought&#39;: 446, &#39;toward&#39;: 1555, &#39;sometim&#39;: 1402, &#39;resist&#39;: 1248, &#39;cede&#39;: 210, &#39;claim&#39;: 248, &#39;maintain&#39;: 897, &#39;vital&#39;: 1644, &#39;treasure&#39;: 1564, &#39;our&#39;: 1037, &#39;forest&#39;: 596, &#39;waterway&#39;: 1658, &#39;crop&#39;: 332, &#39;snow&#39;: 1392, &#39;cap&#39;: 196, &#39;peak&#39;: 1076, &#39;command&#39;: 269, &#39;father&#39;: 558, &#39;perpetu&#39;: 1089, &#39;uniform&#39;: 1598, &#39;temper&#39;: 1514, &#39;flame&#39;: 582, &#39;unmatch&#39;: 1607, &#39;sear&#39;: 1319, &#39;memori&#39;: 926, &#39;price&#39;: 1143, &#39;paid&#39;: 1052, &#39;vigil&#39;: 1636, &#39;harm&#39;: 692, &#39;heir&#39;: 705, &#39;enemi&#39;: 484, &#39;surest&#39;: 1483, &#39;friends&#39;: 618, &#39;uphold&#39;: 1618, &#39;valu&#39;: 1626, &#39;arm&#39;: 89, &#39;peacefully&#39;: 1075, &#39;naiv&#39;: 978, &#39;danger&#39;: 344, &#39;durabl&#39;: 448, &#39;suspicion&#39;: 1487, &#39;remain&#39;: 1231, &#39;anchor&#39;: 67, &#39;corner&#39;: 313, &#39;globe&#39;: 642, &#39;institut&#39;: 790, &#39;extend&#39;: 534, &#39;manag&#39;: 902, &#39;abroad&#39;: 15, &#39;greater&#39;: 660, &#39;stake&#39;: 1430, &#39;asia&#39;: 95, &#39;africa&#39;: 35, &#39;east&#39;: 457, &#39;conscienc&#39;: 296, &#39;compel&#39;: 277, &#39;behalf&#39;: 130, &#39;poor&#39;: 1114, &#39;sick&#39;: 1365, &#39;margin&#39;: 908, &#39;victim&#39;: 1632, &#39;prejudice&#39;: 1129, &#39;chariti&#39;: 228, &#39;advanc&#39;: 28, &#39;describ&#39;: 389, &#39;human&#39;: 736, &#39;truths&#39;: 1577, &#39;that&#39;: 1523, &#39;star&#39;: 1435, &#39;seneca&#39;: 1334, &#39;fall&#39;: 546, &#39;selma&#39;: 1332, &#39;stonewal&#39;: 1449, &#39;sung&#39;: 1479, &#39;unsung&#39;: 1611, &#39;footprint&#39;: 591, &#39;preacher&#39;: 1123, &#39;walk&#39;: 1651, &#39;proclaim&#39;: 1153, &#39;inextric&#39;: 778, &#39;bound&#39;: 167, &#39;pioneer&#39;: 1097, &#39;earn&#39;: 453, &#39;gay&#39;: 629, &#39;brother&#39;: 179, &#39;sister&#39;: 1378, &#39;wait&#39;: 1650, &#39;exercis&#39;: 523, &#39;welcom&#39;: 1670, &#39;opportunity&#39;: 1028, &#39;until&#39;: 1613, &#39;bright&#39;: 173, &#39;engin&#39;: 488, &#39;enlist&#39;: 490, &#39;workforc&#39;: 1706, &#39;expel&#39;: 531, &#39;street&#39;: 1456, &#39;hill&#39;: 716, &#39;appalachia&#39;: 82, &#39;quiet&#39;: 1177, &#39;lane&#39;: 838, &#39;newtown&#39;: 996, &#39;cherish&#39;: 231, &#39;document&#39;: 431, &#39;agre&#39;: 40, &#39;contour&#39;: 309, &#39;exactli&#39;: 517, &#39;precis&#39;: 1125, &#39;settl&#39;: 1345, &#39;centuries&#39;: 217, &#39;afford&#39;: 32, &#39;delay&#39;: 377, &#39;mistak&#39;: 949, &#39;absolut&#39;: 16, &#39;substitut&#39;: 1470, &#39;spectacl&#39;: 1417, &#39;cal&#39;: 190, &#39;imperfect&#39;: 758, &#39;partial&#39;: 1059, &#39;40&#39;: 9, &#39;henc&#39;: 708, &#39;timeless&#39;: 1539, &#39;confer&#39;: 290, &#39;spare&#39;: 1413, &#39;philadelphia&#39;: 1095, &#39;recit&#39;: 1205, &#39;other&#39;: 1036, &#39;durat&#39;: 449, &#39;realiz&#39;: 1199, &#39;wave&#39;: 1659, &#39;repres&#39;: 1240, &#39;shape&#39;: 1349, &#39;cast&#39;: 208, &#39;defens&#39;: 372, &#39;ancient&#39;: 68, &#39;embrac&#39;: 473, &#39;solemn&#39;: 1398, &#39;awesom&#39;: 107, &#39;birthright&#39;: 151, &#39;passion&#39;: 1063, &#39;dedic&#39;: 366, &#39;uncertain&#39;: 1587, &#39;bestow&#39;: 139, &#39;ancestor&#39;: 66, &#39;generos&#39;: 631, &#39;cooper&#39;: 312, &#39;shown&#39;: 1362, &#39;forty&#39;: 606, &#39;four&#39;: 612, &#39;presidenti&#39;: 1137, &#39;spoken&#39;: 1426, &#39;tide&#39;: 1536, &#39;water&#39;: 1657, &#39;often&#39;: 1020, &#39;amidst&#39;: 64, &#39;cloud&#39;: 259, &#39;simpli&#39;: 1374, &#39;high&#39;: 712, &#39;midst&#39;: 936, &#39;badli&#39;: 111, &#39;weaken&#39;: 1663, &#39;consequ&#39;: 297, &#39;greed&#39;: 662, &#39;irrespons&#39;: 802, &#39;prepar&#39;: 1131, &#39;shed&#39;: 1351, &#39;costli&#39;: 316, &#39;threaten&#39;: 1533, &#39;indic&#39;: 769, &#39;subject&#39;: 1467, &#39;data&#39;: 347, &#39;statist&#39;: 1441, &#39;less&#39;: 858, &#39;nag&#39;: 977, &#39;declin&#39;: 364, &#39;inevit&#39;: 776, &#39;seriou&#39;: 1337, &#39;easili&#39;: 456, &#39;short&#39;: 1357, &#39;span&#39;: 1412, &#39;chosen&#39;: 238, &#39;conflict&#39;: 292, &#39;discord&#39;: 415, &#39;petti&#39;: 1094, &#39;grievanc&#39;: 664, &#39;fals&#39;: 549, &#39;recrimin&#39;: 1211, &#39;worn&#39;: 1709, &#39;dogma&#39;: 433, &#39;strangl&#39;: 1455, &#39;scriptur&#39;: 1317, &#39;childish&#39;: 234, &#39;reaffirm&#39;: 1196, &#39;nobl&#39;: 999, &#39;given&#39;: 639, &#39;shortcut&#39;: 1358, &#39;faintheart&#39;: 543, &#39;prefer&#39;: 1127, &#39;leisur&#39;: 856, &#39;pleasur&#39;: 1106, &#39;fame&#39;: 551, &#39;tak&#39;: 1500, &#39;doer&#39;: 432, &#39;maker&#39;: 899, &#39;obscur&#39;: 1013, &#39;rug&#39;: 1287, &#39;pack&#39;: 1050, &#39;worldli&#39;: 1708, &#39;search&#39;: 1320, &#39;toil&#39;: 1546, &#39;sweatshop&#39;: 1490, &#39;west&#39;: 1674, &#39;whip&#39;: 1680, &#39;plow&#39;: 1109, &#39;fought&#39;: 608, &#39;concord&#39;: 287, &#39;gettysburg&#39;: 634, &#39;normandi&#39;: 1002, &#39;khe&#39;: 824, &#39;sanh&#39;: 1304, &#39;sacrif&#39;: 1295, &#39;til&#39;: 1537, &#39;raw&#39;: 1191, &#39;saw&#39;: 1308, &#39;sum&#39;: 1477, &#39;ambit&#39;: 58, &#39;invent&#39;: 797, &#39;undiminish&#39;: 1594, &#39;pat&#39;: 1066, &#39;narrow&#39;: 980, &#39;unpleas&#39;: 1608, &#39;pick&#39;: 1096, &#39;dust&#39;: 450, &#39;everywher&#39;: 514, &#39;swift&#39;: 1492, &#39;growth&#39;: 669, &#39;electr&#39;: 467, &#39;grid&#39;: 663, &#39;digit&#39;: 405, &#39;line&#39;: 876, &#39;feed&#39;: 562, &#39;wield&#39;: 1687, &#39;rais&#39;: 1186, &#39;sun&#39;: 1478, &#39;wind&#39;: 1691, &#39;soil&#39;: 1396, &#39;fuel&#39;: 620, &#39;car&#39;: 201, &#39;run&#39;: 1290, &#39;transform&#39;: 1560, &#39;univers&#39;: 1603, &#39;scale&#39;: 1310, &#39;suggest&#39;: 1476, &#39;plan&#39;: 1101, &#39;alreadi&#39;: 55, &#39;achiev&#39;: 22, &#39;imagin&#39;: 754, &#39;necess&#39;: 987, &#39;cynic&#39;: 342, &#39;shift&#39;: 1352, &#39;beneath&#39;: 136, &#39;stale&#39;: 1431, &#39;argument&#39;: 86, &#39;consum&#39;: 305, &#39;appli&#39;: 85, &#39;help&#39;: 707, &#39;decent&#39;: 360, &#39;retir&#39;: 1260, &#39;dignifi&#39;: 406, &#39;intend&#39;: 795, &#39;held&#39;: 706, &#39;spend&#39;: 1421, &#39;wise&#39;: 1695, &#39;bad&#39;: 110, &#39;habit&#39;: 677, &#39;expand&#39;: 527, &#39;remind&#39;: 1235, &#39;spin&#39;: 1423, &#39;favor&#39;: 560, &#39;gross&#39;: 665, &#39;abil&#39;: 13, &#39;rout&#39;: 1286, &#39;safeti&#39;: 1299, &#39;scarc&#39;: 1312, &#39;draft&#39;: 440, &#39;charter&#39;: 229, &#39;man&#39;: 901, &#39;expedi&#39;: 530, &#39;sake&#39;: 1302, &#39;grandest&#39;: 654, &#39;villag&#39;: 1637, &#39;missil&#39;: 947, &#39;tank&#39;: 1505, &#39;sturdi&#39;: 1465, &#39;entitl&#39;: 497, &#39;pleas&#39;: 1104, &#39;knew&#39;: 828, &#39;prudent&#39;: 1169, &#39;eman&#39;: 470, &#39;just&#39;: 819, &#39;restraint&#39;: 1258, &#39;keeper&#39;: 823, &#39;iraq&#39;: 801, &#39;forg&#39;: 598, &#39;afghanistan&#39;: 33, &#39;former&#39;: 603, &#39;tirelessli&#39;: 1541, &#39;lessen&#39;: 859, &#39;nuclear&#39;: 1007, &#39;roll&#39;: 1283, &#39;specter&#39;: 1419, &#39;warm&#39;: 1654, &#39;apolog&#39;: 81, &#39;waver&#39;: 1660, &#39;aim&#39;: 43, &#39;induc&#39;: 773, &#39;slaughter&#39;: 1384, &#39;innoc&#39;: 785, &#39;outlast&#39;: 1040, &#39;patchwork&#39;: 1067, &#39;heritag&#39;: 709, &#39;weak&#39;: 1662, &#39;christian&#39;: 239, &#39;muslim&#39;: 973, &#39;jew&#39;: 810, &#39;hindu&#39;: 717, &#39;nonbeliev&#39;: 1000, &#39;languag&#39;: 839, &#39;tast&#39;: 1507, &#39;swill&#39;: 1494, &#39;segreg&#39;: 1328, &#39;emerg&#39;: 474, &#39;someday&#39;: 1400, &#39;tribe&#39;: 1569, &#39;soon&#39;: 1405, &#39;dissolv&#39;: 423, &#39;smaller&#39;: 1390, &#39;reveal&#39;: 1264, &#39;usher&#39;: 1625, &#39;base&#39;: 117, &#39;mutual&#39;: 975, &#39;sow&#39;: 1410, &#39;blame&#39;: 154, &#39;cling&#39;: 256, &#39;corrupt&#39;: 314, &#39;deceit&#39;: 358, &#39;side&#39;: 1366, &#39;unclench&#39;: 1589, &#39;fist&#39;: 578, &#39;alongsid&#39;: 54, &#39;farm&#39;: 555, &#39;clean&#39;: 251, &#39;flow&#39;: 585, &#39;nourish&#39;: 1005, &#39;starv&#39;: 1438, &#39;hungri&#39;: 742, &#39;rel&#39;: 1227, &#39;plenti&#39;: 1108, &#39;indiffer&#39;: 770, &#39;suffer&#39;: 1475, &#39;outsid&#39;: 1043, &#39;resourc&#39;: 1250, &#39;regard&#39;: 1219, &#39;effect&#39;: 464, &#39;consid&#39;: 300, &#39;gratitud&#39;: 657, &#39;patrol&#39;: 1071, &#39;off&#39;: 1018, &#39;desert&#39;: 390, &#39;distant&#39;: 424, &#39;whisper&#39;: 1682, &#39;guardian&#39;: 673, &#39;embodi&#39;: 472, &#39;willing&#39;: 1689, &#39;inhabit&#39;: 782, &#39;reli&#39;: 1229, &#39;kind&#39;: 825, &#39;stranger&#39;: 1454, &#39;leve&#39;: 863, &#39;break&#39;: 170, &#39;selfless&#39;: 1331, &#39;cut&#39;: 341, &#39;lose&#39;: 887, &#39;darkest&#39;: 346, &#39;firefight&#39;: 575, &#39;stairway&#39;: 1429, &#39;smoke&#39;: 1391, &#39;nurtur&#39;: 1008, &#39;decid&#39;: 361, &#39;instrument&#39;: 791, &#39;honesti&#39;: 725, &#39;curios&#39;: 338, &#39;return&#39;: 1262, &#39;recognit&#39;: 1208, &#39;grudgingli&#39;: 671, &#39;gladli&#39;: 640, &#39;firm&#39;: 576, &#39;noth&#39;: 1004, &#39;satisfi&#39;: 1306, &#39;citizenship&#39;: 245, &#39;race&#39;: 1179, &#39;whose&#39;: 1685, &#39;60&#39;: 11, &#39;local&#39;: 883, &#39;restaur&#39;: 1255, &#39;remembr&#39;: 1234, &#39;coldest&#39;: 261, &#39;band&#39;: 114, &#39;huddl&#39;: 735, &#39;campfir&#39;: 194, &#39;ici&#39;: 745, &#39;river&#39;: 1277, &#39;abandon&#39;: 12, &#39;stain&#39;: 1428, &#39;outcom&#39;: 1039, &#39;revolut&#39;: 1266, &#39;doubt&#39;: 438, &#39;order&#39;: 1033, &#39;read&#39;: 1194, &#39;depth&#39;: 388, &#39;virtu&#39;: 1640, &#39;alarm&#39;: 46, &#39;forth&#39;: 604, &#39;current&#39;: 339, &#39;falter&#39;: 550, &#39;fix&#39;: 580, &#39;grace&#39;: 651, &#39;cheney&#39;: 230, &#39;reverend&#39;: 1265, &#39;clergi&#39;: 254, &#39;prescrib&#39;: 1132, &#39;consequenti&#39;: 298, &#39;fulfil&#39;: 621, &#39;second&#39;: 1321, &#39;shipwreck&#39;: 1354, &#39;repos&#39;: 1239, &#39;sabbat&#39;: 1293, &#39;deepest&#39;: 369, &#39;region&#39;: 1221, &#39;simmer&#39;: 1372, &#39;prone&#39;: 1163, &#39;ideolog&#39;: 749, &#39;excus&#39;: 521, &#39;murder&#39;: 971, &#39;multipli&#39;: 969, &#39;destruct&#39;: 395, &#39;cross&#39;: 333, &#39;mortal&#39;: 958, &#39;reign&#39;: 1223, &#39;expos&#39;: 533, &#39;pretens&#39;: 1140, &#39;tyrant&#39;: 1583, &#39;led&#39;: 853, &#39;event&#39;: 508, &#39;sens&#39;: 1335, &#39;conclus&#39;: 286, &#39;increasingli&#39;: 767, &#39;expans&#39;: 528, &#39;matchless&#39;: 914, &#39;imag&#39;: 753, &#39;heaven&#39;: 703, &#39;imper&#39;: 757, &#39;fit&#39;: 579, &#39;slave&#39;: 1386, &#39;mission&#39;: 948, &#39;urgent&#39;: 1622, &#39;polici&#39;: 1111, &#39;democrat&#39;: 381, &#39;goal&#39;: 645, &#39;primarili&#39;: 1146, &#39;though&#39;: 1529, &#39;necessari&#39;: 988, &#39;natur&#39;: 983, &#39;minor&#39;: 943, &#39;aris&#39;: 87, &#39;reflect&#39;: 1216, &#39;custom&#39;: 340, &#39;tradit&#39;: 1557, &#39;style&#39;: 1466, &#39;unwil&#39;: 1615, &#39;attain&#39;: 102, &#39;concentr&#39;: 282, &#39;difficulti&#39;: 404, &#39;influenc&#39;: 779, &#39;unlimit&#39;: 1605, &#39;fortun&#39;: 605, &#39;oppress&#39;: 1029, &#39;consider&#39;: 301, &#39;unwis&#39;: 1616, &#39;persist&#39;: 1091, &#39;clarifi&#39;: 249, &#39;moral&#39;: 956, &#39;pretend&#39;: 1139, &#39;jail&#39;: 806, &#39;dissid&#39;: 421, &#39;chain&#39;: 220, &#39;humili&#39;: 739, &#39;servitud&#39;: 1342, &#39;aspir&#39;: 98, &#39;merci&#39;: 930, &#39;bulli&#39;: 184, &#39;encourag&#39;: 479, &#39;relat&#39;: 1228, &#39;treatment&#39;: 1566, &#39;grudg&#39;: 670, &#39;concess&#39;: 285, &#39;dictat&#39;: 400, &#39;particip&#39;: 1060, &#39;global&#39;: 641, &#39;appeal&#39;: 83, &#39;swiftest&#39;: 1493, &#39;odd&#39;: 1017, &#39;surpris&#39;: 1484, &#39;eventu&#39;: 509, &#39;perman&#39;: 1087, &#39;slaveri&#39;: 1388, &#39;oppressor&#39;: 1030, &#39;repress&#39;: 1241, &#39;prison&#39;: 1149, &#39;exil&#39;: 525, &#39;outlaw&#39;: 1041, &#39;regim&#39;: 1220, &#39;retain&#39;: 1259, &#39;alli&#39;: 48, &#39;counsel&#39;: 318, &#39;primari&#39;: 1145, &#39;concert&#39;: 284, &#39;promot&#39;: 1162, &#39;prelud&#39;: 1130, &#39;patienc&#39;: 1069, &#39;grant&#39;: 655, &#39;dishonor&#39;: 418, &#39;kindl&#39;: 826, &#39;lit&#39;: 878, &#39;feel&#39;: 563, &#39;burn&#39;: 185, &#39;untam&#39;: 1612, &#39;hardest&#39;: 690, &#39;intellig&#39;: 794, &#39;diplomaci&#39;: 409, &#39;idealist&#39;: 748, &#39;death&#39;: 354, &#39;youngest&#39;: 1726, &#39;evil&#39;: 516, &#39;larger&#39;: 841, &#39;essenti&#39;: 504, &#39;unfinish&#39;: 1595, &#39;edg&#39;: 461, &#39;subsist&#39;: 1469, &#39;broader&#39;: 177, &#39;definit&#39;: 376, &#39;motiv&#39;: 962, &#39;homestead&#39;: 723, &#39;gi&#39;: 635, &#39;bill&#39;: 148, &#39;highest&#39;: 714, &#39;standard&#39;: 1434, &#39;ownership&#39;: 1049, &#39;widen&#39;: 1686, &#39;save&#39;: 1307, &#39;insur&#39;: 792, &#39;agent&#39;: 37, &#39;privat&#39;: 1150, &#39;integr&#39;: 793, &#39;edific&#39;: 462, &#39;sinai&#39;: 1375, &#39;sermon&#39;: 1338, &#39;mount&#39;: 963, &#39;koran&#39;: 832, &#39;vari&#39;: 1627, &#39;conduct&#39;: 289, &#39;ennobl&#39;: 491, &#39;surround&#39;: 1485, &#39;unwant&#39;: 1614, &#39;worth&#39;: 1713, &#39;baggag&#39;: 112, &#39;bigotri&#39;: 147, &#39;perspect&#39;: 1093, &#39;includ&#39;: 766, &#39;viewpoint&#39;: 1635, &#39;credit&#39;: 325, &#39;background&#39;: 109, &#39;known&#39;: 831, &#39;felt&#39;: 566, &#39;fellowship&#39;: 565, &#39;whenev&#39;: 1678, &#39;disast&#39;: 414, &#39;unjust&#39;: 1604, &#39;encount&#39;: 478, &#39;captiv&#39;: 200, &#39;wheel&#39;: 1677, &#39;inevitability&#39;: 777, &#39;mankind&#39;: 905, &#39;hunger&#39;: 741, &#39;founder&#39;: 611, &#39;banner&#39;: 115, &#39;meant&#39;: 920, &#39;ebb&#39;: 458, &#39;visibl&#39;: 1642, &#39;direct&#39;: 410, &#39;bell&#39;: 134, &#39;rang&#39;: 1187, &#39;thereof&#39;: 1525, &#39;weari&#39;: 1667, &#39;rehnquist&#39;: 1222, &#39;gore&#39;: 649, &#39;contest&#39;: 306, &#39;slavehold&#39;: 1387, &#39;servant&#39;: 1340, &#39;went&#39;: 1673, &#39;conquer&#39;: 295, &#39;flaw&#39;: 583, &#39;fallibl&#39;: 548, &#39;grand&#39;: 653, &#39;insignific&#39;: 786, &#39;enact&#39;: 477, &#39;halt&#39;: 681, &#39;rock&#39;: 1281, &#39;sea&#39;: 1318, &#39;seed&#39;: 1324, &#39;root&#39;: 1285, &#39;inborn&#39;: 765, &#39;nearli&#39;: 985, &#39;225&#39;: 8, &#39;limit&#39;: 873, &#39;hidden&#39;: 711, &#39;circumst&#39;: 241, &#39;seem&#39;: 1326, &#39;contin&#39;: 307, &#39;onward&#39;: 1024, &#39;compass&#39;: 275, &#39;concern&#39;: 283, &#39;forgiv&#39;: 600, &#39;appear&#39;: 84, &#39;undermin&#39;: 1591, &#39;permit&#39;: 1088, &#39;drift&#39;: 443, &#39;tactic&#39;: 1499, &#39;sentiment&#39;: 1336, &#39;accomplish&#39;: 19, &#39;condemn&#39;: 288, &#39;problem&#39;: 1152, &#39;reclaim&#39;: 1206, &#39;apathi&#39;: 80, &#39;prevent&#39;: 1142, &#39;recov&#39;: 1209, &#39;momentum&#39;: 954, &#39;lest&#39;: 861, &#39;invit&#39;: 799, &#39;weapon&#39;: 1666, &#39;mass&#39;: 911, &#39;horror&#39;: 731, &#39;arrog&#39;: 93, &#39;aggress&#39;: 38, &#39;compassion&#39;: 276, &#39;unworthi&#39;: 1617, &#39;whatev&#39;: 1676, &#39;fault&#39;: 559, &#39;abus&#39;: 17, &#39;prolifer&#39;: 1160, &#39;citizens&#39;: 244, &#39;prioriti&#39;: 1148, &#39;diminish&#39;: 408, &#39;hurt&#39;: 743, &#39;mentor&#39;: 929, &#39;touch&#39;: 1553, &#39;pastor&#39;: 1065, &#39;synagogu&#39;: 1497, &#39;mosqu&#39;: 960, &#39;wound&#39;: 1715, &#39;jericho&#39;: 809, &#39;expect&#39;: 529, &#39;scapegoat&#39;: 1311, &#39;deeper&#39;: 368, &#39;option&#39;: 1032, &#39;civic&#39;: 246, &#39;bond&#39;: 163, &#39;uncount&#39;: 1590, &#39;unhonor&#39;: 1597, &#39;comfort&#39;: 268, &#39;easi&#39;: 455, &#39;spectat&#39;: 1418, &#39;miss&#39;: 946, &#39;virginia&#39;: 1639, &#39;statesman&#39;: 1440, &#39;john&#39;: 813, &#39;page&#39;: 1051, &#39;thoma&#39;: 1528, &#39;jefferson&#39;: 808, &#39;ride&#39;: 1269, &#39;whirlwind&#39;: 1681, &#39;sinc&#39;: 1376, &#39;accumul&#39;: 21, &#39;theme&#39;: 1524, &#39;tire&#39;: 1540, &#39;yield&#39;: 1723, &#39;finish&#39;: 573}
+Encoded Document is:
+[[1 1 1 ... 0 0 0]
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 1 0 1]
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 1 1 0]
+ [0 0 0 ... 1 0 0]]
+</pre></div>
+</div>
+</div>
 </div>
 <section id="bigrams">
 <h4>Bigrams<a class="headerlink" href="#bigrams" title="Link to this heading">#</a></h4>
@@ -864,9 +1015,55 @@ As a pro, such matrices can be highly compressed. However, they also present uni
 
 <span class="n">bigram_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">bigrams</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;tokens&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bigrams for the first document:&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">bigram</span> <span class="ow">in</span> <span class="n">bigram_list</span><span class="p">:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sample bigrams from Biden&#39;s 2021 address:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">bigram</span> <span class="ow">in</span> <span class="n">bigram_list</span><span class="p">[</span><span class="mi">1000</span><span class="p">:</span><span class="mi">1040</span><span class="p">]:</span>  <span class="c1"># Print 40 bigrams from the middle of the speech</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">bigram</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample bigrams from Biden&#39;s 2021 address:
+
+(&#39;care&#39;, &#39;?&#39;)
+(&#39;?&#39;, &#39;pay&#39;)
+(&#39;pay&#39;, &#39;mortgag&#39;)
+(&#39;mortgag&#39;, &#39;?&#39;)
+(&#39;?&#39;, &quot;&#39;&#39;&quot;)
+(&quot;&#39;&#39;&quot;, &#39;think&#39;)
+(&#39;think&#39;, &#39;famili&#39;)
+(&#39;famili&#39;, &#39;,&#39;)
+(&#39;,&#39;, &#39;come&#39;)
+(&#39;come&#39;, &#39;next&#39;)
+(&#39;next&#39;, &#39;.&#39;)
+(&#39;.&#39;, &#39;promis&#39;)
+(&#39;promis&#39;, &#39;,&#39;)
+(&#39;,&#39;, &#39;get&#39;)
+(&#39;get&#39;, &#39;.&#39;)
+(&#39;.&#39;, &#39;answer&#39;)
+(&#39;answer&#39;, &#39;turn&#39;)
+(&#39;turn&#39;, &#39;inward&#39;)
+(&#39;inward&#39;, &#39;,&#39;)
+(&#39;,&#39;, &#39;retreat&#39;)
+(&#39;retreat&#39;, &#39;compet&#39;)
+(&#39;compet&#39;, &#39;faction&#39;)
+(&#39;faction&#39;, &#39;,&#39;)
+(&#39;,&#39;, &#39;distrust&#39;)
+(&#39;distrust&#39;, &quot;n&#39;t&quot;)
+(&quot;n&#39;t&quot;, &#39;look&#39;)
+(&#39;look&#39;, &#39;like&#39;)
+(&#39;like&#39;, &#39;worship&#39;)
+(&#39;worship&#39;, &#39;way&#39;)
+(&#39;way&#39;, &quot;n&#39;t&quot;)
+(&quot;n&#39;t&quot;, &#39;get&#39;)
+(&#39;get&#39;, &#39;news&#39;)
+(&#39;news&#39;, &#39;sourc&#39;)
+(&#39;sourc&#39;, &#39;.&#39;)
+(&#39;.&#39;, &#39;must&#39;)
+(&#39;must&#39;, &#39;end&#39;)
+(&#39;end&#39;, &#39;uncivil&#39;)
+(&#39;uncivil&#39;, &#39;war&#39;)
+(&#39;war&#39;, &#39;pit&#39;)
+(&#39;pit&#39;, &#39;red&#39;)
 </pre></div>
 </div>
 </div>
@@ -960,10 +1157,7 @@ As a pro, such matrices can be highly compressed. However, they also present uni
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">26.3. Exercise</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explore">Explore</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#word-clouds">Word Clouds</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word-clouds">Word Clouds</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardize">26.4. Standardize</a><ul class="nav section-nav flex-column">
