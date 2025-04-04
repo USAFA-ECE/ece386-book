@@ -456,6 +456,9 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3-use-the-system-role-to-guide-llm-s-response">28.4. Task 3: Use the System Role to Guide LLM’s Response</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">28.5. Outcome</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">28.6. Guidance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">28.7. Deliverables</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-workday">29. Lab Workday</a></li>
@@ -486,7 +489,7 @@ document.write(`
 <section id="setup-and-deliverables">
 <h3>Setup and Deliverables<a class="headerlink" href="#setup-and-deliverables" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>Clone</p></li>
+<li><p>Clone <a class="github reference external" href="https://github.com/USAFA-ECE/ece386-lab5.git">USAFA-ECE/ece386-lab5.git</a></p></li>
 <li><p>Complete the three tasks below</p></li>
 <li><p>Push everything to GitHub</p></li>
 <li><p>Submit to Gradescope!</p></li>
@@ -568,7 +571,7 @@ Here is the start of how that might look.</p>
 <section id="deliverables">
 <h3>Deliverables<a class="headerlink" href="#deliverables" title="Link to this heading">#</a></h3>
 <p>After Claude generates your script, paste it into <code class="docutils literal notranslate"><span class="pre">ArtIC/exhibition_explorer.py</span></code>,
-run <code class="docutils literal notranslate"><span class="pre">black</span></code> on it, install <code class="docutils literal notranslate"><span class="pre">ArtIC/requirements.txt</span></code> into your virtual environment,
+run <code class="docutils literal notranslate"><span class="pre">black</span></code> on it, install <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> into your virtual environment,
 and run the script to see how it does!</p>
 <p>Once you have a working script:</p>
 <ul class="simple">
@@ -649,6 +652,33 @@ and run one of the smaller models.</p>
 </section>
 <section id="task-3-use-the-system-role-to-guide-llm-s-response">
 <h2><span class="section-number">28.4. </span>Task 3: Use the System Role to Guide LLM’s Response<a class="headerlink" href="#task-3-use-the-system-role-to-guide-llm-s-response" title="Link to this heading">#</a></h2>
+<p>Check out <a class="reference external" href="https://ollama.com/blog/structured-outputs">Ollama Blog: Structured Outputs</a> and
+<a class="reference external" href="https://blog.danielclayton.co.uk/posts/ollama-structured-outputs/">Dan Clayton’s “How Does Ollama’s Structured Outputs Work?”</a>.</p>
+</section>
+<section id="id4">
+<h2><span class="section-number">28.5. </span>Outcome<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>Produce valid JSON from an LLM!</p>
+<p>Specifically, we want to process personal introduction statements from a new user into valid JSON.
+This could be ingested into a database or sent to an API for processing.</p>
+</section>
+<section id="id5">
+<h2><span class="section-number">28.6. </span>Guidance<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>Modify the <strong>Data Extraction</strong> example from the Ollama Blog linked above.</p>
+<ol class="arabic simple">
+<li><p>Change <code class="docutils literal notranslate"><span class="pre">Pet</span></code> class to <code class="docutils literal notranslate"><span class="pre">User</span></code> and update the fields</p></li>
+<li><p>Instead of hardcoding the user message <strong>content</strong>, pass it in as an argument to the script when it executes.
+Note that when calling the script you will need to put <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> around your sentence.</p></li>
+<li><p>Add a <strong>system</strong> prompt that tells the LLM to produce JSON.
+Although you don’t need to pass it the schema, you should give it some hints as to what you are looking for.</p></li>
+<li><p>Update the <code class="docutils literal notranslate"><span class="pre">format</span></code> input to be the <code class="docutils literal notranslate"><span class="pre">User</span></code> class that you defined.
+According to the <a class="reference external" href="https://github.com/ollama/ollama/blob/main/docs/api.md#parameters">docs</a> you don’t actually need the <code class="docutils literal notranslate"><span class="pre">model_json_schema()</span></code> bit anymore.</p></li>
+<li><p>Change the model to match what you are running on Ollama from part 2.</p></li>
+</ol>
+<p>Make sure that your <code class="docutils literal notranslate"><span class="pre">ollama</span></code> from the previous part is running, and then run your script!</p>
+</section>
+<section id="id6">
+<h2><span class="section-number">28.7. </span>Deliverables<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>Paste your code into <code class="docutils literal notranslate"><span class="pre">structured_outputs/user_creation.py</span></code> and complete <code class="docutils literal notranslate"><span class="pre">structured_outputs/README.md</span></code></p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="lab-workday">
@@ -741,6 +771,9 @@ and run one of the smaller models.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3-use-the-system-role-to-guide-llm-s-response">28.4. Task 3: Use the System Role to Guide LLM’s Response</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">28.5. Outcome</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">28.6. Guidance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">28.7. Deliverables</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-workday">29. Lab Workday</a></li>

@@ -10,7 +10,7 @@
 
 ### Setup and Deliverables
 
-1. Clone
+1. Clone https://github.com/USAFA-ECE/ece386-lab5.git
 2. Complete the three tasks below
 3. Push everything to GitHub
 4. Submit to Gradescope!
@@ -94,7 +94,7 @@ Here is the start of how that might look.
 ### Deliverables
 
 After Claude generates your script, paste it into `ArtIC/exhibition_explorer.py`,
-run `black` on it, install `ArtIC/requirements.txt` into your virtual environment,
+run `black` on it, install `requirements.txt` into your virtual environment,
 and run the script to see how it does!
 
 Once you have a working script:
@@ -185,5 +185,34 @@ and run one of the smaller models.
 1. Complete `ollama/README.md`
 
 ## Task 3: Use the System Role to Guide LLM's Response
+
+Check out [Ollama Blog: Structured Outputs](https://ollama.com/blog/structured-outputs) and
+[Dan Clayton's "How Does Ollama's Structured Outputs Work?"](https://blog.danielclayton.co.uk/posts/ollama-structured-outputs/).
+
+## Outcome
+
+Produce valid JSON from an LLM!
+
+Specifically, we want to process personal introduction statements from a new user into valid JSON.
+This could be ingested into a database or sent to an API for processing.
+
+## Guidance
+
+Modify the **Data Extraction** example from the Ollama Blog linked above.
+
+1. Change `Pet` class to `User` and update the fields
+2. Instead of hardcoding the user message **content**, pass it in as an argument to the script when it executes.
+    Note that when calling the script you will need to put `"` around your sentence.
+3. Add a **system** prompt that tells the LLM to produce JSON.
+    Although you don't need to pass it the schema, you should give it some hints as to what you are looking for.
+4. Update the `format` input to be the `User` class that you defined.
+    According to the [docs](https://github.com/ollama/ollama/blob/main/docs/api.md#parameters) you don't actually need the `model_json_schema()` bit anymore.
+5. Change the model to match what you are running on Ollama from part 2.
+
+Make sure that your `ollama` from the previous part is running, and then run your script!
+
+## Deliverables
+
+Paste your code into `structured_outputs/user_creation.py` and complete `structured_outputs/README.md`
 
 # Lab Workday
