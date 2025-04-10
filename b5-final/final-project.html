@@ -57,14 +57,6 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
-    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
-    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
-    <script type="module">
-import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
-window.addEventListener("load", () => mermaid.run());
-</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'b5-final/final-project';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -443,18 +435,24 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">31. Final Project</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">31.1. Objectives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">31.2. Grading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-plan">Project Plan</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-and-models">Datasets and Models</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-implementation">Model Implementation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-application">Model Application</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-demonstration">Final Demonstration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">31.1. Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">Grading</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-information">31.2. Background Information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-device-architectures-voice-assistants">31.3. Multi-Device Architectures: Voice Assistants</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jetson-gpio">Jetson GPIO</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bash-scripts">Bash Scripts</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wttr-in">wttr.in</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfec-ai-server">DFEC AI Server</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-1">32. Final Project Workday 1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#design">32. Design</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-2">33. Final Project Workday 2</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-3">34. Final Project Workday 3</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-4">35. Final Project Workday 4</a></li>
@@ -472,42 +470,196 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="final-project">
 <h1><span class="section-number">31. </span>Final Project<a class="headerlink" href="#final-project" title="Link to this heading">#</a></h1>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>To better reflect the concept of a minimum viable product (MVP) the following modification is in effect.</p>
-</div>
-<pre  class="mermaid">
-        graph LR
-    A((Development Board)) --&gt; OR{OR}
-    B((Transfer Learning)) --&gt; OR
-    OR --&gt;O((MVP))
-    </pre><p>This is a more agile approach.</p>
-<p><img alt="agile-development" src="https://bluenotes.anz.com/content/dam/bluenotes/images/articles/2017/November/VenterKoltPresoAgile_IMG1.png" /></p>
+<p><img alt="Risks" src="https://pbs.twimg.com/media/EbJXUC4X0AEXhlD?format=jpg" /></p>
+<p>For the final project you will build an end-to-end personal voice assistant that tells you the weather!</p>
+<section id="overview">
+<h2><span class="section-number">31.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p><strong>Goal</strong> Design and construct a voice assistant that listens for a wake word; records a sentence asking for weather at a city, airport, or location; returns the weather at that spot.</p>
 <section id="objectives">
-<h2><span class="section-number">31.1. </span>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h2>
+<h3>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Demonstrate knowledge of how <strong>prediction</strong> and <strong>judgement</strong> together contribute to a decision and action, as presented in <em>Prediction Machines.</em></p></li>
-<li><p>Employ quantization to reduce model size and improve performance on an edge device.</p></li>
-<li><p>Demonstrate knwoledge of dependency management while deploying a model.</p></li>
+<li><p>Demonstrate dependency management while deploying a model.</p></li>
+<li><p>Target model deployment to the appropriate hardware.</p></li>
+<li><p>Facilitate edge and cloud AI interactions.</p></li>
+<li><p>Build a realistic, complex system!</p></li>
 </ul>
 <p><strong>Every</strong> project must:</p>
 <ol class="arabic simple">
-<li><p>Use some form of quantization. If quantization is built-in, determine what type it is and where it is built in.</p></li>
-<li><p>Be pushed to a public GitHub repository</p></li>
-<li><p>Include either a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> (if deploying with containerization),
-or a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> if deploying with a Python virtual environment,
-or a Jupyter Notebook that outputs the byte model for TF Lite Micro on Arduino.</p></li>
-<li><p>Include a README that describes how to deploy and use the program and model.</p></li>
+<li><p>Utilize multiple AI models running on appropriate hardware for that use case.</p></li>
+<li><p>Be pushed to a public GitHub repository with a README that describes usage.</p></li>
+<li><p>Manage dependencies with a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> or Python <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>, as appropriate.</p></li>
+<li><p>Be well-designed and adhere to engineering best practices.</p></li>
 </ol>
 </section>
 <section id="grading">
-<h2><span class="section-number">31.2. </span>Grading<a class="headerlink" href="#grading" title="Link to this heading">#</a></h2>
-<p>This final project is deliberately open ended, so invites the chance of failure!</p>
-<p><img alt="Risks" src="https://pbs.twimg.com/media/EbJXUC4X0AEXhlD?format=jpg" /></p>
-<p><strong>No, wait!</strong> Instead we will have checkpoints with deliverables designed to help you win.</p>
-<p>Each checkpoint will be submitted on Gradescope.</p>
-<section id="project-plan">
-<h3>Project Plan<a class="headerlink" href="#project-plan" title="Link to this heading">#</a></h3>
+<h3>Grading<a class="headerlink" href="#grading" title="Link to this heading">#</a></h3>
+<p>Consider this approach:</p>
+<blockquote>
+<div><p><strong>Princess Fiona:</strong> You didn’t slay the dragon?</p>
+<p><strong>Shrek:</strong> It’s on my “to do” list. Now come on.</p>
+<p><strong>Princess Fiona:</strong> But this isn’t right! You’re meant to charge in, sword drawn, banner flying-that’s what all the other knights did.</p>
+<p><strong>Shrek:</strong> Yeah, right before they burst into flame!</p>
+</div></blockquote>
+<p>While just having something on the TODO list worked for Shrek, we are going to have checkpoints
+that help guide you to a working final product!</p>
+<ol class="arabic simple">
+<li><p>Design</p></li>
+<li><p>LLM processing component</p></li>
+<li><p>Edge AI component</p></li>
+<li><p>Networking component</p></li>
+<li><p>Final demonstration</p></li>
+</ol>
+<p>Information on each of these can be found in the specific heading below.</p>
+</section>
+</section>
+<section id="background-information">
+<h2><span class="section-number">31.2. </span>Background Information<a class="headerlink" href="#background-information" title="Link to this heading">#</a></h2>
+</section>
+<section id="multi-device-architectures-voice-assistants">
+<h2><span class="section-number">31.3. </span>Multi-Device Architectures: Voice Assistants<a class="headerlink" href="#multi-device-architectures-voice-assistants" title="Link to this heading">#</a></h2>
+<p>From <a class="reference external" href="https://learning.oreilly.com/library/view/ai-at-the/9781098120191/ch03.html#:-:text=Multi-Device%20Architectures"><em>AI at the Edge</em> Chapter 3, “The Hardware Edge of AI”</a>:</p>
+<blockquote>
+<div><p>Edge AI applications aren’t always implemented directly on the devices that host the actual sensors. Sometimes, it makes sense to use a multi-device architecture.</p>
+<p>A single device might contain multiple types of processors: for example, one for running application code and another for running ML algorithms. A complete system might be composed of many devices, some with multiple processors, that collect and process data at many different points depending on which BLERP benefits are needed. This type of solution can even involve cloud computation.</p>
+<p>A great example of this type of architecture is a smart speaker with a voice assistant. Typically, they have at least two processors. The first is a low-power, always-on chip that runs DSP and a machine learning model to listen for wake words without using too much energy.</p>
+<p>The second is an application processor, which is woken up by the always-on chip when the wake word is detected. The application processor might run a more sophisticated model to try to catch any false positives that got past the always-on chip. Together, these two processors can identify wake words without violating user privacy by streaming private conversations to the cloud.</p>
+<p>Once the wake word has been confirmed, the application processor streams the audio to a cloud server, which performs speech recognition and natural language processing in order to come up with an appropriate response. The general flow is shown in Figure 3-9.</p>
+<figure class="align-default" id="id1">
+<img alt="../_images/voice-assistant-block.png" src="../_images/voice-assistant-block.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 31.1 </span><span class="caption-text">The low-power processor aims to catch as many potential keywords as possible; the application processor wakes up to evaluate any possible matches and invokes the cloud web service if a match is confirmed</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>When designing a system, don’t be afraid to consider using multiple devices to tackle some of the trade-offs involved with different device types. Some common situations where it can be helpful are:</p>
+<ul class="simple">
+<li><p>Monitoring large numbers of individual entities: this can get expensive if high-end AI-capable hardware is used on every entity.</p></li>
+<li><p>Reducing energy use: sensors are battery powered and need to last a long time.</p></li>
+<li><p>Protecting privacy: sending data directly to a large device or cloud server might violate privacy norms.</p></li>
+<li><p>Integrating with legacy equipment: existing sensors or gateways might be supplemented with edge AI devices rather than being replaced.</p></li>
+</ul>
+</div></blockquote>
+<p>We <strong>are not</strong> worried about revalidating the wake word, but we <em>are</em> interested in processing different pieces of the system on different hardware.</p>
+<section id="jetson-gpio">
+<h3>Jetson GPIO<a class="headerlink" href="#jetson-gpio" title="Link to this heading">#</a></h3>
+<p>According to <a class="reference external" href="https://jetsonhacks.com/nvidia-jetson-orin-nano-gpio-header-pinout/">JetsonHacks: NVIDIA Jetson Orin Nano GPIO Header Pinout</a>,
+pin #29 is named <code class="docutils literal notranslate"><span class="pre">GPIO01</span></code>.
+<em>However</em>, the OS uses the Sysfs lines that map to the system on a chip (SoC) spec.
+So <code class="docutils literal notranslate"><span class="pre">GPIO01</span></code> is actually referred to as <strong>line 105</strong>.</p>
+<p>On your Jetson you can run this to get the SoC name for line 105, which is GPIO01, which is pin #29 🤪</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find name for GPIO01</span>
+gpioinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">105</span>
+<span class="c1"># line 105: &quot;PQ.05&quot; unused input active-high</span>
+</pre></div>
+</div>
+<p>Cool, so we will simply call pin #29 line <code class="docutils literal notranslate"><span class="pre">105</span></code> but we now know it’s configured as active-high input to the SoC port “PQ.05”.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is actually super similar to the <code class="docutils literal notranslate"><span class="pre">.xdc</span></code> constraints file for the Basys3 board in ECE 281!</p>
+</div>
+<p>Now we can read the digial value on the pin!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Should print 0 or 1 to the terminal</span>
+gpioget<span class="w"> </span>gpiochip0<span class="w"> </span><span class="m">105</span>
+</pre></div>
+</div>
+<p>I typed <code class="docutils literal notranslate"><span class="pre">gpio</span></code> and then pressed tab, tab to find <code class="docutils literal notranslate"><span class="pre">gpiomon</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpiomon<span class="w"> </span>--help
+</pre></div>
+</div>
+<p>Looks like there are some flags to process something on the first rising edge. Nice!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run echo on rising edge</span>
+gpiomon<span class="w"> </span>-r<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>gpiochip0<span class="w"> </span><span class="m">105</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>line<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;event </span><span class="nv">$line</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+</pre></div>
+</div>
+<p><em>Disclaimer:</em> I never would have figured this out without ChatGPT <a class="reference external" href="https://chatgpt.com/share/67d4a6d8-5920-8003-a93a-67c68b6acc8c">https://chatgpt.com/share/67d4a6d8-5920-8003-a93a-67c68b6acc8c</a>
+<strong>but notice how much research I did first in order to ask the right questions!</strong> Also, not all the files it pointed me towards exist.</p>
+<section id="bash-scripts">
+<h4>Bash Scripts<a class="headerlink" href="#bash-scripts" title="Link to this heading">#</a></h4>
+<p>Your Linux terminal uses BASH (born-again shell). You can write Bash scripts and execute them.</p>
+<p>For example, if you have this script (let’s name it <code class="docutils literal notranslate"><span class="pre">test.sh</span></code>)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nb">echo</span><span class="w"> </span>Hello<span class="w"> </span><span class="nv">$USER</span>,<span class="w"> </span>this<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>simple<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+<p>You must make the scrip executable before running it the first time (only have to do this once).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change permissions to make the script executable</span>
+chmod<span class="w"> </span>u+x<span class="w"> </span>test.sh
+</pre></div>
+</div>
+<p>Then run it with <code class="docutils literal notranslate"><span class="pre">./</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./test.sh
+</pre></div>
+</div>
+</section>
+</section>
+<section id="wttr-in">
+<h3><a class="reference external" href="http://wttr.in">wttr.in</a><a class="headerlink" href="#wttr-in" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://github.com/chubin/wttr.in">wttr.in (GitHub)</a> is “the right way to ~~check~~ curl the weather!”</p>
+<p>It is a free API that allows you to check the weather for:</p>
+<ul class="simple">
+<li><p>city</p></li>
+<li><p>3-letter airport codes</p></li>
+<li><p>geographic location (prefixed with a <code class="docutils literal notranslate"><span class="pre">~</span></code>)</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>curl<span class="w"> </span>wttr.in/Colorado+Springs
+Weather<span class="w"> </span>report:<span class="w"> </span>Colorado+Springs
+
+<span class="w">      </span><span class="se">\ </span><span class="w">  </span>/<span class="w">     </span>Clear
+<span class="w">       </span>.-.<span class="w">      </span><span class="m">55</span><span class="w"> </span>°F
+<span class="w">    </span>―<span class="w"> </span><span class="o">(</span><span class="w">   </span><span class="o">)</span><span class="w"> </span>―<span class="w">   </span>↘<span class="w"> </span><span class="m">4</span><span class="w"> </span>mph
+<span class="w">       </span><span class="sb">`</span>-’<span class="w">      </span><span class="m">9</span><span class="w"> </span>mi
+<span class="w">      </span>/<span class="w">   </span><span class="se">\ </span><span class="w">    </span><span class="m">0</span>.0<span class="w"> </span><span class="k">in</span>
+<span class="w">                                                       </span>┌─────────────┐
+┌──────────────────────────────┬───────────────────────┤<span class="w">  </span>Wed<span class="w"> </span><span class="m">09</span><span class="w"> </span>Apr<span class="w"> </span>├───────────────────────┬──────────────────────────────┐
+│<span class="w">            </span>Morning<span class="w">           </span>│<span class="w">             </span>Noon<span class="w">      </span>└──────┬──────┘<span class="w">     </span>Evening<span class="w">           </span>│<span class="w">             </span>Night<span class="w">            </span>│
+├──────────────────────────────┼──────────────────────────────┼──────────────────────────────┼──────────────────────────────┤
+│<span class="w">     </span><span class="se">\ </span><span class="w">  </span>/<span class="w">     </span>Sunny<span class="w">          </span>│<span class="w">     </span><span class="se">\ </span><span class="w">  </span>/<span class="w">     </span>Sunny<span class="w">          </span>│<span class="w">     </span><span class="se">\ </span><span class="w">  </span>/<span class="w">     </span>Sunny<span class="w">          </span>│<span class="w">     </span><span class="se">\ </span><span class="w">  </span>/<span class="w">     </span>Clear<span class="w">          </span>│
+│<span class="w">      </span>.-.<span class="w">      </span>+51<span class="o">(</span><span class="m">50</span><span class="o">)</span><span class="w"> </span>°F<span class="w">     </span>│<span class="w">      </span>.-.<span class="w">      </span><span class="m">66</span><span class="w"> </span>°F<span class="w">          </span>│<span class="w">      </span>.-.<span class="w">      </span><span class="m">66</span><span class="w"> </span>°F<span class="w">          </span>│<span class="w">      </span>.-.<span class="w">      </span>+51<span class="o">(</span><span class="m">48</span><span class="o">)</span><span class="w"> </span>°F<span class="w">     </span>│
+│<span class="w">   </span>―<span class="w"> </span><span class="o">(</span><span class="w">   </span><span class="o">)</span><span class="w"> </span>―<span class="w">   </span>↗<span class="w"> </span><span class="m">4</span><span class="w"> </span>mph<span class="w">        </span>│<span class="w">   </span>―<span class="w"> </span><span class="o">(</span><span class="w">   </span><span class="o">)</span><span class="w"> </span>―<span class="w">   </span>↑<span class="w"> </span><span class="m">8</span>-9<span class="w"> </span>mph<span class="w">      </span>│<span class="w">   </span>―<span class="w"> </span><span class="o">(</span><span class="w">   </span><span class="o">)</span><span class="w"> </span>―<span class="w">   </span>↘<span class="w"> </span><span class="m">6</span>-7<span class="w"> </span>mph<span class="w">      </span>│<span class="w">   </span>―<span class="w"> </span><span class="o">(</span><span class="w">   </span><span class="o">)</span><span class="w"> </span>―<span class="w">   </span>→<span class="w"> </span><span class="m">4</span>-9<span class="w"> </span>mph<span class="w">      </span>│
+│<span class="w">      </span><span class="sb">`</span>-’<span class="w">      </span><span class="m">6</span><span class="w"> </span>mi<span class="w">           </span>│<span class="w">      </span><span class="sb">`</span>-’<span class="w">      </span><span class="m">6</span><span class="w"> </span>mi<span class="w">           </span>│<span class="w">      </span><span class="sb">`</span>-’<span class="w">      </span><span class="m">6</span><span class="w"> </span>mi<span class="w">           </span>│<span class="w">      </span><span class="sb">`</span>-’<span class="w">      </span><span class="m">6</span><span class="w"> </span>mi<span class="w">           </span>│
+│<span class="w">     </span>/<span class="w">   </span><span class="se">\ </span><span class="w">    </span><span class="m">0</span>.0<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">0</span>%<span class="w">    </span>│<span class="w">     </span>/<span class="w">   </span><span class="se">\ </span><span class="w">    </span><span class="m">0</span>.0<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">0</span>%<span class="w">    </span>│<span class="w">     </span>/<span class="w">   </span><span class="se">\ </span><span class="w">    </span><span class="m">0</span>.0<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">0</span>%<span class="w">    </span>│<span class="w">     </span>/<span class="w">   </span><span class="se">\ </span><span class="w">    </span><span class="m">0</span>.0<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">0</span>%<span class="w">    </span>│
+└──────────────────────────────┴──────────────────────────────┴──────────────────────────────┴──────────────────────────────┘
+<span class="w">                                                       </span>┌─────────────┐
+┌──────────────────────────────┬───────────────────────┤<span class="w">  </span>Thu<span class="w"> </span><span class="m">10</span><span class="w"> </span>Apr<span class="w"> </span>├───────────────────────┬──────────────────────────────┐
+│<span class="w">            </span>Morning<span class="w">           </span>│<span class="w">             </span>Noon<span class="w">      </span>└──────┬──────┘<span class="w">     </span>Evening<span class="w">           </span>│<span class="w">             </span>Night<span class="w">            </span>│
+├──────────────────────────────┼──────────────────────────────┼──────────────────────────────┼──────────────────────────────┤
+│<span class="w">     </span><span class="se">\ </span><span class="w">  </span>/<span class="w">     </span>Sunny<span class="w">          </span>│<span class="w">     </span><span class="se">\ </span><span class="w">  </span>/<span class="w">     </span>Sunny<span class="w">          </span>│<span class="w">     </span><span class="se">\ </span><span class="w">  </span>/<span class="w">     </span>Sunny<span class="w">          </span>│<span class="w">               </span>Overcast<span class="w">       </span>│
+│<span class="w">      </span>.-.<span class="w">      </span>+50<span class="o">(</span><span class="m">46</span><span class="o">)</span><span class="w"> </span>°F<span class="w">     </span>│<span class="w">      </span>.-.<span class="w">      </span>+60<span class="o">(</span><span class="m">59</span><span class="o">)</span><span class="w"> </span>°F<span class="w">     </span>│<span class="w">      </span>.-.<span class="w">      </span><span class="m">57</span><span class="w"> </span>°F<span class="w">          </span>│<span class="w">      </span>.--.<span class="w">     </span>+48<span class="o">(</span><span class="m">44</span><span class="o">)</span><span class="w"> </span>°F<span class="w">     </span>│
+│<span class="w">   </span>―<span class="w"> </span><span class="o">(</span><span class="w">   </span><span class="o">)</span><span class="w"> </span>―<span class="w">   </span>↓<span class="w"> </span><span class="m">4</span>-5<span class="w"> </span>mph<span class="w">      </span>│<span class="w">   </span>―<span class="w"> </span><span class="o">(</span><span class="w">   </span><span class="o">)</span><span class="w"> </span>―<span class="w">   </span>↖<span class="w"> </span><span class="m">9</span>-10<span class="w"> </span>mph<span class="w">     </span>│<span class="w">   </span>―<span class="w"> </span><span class="o">(</span><span class="w">   </span><span class="o">)</span><span class="w"> </span>―<span class="w">   </span>↖<span class="w"> </span><span class="m">8</span>-9<span class="w"> </span>mph<span class="w">      </span>│<span class="w">   </span>.-<span class="o">(</span><span class="w">    </span><span class="o">)</span>.<span class="w">   </span>↑<span class="w"> </span><span class="m">7</span>-14<span class="w"> </span>mph<span class="w">     </span>│
+│<span class="w">      </span><span class="sb">`</span>-’<span class="w">      </span><span class="m">6</span><span class="w"> </span>mi<span class="w">           </span>│<span class="w">      </span><span class="sb">`</span>-’<span class="w">      </span><span class="m">6</span><span class="w"> </span>mi<span class="w">           </span>│<span class="w">      </span><span class="sb">`</span>-’<span class="w">      </span><span class="m">6</span><span class="w"> </span>mi<span class="w">           </span>│<span class="w">  </span><span class="o">(</span>___.__<span class="o">)</span>__<span class="o">)</span><span class="w">  </span><span class="m">6</span><span class="w"> </span>mi<span class="w">           </span>│
+│<span class="w">     </span>/<span class="w">   </span><span class="se">\ </span><span class="w">    </span><span class="m">0</span>.0<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">0</span>%<span class="w">    </span>│<span class="w">     </span>/<span class="w">   </span><span class="se">\ </span><span class="w">    </span><span class="m">0</span>.0<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">0</span>%<span class="w">    </span>│<span class="w">     </span>/<span class="w">   </span><span class="se">\ </span><span class="w">    </span><span class="m">0</span>.0<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">0</span>%<span class="w">    </span>│<span class="w">               </span><span class="m">0</span>.0<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">0</span>%<span class="w">    </span>│
+└──────────────────────────────┴──────────────────────────────┴──────────────────────────────┴──────────────────────────────┘
+<span class="w">                                                       </span>┌─────────────┐
+┌──────────────────────────────┬───────────────────────┤<span class="w">  </span>Fri<span class="w"> </span><span class="m">11</span><span class="w"> </span>Apr<span class="w"> </span>├───────────────────────┬──────────────────────────────┐
+│<span class="w">            </span>Morning<span class="w">           </span>│<span class="w">             </span>Noon<span class="w">      </span>└──────┬──────┘<span class="w">     </span>Evening<span class="w">           </span>│<span class="w">             </span>Night<span class="w">            </span>│
+├──────────────────────────────┼──────────────────────────────┼──────────────────────────────┼──────────────────────────────┤
+│<span class="w">     </span><span class="se">\ </span><span class="w">  </span>/<span class="w">     </span>Sunny<span class="w">          </span>│<span class="w">     </span><span class="se">\ </span><span class="w">  </span>/<span class="w">     </span>Sunny<span class="w">          </span>│<span class="w">     </span><span class="se">\ </span><span class="w">  </span>/<span class="w">     </span>Sunny<span class="w">          </span>│<span class="w">     </span><span class="se">\ </span><span class="w">  </span>/<span class="w">     </span>Clear<span class="w">          </span>│
+│<span class="w">      </span>.-.<span class="w">      </span>+57<span class="o">(</span><span class="m">55</span><span class="o">)</span><span class="w"> </span>°F<span class="w">     </span>│<span class="w">      </span>.-.<span class="w">      </span>+71<span class="o">(</span><span class="m">69</span><span class="o">)</span><span class="w"> </span>°F<span class="w">     </span>│<span class="w">      </span>.-.<span class="w">      </span><span class="m">66</span><span class="w"> </span>°F<span class="w">          </span>│<span class="w">      </span>.-.<span class="w">      </span>+55<span class="o">(</span><span class="m">53</span><span class="o">)</span><span class="w"> </span>°F<span class="w">     </span>│
+│<span class="w">   </span>―<span class="w"> </span><span class="o">(</span><span class="w">   </span><span class="o">)</span><span class="w"> </span>―<span class="w">   </span>↖<span class="w"> </span><span class="m">0</span><span class="w"> </span>mph<span class="w">        </span>│<span class="w">   </span>―<span class="w"> </span><span class="o">(</span><span class="w">   </span><span class="o">)</span><span class="w"> </span>―<span class="w">   </span>↖<span class="w"> </span><span class="m">5</span>-6<span class="w"> </span>mph<span class="w">      </span>│<span class="w">   </span>―<span class="w"> </span><span class="o">(</span><span class="w">   </span><span class="o">)</span><span class="w"> </span>―<span class="w">   </span>↖<span class="w"> </span><span class="m">11</span>-13<span class="w"> </span>mph<span class="w">    </span>│<span class="w">   </span>―<span class="w"> </span><span class="o">(</span><span class="w">   </span><span class="o">)</span><span class="w"> </span>―<span class="w">   </span>↑<span class="w"> </span><span class="m">6</span>-13<span class="w"> </span>mph<span class="w">     </span>│
+│<span class="w">      </span><span class="sb">`</span>-’<span class="w">      </span><span class="m">6</span><span class="w"> </span>mi<span class="w">           </span>│<span class="w">      </span><span class="sb">`</span>-’<span class="w">      </span><span class="m">6</span><span class="w"> </span>mi<span class="w">           </span>│<span class="w">      </span><span class="sb">`</span>-’<span class="w">      </span><span class="m">6</span><span class="w"> </span>mi<span class="w">           </span>│<span class="w">      </span><span class="sb">`</span>-’<span class="w">      </span><span class="m">6</span><span class="w"> </span>mi<span class="w">           </span>│
+│<span class="w">     </span>/<span class="w">   </span><span class="se">\ </span><span class="w">    </span><span class="m">0</span>.0<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">0</span>%<span class="w">    </span>│<span class="w">     </span>/<span class="w">   </span><span class="se">\ </span><span class="w">    </span><span class="m">0</span>.0<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">0</span>%<span class="w">    </span>│<span class="w">     </span>/<span class="w">   </span><span class="se">\ </span><span class="w">    </span><span class="m">0</span>.0<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">0</span>%<span class="w">    </span>│<span class="w">     </span>/<span class="w">   </span><span class="se">\ </span><span class="w">    </span><span class="m">0</span>.0<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">0</span>%<span class="w">    </span>│
+└──────────────────────────────┴──────────────────────────────┴──────────────────────────────┴──────────────────────────────┘
+Location:<span class="w"> </span>Colorado<span class="w"> </span>Springs,<span class="w"> </span>El<span class="w"> </span>Paso<span class="w"> </span>County,<span class="w"> </span>Colorado,<span class="w"> </span>United<span class="w"> </span>States<span class="w"> </span>of<span class="w"> </span>America<span class="w"> </span><span class="o">[</span><span class="m">38</span>.8339578,-104.8253485<span class="o">]</span>
+
+Follow<span class="w"> </span>@igor_chubin<span class="w"> </span><span class="k">for</span><span class="w"> </span>wttr.in<span class="w"> </span>updates
+</pre></div>
+</div>
+</section>
+<section id="dfec-ai-server">
+<h3>DFEC AI Server<a class="headerlink" href="#dfec-ai-server" title="Link to this heading">#</a></h3>
+<p>For the duration of the final project, the DFEC AI server will be running Ollama on <code class="docutils literal notranslate"><span class="pre">GPU:1</span></code>, serving <a class="reference external" href="https://ollama.com/library/gemma3:27b">gemma3:27b</a> at:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">10</span>.1.69.214:11434
+</pre></div>
+</div>
+<p>You must be connected to the ECE LAN to hit this private IP address.
+You may also use the public URL, but must have an IPv6 address and it is blocked on USAFA’s network…</p>
+<p><code class="docutils literal notranslate"><span class="pre">GPU:0</span></code>will be open and available for you to run your own containers on, but too many students attempting to use it at once may cause problems.</p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="design">
+<h1><span class="section-number">32. </span>Design<a class="headerlink" href="#design" title="Link to this heading">#</a></h1>
 <ol class="arabic simple">
 <li><p>Identify what problem you are trying to solve.</p></li>
 <li><p>Discuss the problem in the context of prediction, judgement, and decision.</p></li>
@@ -516,42 +668,7 @@ or a Jupyter Notebook that outputs the byte model for TF Lite Micro on Arduino.<
 </ol>
 <p><img alt="Prediction Machines Anatomy of a Task" src="../_images/anatomy-of-task.png" /></p>
 </section>
-<section id="datasets-and-models">
-<h3>Datasets and Models<a class="headerlink" href="#datasets-and-models" title="Link to this heading">#</a></h3>
-<p>You must do one of the following</p>
-<ul class="simple">
-<li><p>Use transfer learning <strong>or</strong></p></li>
-<li><p>Compare performance of several pre-canned models <strong>or</strong></p></li>
-<li><p>Use advanced quantization</p></li>
-</ul>
-<ol class="arabic simple">
-<li><p>If you will be conducting transfer learning, identify a dataset that fits your needs.</p></li>
-<li><p>Identify at least one, but ideally multiple, base models that you will use.</p></li>
-</ol>
-</section>
-<section id="model-implementation">
-<h3>Model Implementation<a class="headerlink" href="#model-implementation" title="Link to this heading">#</a></h3>
-<p>Get the model working!</p>
-</section>
-<section id="model-application">
-<h3>Model Application<a class="headerlink" href="#model-application" title="Link to this heading">#</a></h3>
-<p>Wrap your working model with some logic that makes the results of the prediction available to the user.
-This should work towards the goal you described in the first checkpoint.</p>
-</section>
-<section id="final-demonstration">
-<h3>Final Demonstration<a class="headerlink" href="#final-demonstration" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Demonstrate your application to the class</p></li>
-<li><p>Push code to GitHub</p></li>
-</ul>
-<p><img alt="How neat is that" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.giphy.com%2Fmedia%2FCWKcLd53mbw0o%2Fgiphy.gif&amp;f=1&amp;nofb=1&amp;ipt=06284ee4e024197bb39246e4df926c153d3c67fe2702025ecc1fdd12f844b9ec&amp;ipo=images" /></p>
-</section>
-</section>
-</section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="final-project-workday-1">
-<h1><span class="section-number">32. </span>Final Project Workday 1<a class="headerlink" href="#final-project-workday-1" title="Link to this heading">#</a></h1>
-</section>
 <section class="tex2jax_ignore mathjax_ignore" id="final-project-workday-2">
 <h1><span class="section-number">33. </span>Final Project Workday 2<a class="headerlink" href="#final-project-workday-2" title="Link to this heading">#</a></h1>
 </section>
@@ -560,6 +677,7 @@ This should work towards the goal you described in the first checkpoint.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="final-project-workday-4">
 <h1><span class="section-number">35. </span>Final Project Workday 4<a class="headerlink" href="#final-project-workday-4" title="Link to this heading">#</a></h1>
+<p><img alt="How neat is that" src="https://i.giphy.com/CWKcLd53mbw0o.webp" /></p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -627,18 +745,24 @@ This should work towards the goal you described in the first checkpoint.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">31. Final Project</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">31.1. Objectives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">31.2. Grading</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-plan">Project Plan</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-and-models">Datasets and Models</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-implementation">Model Implementation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-application">Model Application</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-demonstration">Final Demonstration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">31.1. Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">Grading</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-information">31.2. Background Information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-device-architectures-voice-assistants">31.3. Multi-Device Architectures: Voice Assistants</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jetson-gpio">Jetson GPIO</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bash-scripts">Bash Scripts</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wttr-in">wttr.in</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfec-ai-server">DFEC AI Server</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-1">32. Final Project Workday 1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#design">32. Design</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-2">33. Final Project Workday 2</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-3">34. Final Project Workday 3</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-workday-4">35. Final Project Workday 4</a></li>
