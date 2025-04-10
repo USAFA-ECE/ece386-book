@@ -34,12 +34,12 @@ Consider this approach:
 >
 > **Shrek:** Yeah, right before they burst into flame!
 
-While it worked for Shrek, we are going to have checkpoints
+While just having something on the TODO list worked for Shrek, we are going to have checkpoints
 that help guide you to a working final product!
 
 1. Design
-2. Edge AI component
-3. LLM processing component
+2. LLM processing component
+3. Edge AI component
 4. Networking component
 5. Final demonstration
 
@@ -71,6 +71,8 @@ From [*AI at the Edge* Chapter 3, "The Hardware Edge of AI"](https://learning.or
 > - Reducing energy use: sensors are battery powered and need to last a long time.
 > - Protecting privacy: sending data directly to a large device or cloud server might violate privacy norms.
 > - Integrating with legacy equipment: existing sensors or gateways might be supplemented with edge AI devices rather than being replaced.
+
+We **are not** worried about revalidating the wake word, but we *are* interested in processing different pieces of the system on different hardware.
 
 ### Jetson GPIO
 
@@ -115,6 +117,31 @@ gpiomon -r -n 1 gpiochip0 105 | while read line; do echo "event $line"; done
 
 *Disclaimer:* I never would have figured this out without ChatGPT https://chatgpt.com/share/67d4a6d8-5920-8003-a93a-67c68b6acc8c
 **but notice how much research I did first in order to ask the right questions!** Also, not all the files it pointed me towards exist.
+
+#### Bash Scripts
+
+Your Linux terminal uses BASH (born-again shell). You can write Bash scripts and execute them.
+
+For example, if you have this script (let's name it `test.sh`)
+
+```bash
+#!/bin/bash
+
+echo Hello $USER, this is a simple test
+```
+
+You must make the scrip executable before running it the first time (only have to do this once).
+
+```bash
+# Change permissions to make the script executable
+chmod u+x test.sh
+```
+
+Then run it with `./`
+
+```bash
+./test.sh
+```
 
 ### wttr.in
 
@@ -170,6 +197,19 @@ Location: Colorado Springs, El Paso County, Colorado, United States of America [
 Follow @igor_chubin for wttr.in updates
 ```
 
+### DFEC AI Server
+
+For the duration of the final project, the DFEC AI server will be running Ollama on `GPU:1`, serving [gemma3:27b](https://ollama.com/library/gemma3:27b) at:
+
+```bash
+10.1.69.214:11434
+```
+
+You must be connected to the ECE LAN to hit this private IP address.
+You may also use the public URL, but must have an IPv6 address and it is blocked on USAFA's network...
+
+`GPU:0`will be open and available for you to run your own containers on, but too many students attempting to use it at once may cause problems.
+
 ---
 
 # Design
@@ -181,34 +221,6 @@ Follow @igor_chubin for wttr.in updates
 
 ![Prediction Machines Anatomy of a Task](../img/anatomy-of-task.png)
 
-
-### Datasets and Models
-
-You must do one of the following
-
-- Use transfer learning **or**
-- Compare performance of several pre-canned models **or**
-- Use advanced quantization
-
-1. If you will be conducting transfer learning, identify a dataset that fits your needs.
-2. Identify at least one, but ideally multiple, base models that you will use.
-
-### Model Implementation
-
-Get the model working!
-
-### Model Application
-
-Wrap your working model with some logic that makes the results of the prediction available to the user.
-This should work towards the goal you described in the first checkpoint.
-
-### Final Demonstration
-
-- Demonstrate your application to the class
-- Push code to GitHub
-
-![How neat is that](https://i.giphy.com/CWKcLd53mbw0o.webp)
-
 ---
 
 # Final Project Workday 2
@@ -216,3 +228,5 @@ This should work towards the goal you described in the first checkpoint.
 # Final Project Workday 3
 
 # Final Project Workday 4
+
+![How neat is that](https://i.giphy.com/CWKcLd53mbw0o.webp)
