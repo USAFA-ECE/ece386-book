@@ -43,7 +43,34 @@ that help guide you to a working final product!
 4. Networking component
 5. Final demonstration
 
+Information on each of these can be found in the specific heading below.
+
 ## Background Information
+
+## Multi-Device Architectures: Voice Assistants
+
+From [*AI at the Edge* Chapter 3, "The Hardware Edge of AI"](https://learning.oreilly.com/library/view/ai-at-the/9781098120191/ch03.html#:-:text=Multi-Device%20Architectures):
+
+> Edge AI applications aren’t always implemented directly on the devices that host the actual sensors. Sometimes, it makes sense to use a multi-device architecture.
+>
+> A single device might contain multiple types of processors: for example, one for running application code and another for running ML algorithms. A complete system might be composed of many devices, some with multiple processors, that collect and process data at many different points depending on which BLERP benefits are needed. This type of solution can even involve cloud computation.
+>
+> A great example of this type of architecture is a smart speaker with a voice assistant. Typically, they have at least two processors. The first is a low-power, always-on chip that runs DSP and a machine learning model to listen for wake words without using too much energy.
+>
+> The second is an application processor, which is woken up by the always-on chip when the wake word is detected. The application processor might run a more sophisticated model to try to catch any false positives that got past the always-on chip. Together, these two processors can identify wake words without violating user privacy by streaming private conversations to the cloud.
+>
+> Once the wake word has been confirmed, the application processor streams the audio to a cloud server, which performs speech recognition and natural language processing in order to come up with an appropriate response. The general flow is shown in Figure 3-9.
+>
+>```{figure} ../img/voice-assistant-block.png
+> The low-power processor aims to catch as many potential keywords as possible; the application processor wakes up to evaluate any possible matches and invokes the cloud web service if a match is confirmed
+>```
+>
+> When designing a system, don’t be afraid to consider using multiple devices to tackle some of the trade-offs involved with different device types. Some common situations where it can be helpful are:
+>
+> - Monitoring large numbers of individual entities: this can get expensive if high-end AI-capable hardware is used on every entity.
+> - Reducing energy use: sensors are battery powered and need to last a long time.
+> - Protecting privacy: sending data directly to a large device or cloud server might violate privacy norms.
+> - Integrating with legacy equipment: existing sensors or gateways might be supplemented with edge AI devices rather than being replaced.
 
 ### Jetson GPIO
 
@@ -153,6 +180,7 @@ Follow @igor_chubin for wttr.in updates
 4. Identify a class of models that you think will be helpful in achieving your end state.
 
 ![Prediction Machines Anatomy of a Task](../img/anatomy-of-task.png)
+
 
 ### Datasets and Models
 
