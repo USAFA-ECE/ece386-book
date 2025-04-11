@@ -40,10 +40,32 @@ that help guide you to a working final product!
 1. Design
 2. LLM processing component
 3. Edge AI component
-4. Networking component
+4. Integration
 5. Final demonstration
 
 Information on each of these can be found in the specific heading below.
+
+### Points
+
+Each Gradescope assignment will have points associated with questions.
+Here is the breakdown for functionality:
+
+ ```{table} Implementation Points
+
+| Component               | Functionality       | Portion of Component |
+|-------------------------|---------------------|----------------------|
+| Trigger voice recording | Key press           | 25                   |
+| Trigger voice recording | Button on GPIO      | 60                   |
+| Trigger voice recording | Keyword Spotting    | 15                   |
+| Voice Transcription     | Voice-to-text       | 100                  |
+| LLM query processing    | Return city         | 50                   |
+| LLM query processing    | Return airport code | 25                   |
+| LLM query processing    | Return location     | 25                   |
+| Integration             | GET from wttr.in    | 15                   |
+| Integration             | POST to LLM server  | 40                   |
+| Integration             | GET local service   | 45                   |
+| End-to-end              | Full functionality  | 100                  |
+```
 
 ## Background Information
 
@@ -212,21 +234,34 @@ You may also use the public URL, but must have an IPv6 address and it is blocked
 
 ---
 
-# Design
+# Design Checkpoint
 
 1. Identify what problem you are trying to solve.
-2. Discuss the problem in the context of prediction, judgement, and decision.
-3. Elaborate on the steps of the engineering method/ ML Workflow that you will take to reach your goal.
-4. Identify a class of models that you think will be helpful in achieving your end state.
+2. Discuss the problem in terms of *Prediction Machines* "Anatomy of a Task".
+3. Draw a **detailed** block diagram of your system.
+4. Submit to Gradescope.
 
 ![Prediction Machines Anatomy of a Task](../img/anatomy-of-task.png)
 
----
+# LLM Prompt Checkpoint
 
-# Final Project Workday 2
+1. Design a LLM prompt for converting a sentence requesting weather into the format `wttr.in` needs.
+2. Design several test cases.
+3. Evaluate your prompt; iterate if necessary.
+4. Submit to Gradescope.
 
-# Final Project Workday 3
+# Edge Processing Checkpoint
 
-# Final Project Workday 4
+1. Conduct a BLERP analysis for each component of your design.
+2. Implement primary functionality for the edge components.
+3. Demo to instructor.
+4. Submit to Gradescope.
+
+# Integration Checkpoint
+
+1. Make any necessary revisions to your design diagram.
+2. Integrate various components!
+3. Make video demo and show to instructor.
+4. Submit to Gradescope.
 
 ![How neat is that](https://i.giphy.com/CWKcLd53mbw0o.webp)
