@@ -61,7 +61,7 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="36. Command and Risk" href="command-risk.html" />
+    <link rel="next" title="35. Command and Risk" href="command-risk.html" />
     <link rel="prev" title="30. C&amp;C GPUs and LLMs" href="../b4-llm/cc-gpu-llm.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -228,12 +228,11 @@
 
 
 
-
-<li class="toctree-l1"><a class="reference internal" href="command-risk.html">36. Command and Risk</a></li>
-<li class="toctree-l1"><a class="reference internal" href="student-choice.html">37. Student Choice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alternative-architectures.html">38. Alternative Architectures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supercomputers.html">39. Super Computers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wrapup.html">40. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-risk.html">35. Command and Risk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="student-choice.html">36. Student Choice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alternative-architectures.html">37. Alternative Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercomputers.html">38. Super Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wrapup.html">39. Wrap and Critique</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
 <ul class="nav bd-sidenav">
@@ -454,9 +453,8 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#design-checkpoint">32. Design Checkpoint</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-prompt-checkpoint">33. LLM Prompt Checkpoint</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#edge-processing-checkpoint">34. Edge Processing Checkpoint</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-checkpoint">35. Integration Checkpoint</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#edge-processing-checkpoint">33. Edge Processing Checkpoint</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-checkpoint">34. Integration Checkpoint</a></li>
 </ul>
 
             </nav>
@@ -730,88 +728,8 @@ You may also use the public URL, but must have an IPv6 address and it is blocked
 </ol>
 <p><img alt="Prediction Machines Anatomy of a Task" src="../_images/anatomy-of-task.png" /></p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="llm-prompt-checkpoint">
-<h1><span class="section-number">33. </span>LLM Prompt Checkpoint<a class="headerlink" href="#llm-prompt-checkpoint" title="Link to this heading">#</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>This is a great time to use few-shot prompting.</p>
-<p>Structured outputs are probably overkill since we just want a string</p>
-</div>
-<ol class="arabic simple">
-<li><p>Design a LLM prompt for converting a sentence requesting weather into the format <code class="docutils literal notranslate"><span class="pre">wttr.in</span></code> needs.</p></li>
-<li><p>Design several test cases.</p></li>
-<li><p>Evaluate your prompt; iterate if necessary.</p></li>
-<li><p>Upload a single <code class="docutils literal notranslate"><span class="pre">.py</span></code> file to Gradescope. This file should contain:</p>
-<ul class="simple">
-<li><p>The function <code class="docutils literal notranslate"><span class="pre">llm_parse_for_wttr()</span></code> to process the raw text. Make sure you include type hints for the params and return!</p></li>
-<li><p>A very nice system prompt inside of that function.</p></li>
-<li><p>A dictionary of test cases and the function to evaluate them…</p></li>
-</ul>
-</li>
-</ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;This script evaluates an LLM prompt for processing text so that it can be used for the wttr.in API&quot;&quot;&quot;</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">ollama</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
-
-<span class="n">LLM_MODEL</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;gemma3:1b&quot;</span>    <span class="c1"># Optional, change this to be the model you want</span>
-<span class="n">client</span><span class="p">:</span> <span class="n">Client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span>
-  <span class="n">host</span><span class="o">=</span><span class="s1">&#39;http://localhost:11434&#39;</span> <span class="c1"># Optional, change this to be the URL of your LLM</span>
-<span class="p">)</span>
-
-
-<span class="c1"># TODO: define  llm_parse_for_wttr()</span>
-
-<span class="c1"># Test cases</span>
-<span class="n">test_cases</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># TODO: Replace these test cases with ones for wttr.in</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="s2">&quot;Extract the number: The total is 42 units.&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;expected&quot;</span><span class="p">:</span> <span class="s2">&quot;42&quot;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="s2">&quot;What color is the fruit: banana.&#39;&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;expected&quot;</span><span class="p">:</span> <span class="s2">&quot;Yellow&quot;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="s2">&quot;Give me the JSON: Name is Alice, age is 30&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;expected&quot;</span><span class="p">:</span> <span class="s1">&#39;{&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 30}&#39;</span>
-    <span class="p">},</span>
-<span class="p">]</span>
-
-<span class="c1"># Function to iterate through test cases</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">run_tests</span><span class="p">():</span>
-    <span class="n">num_passed</span> <span class="o">=</span> <span class="mi">0</span>
-
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">test</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">test_cases</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="n">raw_input</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s2">&quot;input&quot;</span><span class="p">]</span>
-        <span class="n">expected_output</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s2">&quot;expected&quot;</span><span class="p">]</span>
-
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Test </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">raw_input</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">llm_parse_for_wttr</span><span class="p">(</span><span class="n">raw_input</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-            <span class="n">expected</span> <span class="o">=</span> <span class="n">expected_output</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;LLM Output  :&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expected    :&quot;</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span>
-
-            <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="n">expected</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ PASS&quot;</span><span class="p">)</span>
-                <span class="n">num_passed</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ FAIL&quot;</span><span class="p">)</span>
-
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;💥 ERROR:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Summary: </span><span class="si">{</span><span class="n">num_passed</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">test</span><span class="p">)</span><span class="si">}</span><span class="s2"> tests passed.&quot;</span><span class="p">)</span>
-
-<span class="c1"># Run the test cases</span>
-<span class="n">run_tests</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>You will want to save this script to a GitHub repository.</p>
-</section>
 <section class="tex2jax_ignore mathjax_ignore" id="edge-processing-checkpoint">
-<h1><span class="section-number">34. </span>Edge Processing Checkpoint<a class="headerlink" href="#edge-processing-checkpoint" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">33. </span>Edge Processing Checkpoint<a class="headerlink" href="#edge-processing-checkpoint" title="Link to this heading">#</a></h1>
 <ol class="arabic simple">
 <li><p>Conduct a BLERP analysis for each component of your design.</p></li>
 <li><p>Implement primary functionality for the edge components.</p></li>
@@ -820,7 +738,7 @@ You may also use the public URL, but must have an IPv6 address and it is blocked
 </ol>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="integration-checkpoint">
-<h1><span class="section-number">35. </span>Integration Checkpoint<a class="headerlink" href="#integration-checkpoint" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">34. </span>Integration Checkpoint<a class="headerlink" href="#integration-checkpoint" title="Link to this heading">#</a></h1>
 <ol class="arabic simple">
 <li><p>Make any necessary revisions to your design diagram.</p></li>
 <li><p>Integrate various components!</p></li>
@@ -874,7 +792,7 @@ You may also use the public URL, but must have an IPv6 address and it is blocked
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">36. </span>Command and Risk</p>
+        <p class="prev-next-title"><span class="section-number">35. </span>Command and Risk</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -914,9 +832,8 @@ You may also use the public URL, but must have an IPv6 address and it is blocked
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#design-checkpoint">32. Design Checkpoint</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-prompt-checkpoint">33. LLM Prompt Checkpoint</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#edge-processing-checkpoint">34. Edge Processing Checkpoint</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-checkpoint">35. Integration Checkpoint</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#edge-processing-checkpoint">33. Edge Processing Checkpoint</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-checkpoint">34. Integration Checkpoint</a></li>
 </ul>
 
   </nav></div>
