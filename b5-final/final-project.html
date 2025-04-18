@@ -61,7 +61,7 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="35. Final: LLM Prompt Checkpoint" href="llm_prompt.html" />
+    <link rel="next" title="32. Final: LLM Prompt Checkpoint" href="llm_prompt.html" />
     <link rel="prev" title="30. C&amp;C GPUs and LLMs" href="../b4-llm/cc-gpu-llm.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -225,15 +225,13 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Final Block</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">31. Final Project</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="llm_prompt.html">35. Final: LLM Prompt Checkpoint</a></li>
-<li class="toctree-l1"><a class="reference internal" href="command-risk.html">36. Command and Risk</a></li>
-<li class="toctree-l1"><a class="reference internal" href="student-choice.html">37. Student Choice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alternative-architectures.html">38. Alternative Architectures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="supercomputers.html">39. Super Computers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wrapup.html">40. Wrap and Critique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llm_prompt.html">32. Final: LLM Prompt Checkpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpio.html">33. Final: GPIO Checkpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-risk.html">34. Command and Risk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="student-choice.html">35. Student Choice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alternative-architectures.html">36. Alternative Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supercomputers.html">37. Super Computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wrapup.html">38. Wrap and Critique</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
 <ul class="nav bd-sidenav">
@@ -434,7 +432,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">31. Final Project</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">31.1. Overview</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">Grading</a></li>
@@ -451,13 +448,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfec-ai-server">DFEC AI Server</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-checkpoint">31.4. Design Checkpoint</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#design-checkpoint">32. Design Checkpoint</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#edge-processing-checkpoint">33. Edge Processing Checkpoint</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-checkpoint">34. Integration Checkpoint</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -515,8 +507,8 @@ that help guide you to a working final product!</p>
 <h3>Points<a class="headerlink" href="#points" title="Link to this heading">#</a></h3>
 <p>Each Gradescope assignment will have points associated with questions.
 Here is the breakdown for functionality:</p>
-<div class="pst-scrollable-table-container"><table class="table" id="id1">
-<caption><span class="caption-number">Table 31.1 </span><span class="caption-text">Implementation Points</span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
+<div class="pst-scrollable-table-container"><table class="table" id="id2">
+<caption><span class="caption-number">Table 31.1 </span><span class="caption-text">Implementation Points</span><a class="headerlink" href="#id2" title="Link to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Component</p></th>
 <th class="head"><p>Functionality</p></th>
@@ -585,10 +577,10 @@ Here is the breakdown for functionality:</p>
 <p>A great example of this type of architecture is a smart speaker with a voice assistant. Typically, they have at least two processors. The first is a low-power, always-on chip that runs DSP and a machine learning model to listen for wake words without using too much energy.</p>
 <p>The second is an application processor, which is woken up by the always-on chip when the wake word is detected. The application processor might run a more sophisticated model to try to catch any false positives that got past the always-on chip. Together, these two processors can identify wake words without violating user privacy by streaming private conversations to the cloud.</p>
 <p>Once the wake word has been confirmed, the application processor streams the audio to a cloud server, which performs speech recognition and natural language processing in order to come up with an appropriate response. The general flow is shown in Figure 3-9.</p>
-<figure class="align-default" id="id2">
+<figure class="align-default" id="id3">
 <img alt="../_images/voice-assistant-block.png" src="../_images/voice-assistant-block.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 31.1 </span><span class="caption-text">The low-power processor aims to catch as many potential keywords as possible; the application processor wakes up to evaluate any possible matches and invokes the cloud web service if a match is confirmed</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 31.1 </span><span class="caption-text">The low-power processor aims to catch as many potential keywords as possible; the application processor wakes up to evaluate any possible matches and invokes the cloud web service if a match is confirmed</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>When designing a system, don’t be afraid to consider using multiple devices to tackle some of the trade-offs involved with different device types. Some common situations where it can be helpful are:</p>
@@ -601,7 +593,7 @@ Here is the breakdown for functionality:</p>
 </div></blockquote>
 <p>We <strong>are not</strong> worried about revalidating the wake word, but we <em>are</em> interested in processing different pieces of the system on different hardware.</p>
 <section id="jetson-gpio">
-<h3>Jetson GPIO<a class="headerlink" href="#jetson-gpio" title="Link to this heading">#</a></h3>
+<span id="id1"></span><h3>Jetson GPIO<a class="headerlink" href="#jetson-gpio" title="Link to this heading">#</a></h3>
 <p>According to <a class="reference external" href="https://jetsonhacks.com/nvidia-jetson-orin-nano-gpio-header-pinout/">JetsonHacks: NVIDIA Jetson Orin Nano GPIO Header Pinout</a>,
 pin #29 is named <code class="docutils literal notranslate"><span class="pre">GPIO01</span></code>.
 <em>However</em>, the OS uses the Sysfs lines that map to the system on a chip (SoC) spec.
@@ -717,10 +709,9 @@ You may also use the public URL, but must have an IPv6 address and it is blocked
 <p><code class="docutils literal notranslate"><span class="pre">GPU:0</span></code>will be open and available for you to run your own containers on, but too many students attempting to use it at once may cause problems.</p>
 </section>
 </section>
-</section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="design-checkpoint">
-<h1><span class="section-number">32. </span>Design Checkpoint<a class="headerlink" href="#design-checkpoint" title="Link to this heading">#</a></h1>
+<section id="design-checkpoint">
+<h2><span class="section-number">31.4. </span>Design Checkpoint<a class="headerlink" href="#design-checkpoint" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Identify what problem you are trying to solve.</p></li>
 <li><p>Discuss the problem in terms of <em>Prediction Machines</em> “Anatomy of a Task”.</p></li>
@@ -728,25 +719,8 @@ You may also use the public URL, but must have an IPv6 address and it is blocked
 <li><p>Submit to Gradescope.</p></li>
 </ol>
 <p><img alt="Prediction Machines Anatomy of a Task" src="../_images/anatomy-of-task.png" /></p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="edge-processing-checkpoint">
-<h1><span class="section-number">33. </span>Edge Processing Checkpoint<a class="headerlink" href="#edge-processing-checkpoint" title="Link to this heading">#</a></h1>
-<ol class="arabic simple">
-<li><p>Conduct a BLERP analysis for each component of your design.</p></li>
-<li><p>Implement primary functionality for the edge components.</p></li>
-<li><p>Demo to instructor.</p></li>
-<li><p>Submit to Gradescope.</p></li>
-</ol>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="integration-checkpoint">
-<h1><span class="section-number">34. </span>Integration Checkpoint<a class="headerlink" href="#integration-checkpoint" title="Link to this heading">#</a></h1>
-<ol class="arabic simple">
-<li><p>Make any necessary revisions to your design diagram.</p></li>
-<li><p>Integrate various components!</p></li>
-<li><p>Make video demo and show to instructor.</p></li>
-<li><p>Submit to Gradescope.</p></li>
-</ol>
 <p><img alt="How neat is that" src="https://i.giphy.com/CWKcLd53mbw0o.webp" /></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -793,7 +767,7 @@ You may also use the public URL, but must have an IPv6 address and it is blocked
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">35. </span>Final: LLM Prompt Checkpoint</p>
+        <p class="prev-next-title"><span class="section-number">32. </span>Final: LLM Prompt Checkpoint</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -813,7 +787,6 @@ You may also use the public URL, but must have an IPv6 address and it is blocked
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">31. Final Project</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">31.1. Overview</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">Grading</a></li>
@@ -830,13 +803,8 @@ You may also use the public URL, but must have an IPv6 address and it is blocked
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfec-ai-server">DFEC AI Server</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-checkpoint">31.4. Design Checkpoint</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#design-checkpoint">32. Design Checkpoint</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#edge-processing-checkpoint">33. Edge Processing Checkpoint</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-checkpoint">34. Integration Checkpoint</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>
