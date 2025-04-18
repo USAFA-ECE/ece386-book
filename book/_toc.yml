@@ -47,6 +47,7 @@ parts:
     chapters:
       - file: b5-final/final-project
       - file: b5-final/llm_prompt
+      - file: b5-final/gpio
       - file: b5-final/command-risk
       - file: b5-final/student-choice
       - file: b5-final/alternative-architectures

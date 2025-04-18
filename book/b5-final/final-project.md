@@ -96,6 +96,7 @@ From [*AI at the Edge* Chapter 3, "The Hardware Edge of AI"](https://learning.or
 
 We **are not** worried about revalidating the wake word, but we *are* interested in processing different pieces of the system on different hardware.
 
+(jetson-gpio)=
 ### Jetson GPIO
 
 According to [JetsonHacks: NVIDIA Jetson Orin Nano GPIO Header Pinout](https://jetsonhacks.com/nvidia-jetson-orin-nano-gpio-header-pinout/),
@@ -234,7 +235,7 @@ You may also use the public URL, but must have an IPv6 address and it is blocked
 
 ---
 
-# Design Checkpoint
+## Design Checkpoint
 
 1. Identify what problem you are trying to solve.
 2. Discuss the problem in terms of *Prediction Machines* "Anatomy of a Task".
@@ -242,19 +243,5 @@ You may also use the public URL, but must have an IPv6 address and it is blocked
 4. Submit to Gradescope.
 
 ![Prediction Machines Anatomy of a Task](../img/anatomy-of-task.png)
-
-# Edge Processing Checkpoint
-
-1. Conduct a BLERP analysis for each component of your design.
-2. Implement primary functionality for the edge components.
-3. Demo to instructor.
-4. Submit to Gradescope.
-
-# Integration Checkpoint
-
-1. Make any necessary revisions to your design diagram.
-2. Integrate various components!
-3. Make video demo and show to instructor.
-4. Submit to Gradescope.
 
 ![How neat is that](https://i.giphy.com/CWKcLd53mbw0o.webp)
