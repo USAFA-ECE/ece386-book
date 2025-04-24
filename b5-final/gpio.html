@@ -57,6 +57,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'b5-final/gpio';</script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -434,8 +436,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#board-selection">33.1. Board Selection</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">33.2. Deliverables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">33.1. Deliverables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jetson-gpio-with-bash">33.2. Jetson GPIO with Bash</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jetson-gpio-in-docker">33.3. Jetson.GPIO in Docker</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-test-script">Run Test Script</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -449,33 +459,127 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="final-gpio-checkpoint">
 <h1><span class="section-number">33. </span>Final: GPIO Checkpoint<a class="headerlink" href="#final-gpio-checkpoint" title="Link to this heading">#</a></h1>
-<p>For this checkpoint, you must prove that you can trigger an action by driving a GPIO pin to digital HIGH.</p>
-<section id="board-selection">
-<h2><span class="section-number">33.1. </span>Board Selection<a class="headerlink" href="#board-selection" title="Link to this heading">#</a></h2>
-<p>You may use <em>either</em> the Jetson or the Raspberry Pi.</p>
-<ul class="simple">
-<li><p>If you use the <strong>Jetson</strong> you are required to run Docker to leverage the CUDA GPU.
-But the Jetson’s GPIO cannot directly connect to CUDA so you must use BASH to read them (see <a class="reference internal" href="final-project.html#jetson-gpio"><span class="std std-ref">Jetson GPIO</span></a>) and then tirgger an action in Docker.</p></li>
-<li><p>If you use the <strong>Pi</strong> you can use <a class="reference external" href="https://github.com/gpiozero/gpiozero"><code class="docutils literal notranslate"><span class="pre">gpiozero</span></code></a> to easily listen for a button press!
-But there is no GPU so you need to host Whisper on the DFEC server as an API.</p></li>
-</ul>
-</section>
+<p>For this checkpoint, you must prove that you can trigger an action <strong>in Docker</strong> by driving a GPIO pin to digital HIGH.</p>
 <section id="deliverables">
-<h2><span class="section-number">33.2. </span>Deliverables<a class="headerlink" href="#deliverables" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">33.1. </span>Deliverables<a class="headerlink" href="#deliverables" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Conduct a BLERP analysis for voice recording and transcription.</p></li>
-<li><p>Select a board (either Jetson or Pi)</p></li>
-<li><p>Prove that you can use the GPIO on that board to trigger something <em>simple</em> (like printing to a screen)</p>
-<ul class="simple">
-<li><p>A BASH action if using the Jetson</p>
-<ul>
-<li><p>ideally, this in-turn triggers something in a Docker container</p></li>
-</ul>
-</li>
-<li><p>A Python action in a virtual environment if using the Pi</p></li>
-</ul>
-</li>
+<li><p>Prove that you can use the GPIO to trigger a simple action in Docker running Python, such as printing to the screen.</p></li>
 </ol>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<ol class="arabic simple">
+<li><p>Check the GPIO on the Jetson host, with Bash, and with no Docker</p></li>
+<li><p>Then do the Python in Docker</p></li>
+</ol>
+</div>
+</section>
+<section id="jetson-gpio-with-bash">
+<h2><span class="section-number">33.2. </span>Jetson GPIO with Bash<a class="headerlink" href="#jetson-gpio-with-bash" title="Link to this heading">#</a></h2>
+<p><em>Before</em> you try to do anything with Docker and Python, make sure your 40-pin GPIO header works.</p>
+<p>TLDR:</p>
+<p>Put <span class="math notranslate nohighlight">\(0V\)</span> on <strong>pin 29</strong> then run this line in the terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># With 0V on pin 29</span>
+<span class="c1"># Will print 0 to terminal, for digital LOW</span>
+gpioget<span class="w"> </span>gpiochip0<span class="w"> </span><span class="m">105</span>
+</pre></div>
+</div>
+<p>Now put <span class="math notranslate nohighlight">\(3.3V\)</span> on <strong>pin 29</strong> then run the line again</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># With 3.3V on pin 29</span>
+<span class="c1"># Will print 1 to terminal, for digital HIGH</span>
+gpioget<span class="w"> </span>gpiochip0<span class="w"> </span><span class="m">105</span>
+</pre></div>
+</div>
+<section id="explanation">
+<h3>Explanation<a class="headerlink" href="#explanation" title="Link to this heading">#</a></h3>
+<p>Your Jetson has two headers. The one we care about is named <strong><code class="docutils literal notranslate"><span class="pre">gpiochip0</span></code></strong>, which is the 40-pin vertical header.</p>
+<p>According to <a class="reference external" href="https://jetsonhacks.com/nvidia-jetson-orin-nano-gpio-header-pinout/">JetsonHacks: NVIDIA Jetson Orin Nano GPIO Header Pinout</a>,
+pin <code class="docutils literal notranslate"><span class="pre">#29</span></code> on is named <code class="docutils literal notranslate"><span class="pre">GPIO01</span></code>.
+<em>However</em>, the OS uses the Sysfs lines that map to the system on a chip (SoC) spec.
+So <code class="docutils literal notranslate"><span class="pre">GPIO01</span></code> is actually referred to as <strong>line 105</strong>.</p>
+<p>On your Jetson you can run this to get the SoC name for line 105, which is GPIO01, which is pin #29 🤪</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find name for GPIO01</span>
+gpioinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">105</span>
+<span class="c1"># line 105: &quot;PQ.05&quot; unused input active-high</span>
+</pre></div>
+</div>
+<p>Cool, so we will simply call pin #29 line <code class="docutils literal notranslate"><span class="pre">105</span></code> but we now know it’s configured as active-high input to the SoC port “PQ.05”.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is actually super similar to the <code class="docutils literal notranslate"><span class="pre">.xdc</span></code> constraints file for the Basys3 board in ECE 281!</p>
+</div>
+<p>Now we can read the digital value on the pin!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Should print 0 or 1 to the terminal</span>
+gpioget<span class="w"> </span>gpiochip0<span class="w"> </span><span class="m">105</span>
+</pre></div>
+</div>
+<p>I typed <code class="docutils literal notranslate"><span class="pre">gpio</span></code> and then pressed tab, tab to find <code class="docutils literal notranslate"><span class="pre">gpiomon</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpiomon<span class="w"> </span>--help
+</pre></div>
+</div>
+<p>Looks like there are some flags to process something on the first rising edge. Nice!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run echo on rising edge</span>
+gpiomon<span class="w"> </span>-r<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>gpiochip0<span class="w"> </span><span class="m">105</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>line<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;event </span><span class="nv">$line</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+</pre></div>
+</div>
+<p><em>Disclaimer:</em> I never would have figured this out without ChatGPT <a class="reference external" href="https://chatgpt.com/share/67d4a6d8-5920-8003-a93a-67c68b6acc8c">https://chatgpt.com/share/67d4a6d8-5920-8003-a93a-67c68b6acc8c</a>
+<strong>but notice how much research I did first in order to ask the right questions!</strong> Also, not all the files it pointed me towards exist.</p>
+</section>
+</section>
+<section id="jetson-gpio-in-docker">
+<h2><span class="section-number">33.3. </span>Jetson.GPIO in Docker<a class="headerlink" href="#jetson-gpio-in-docker" title="Link to this heading">#</a></h2>
+<p>We can use the Python <a class="github reference external" href="https://github.com/NVIDIA/jetson-gpio">NVIDIA/jetson-gpio</a> library in combination with <a class="reference external" href="https://libgpiod.readthedocs.io/en/stable/">libgpiod</a> to
+access the Jetson’s GPIO in Python.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>When you run a container that you want to access the GPIO you <strong>must</strong> allow it to access the device, so add this flag after <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--device<span class="o">=</span>/dev/gpiochip0
+</pre></div>
+</div>
+</div>
+<section id="setup">
+<h3>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h3>
+<p>You can do this interactively with a running container, but you can (and should) bake it into a Dockerfile!</p>
+<p>First install <code class="docutils literal notranslate"><span class="pre">gpiod</span></code> (this provides the command line tools such as <code class="docutils literal notranslate"><span class="pre">gpioget</span></code>)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt<span class="w"> </span>install<span class="w"> </span>gpiod
+</pre></div>
+</div>
+<p>Next, install the Jetson GPIO Python library.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>Jetson.GPIO
+</pre></div>
+</div>
+<p>Tell the library which Jetson model it’s running via an environment variable:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># In terminal</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">JETSON_MODEL_NAME</span><span class="o">=</span>JETSON_ORIN_NANO
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-Dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># In Dockerfile</span>
+<span class="k">ENV</span><span class="w"> </span><span class="nv">JETSON_MODEL_NAME</span><span class="o">=</span>JETSON_ORIN_NANO
+</pre></div>
+</div>
+</section>
+<section id="run-test-script">
+<h3>Run Test Script<a class="headerlink" href="#run-test-script" title="Link to this heading">#</a></h3>
+<p>Once setup, run Python.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;Prints &#39;UP&#39; or &#39;DOWN&#39; based on edges on Jetson pin #29&#39;&#39;&#39;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">Jetson.GPIO</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">GPIO</span>
+
+<span class="c1"># Init as digital input</span>
+<span class="n">my_pin</span> <span class="o">=</span> <span class="mi">29</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BOARD</span><span class="p">)</span>  <span class="c1"># BOARD pin-numbering scheme</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">my_pin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>  <span class="c1"># digital input</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Starting Demo! Move pin 29 between 0V and 3.3V&#39;</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">wait_for_edge</span><span class="p">(</span><span class="n">my_pin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">RISING</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;UP!&#39;</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">wait_for_edge</span><span class="p">(</span><span class="n">my_pin</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">FALLING</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;down&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -543,8 +647,16 @@ But there is no GPU so you need to host Whisper on the DFEC server as an API.</p
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#board-selection">33.1. Board Selection</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">33.2. Deliverables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">33.1. Deliverables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jetson-gpio-with-bash">33.2. Jetson GPIO with Bash</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jetson-gpio-in-docker">33.3. Jetson.GPIO in Docker</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-test-script">Run Test Script</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

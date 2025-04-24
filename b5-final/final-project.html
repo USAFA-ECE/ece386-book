@@ -442,10 +442,6 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-information">31.2. Background Information</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-device-architectures-voice-assistants">31.3. Multi-Device Architectures: Voice Assistants</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jetson-gpio">Jetson GPIO</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bash-scripts">Bash Scripts</a></li>
-</ul>
-</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wttr-in">wttr.in</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfec-ai-server">DFEC AI Server</a></li>
 </ul>
@@ -509,8 +505,8 @@ that help guide you to a working final product!</p>
 <h3>Points<a class="headerlink" href="#points" title="Link to this heading">#</a></h3>
 <p>Each Gradescope assignment will have points associated with questions.
 Here is the breakdown for functionality:</p>
-<div class="pst-scrollable-table-container"><table class="table" id="id2">
-<caption><span class="caption-number">Table 31.1 </span><span class="caption-text">Implementation Points</span><a class="headerlink" href="#id2" title="Link to this table">#</a></caption>
+<div class="pst-scrollable-table-container"><table class="table" id="id1">
+<caption><span class="caption-number">Table 31.1 </span><span class="caption-text">Implementation Points</span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Component</p></th>
 <th class="head"><p>Functionality</p></th>
@@ -579,10 +575,10 @@ Here is the breakdown for functionality:</p>
 <p>A great example of this type of architecture is a smart speaker with a voice assistant. Typically, they have at least two processors. The first is a low-power, always-on chip that runs DSP and a machine learning model to listen for wake words without using too much energy.</p>
 <p>The second is an application processor, which is woken up by the always-on chip when the wake word is detected. The application processor might run a more sophisticated model to try to catch any false positives that got past the always-on chip. Together, these two processors can identify wake words without violating user privacy by streaming private conversations to the cloud.</p>
 <p>Once the wake word has been confirmed, the application processor streams the audio to a cloud server, which performs speech recognition and natural language processing in order to come up with an appropriate response. The general flow is shown in Figure 3-9.</p>
-<figure class="align-default" id="id3">
+<figure class="align-default" id="id2">
 <img alt="../_images/voice-assistant-block.png" src="../_images/voice-assistant-block.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 31.1 </span><span class="caption-text">The low-power processor aims to catch as many potential keywords as possible; the application processor wakes up to evaluate any possible matches and invokes the cloud web service if a match is confirmed</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 31.1 </span><span class="caption-text">The low-power processor aims to catch as many potential keywords as possible; the application processor wakes up to evaluate any possible matches and invokes the cloud web service if a match is confirmed</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>When designing a system, don’t be afraid to consider using multiple devices to tackle some of the trade-offs involved with different device types. Some common situations where it can be helpful are:</p>
@@ -594,59 +590,6 @@ Here is the breakdown for functionality:</p>
 </ul>
 </div></blockquote>
 <p>We <strong>are not</strong> worried about revalidating the wake word, but we <em>are</em> interested in processing different pieces of the system on different hardware.</p>
-<section id="jetson-gpio">
-<span id="id1"></span><h3>Jetson GPIO<a class="headerlink" href="#jetson-gpio" title="Link to this heading">#</a></h3>
-<p>According to <a class="reference external" href="https://jetsonhacks.com/nvidia-jetson-orin-nano-gpio-header-pinout/">JetsonHacks: NVIDIA Jetson Orin Nano GPIO Header Pinout</a>,
-pin #29 is named <code class="docutils literal notranslate"><span class="pre">GPIO01</span></code>.
-<em>However</em>, the OS uses the Sysfs lines that map to the system on a chip (SoC) spec.
-So <code class="docutils literal notranslate"><span class="pre">GPIO01</span></code> is actually referred to as <strong>line 105</strong>.</p>
-<p>On your Jetson you can run this to get the SoC name for line 105, which is GPIO01, which is pin #29 🤪</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find name for GPIO01</span>
-gpioinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">105</span>
-<span class="c1"># line 105: &quot;PQ.05&quot; unused input active-high</span>
-</pre></div>
-</div>
-<p>Cool, so we will simply call pin #29 line <code class="docutils literal notranslate"><span class="pre">105</span></code> but we now know it’s configured as active-high input to the SoC port “PQ.05”.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This is actually super similar to the <code class="docutils literal notranslate"><span class="pre">.xdc</span></code> constraints file for the Basys3 board in ECE 281!</p>
-</div>
-<p>Now we can read the digial value on the pin!</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Should print 0 or 1 to the terminal</span>
-gpioget<span class="w"> </span>gpiochip0<span class="w"> </span><span class="m">105</span>
-</pre></div>
-</div>
-<p>I typed <code class="docutils literal notranslate"><span class="pre">gpio</span></code> and then pressed tab, tab to find <code class="docutils literal notranslate"><span class="pre">gpiomon</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gpiomon<span class="w"> </span>--help
-</pre></div>
-</div>
-<p>Looks like there are some flags to process something on the first rising edge. Nice!</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run echo on rising edge</span>
-gpiomon<span class="w"> </span>-r<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>gpiochip0<span class="w"> </span><span class="m">105</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>line<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;event </span><span class="nv">$line</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
-</pre></div>
-</div>
-<p><em>Disclaimer:</em> I never would have figured this out without ChatGPT <a class="reference external" href="https://chatgpt.com/share/67d4a6d8-5920-8003-a93a-67c68b6acc8c">https://chatgpt.com/share/67d4a6d8-5920-8003-a93a-67c68b6acc8c</a>
-<strong>but notice how much research I did first in order to ask the right questions!</strong> Also, not all the files it pointed me towards exist.</p>
-<section id="bash-scripts">
-<h4>Bash Scripts<a class="headerlink" href="#bash-scripts" title="Link to this heading">#</a></h4>
-<p>Your Linux terminal uses BASH (born-again shell). You can write Bash scripts and execute them.</p>
-<p>For example, if you have this script (let’s name it <code class="docutils literal notranslate"><span class="pre">test.sh</span></code>)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-
-<span class="nb">echo</span><span class="w"> </span>Hello<span class="w"> </span><span class="nv">$USER</span>,<span class="w"> </span>this<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>simple<span class="w"> </span><span class="nb">test</span>
-</pre></div>
-</div>
-<p>You must make the scrip executable before running it the first time (only have to do this once).</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change permissions to make the script executable</span>
-chmod<span class="w"> </span>u+x<span class="w"> </span>test.sh
-</pre></div>
-</div>
-<p>Then run it with <code class="docutils literal notranslate"><span class="pre">./</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./test.sh
-</pre></div>
-</div>
-</section>
-</section>
 <section id="wttr-in">
 <h3><a class="reference external" href="http://wttr.in">wttr.in</a><a class="headerlink" href="#wttr-in" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://github.com/chubin/wttr.in">wttr.in (GitHub)</a> is “the right way to ~~check~~ curl the weather!”</p>
@@ -797,10 +740,6 @@ You may also use the public URL, but must have an IPv6 address and it is blocked
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-information">31.2. Background Information</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-device-architectures-voice-assistants">31.3. Multi-Device Architectures: Voice Assistants</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jetson-gpio">Jetson GPIO</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bash-scripts">Bash Scripts</a></li>
-</ul>
-</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wttr-in">wttr.in</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dfec-ai-server">DFEC AI Server</a></li>
 </ul>
