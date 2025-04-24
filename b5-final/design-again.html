@@ -434,7 +434,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">34.1. Deliverables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">34.1. Deliverables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#software-flow-charts">Software Flow Charts</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -453,14 +456,38 @@ document.write(`
 <h2><span class="section-number">34.1. </span>Deliverables<a class="headerlink" href="#deliverables" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Update your initial design diagram.</p></li>
-<li><p>Make a <em>detailed</em> flow diagram of your python script that you are running in either:</p>
-<ul class="simple">
-<li><p>Docker container on Jetson</p></li>
-<li><p>Virtual environment on Raspberry Pi</p></li>
-</ul>
-</li>
+<li><p>Make a <em>detailed</em> flow diagram of the python script that is running in the Docker container on your Jetson.</p></li>
 <li><p>Submit to Gradescope</p></li>
 </ol>
+<section id="software-flow-charts">
+<h3>Software Flow Charts<a class="headerlink" href="#software-flow-charts" title="Link to this heading">#</a></h3>
+<p>Recall the following basic shapes for software flow charts:</p>
+<p><strong>Oval</strong> is the start or end</p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>flowchart LR
+    id1([docker run ... python app.py])
+</pre></div>
+</div>
+<p><strong>Rectangle</strong> is a process</p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>flowchart LR
+    id1[Init Whisper pipeline]
+</pre></div>
+</div>
+<p><strong>Diamond</strong> is a decision</p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>flowchart LR
+    id1{Rising edge?}
+</pre></div>
+</div>
+<p><strong>Parallelogram</strong> is input/output</p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>flowchart TD
+    id1[/GPIO Pin 29/]
+</pre></div>
+</div>
+<p>There are many other symbols, for example <strong>cloud</strong> to represent a cloud hosted server.</p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>architecture-beta
+    service cloud(cloud)[wttrin]
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -528,7 +555,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">34.1. Deliverables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">34.1. Deliverables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#software-flow-charts">Software Flow Charts</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
