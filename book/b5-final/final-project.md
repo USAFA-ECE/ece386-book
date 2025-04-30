@@ -50,7 +50,7 @@ Information on each of these can be found in the specific heading below.
 Each Gradescope assignment will have points associated with questions.
 Here is the breakdown for functionality:
 
-```mermaid
+```{mermaid}
 pie title Final Project Grade Weights
    "Design" : 25
    "Checkpoints"  : 35
