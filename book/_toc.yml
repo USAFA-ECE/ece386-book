@@ -50,9 +50,9 @@ parts:
       - file: b5-final/gpio
       - file: b5-final/design-again
       - file: b5-final/integration
-      - file: b5-final/command-risk
-      - file: b5-final/student-choice
-      - file: b5-final/alternative-architectures
+      - file: b5-final/recap
+      - file: b5-final/chip-war
+      # - file: b5-final/alternative-architectures
       - file: b5-final/supercomputers
       - file: b5-final/wrapup
   - caption: Appendix
