@@ -50,26 +50,20 @@ Information on each of these can be found in the specific heading below.
 Each Gradescope assignment will have points associated with questions.
 Here is the breakdown for functionality:
 
- ```{table} Implementation Points
-
-| Component               | Functionality       | Portion of Component |
-|-------------------------|---------------------|----------------------|
-| Trigger voice recording | Key press           | 25                   |
-| Trigger voice recording | Button on GPIO      | 60                   |
-| Trigger voice recording | Keyword Spotting    | 15                   |
-| Voice Transcription     | Voice-to-text       | 100                  |
-| LLM query processing    | Return city         | 50                   |
-| LLM query processing    | Return airport code | 25                   |
-| LLM query processing    | Return location     | 25                   |
-| Integration             | GET from wttr.in    | 15                   |
-| Integration             | POST to LLM server  | 40                   |
-| Integration             | GET local service   | 45                   |
-| End-to-end              | Full functionality  | 100                  |
+```mermaid
+pie title Final Project Grade Weights
+   "Design" : 25
+   "Checkpoints"  : 35
+   "Integration"  : 40
 ```
+
+- [**Design**](system-design) of your system is worth a quarter of the grade. That's right: a quarter.
+- **Checkpoints** are the several checkpoints, one per lesson, for the next few lessons.
+- [**Integration**](./integration.md) is the final functionality. See that page for functionality breakdown *and debugging tips!*
 
 ## Background Information
 
-## Multi-Device Architectures: Voice Assistants
+### Multi-Device Architectures: Voice Assistants
 
 From [*AI at the Edge* Chapter 3, "The Hardware Edge of AI"](https://learning.oreilly.com/library/view/ai-at-the/9781098120191/ch03.html#:-:text=Multi-Device%20Architectures):
 
@@ -152,11 +146,9 @@ Follow @igor_chubin for wttr.in updates
 
 ### DFEC AI Server
 
-For the duration of the final project, the DFEC AI server will be running Ollama on `GPU:1`, serving [gemma3:27b](https://ollama.com/library/gemma3:27b) at:
+For the duration of the final project, the DFEC AI server will be running Ollama on `GPU:1`, serving [gemma3:27b](https://ollama.com/library/gemma3:27b).
 
-```bash
-10.1.69.214:11434
-```
+**Your instructor will provide the public URL and the private IP address.**
 
 You must be connected to the ECE LAN to hit this private IP address.
 You may also use the public URL, but must have an IPv6 address and it is blocked on USAFA's network...
@@ -165,13 +157,11 @@ You may also use the public URL, but must have an IPv6 address and it is blocked
 
 ---
 
-## Design Checkpoint
+## System Design
 
 1. Identify what problem you are trying to solve.
 2. Discuss the problem in terms of *Prediction Machines* "Anatomy of a Task".
-3. Draw a **detailed** block diagram of your system.
+3. Draw a **detailed** block diagram of your system. This should include a user, all hardware components, interfaces, containers/ environments, and the primary process.
 4. Submit to Gradescope.
 
 ![Prediction Machines Anatomy of a Task](../img/anatomy-of-task.png)
-
-![How neat is that](https://i.giphy.com/CWKcLd53mbw0o.webp)
