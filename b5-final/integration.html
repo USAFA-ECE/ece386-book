@@ -61,7 +61,7 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="36. Command and Risk" href="command-risk.html" />
+    <link rel="next" title="37. Socratic Recap" href="recap.html" />
     <link rel="prev" title="34. Final: Design Again Checkpoint" href="design-again.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -229,9 +229,9 @@
 <li class="toctree-l1"><a class="reference internal" href="gpio.html">33. Final: GPIO Checkpoint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design-again.html">34. Final: Design Again Checkpoint</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">35. Final: Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="command-risk.html">36. Command and Risk</a></li>
-<li class="toctree-l1"><a class="reference internal" href="student-choice.html">37. Student Choice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alternative-architectures.html">38. Alternative Architectures</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="recap.html">37. Socratic Recap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chip-war.html">38. Chip War</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supercomputers.html">39. Super Computers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="wrapup.html">40. Wrap and Critique</a></li>
 </ul>
@@ -411,7 +411,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -427,6 +429,26 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">35. Final: Integration</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-tips">35.1. Debugging Tips</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">Docker</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#can-t-connect-to-dfec-ai-server">Can’t connect to DFEC AI server</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">35.2. Grading</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-workday">36. Final Workday</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -438,7 +460,71 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="final-integration">
 <h1><span class="section-number">35. </span>Final: Integration<a class="headerlink" href="#final-integration" title="Link to this heading">#</a></h1>
-<p>Full functionality!</p>
+<p>At this point the components are nearly done!</p>
+<p>Time to connect them 😈</p>
+<section id="debugging-tips">
+<h2><span class="section-number">35.1. </span>Debugging Tips<a class="headerlink" href="#debugging-tips" title="Link to this heading">#</a></h2>
+<p>Here are some known “gotchas.” You should really read them all.</p>
+<section id="docker">
+<h3>Docker<a class="headerlink" href="#docker" title="Link to this heading">#</a></h3>
+<section id="can-t-connect-to-dfec-ai-server">
+<h4>Can’t connect to DFEC AI server<a class="headerlink" href="#can-t-connect-to-dfec-ai-server" title="Link to this heading">#</a></h4>
+<p>The DFEC AI server’s public URL is <em>only</em> IPv6! By default Docker only gives your container an IPv4 address.</p>
+<ol class="arabic simple">
+<li><p>Edit <code class="docutils literal notranslate"><span class="pre">/etc/docker/daemon.json</span></code> (with Vim or Nano)</p></li>
+<li><p>After the first curly brace, make a new line and add: <code class="docutils literal notranslate"><span class="pre">&quot;ipv6&quot;:</span> <span class="pre">true,</span></code> (with the comma because it must be valid JSON)</p></li>
+<li><p>Save and exit</p></li>
+<li><p>Restart the docker daemon: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">restart</span> <span class="pre">docker</span></code></p></li>
+</ol>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="grading">
+<h2><span class="section-number">35.2. </span>Grading<a class="headerlink" href="#grading" title="Link to this heading">#</a></h2>
+<p>This table shows how many points you get for each segment of the integration.
+Each segment is equally weighted.</p>
+<div class="pst-scrollable-table-container"><table class="table" id="id1">
+<caption><span class="caption-number">Table 35.1 </span><span class="caption-text">Integration Points</span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>For the ______ segment</p></th>
+<th class="head"><p>If you…</p></th>
+<th class="head"><p>You get this percentage for that segment</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Trigger voice recording</p></td>
+<td><p>Trigger with button</p></td>
+<td><p>85% total</p></td>
+</tr>
+<tr class="row-odd"><td><p>Trigger voice recording</p></td>
+<td><p>Trigger with Arduino KWS</p></td>
+<td><p>100% total</p></td>
+</tr>
+<tr class="row-even"><td><p>Voice transcription</p></td>
+<td><p>Cold start voice-to-text (model not loaded until trigger)</p></td>
+<td><p>20% total</p></td>
+</tr>
+<tr class="row-odd"><td><p>Voice transcription</p></td>
+<td><p>Warm start voice-to-text (model loaded before trigger)</p></td>
+<td><p>100% total</p></td>
+</tr>
+<tr class="row-even"><td><p>Networking</p></td>
+<td><p>Send transcription to LLM; LLM extracts and returns the location</p></td>
+<td><p>+50%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Networking</p></td>
+<td><p>GET weather for location from <a class="reference external" href="https://wttr.in">https://wttr.in</a> and print to screen</p></td>
+<td><p>+50%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="final-workday">
+<h1><span class="section-number">36. </span>Final Workday<a class="headerlink" href="#final-workday" title="Link to this heading">#</a></h1>
+<p><img alt="How neat is that" src="https://i.giphy.com/CWKcLd53mbw0o.webp" /></p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -481,11 +567,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="command-risk.html"
+       href="recap.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">36. </span>Command and Risk</p>
+        <p class="prev-next-title"><span class="section-number">37. </span>Socratic Recap</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -495,6 +581,33 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">35. Final: Integration</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-tips">35.1. Debugging Tips</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">Docker</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#can-t-connect-to-dfec-ai-server">Can’t connect to DFEC AI server</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">35.2. Grading</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-workday">36. Final Workday</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
