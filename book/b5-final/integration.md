@@ -8,6 +8,8 @@ Time to connect them 😈
 
 Here are some known "gotchas." You should really read them all.
 
+If you have one to add, please [edit and submit a pull request](https://github.com/USAFA-ECE/ece386-book/blob/main/book/b5-final/integration.md)!
+
 ### Docker
 
 #### Can't connect to DFEC AI server
